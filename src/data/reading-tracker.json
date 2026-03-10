@@ -1,0 +1,8013 @@
+{
+  "last_updated": "2026-03-09",
+  "sources": {
+    "audible_total": 450,
+    "goodreads_total": 201
+  },
+  "stats": {
+    "total_unique": 488,
+    "confirmed_read": 477,
+    "likely_read_audible": 0,
+    "audible_only_unread": 0,
+    "in_library_gr_only": 6,
+    "to_read": 5,
+    "total_series": 94
+  },
+  "books": [
+    {
+      "title": "American Psycho",
+      "authors": [
+        "Bret Easton Ellis"
+      ],
+      "series": null,
+      "series_num": null,
+      "audible_purchased": "2026-02-25",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "Seveneves",
+      "authors": [
+        "Neal Stephenson"
+      ],
+      "series": null,
+      "series_num": null,
+      "audible_purchased": "2026-02-20",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "The Hard Line",
+      "authors": [
+        "Mark Greaney"
+      ],
+      "series": "Gray Man",
+      "series_num": "15",
+      "audible_purchased": "2026-02-17",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "High Treason",
+      "authors": [
+        "John Gilstrap"
+      ],
+      "series": "Jonathan Grave",
+      "series_num": "5",
+      "audible_purchased": "2026-02-15",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "Antihero",
+      "authors": [
+        "Gregg Hurwitz"
+      ],
+      "series": "An Orphan X Novel",
+      "series_num": "11",
+      "audible_purchased": "2026-02-10",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "Damage Control",
+      "authors": [
+        "John Gilstrap"
+      ],
+      "series": "Jonathan Grave",
+      "series_num": "4",
+      "audible_purchased": "2026-02-06",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "Threat Warning",
+      "authors": [
+        "John Gilstrap"
+      ],
+      "series": "Jonathan Grave",
+      "series_num": "3",
+      "audible_purchased": "2026-02-04",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "Hostage Zero",
+      "authors": [
+        "John Gilstrap"
+      ],
+      "series": "Jonathan Grave",
+      "series_num": "2",
+      "audible_purchased": "2026-01-29",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "No Mercy",
+      "authors": [
+        "John Gilstrap"
+      ],
+      "series": "Jonathan Grave",
+      "series_num": "1",
+      "audible_purchased": "2026-01-27",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "His & Hers",
+      "authors": [
+        "Alice Feeney"
+      ],
+      "series": null,
+      "series_num": null,
+      "audible_purchased": "2026-01-24",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "My Husband's Wife",
+      "authors": [
+        "Alice Feeney"
+      ],
+      "series": null,
+      "series_num": null,
+      "audible_purchased": "2026-01-23",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "The Fellowship of the Ring",
+      "authors": [
+        "J. R. R. Tolkien"
+      ],
+      "series": "The Lord of the Rings",
+      "series_num": "1",
+      "audible_purchased": "2020-06-16",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "The Hobbit",
+      "authors": [
+        "J. R. R. Tolkien"
+      ],
+      "series": "The Lord of the Rings",
+      "series_num": "0.5",
+      "audible_purchased": "2026-01-07",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "Chaos",
+      "authors": [
+        "Tom O'Neill",
+        "Dan Piepenbring"
+      ],
+      "series": null,
+      "series_num": null,
+      "audible_purchased": "2026-01-04",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "Alchemised",
+      "authors": [
+        "SenLinYu"
+      ],
+      "series": null,
+      "series_num": null,
+      "audible_purchased": "2025-12-24",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "The Wise Man's Fear",
+      "authors": [
+        "Patrick Rothfuss"
+      ],
+      "series": "Kingkiller Chronicle",
+      "series_num": "2",
+      "audible_purchased": "2025-12-16",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "The Name of the Wind",
+      "authors": [
+        "Patrick Rothfuss"
+      ],
+      "series": "Kingkiller Chronicle",
+      "series_num": "1",
+      "audible_purchased": "2025-12-09",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "Children of the Mind",
+      "authors": [
+        "Orson Scott Card"
+      ],
+      "series": "The Ender Saga",
+      "series_num": "4",
+      "audible_purchased": "2025-12-07",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "Xenocide",
+      "authors": [
+        "Orson Scott Card"
+      ],
+      "series": "The Ender Saga",
+      "series_num": "3",
+      "audible_purchased": "2025-12-01",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "Speaker for the Dead",
+      "authors": [
+        "Orson Scott Card"
+      ],
+      "series": "The Ender Saga",
+      "series_num": "2",
+      "audible_purchased": "2025-11-25",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "Ender's Game",
+      "authors": [
+        "Orson Scott Card"
+      ],
+      "series": "The Ender Saga",
+      "series_num": "1",
+      "audible_purchased": "2025-11-19",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "Flash Point",
+      "authors": [
+        "Jack Slater"
+      ],
+      "series": "Jason Trapp",
+      "series_num": "3",
+      "audible_purchased": "2025-11-16",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "Iron Gold",
+      "authors": [
+        "Pierce Brown"
+      ],
+      "series": "Red Rising",
+      "series_num": "4",
+      "audible_purchased": "2025-11-14",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "False Flag",
+      "authors": [
+        "Jack Slater"
+      ],
+      "series": "Jason Trapp",
+      "series_num": "2",
+      "audible_purchased": "2025-11-14",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "Dark State",
+      "authors": [
+        "Jack Slater"
+      ],
+      "series": "Jason Trapp",
+      "series_num": "1",
+      "audible_purchased": "2025-11-12",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "Golf in the Kingdom",
+      "authors": [
+        "Michael Murphy"
+      ],
+      "series": null,
+      "series_num": null,
+      "audible_purchased": "2025-11-11",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "Remarkably Bright Creatures",
+      "authors": [
+        "Shelby Van Pelt"
+      ],
+      "series": null,
+      "series_num": null,
+      "audible_purchased": "2025-11-08",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "The God of the Woods",
+      "authors": [
+        "Liz Moore"
+      ],
+      "series": null,
+      "series_num": null,
+      "audible_purchased": "2025-11-06",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "Still Life",
+      "authors": [
+        "Louise Penny"
+      ],
+      "series": "Chief Inspector Gamache/Three Pines",
+      "series_num": "1",
+      "audible_purchased": "2025-11-06",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "Duskbound",
+      "authors": [
+        "Parker Lennox",
+        "Bree Grenwich"
+      ],
+      "series": "Esprithean Trilogy",
+      "series_num": "2",
+      "audible_purchased": "2025-11-03",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "Riftborne",
+      "authors": [
+        "Parker Lennox",
+        "Bree Grenwich"
+      ],
+      "series": "Esprithean Trilogy",
+      "series_num": "1",
+      "audible_purchased": "2025-10-29",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "Endurance",
+      "authors": [
+        "Alfred Lansing"
+      ],
+      "series": null,
+      "series_num": null,
+      "audible_purchased": "2025-10-26",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "Edge of Honor",
+      "authors": [
+        "Brad Thor"
+      ],
+      "series": null,
+      "series_num": null,
+      "audible_purchased": "2025-10-20",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "Into the Gray Zone",
+      "authors": [
+        "Brad Taylor"
+      ],
+      "series": "Pike Logan",
+      "series_num": "19",
+      "audible_purchased": "2025-10-20",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "Cry Havoc",
+      "authors": [
+        "Jack Carr"
+      ],
+      "series": "A Tom Reece Thriller",
+      "series_num": "1",
+      "audible_purchased": "2025-10-15",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "The Secret of Secrets",
+      "authors": [
+        "Dan Brown"
+      ],
+      "series": "Robert Langdon Series",
+      "series_num": "6",
+      "audible_purchased": "2025-10-08",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "The Lost Symbol",
+      "authors": [
+        "Dan Brown"
+      ],
+      "series": "Robert Langdon Series",
+      "series_num": "3",
+      "audible_purchased": "2025-10-02",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "Gates of Fire",
+      "authors": [
+        "Steven Pressfield"
+      ],
+      "series": null,
+      "series_num": null,
+      "audible_purchased": "2025-09-24",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "The Hallmarked Man",
+      "authors": [
+        "Robert Galbraith"
+      ],
+      "series": "A Cormoran Strike Novel",
+      "series_num": "8",
+      "audible_purchased": "2025-09-08",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "The Legend of Bagger Vance",
+      "authors": [
+        "Steven Pressfield"
+      ],
+      "series": null,
+      "series_num": null,
+      "audible_purchased": "2025-09-05",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "The Code: An Orphan X Short Story",
+      "authors": [
+        "Gregg Hurwitz"
+      ],
+      "series": "An Orphan X Novel",
+      "series_num": null,
+      "audible_purchased": "2025-09-02",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "The Black Echo: Harry Bosch Series, Book 1",
+      "authors": [
+        "Michael Connelly"
+      ],
+      "series": "A Harry Bosch Novel",
+      "series_num": "1",
+      "audible_purchased": "2025-08-29",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "Outlander",
+      "authors": [
+        "Diana Gabaldon"
+      ],
+      "series": "Outlander",
+      "series_num": "1",
+      "audible_purchased": "2025-08-15",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "Stone Monkey",
+      "authors": [
+        "Jeffery Deaver"
+      ],
+      "series": "Lincoln Rhyme Series",
+      "series_num": "4",
+      "audible_purchased": "2025-08-08",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "Catch Me If You Can",
+      "authors": [
+        "Frank W. Abagnale",
+        "Stan Redding"
+      ],
+      "series": null,
+      "series_num": null,
+      "audible_purchased": "2025-08-04",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "The Hunting Wives",
+      "authors": [
+        "May Cobb"
+      ],
+      "series": null,
+      "series_num": null,
+      "audible_purchased": "2025-07-29",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "The Empty Chair",
+      "authors": [
+        "Jeffery Deaver"
+      ],
+      "series": "Lincoln Rhyme Series",
+      "series_num": "3",
+      "audible_purchased": "2025-07-28",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "The Coffin Dancer",
+      "authors": [
+        "Jeffery Deaver"
+      ],
+      "series": "Lincoln Rhyme Series",
+      "series_num": "2",
+      "audible_purchased": "2025-07-25",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "Home Before Dark",
+      "authors": [
+        "Riley Sager"
+      ],
+      "series": null,
+      "series_num": null,
+      "audible_purchased": "2025-07-18",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "Gone Girl",
+      "authors": [
+        "Gillian Flynn"
+      ],
+      "series": null,
+      "series_num": null,
+      "audible_purchased": "2025-07-13",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "The Final Gambit",
+      "authors": [
+        "Jennifer Lynn Barnes"
+      ],
+      "series": "The Inheritance Games",
+      "series_num": "3",
+      "audible_purchased": "2025-07-10",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "The Hawthorne Legacy",
+      "authors": [
+        "Jennifer Lynn Barnes"
+      ],
+      "series": "The Inheritance Games",
+      "series_num": "2",
+      "audible_purchased": "2025-07-09",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "Inheritance Games",
+      "authors": [
+        "Jennifer Lynn Barnes"
+      ],
+      "series": "The Inheritance Games",
+      "series_num": "1",
+      "audible_purchased": "2025-07-08",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "Sunrise on the Reaping (The Hunger Games)",
+      "authors": [
+        "Suzanne Collins"
+      ],
+      "series": "The Hunger Games",
+      "series_num": null,
+      "audible_purchased": "2025-07-02",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "Blacktop Wasteland",
+      "authors": [
+        "S. A. Cosby"
+      ],
+      "series": null,
+      "series_num": null,
+      "audible_purchased": "2025-06-26",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "King of Ashes",
+      "authors": [
+        "S. A. Cosby"
+      ],
+      "series": null,
+      "series_num": null,
+      "audible_purchased": "2025-06-25",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "The Sicilian",
+      "authors": [
+        "Mario Puzo"
+      ],
+      "series": "The Godfather",
+      "series_num": "2",
+      "audible_purchased": "2025-06-12",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "48 Hours",
+      "authors": [
+        "William R. Forstchen"
+      ],
+      "series": null,
+      "series_num": null,
+      "audible_purchased": "2025-06-10",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "Nightshade",
+      "authors": [
+        "Michael Connelly"
+      ],
+      "series": "Detective Stilwell",
+      "series_num": "1",
+      "audible_purchased": "2025-06-10",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "The Godfather",
+      "authors": [
+        "Mario Puzo",
+        "Francis Ford Coppola - introduction",
+        "Anthony Puzo - note",
+        "Robert J. Thompson - afterword"
+      ],
+      "series": "The Godfather",
+      "series_num": "1",
+      "audible_purchased": "2025-06-10",
+      "gr_shelf": "read",
+      "gr_date_read": null,
+      "gr_rating": 5,
+      "status": "read_no_date",
+      "sources": [
+        "audible",
+        "goodreads"
+      ]
+    },
+    {
+      "title": "The Absent One",
+      "authors": [
+        "Jussi Adler-Olsen"
+      ],
+      "series": "Department Q",
+      "series_num": "2",
+      "audible_purchased": "2025-06-09",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "The Keeper of Lost Causes",
+      "authors": [
+        "Jussi Adler-Olsen"
+      ],
+      "series": "Department Q",
+      "series_num": "1",
+      "audible_purchased": "2025-06-03",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "Five Years After",
+      "authors": [
+        "William R. Forstchen"
+      ],
+      "series": "A John Matherson Novel",
+      "series_num": "4",
+      "audible_purchased": "2025-05-29",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "The Final Day",
+      "authors": [
+        "William R. Forstchen"
+      ],
+      "series": "A John Matherson Novel",
+      "series_num": "3",
+      "audible_purchased": "2025-05-26",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "One Year After",
+      "authors": [
+        "William R. Forstchen"
+      ],
+      "series": "A John Matherson Novel",
+      "series_num": "2",
+      "audible_purchased": "2025-05-25",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "One Second After",
+      "authors": [
+        "William R. Forstchen"
+      ],
+      "series": "A John Matherson Novel",
+      "series_num": "1",
+      "audible_purchased": "2025-05-22",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "The Martian",
+      "authors": [
+        "Andy Weir"
+      ],
+      "series": null,
+      "series_num": null,
+      "audible_purchased": "2025-05-21",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "Project Hail Mary",
+      "authors": [
+        "Andy Weir"
+      ],
+      "series": null,
+      "series_num": null,
+      "audible_purchased": "2025-05-19",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "The Perfect Divorce",
+      "authors": [
+        "Jeneva Rose"
+      ],
+      "series": null,
+      "series_num": null,
+      "audible_purchased": "2025-05-15",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "The Perfect Marriage",
+      "authors": [
+        "Jeneva Rose"
+      ],
+      "series": null,
+      "series_num": null,
+      "audible_purchased": "2024-05-19",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "Silver Elite",
+      "authors": [
+        "Dani Francis"
+      ],
+      "series": "Silver Elite",
+      "series_num": "1",
+      "audible_purchased": "2025-05-11",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "The Running Grave",
+      "authors": [
+        "Robert Galbraith"
+      ],
+      "series": "A Cormoran Strike Novel",
+      "series_num": "7",
+      "audible_purchased": "2025-04-28",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "The Ink Black Heart",
+      "authors": [
+        "Robert Galbraith"
+      ],
+      "series": "A Cormoran Strike Novel",
+      "series_num": "6",
+      "audible_purchased": "2025-04-15",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "Troubled Blood",
+      "authors": [
+        "Robert Galbraith"
+      ],
+      "series": "A Cormoran Strike Novel",
+      "series_num": "5",
+      "audible_purchased": "2025-04-02",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "Midnight Black",
+      "authors": [
+        "Mark Greaney"
+      ],
+      "series": "Gray Man",
+      "series_num": "14",
+      "audible_purchased": "2025-03-25",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "Lethal White",
+      "authors": [
+        "Robert Galbraith"
+      ],
+      "series": "A Cormoran Strike Novel",
+      "series_num": "4",
+      "audible_purchased": "2025-03-19",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "Career of Evil",
+      "authors": [
+        "Robert Galbraith"
+      ],
+      "series": "A Cormoran Strike Novel",
+      "series_num": "3",
+      "audible_purchased": "2025-03-15",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "The Silkworm",
+      "authors": [
+        "Robert Galbraith"
+      ],
+      "series": "A Cormoran Strike Novel",
+      "series_num": "2",
+      "audible_purchased": "2025-03-10",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "Dimensions",
+      "authors": [
+        "Jacques Vallee"
+      ],
+      "series": "Alien Contact Trilogy",
+      "series_num": "1",
+      "audible_purchased": "2025-03-06",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "Onyx Storm",
+      "authors": [
+        "Rebecca Yarros"
+      ],
+      "series": "The Empyrean",
+      "series_num": "3",
+      "audible_purchased": "2025-02-27",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "The Cuckoo's Calling",
+      "authors": [
+        "Robert Galbraith"
+      ],
+      "series": "A Cormoran Strike Novel",
+      "series_num": "1",
+      "audible_purchased": "2025-02-26",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "Iron Flame",
+      "authors": [
+        "Rebecca Yarros"
+      ],
+      "series": "The Empyrean",
+      "series_num": "2",
+      "audible_purchased": "2025-02-16",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "The Day of the Jackal",
+      "authors": [
+        "Frederick Forsyth"
+      ],
+      "series": null,
+      "series_num": null,
+      "audible_purchased": "2025-02-12",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "Nemesis",
+      "authors": [
+        "Gregg Hurwitz"
+      ],
+      "series": "An Orphan X Novel",
+      "series_num": "10",
+      "audible_purchased": "2025-02-11",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "Fourth Wing",
+      "authors": [
+        "Rebecca Yarros"
+      ],
+      "series": "The Empyrean",
+      "series_num": "1",
+      "audible_purchased": "2025-02-07",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "The Recruit",
+      "authors": [
+        "Robert Muchamore"
+      ],
+      "series": "Cherub",
+      "series_num": "1",
+      "audible_purchased": "2025-02-05",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "Duma Key",
+      "authors": [
+        "Stephen King"
+      ],
+      "series": null,
+      "series_num": null,
+      "audible_purchased": "2025-01-28",
+      "gr_shelf": "read",
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read_no_date",
+      "sources": [
+        "audible",
+        "goodreads"
+      ]
+    },
+    {
+      "title": "Eye of the Storm",
+      "authors": [
+        "Jack Higgins"
+      ],
+      "series": "Sean Dillon",
+      "series_num": "1",
+      "audible_purchased": "2025-01-28",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "Targeted: Beirut",
+      "authors": [
+        "Jack Carr",
+        "James M. Scott"
+      ],
+      "series": null,
+      "series_num": null,
+      "audible_purchased": "2025-01-26",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "Morning Star",
+      "authors": [
+        "Pierce Brown"
+      ],
+      "series": "Red Rising",
+      "series_num": "3",
+      "audible_purchased": "2025-01-17",
+      "gr_shelf": "read",
+      "gr_date_read": "2025/01/23",
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible",
+        "goodreads"
+      ]
+    },
+    {
+      "title": "Golden Son",
+      "authors": [
+        "Pierce Brown"
+      ],
+      "series": "Red Rising",
+      "series_num": "2",
+      "audible_purchased": "2025-01-10",
+      "gr_shelf": "read",
+      "gr_date_read": "2025/01/10",
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible",
+        "goodreads"
+      ]
+    },
+    {
+      "title": "Red Rising",
+      "authors": [
+        "Pierce Brown"
+      ],
+      "series": "Red Rising",
+      "series_num": "1",
+      "audible_purchased": "2025-01-04",
+      "gr_shelf": "read",
+      "gr_date_read": "2025/01/05",
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible",
+        "goodreads"
+      ]
+    },
+    {
+      "title": "The Elementals",
+      "authors": [
+        "Michael McDowell"
+      ],
+      "series": null,
+      "series_num": null,
+      "audible_purchased": "2024-12-26",
+      "gr_shelf": "read",
+      "gr_date_read": "2025/01/23",
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible",
+        "goodreads"
+      ]
+    },
+    {
+      "title": "NOS4A2",
+      "authors": [
+        "Joe Hill"
+      ],
+      "series": null,
+      "series_num": null,
+      "audible_purchased": "2024-12-23",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "The Whisper Man",
+      "authors": [
+        "Alex North"
+      ],
+      "series": null,
+      "series_num": null,
+      "audible_purchased": "2024-12-21",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "Southern Man",
+      "authors": [
+        "Greg Iles"
+      ],
+      "series": "Penn Cage",
+      "series_num": "7",
+      "audible_purchased": "2024-12-18",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "The Way of Kings",
+      "authors": [
+        "Brandon Sanderson"
+      ],
+      "series": "The Stormlight Archive",
+      "series_num": "1",
+      "audible_purchased": "2024-12-15",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "Last Chance",
+      "authors": [
+        "Gregg Hurwitz"
+      ],
+      "series": "The Rains",
+      "series_num": "2",
+      "audible_purchased": "2024-12-13",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "The Rains",
+      "authors": [
+        "Gregg Hurwitz"
+      ],
+      "series": "The Rains",
+      "series_num": "1",
+      "audible_purchased": "2024-12-10",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "1st To Die: Booktrack Edition",
+      "authors": [
+        "James Patterson"
+      ],
+      "series": "Women's Murder Club",
+      "series_num": "1",
+      "audible_purchased": "2024-12-07",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "The Murder House",
+      "authors": [
+        "James Patterson",
+        "David Ellis"
+      ],
+      "series": null,
+      "series_num": null,
+      "audible_purchased": "2024-12-01",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "The House of Cross",
+      "authors": [
+        "James Patterson"
+      ],
+      "series": "Alex Cross Adventures",
+      "series_num": "33",
+      "audible_purchased": "2024-11-25",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "A Time to Kill",
+      "authors": [
+        "John Grisham"
+      ],
+      "series": "Lucien Wilbanks",
+      "series_num": "1",
+      "audible_purchased": "2024-11-22",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "The Andromeda Strain",
+      "authors": [
+        "Michael Crichton"
+      ],
+      "series": "The Andromeda Strain",
+      "series_num": "1",
+      "audible_purchased": "2024-11-19",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "The Simple Truth",
+      "authors": [
+        "David Baldacci"
+      ],
+      "series": null,
+      "series_num": null,
+      "audible_purchased": "2024-11-17",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "To Die For",
+      "authors": [
+        "David Baldacci"
+      ],
+      "series": "Travis Devine",
+      "series_num": "3",
+      "audible_purchased": "2024-11-13",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "The Bone Collector",
+      "authors": [
+        "Jeffery Deaver"
+      ],
+      "series": "Lincoln Rhyme Series",
+      "series_num": "1",
+      "audible_purchased": "2024-11-10",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "The Edge",
+      "authors": [
+        "David Baldacci"
+      ],
+      "series": "Travis Devine",
+      "series_num": "2",
+      "audible_purchased": "2024-11-08",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "The 6:20 Man",
+      "authors": [
+        "David Baldacci"
+      ],
+      "series": "Travis Devine",
+      "series_num": "1",
+      "audible_purchased": "2024-11-05",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "Hell's Corner",
+      "authors": [
+        "David Baldacci"
+      ],
+      "series": "The Camel Club",
+      "series_num": "5",
+      "audible_purchased": "2024-10-31",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "Divine Justice",
+      "authors": [
+        "David Baldacci"
+      ],
+      "series": "The Camel Club",
+      "series_num": "4",
+      "audible_purchased": "2024-10-28",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "Stone Cold",
+      "authors": [
+        "David Baldacci"
+      ],
+      "series": "The Camel Club",
+      "series_num": "3",
+      "audible_purchased": "2024-10-27",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "The Collectors",
+      "authors": [
+        "David Baldacci"
+      ],
+      "series": "The Camel Club",
+      "series_num": "2",
+      "audible_purchased": "2024-10-23",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "The Camel Club",
+      "authors": [
+        "David Baldacci"
+      ],
+      "series": "The Camel Club",
+      "series_num": "1",
+      "audible_purchased": "2024-10-21",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "End Game",
+      "authors": [
+        "David Baldacci"
+      ],
+      "series": "Will Robie",
+      "series_num": "5",
+      "audible_purchased": "2024-10-17",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "The Guilty",
+      "authors": [
+        "David Baldacci"
+      ],
+      "series": "Will Robie",
+      "series_num": "4",
+      "audible_purchased": "2024-10-14",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "The Target",
+      "authors": [
+        "David Baldacci"
+      ],
+      "series": "Will Robie",
+      "series_num": "3",
+      "audible_purchased": "2024-10-04",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "Bullseye",
+      "authors": [
+        "David Baldacci"
+      ],
+      "series": "Will Robie",
+      "series_num": "2.5",
+      "audible_purchased": "2024-10-04",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "The Hit",
+      "authors": [
+        "David Baldacci"
+      ],
+      "series": "Will Robie",
+      "series_num": "2",
+      "audible_purchased": "2024-10-01",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "The Innocent: A Novel",
+      "authors": [
+        "David Baldacci"
+      ],
+      "series": "Will Robie",
+      "series_num": "1",
+      "audible_purchased": "2024-09-26",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "Red Sky Mourning",
+      "authors": [
+        "Jack Carr"
+      ],
+      "series": "Terminal List",
+      "series_num": "7",
+      "audible_purchased": "2024-09-22",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "If You Dare",
+      "authors": [
+        "A. R. Torre"
+      ],
+      "series": "A Deanna Madden Novel",
+      "series_num": "3",
+      "audible_purchased": "2024-09-20",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "Do Not Disturb",
+      "authors": [
+        "A. R. Torre"
+      ],
+      "series": "A Deanna Madden Novel",
+      "series_num": "2",
+      "audible_purchased": "2024-09-19",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "The Girl in 6E",
+      "authors": [
+        "A. R. Torre"
+      ],
+      "series": "A Deanna Madden Novel",
+      "series_num": "1",
+      "audible_purchased": "2024-09-16",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "The Ghostwriter",
+      "authors": [
+        "Alessandra Torre"
+      ],
+      "series": null,
+      "series_num": null,
+      "audible_purchased": "2024-09-11",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "Every Last Secret",
+      "authors": [
+        "A. R. Torre"
+      ],
+      "series": null,
+      "series_num": null,
+      "audible_purchased": "2024-09-11",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "The Last Party",
+      "authors": [
+        "A. R. Torre"
+      ],
+      "series": null,
+      "series_num": null,
+      "audible_purchased": "2024-09-10",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "Capture or Kill",
+      "authors": [
+        "Vince Flynn",
+        "Don Bentley"
+      ],
+      "series": "Mitch Rapp",
+      "series_num": "23",
+      "audible_purchased": "2024-09-03",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "The Good Lie",
+      "authors": [
+        "A. R. Torre"
+      ],
+      "series": null,
+      "series_num": null,
+      "audible_purchased": "2024-09-03",
+      "gr_shelf": "read",
+      "gr_date_read": "2024/09/09",
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible",
+        "goodreads"
+      ]
+    },
+    {
+      "title": "Alex Cross Must Die",
+      "authors": [
+        "James Patterson"
+      ],
+      "series": "Alex Cross Adventures",
+      "series_num": "32",
+      "audible_purchased": "2024-08-28",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "Cross Down",
+      "authors": [
+        "James Patterson",
+        "Brendan DuBois"
+      ],
+      "series": "Alex Cross Adventures",
+      "series_num": "31",
+      "audible_purchased": "2024-08-22",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "Imminent",
+      "authors": [
+        "Luis Elizondo"
+      ],
+      "series": null,
+      "series_num": null,
+      "audible_purchased": "2024-08-20",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "Triple Cross (Alex Cross #28)",
+      "authors": [
+        "James Patterson"
+      ],
+      "series": "Alex Cross Adventures",
+      "series_num": "30",
+      "audible_purchased": "2024-08-17",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "Shadow of Doubt",
+      "authors": [
+        "Brad Thor"
+      ],
+      "series": "The Scot Harvath Series",
+      "series_num": "23",
+      "audible_purchased": "2024-08-14",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "Fear No Evil",
+      "authors": [
+        "James Patterson"
+      ],
+      "series": "Alex Cross Adventures",
+      "series_num": "29",
+      "audible_purchased": "2024-08-09",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "Deadly Cross",
+      "authors": [
+        "James Patterson"
+      ],
+      "series": "Alex Cross Adventures",
+      "series_num": "28",
+      "audible_purchased": "2024-08-07",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "Criss Cross",
+      "authors": [
+        "James Patterson"
+      ],
+      "series": "Alex Cross Adventures",
+      "series_num": "27",
+      "audible_purchased": "2024-08-04",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "Target: Alex Cross",
+      "authors": [
+        "James Patterson"
+      ],
+      "series": "Alex Cross Adventures",
+      "series_num": "26",
+      "audible_purchased": "2024-07-31",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "The People vs. Alex Cross",
+      "authors": [
+        "James Patterson"
+      ],
+      "series": "Alex Cross Adventures",
+      "series_num": "25",
+      "audible_purchased": "2024-07-29",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "Cross the Line",
+      "authors": [
+        "James Patterson"
+      ],
+      "series": "Alex Cross Adventures",
+      "series_num": "24",
+      "audible_purchased": "2024-07-23",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "Cross Justice",
+      "authors": [
+        "James Patterson"
+      ],
+      "series": "Alex Cross Adventures",
+      "series_num": "23",
+      "audible_purchased": "2024-07-19",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "Hope to Die",
+      "authors": [
+        "James Patterson"
+      ],
+      "series": "Alex Cross Adventures",
+      "series_num": "22",
+      "audible_purchased": "2024-07-05",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "Sentinel",
+      "authors": [
+        "Mark Greaney"
+      ],
+      "series": "Joshua Duffy",
+      "series_num": "2",
+      "audible_purchased": "2024-07-02",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "Cross My Heart",
+      "authors": [
+        "James Patterson"
+      ],
+      "series": "Alex Cross Adventures",
+      "series_num": "21",
+      "audible_purchased": "2024-06-27",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "The Brothers Karamazov",
+      "authors": [
+        "Fyodor Dostoyevsky",
+        "David McDuff - translator"
+      ],
+      "series": null,
+      "series_num": null,
+      "audible_purchased": "2024-06-23",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "The Word of Promise Audio Bible: Complete Bible---Hear the Bible Come Alive (NKJV)",
+      "authors": [
+        "Thomas Nelson"
+      ],
+      "series": null,
+      "series_num": null,
+      "audible_purchased": "2024-06-22",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "Alex Cross, Run",
+      "authors": [
+        "James Patterson"
+      ],
+      "series": "Alex Cross Adventures",
+      "series_num": "20",
+      "audible_purchased": "2024-06-18",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "The Beach",
+      "authors": [
+        "Alex Garland"
+      ],
+      "series": null,
+      "series_num": null,
+      "audible_purchased": "2024-06-14",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "Kill Alex Cross",
+      "authors": [
+        "James Patterson"
+      ],
+      "series": "Alex Cross Adventures",
+      "series_num": "18",
+      "audible_purchased": "2024-06-11",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "Cross Fire",
+      "authors": [
+        "James Patterson"
+      ],
+      "series": "Alex Cross Adventures",
+      "series_num": "17",
+      "audible_purchased": "2024-06-09",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "I, Alex Cross",
+      "authors": [
+        "James Patterson"
+      ],
+      "series": "Alex Cross Adventures",
+      "series_num": "16",
+      "audible_purchased": "2024-06-05",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "Cross Country",
+      "authors": [
+        "James Patterson"
+      ],
+      "series": "Alex Cross Adventures",
+      "series_num": "14",
+      "audible_purchased": "2024-05-31",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "Double Cross",
+      "authors": [
+        "James Patterson"
+      ],
+      "series": "Alex Cross Adventures",
+      "series_num": "13",
+      "audible_purchased": "2024-05-28",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "Alex Cross",
+      "authors": [
+        "James Patterson"
+      ],
+      "series": "Alex Cross Adventures",
+      "series_num": "12",
+      "audible_purchased": "2024-05-26",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "Mary, Mary",
+      "authors": [
+        "James Patterson"
+      ],
+      "series": "Alex Cross Adventures",
+      "series_num": "11",
+      "audible_purchased": "2024-05-23",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "London Bridges",
+      "authors": [
+        "James Patterson"
+      ],
+      "series": "Alex Cross Adventures",
+      "series_num": "10",
+      "audible_purchased": "2024-05-21",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "The Big Bad Wolf",
+      "authors": [
+        "James Patterson"
+      ],
+      "series": "Alex Cross Adventures",
+      "series_num": "9",
+      "audible_purchased": "2024-05-13",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "Demon Copperhead",
+      "authors": [
+        "Barbara Kingsolver"
+      ],
+      "series": null,
+      "series_num": null,
+      "audible_purchased": "2024-04-23",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "Red Metal",
+      "authors": [
+        "Mark Greaney",
+        "Lieutenant Colonel Hunter Ripley Rawlings IV - USMC"
+      ],
+      "series": null,
+      "series_num": null,
+      "audible_purchased": "2024-04-04",
+      "gr_shelf": "read",
+      "gr_date_read": "2024/09/11",
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible",
+        "goodreads"
+      ]
+    },
+    {
+      "title": "The Atlas Maneuver",
+      "authors": [
+        "Steve Berry"
+      ],
+      "series": "Cotton Malone",
+      "series_num": "18",
+      "audible_purchased": "2024-03-31",
+      "gr_shelf": "read",
+      "gr_date_read": "2024/09/11",
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible",
+        "goodreads"
+      ]
+    },
+    {
+      "title": "Shōgun, Part Two",
+      "authors": [
+        "James Clavell"
+      ],
+      "series": "The Asian Saga",
+      "series_num": null,
+      "audible_purchased": "2024-03-28",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "Shōgun, Part One",
+      "authors": [
+        "James Clavell"
+      ],
+      "series": "The Asian Saga",
+      "series_num": null,
+      "audible_purchased": "2024-03-12",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "Dead Man's Hand",
+      "authors": [
+        "Brad Taylor"
+      ],
+      "series": "Pike Logan",
+      "series_num": "18",
+      "audible_purchased": "2024-02-22",
+      "gr_shelf": "read",
+      "gr_date_read": "2024/09/11",
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible",
+        "goodreads"
+      ]
+    },
+    {
+      "title": "The Chaos Agent",
+      "authors": [
+        "Mark Greaney"
+      ],
+      "series": "Gray Man",
+      "series_num": "13",
+      "audible_purchased": "2024-02-20",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "The Minders",
+      "authors": [
+        "John Marrs"
+      ],
+      "series": "The Dark Future Series",
+      "series_num": "3",
+      "audible_purchased": "2024-02-18",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "Lone Wolf",
+      "authors": [
+        "Gregg Hurwitz"
+      ],
+      "series": "An Orphan X Novel",
+      "series_num": "9",
+      "audible_purchased": "2024-02-13",
+      "gr_shelf": "read",
+      "gr_date_read": "2024/12/18",
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible",
+        "goodreads"
+      ]
+    },
+    {
+      "title": "The Price You Pay",
+      "authors": [
+        "Nick Petrie"
+      ],
+      "series": "Peter Ash",
+      "series_num": "8",
+      "audible_purchased": "2024-02-07",
+      "gr_shelf": "currently-reading",
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible",
+        "goodreads"
+      ]
+    },
+    {
+      "title": "The Passengers",
+      "authors": [
+        "John Marrs"
+      ],
+      "series": "The Dark Future Series",
+      "series_num": "2",
+      "audible_purchased": "2024-02-04",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "The One",
+      "authors": [
+        "John Marrs"
+      ],
+      "series": "The Dark Future Series",
+      "series_num": "1",
+      "audible_purchased": "2024-02-01",
+      "gr_shelf": "currently-reading",
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible",
+        "goodreads"
+      ]
+    },
+    {
+      "title": "The Girl on the Porch",
+      "authors": [
+        "Richard Chizmar"
+      ],
+      "series": null,
+      "series_num": null,
+      "audible_purchased": "2024-01-31",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "The Runaway",
+      "authors": [
+        "Nick Petrie"
+      ],
+      "series": "Peter Ash",
+      "series_num": "7",
+      "audible_purchased": "2024-01-26",
+      "gr_shelf": "currently-reading",
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible",
+        "goodreads"
+      ]
+    },
+    {
+      "title": "Tell No Lies",
+      "authors": [
+        "Gregg Hurwitz"
+      ],
+      "series": null,
+      "series_num": null,
+      "audible_purchased": "2024-01-18",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "Signal",
+      "authors": [
+        "Patrick Lee"
+      ],
+      "series": "Sam Dryden",
+      "series_num": "2",
+      "audible_purchased": "2024-01-14",
+      "gr_shelf": "currently-reading",
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible",
+        "goodreads"
+      ]
+    },
+    {
+      "title": "Runner",
+      "authors": [
+        "Patrick Lee"
+      ],
+      "series": "Sam Dryden",
+      "series_num": "1",
+      "audible_purchased": "2024-01-12",
+      "gr_shelf": "currently-reading",
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible",
+        "goodreads"
+      ]
+    },
+    {
+      "title": "Mary and O'Neil",
+      "authors": [
+        "Justin Cronin"
+      ],
+      "series": null,
+      "series_num": null,
+      "audible_purchased": "2024-01-10",
+      "gr_shelf": "currently-reading",
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible",
+        "goodreads"
+      ]
+    },
+    {
+      "title": "Abandon",
+      "authors": [
+        "Blake Crouch"
+      ],
+      "series": null,
+      "series_num": null,
+      "audible_purchased": "2024-01-04",
+      "gr_shelf": "read",
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read_no_date",
+      "sources": [
+        "audible",
+        "goodreads"
+      ]
+    },
+    {
+      "title": "Upgrade",
+      "authors": [
+        "Blake Crouch"
+      ],
+      "series": null,
+      "series_num": null,
+      "audible_purchased": "2024-01-03",
+      "gr_shelf": "read",
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read_no_date",
+      "sources": [
+        "audible",
+        "goodreads"
+      ]
+    },
+    {
+      "title": "The Last Town",
+      "authors": [
+        "Blake Crouch"
+      ],
+      "series": "Wayward Pines",
+      "series_num": "3",
+      "audible_purchased": "2024-01-01",
+      "gr_shelf": "read",
+      "gr_date_read": "2024/01/02",
+      "gr_rating": 5,
+      "status": "read",
+      "sources": [
+        "audible",
+        "goodreads"
+      ]
+    },
+    {
+      "title": "Wayward",
+      "authors": [
+        "Blake Crouch"
+      ],
+      "series": "Wayward Pines",
+      "series_num": "2",
+      "audible_purchased": "2023-12-24",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "Pines",
+      "authors": [
+        "Blake Crouch"
+      ],
+      "series": "Wayward Pines",
+      "series_num": "1",
+      "audible_purchased": "2023-12-20",
+      "gr_shelf": "read",
+      "gr_date_read": null,
+      "gr_rating": 4,
+      "status": "read_no_date",
+      "sources": [
+        "audible",
+        "goodreads"
+      ]
+    },
+    {
+      "title": "Reliquary",
+      "authors": [
+        "Douglas Preston",
+        "Lincoln Child"
+      ],
+      "series": "Agent Pendergast",
+      "series_num": "2",
+      "audible_purchased": "2023-12-17",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "Fool Me Once",
+      "authors": [
+        "Harlan Coben"
+      ],
+      "series": null,
+      "series_num": null,
+      "audible_purchased": "2023-12-08",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "A Court of Wings and Ruin",
+      "authors": [
+        "Sarah J. Maas"
+      ],
+      "series": "A Court of Thorns and Roses",
+      "series_num": "3",
+      "audible_purchased": "2023-11-25",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "A Court of Mist and Fury",
+      "authors": [
+        "Sarah J. Maas"
+      ],
+      "series": "A Court of Thorns and Roses",
+      "series_num": "2",
+      "audible_purchased": "2023-11-15",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "A Court of Thorns and Roses",
+      "authors": [
+        "Sarah J. Maas"
+      ],
+      "series": "A Court of Thorns and Roses",
+      "series_num": "1",
+      "audible_purchased": "2023-11-12",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "Resurrection Walk",
+      "authors": [
+        "Michael Connelly"
+      ],
+      "series": "A Lincoln Lawyer Novel",
+      "series_num": "7",
+      "audible_purchased": "2023-11-10",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "The Directive",
+      "authors": [
+        "Matthew Quirk"
+      ],
+      "series": "Mike Ford",
+      "series_num": "2",
+      "audible_purchased": "2023-11-07",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "The 500",
+      "authors": [
+        "Matthew Quirk"
+      ],
+      "series": "Mike Ford",
+      "series_num": "1",
+      "audible_purchased": "2023-11-03",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "Holly",
+      "authors": [
+        "Stephen King"
+      ],
+      "series": "Holly Gibney",
+      "series_num": "3",
+      "audible_purchased": "2023-10-27",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "Hour of the Assassin",
+      "authors": [
+        "Matthew Quirk"
+      ],
+      "series": null,
+      "series_num": null,
+      "audible_purchased": "2023-10-25",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "The Night Agent",
+      "authors": [
+        "Matthew Quirk"
+      ],
+      "series": null,
+      "series_num": null,
+      "audible_purchased": "2023-10-18",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "The Thursday Murder Club",
+      "authors": [
+        "Richard Osman"
+      ],
+      "series": "A Thursday Murder Club Mystery",
+      "series_num": "1",
+      "audible_purchased": "2023-10-06",
+      "gr_shelf": "currently-reading",
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible",
+        "goodreads"
+      ]
+    },
+    {
+      "title": "Deep Sky",
+      "authors": [
+        "Patrick Lee"
+      ],
+      "series": "The Breach",
+      "series_num": "3",
+      "audible_purchased": "2023-09-27",
+      "gr_shelf": "read",
+      "gr_date_read": "2023/10/05",
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible",
+        "goodreads"
+      ]
+    },
+    {
+      "title": "Lords of the Fly",
+      "authors": [
+        "Monte Burke"
+      ],
+      "series": null,
+      "series_num": null,
+      "audible_purchased": "2023-09-26",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "Ghost Country",
+      "authors": [
+        "Patrick Lee"
+      ],
+      "series": "The Breach",
+      "series_num": "2",
+      "audible_purchased": "2023-09-26",
+      "gr_shelf": "currently-reading",
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible",
+        "goodreads"
+      ]
+    },
+    {
+      "title": "The Breach",
+      "authors": [
+        "Patrick Lee"
+      ],
+      "series": "The Breach",
+      "series_num": "1",
+      "audible_purchased": "2023-09-23",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "Friday Night Lights",
+      "authors": [
+        "H. G. Bissinger"
+      ],
+      "series": null,
+      "series_num": null,
+      "audible_purchased": "2023-09-15",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "Code Red",
+      "authors": [
+        "Vince Flynn",
+        "Kyle Mills"
+      ],
+      "series": "Mitch Rapp",
+      "series_num": "22",
+      "audible_purchased": "2023-09-13",
+      "gr_shelf": "currently-reading",
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible",
+        "goodreads"
+      ]
+    },
+    {
+      "title": "Oath of Loyalty",
+      "authors": [
+        "Vince Flynn",
+        "Kyle Mills"
+      ],
+      "series": "Mitch Rapp",
+      "series_num": "21",
+      "audible_purchased": "2023-09-08",
+      "gr_shelf": "currently-reading",
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible",
+        "goodreads"
+      ]
+    },
+    {
+      "title": "Enemy at the Gates",
+      "authors": [
+        "Vince Flynn",
+        "Kyle Mills"
+      ],
+      "series": "Mitch Rapp",
+      "series_num": "20",
+      "audible_purchased": "2023-09-02",
+      "gr_shelf": "currently-reading",
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible",
+        "goodreads"
+      ]
+    },
+    {
+      "title": "Total Power",
+      "authors": [
+        "Vince Flynn",
+        "Kyle Mills"
+      ],
+      "series": "Mitch Rapp",
+      "series_num": "19",
+      "audible_purchased": "2023-08-29",
+      "gr_shelf": "currently-reading",
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible",
+        "goodreads"
+      ]
+    },
+    {
+      "title": "Lethal Agent",
+      "authors": [
+        "Vince Flynn",
+        "Kyle Mills"
+      ],
+      "series": "Mitch Rapp",
+      "series_num": "18",
+      "audible_purchased": "2023-08-22",
+      "gr_shelf": "currently-reading",
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible",
+        "goodreads"
+      ]
+    },
+    {
+      "title": "Sphere",
+      "authors": [
+        "Michael Crichton"
+      ],
+      "series": null,
+      "series_num": null,
+      "audible_purchased": "2023-08-20",
+      "gr_shelf": "currently-reading",
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible",
+        "goodreads"
+      ]
+    },
+    {
+      "title": "The Pale Horseman",
+      "authors": [
+        "Bernard Cornwell"
+      ],
+      "series": "Last Kingdom (formerly Saxon Tales)",
+      "series_num": "2",
+      "audible_purchased": "2023-08-20",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "Red War",
+      "authors": [
+        "Vince Flynn",
+        "Kyle Mills"
+      ],
+      "series": "Mitch Rapp",
+      "series_num": "17",
+      "audible_purchased": "2023-08-10",
+      "gr_shelf": "currently-reading",
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible",
+        "goodreads"
+      ]
+    },
+    {
+      "title": "Enemy of the State",
+      "authors": [
+        "Vince Flynn",
+        "Kyle Mills"
+      ],
+      "series": "Mitch Rapp",
+      "series_num": "16",
+      "audible_purchased": "2023-08-06",
+      "gr_shelf": "currently-reading",
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible",
+        "goodreads"
+      ]
+    },
+    {
+      "title": "Dead Fall",
+      "authors": [
+        "Brad Thor"
+      ],
+      "series": "The Scot Harvath Series",
+      "series_num": "22",
+      "audible_purchased": "2023-08-03",
+      "gr_shelf": "currently-reading",
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible",
+        "goodreads"
+      ]
+    },
+    {
+      "title": "Order to Kill",
+      "authors": [
+        "Vince Flynn",
+        "Kyle Mills"
+      ],
+      "series": "Mitch Rapp",
+      "series_num": "15",
+      "audible_purchased": "2023-07-30",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "The Survivor",
+      "authors": [
+        "Vince Flynn",
+        "Kyle Mills"
+      ],
+      "series": "Mitch Rapp",
+      "series_num": "14",
+      "audible_purchased": "2023-07-23",
+      "gr_shelf": "currently-reading",
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible",
+        "goodreads"
+      ]
+    },
+    {
+      "title": "The Last Man",
+      "authors": [
+        "Vince Flynn"
+      ],
+      "series": "Mitch Rapp",
+      "series_num": "13",
+      "audible_purchased": "2023-07-19",
+      "gr_shelf": "currently-reading",
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible",
+        "goodreads"
+      ]
+    },
+    {
+      "title": "Kill Shot",
+      "authors": [
+        "Vince Flynn"
+      ],
+      "series": "Mitch Rapp",
+      "series_num": "2",
+      "audible_purchased": "2023-07-16",
+      "gr_shelf": "currently-reading",
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible",
+        "goodreads"
+      ]
+    },
+    {
+      "title": "American Assassin",
+      "authors": [
+        "Vince Flynn"
+      ],
+      "series": "Mitch Rapp",
+      "series_num": "1",
+      "audible_purchased": "2023-07-11",
+      "gr_shelf": "currently-reading",
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible",
+        "goodreads"
+      ]
+    },
+    {
+      "title": "The Last Kingdom",
+      "authors": [
+        "Bernard Cornwell"
+      ],
+      "series": "Last Kingdom (formerly Saxon Tales)",
+      "series_num": "1",
+      "audible_purchased": "2023-07-10",
+      "gr_shelf": "currently-reading",
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible",
+        "goodreads"
+      ]
+    },
+    {
+      "title": "Pursuit of Honor",
+      "authors": [
+        "Vince Flynn"
+      ],
+      "series": "Mitch Rapp",
+      "series_num": "12",
+      "audible_purchased": "2023-07-06",
+      "gr_shelf": "read",
+      "gr_date_read": null,
+      "gr_rating": 4,
+      "status": "read_no_date",
+      "sources": [
+        "audible",
+        "goodreads"
+      ]
+    },
+    {
+      "title": "Extreme Measures",
+      "authors": [
+        "Vince Flynn"
+      ],
+      "series": "Mitch Rapp",
+      "series_num": "11",
+      "audible_purchased": "2023-06-23",
+      "gr_shelf": "currently-reading",
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible",
+        "goodreads"
+      ]
+    },
+    {
+      "title": "Protect and Defend",
+      "authors": [
+        "Vince Flynn"
+      ],
+      "series": "Mitch Rapp",
+      "series_num": "10",
+      "audible_purchased": "2023-06-15",
+      "gr_shelf": "currently-reading",
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible",
+        "goodreads"
+      ]
+    },
+    {
+      "title": "Act of Treason",
+      "authors": [
+        "Vince Flynn"
+      ],
+      "series": "Mitch Rapp",
+      "series_num": "9",
+      "audible_purchased": "2023-06-09",
+      "gr_shelf": "currently-reading",
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible",
+        "goodreads"
+      ]
+    },
+    {
+      "title": "Consent to Kill",
+      "authors": [
+        "Vince Flynn"
+      ],
+      "series": "Mitch Rapp",
+      "series_num": "8",
+      "audible_purchased": "2023-05-31",
+      "gr_shelf": "currently-reading",
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible",
+        "goodreads"
+      ]
+    },
+    {
+      "title": "Only the Dead",
+      "authors": [
+        "Jack Carr"
+      ],
+      "series": "Terminal List",
+      "series_num": "6",
+      "audible_purchased": "2023-05-23",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "Memorial Day",
+      "authors": [
+        "Vince Flynn"
+      ],
+      "series": "Mitch Rapp",
+      "series_num": "7",
+      "audible_purchased": "2023-05-18",
+      "gr_shelf": "currently-reading",
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible",
+        "goodreads"
+      ]
+    },
+    {
+      "title": "Executive Power",
+      "authors": [
+        "Vince Flynn"
+      ],
+      "series": "Mitch Rapp",
+      "series_num": "6",
+      "audible_purchased": "2023-05-12",
+      "gr_shelf": "read",
+      "gr_date_read": null,
+      "gr_rating": 4,
+      "status": "read_no_date",
+      "sources": [
+        "audible",
+        "goodreads"
+      ]
+    },
+    {
+      "title": "Separation of Power",
+      "authors": [
+        "Vince Flynn"
+      ],
+      "series": "Mitch Rapp",
+      "series_num": "5",
+      "audible_purchased": "2023-05-07",
+      "gr_shelf": "currently-reading",
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible",
+        "goodreads"
+      ]
+    },
+    {
+      "title": "World War Z",
+      "authors": [
+        "Max Brooks"
+      ],
+      "series": null,
+      "series_num": null,
+      "audible_purchased": "2023-05-04",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "The Third Option",
+      "authors": [
+        "Vince Flynn"
+      ],
+      "series": "Mitch Rapp",
+      "series_num": "4",
+      "audible_purchased": "2023-05-04",
+      "gr_shelf": "currently-reading",
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible",
+        "goodreads"
+      ]
+    },
+    {
+      "title": "Transfer of Power",
+      "authors": [
+        "Vince Flynn"
+      ],
+      "series": "Mitch Rapp",
+      "series_num": "3",
+      "audible_purchased": "2023-04-26",
+      "gr_shelf": "currently-reading",
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible",
+        "goodreads"
+      ]
+    },
+    {
+      "title": "Moonflower Murders",
+      "authors": [
+        "Anthony Horowitz"
+      ],
+      "series": "Susan Ryeland Series",
+      "series_num": "2",
+      "audible_purchased": "2023-04-15",
+      "gr_shelf": "read",
+      "gr_date_read": "2023/04/28",
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible",
+        "goodreads"
+      ]
+    },
+    {
+      "title": "I, Robot",
+      "authors": [
+        "Isaac Asimov"
+      ],
+      "series": "Robots",
+      "series_num": "0.1",
+      "audible_purchased": "2023-04-01",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "White Smoke",
+      "authors": [
+        "John Gilstrap"
+      ],
+      "series": "Victoria Emerson",
+      "series_num": "3",
+      "audible_purchased": "2023-03-17",
+      "gr_shelf": "currently-reading",
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible",
+        "goodreads"
+      ]
+    },
+    {
+      "title": "The City of Mirrors",
+      "authors": [
+        "Justin Cronin"
+      ],
+      "series": "The Passage Trilogy",
+      "series_num": "3",
+      "audible_purchased": "2023-03-17",
+      "gr_shelf": "read",
+      "gr_date_read": "2023/03/31",
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible",
+        "goodreads"
+      ]
+    },
+    {
+      "title": "Worth Dying For",
+      "authors": [
+        "Lee Child"
+      ],
+      "series": "Jack Reacher",
+      "series_num": "15",
+      "audible_purchased": "2023-03-14",
+      "gr_shelf": "currently-reading",
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible",
+        "goodreads"
+      ]
+    },
+    {
+      "title": "The Twelve",
+      "authors": [
+        "Justin Cronin"
+      ],
+      "series": "The Passage Trilogy",
+      "series_num": "2",
+      "audible_purchased": "2023-03-05",
+      "gr_shelf": "currently-reading",
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible",
+        "goodreads"
+      ]
+    },
+    {
+      "title": "Burner",
+      "authors": [
+        "Mark Greaney"
+      ],
+      "series": "Gray Man",
+      "series_num": "12",
+      "audible_purchased": "2023-03-02",
+      "gr_shelf": "currently-reading",
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible",
+        "goodreads"
+      ]
+    },
+    {
+      "title": "The Passage",
+      "authors": [
+        "Justin Cronin"
+      ],
+      "series": "The Passage Trilogy",
+      "series_num": "1",
+      "audible_purchased": "2023-02-20",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "The Last Orphan",
+      "authors": [
+        "Gregg Hurwitz"
+      ],
+      "series": "An Orphan X Novel",
+      "series_num": "8",
+      "audible_purchased": "2023-02-16",
+      "gr_shelf": "currently-reading",
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible",
+        "goodreads"
+      ]
+    },
+    {
+      "title": "The Lost World",
+      "authors": [
+        "Michael Crichton"
+      ],
+      "series": "Jurassic Park",
+      "series_num": "2",
+      "audible_purchased": "2023-02-12",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "Jurassic Park",
+      "authors": [
+        "Michael Crichton"
+      ],
+      "series": "Jurassic Park",
+      "series_num": "1",
+      "audible_purchased": "2023-02-09",
+      "gr_shelf": "read",
+      "gr_date_read": "2023/02/12",
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible",
+        "goodreads"
+      ]
+    },
+    {
+      "title": "The Devil's Ransom",
+      "authors": [
+        "Brad Taylor"
+      ],
+      "series": "Pike Logan",
+      "series_num": "17",
+      "audible_purchased": "2023-01-31",
+      "gr_shelf": "currently-reading",
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible",
+        "goodreads"
+      ]
+    },
+    {
+      "title": "Taltos",
+      "authors": [
+        "Anne Rice"
+      ],
+      "series": "Lives of the Mayfair Witches",
+      "series_num": "3",
+      "audible_purchased": "2023-01-31",
+      "gr_shelf": "currently-reading",
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible",
+        "goodreads"
+      ]
+    },
+    {
+      "title": "Lasher",
+      "authors": [
+        "Anne Rice"
+      ],
+      "series": "Lives of the Mayfair Witches",
+      "series_num": "2",
+      "audible_purchased": "2023-01-23",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "The Witching Hour",
+      "authors": [
+        "Anne Rice"
+      ],
+      "series": "Lives of the Mayfair Witches",
+      "series_num": "1",
+      "audible_purchased": "2023-01-14",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "Magpie Murders",
+      "authors": [
+        "Anthony Horowitz"
+      ],
+      "series": "Susan Ryeland Series",
+      "series_num": "1",
+      "audible_purchased": "2023-01-05",
+      "gr_shelf": "read",
+      "gr_date_read": "2023/04/16",
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible",
+        "goodreads"
+      ]
+    },
+    {
+      "title": "61 Hours",
+      "authors": [
+        "Lee Child"
+      ],
+      "series": "Jack Reacher",
+      "series_num": "14",
+      "audible_purchased": "2023-01-04",
+      "gr_shelf": "currently-reading",
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible",
+        "goodreads"
+      ]
+    },
+    {
+      "title": "Rising Tiger",
+      "authors": [
+        "Brad Thor"
+      ],
+      "series": "The Scot Harvath Series",
+      "series_num": "21",
+      "audible_purchased": "2022-12-23",
+      "gr_shelf": "currently-reading",
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible",
+        "goodreads"
+      ]
+    },
+    {
+      "title": "Black Ice",
+      "authors": [
+        "Brad Thor"
+      ],
+      "series": "The Scot Harvath Series",
+      "series_num": "20",
+      "audible_purchased": "2022-12-20",
+      "gr_shelf": "currently-reading",
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible",
+        "goodreads"
+      ]
+    },
+    {
+      "title": "Near Dark",
+      "authors": [
+        "Brad Thor"
+      ],
+      "series": "The Scot Harvath Series",
+      "series_num": "19",
+      "audible_purchased": "2022-12-19",
+      "gr_shelf": "currently-reading",
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible",
+        "goodreads"
+      ]
+    },
+    {
+      "title": "Backlash",
+      "authors": [
+        "Brad Thor"
+      ],
+      "series": "The Scot Harvath Series",
+      "series_num": "18",
+      "audible_purchased": "2022-12-17",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "Spymaster",
+      "authors": [
+        "Brad Thor"
+      ],
+      "series": "The Scot Harvath Series",
+      "series_num": "17",
+      "audible_purchased": "2022-12-13",
+      "gr_shelf": "currently-reading",
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible",
+        "goodreads"
+      ]
+    },
+    {
+      "title": "Use of Force",
+      "authors": [
+        "Brad Thor"
+      ],
+      "series": "The Scot Harvath Series",
+      "series_num": "16",
+      "audible_purchased": "2022-12-12",
+      "gr_shelf": "currently-reading",
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible",
+        "goodreads"
+      ]
+    },
+    {
+      "title": "Foreign Agent",
+      "authors": [
+        "Brad Thor"
+      ],
+      "series": "The Scot Harvath Series",
+      "series_num": "15",
+      "audible_purchased": "2022-12-09",
+      "gr_shelf": "currently-reading",
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible",
+        "goodreads"
+      ]
+    },
+    {
+      "title": "Code of Conduct",
+      "authors": [
+        "Brad Thor"
+      ],
+      "series": "The Scot Harvath Series",
+      "series_num": "14",
+      "audible_purchased": "2022-12-07",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "Act of War",
+      "authors": [
+        "Brad Thor"
+      ],
+      "series": "The Scot Harvath Series",
+      "series_num": "13",
+      "audible_purchased": "2022-12-06",
+      "gr_shelf": "currently-reading",
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible",
+        "goodreads"
+      ]
+    },
+    {
+      "title": "Hidden Order",
+      "authors": [
+        "Brad Thor"
+      ],
+      "series": "The Scot Harvath Series",
+      "series_num": "12",
+      "audible_purchased": "2022-12-04",
+      "gr_shelf": "currently-reading",
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible",
+        "goodreads"
+      ]
+    },
+    {
+      "title": "Black List",
+      "authors": [
+        "Brad Thor"
+      ],
+      "series": "The Scot Harvath Series",
+      "series_num": "11",
+      "audible_purchased": "2022-12-01",
+      "gr_shelf": "currently-reading",
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible",
+        "goodreads"
+      ]
+    },
+    {
+      "title": "Full Black",
+      "authors": [
+        "Brad Thor"
+      ],
+      "series": "The Scot Harvath Series",
+      "series_num": "10",
+      "audible_purchased": "2022-11-28",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "I Am Pilgrim",
+      "authors": [
+        "Terry Hayes"
+      ],
+      "series": "Pilgrim",
+      "series_num": "1",
+      "audible_purchased": "2022-11-19",
+      "gr_shelf": "read",
+      "gr_date_read": null,
+      "gr_rating": 5,
+      "status": "read_no_date",
+      "sources": [
+        "audible",
+        "goodreads"
+      ]
+    },
+    {
+      "title": "Shantaram",
+      "authors": [
+        "Gregory David Roberts"
+      ],
+      "series": "Shantaram",
+      "series_num": "1",
+      "audible_purchased": "2022-11-08",
+      "gr_shelf": "currently-reading",
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible",
+        "goodreads"
+      ]
+    },
+    {
+      "title": "Gwendy's Final Task",
+      "authors": [
+        "Stephen King",
+        "Richard Chizmar"
+      ],
+      "series": "The Button Box Series",
+      "series_num": "3",
+      "audible_purchased": "2022-11-06",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "Gwendy's Magic Feather",
+      "authors": [
+        "Richard Chizmar"
+      ],
+      "series": "The Button Box Series",
+      "series_num": "2",
+      "audible_purchased": "2022-11-04",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "Gwendy's Button Box",
+      "authors": [
+        "Stephen King",
+        "Richard Chizmar"
+      ],
+      "series": "The Button Box Series",
+      "series_num": "1",
+      "audible_purchased": "2022-11-01",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "Fairy Tale",
+      "authors": [
+        "Stephen King"
+      ],
+      "series": null,
+      "series_num": null,
+      "audible_purchased": "2022-10-27",
+      "gr_shelf": "read",
+      "gr_date_read": "2023/09/24",
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible",
+        "goodreads"
+      ]
+    },
+    {
+      "title": "The Last Chairlift",
+      "authors": [
+        "John Irving"
+      ],
+      "series": null,
+      "series_num": null,
+      "audible_purchased": "2022-10-18",
+      "gr_shelf": "currently-reading",
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible",
+        "goodreads"
+      ]
+    },
+    {
+      "title": "Long Shadows",
+      "authors": [
+        "David Baldacci"
+      ],
+      "series": "Amos Decker",
+      "series_num": "7",
+      "audible_purchased": "2022-10-11",
+      "gr_shelf": "currently-reading",
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible",
+        "goodreads"
+      ]
+    },
+    {
+      "title": "Life",
+      "authors": [
+        "Keith Richards",
+        "James Fox"
+      ],
+      "series": null,
+      "series_num": null,
+      "audible_purchased": "2022-10-07",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "Greenlights",
+      "authors": [
+        "Matthew McConaughey"
+      ],
+      "series": null,
+      "series_num": null,
+      "audible_purchased": "2022-10-05",
+      "gr_shelf": "read",
+      "gr_date_read": "2025/07/07",
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible",
+        "goodreads"
+      ]
+    },
+    {
+      "title": "Fire & Blood (HBO Tie-in Edition)",
+      "authors": [
+        "George R. R. Martin"
+      ],
+      "series": "The Targaryen Dynasty: The House of the Dragon",
+      "series_num": "2",
+      "audible_purchased": "2022-09-20",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "Foreign Influence",
+      "authors": [
+        "Brad Thor"
+      ],
+      "series": "The Scot Harvath Series",
+      "series_num": "9",
+      "audible_purchased": "2022-09-15",
+      "gr_shelf": "currently-reading",
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible",
+        "goodreads"
+      ]
+    },
+    {
+      "title": "Gone Tomorrow",
+      "authors": [
+        "Lee Child"
+      ],
+      "series": "Jack Reacher",
+      "series_num": "13",
+      "audible_purchased": "2022-09-11",
+      "gr_shelf": "currently-reading",
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible",
+        "goodreads"
+      ]
+    },
+    {
+      "title": "The Apostle",
+      "authors": [
+        "Brad Thor"
+      ],
+      "series": "The Scot Harvath Series",
+      "series_num": "8",
+      "audible_purchased": "2022-09-05",
+      "gr_shelf": "currently-reading",
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible",
+        "goodreads"
+      ]
+    },
+    {
+      "title": "The Last Patriot",
+      "authors": [
+        "Brad Thor"
+      ],
+      "series": "The Scot Harvath Series",
+      "series_num": "7",
+      "audible_purchased": "2022-08-31",
+      "gr_shelf": "currently-reading",
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible",
+        "goodreads"
+      ]
+    },
+    {
+      "title": "The First Commandment",
+      "authors": [
+        "Brad Thor"
+      ],
+      "series": "The Scot Harvath Series",
+      "series_num": "6",
+      "audible_purchased": "2022-08-21",
+      "gr_shelf": "currently-reading",
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible",
+        "goodreads"
+      ]
+    },
+    {
+      "title": "The Great Gatsby",
+      "authors": [
+        "F. Scott Fitzgerald"
+      ],
+      "series": null,
+      "series_num": null,
+      "audible_purchased": "2022-08-18",
+      "gr_shelf": "currently-reading",
+      "gr_date_read": null,
+      "gr_rating": 5,
+      "status": "read",
+      "sources": [
+        "audible",
+        "goodreads"
+      ]
+    },
+    {
+      "title": "Takedown",
+      "authors": [
+        "Brad Thor"
+      ],
+      "series": "The Scot Harvath Series",
+      "series_num": "5",
+      "audible_purchased": "2022-08-11",
+      "gr_shelf": "currently-reading",
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible",
+        "goodreads"
+      ]
+    },
+    {
+      "title": "The Idea of You",
+      "authors": [
+        "Robinne Lee"
+      ],
+      "series": null,
+      "series_num": null,
+      "audible_purchased": "2022-08-10",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "Blowback",
+      "authors": [
+        "Brad Thor"
+      ],
+      "series": "The Scot Harvath Series",
+      "series_num": "4",
+      "audible_purchased": "2022-07-31",
+      "gr_shelf": "read",
+      "gr_date_read": "2022/08/10",
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible",
+        "goodreads"
+      ]
+    },
+    {
+      "title": "State of the Union",
+      "authors": [
+        "Brad Thor"
+      ],
+      "series": "The Scot Harvath Series",
+      "series_num": "3",
+      "audible_purchased": "2022-07-29",
+      "gr_shelf": "read",
+      "gr_date_read": "2022/07/31",
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible",
+        "goodreads"
+      ]
+    },
+    {
+      "title": "Path of the Assassin",
+      "authors": [
+        "Brad Thor"
+      ],
+      "series": "The Scot Harvath Series",
+      "series_num": "2",
+      "audible_purchased": "2022-07-27",
+      "gr_shelf": "currently-reading",
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible",
+        "goodreads"
+      ]
+    },
+    {
+      "title": "The Agony and the Ecstasy",
+      "authors": [
+        "Irving Stone"
+      ],
+      "series": null,
+      "series_num": null,
+      "audible_purchased": "2022-07-15",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "The Lions of Lucerne",
+      "authors": [
+        "Brad Thor"
+      ],
+      "series": "The Scot Harvath Series",
+      "series_num": "1",
+      "audible_purchased": "2022-07-11",
+      "gr_shelf": "currently-reading",
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible",
+        "goodreads"
+      ]
+    },
+    {
+      "title": "Us Against You",
+      "authors": [
+        "Fredrik Backman"
+      ],
+      "series": "Beartown",
+      "series_num": "2",
+      "audible_purchased": "2022-07-11",
+      "gr_shelf": "currently-reading",
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible",
+        "goodreads"
+      ]
+    },
+    {
+      "title": "Without Remorse",
+      "authors": [
+        "Tom Clancy"
+      ],
+      "series": "John Clark",
+      "series_num": "1",
+      "audible_purchased": "2022-07-09",
+      "gr_shelf": "currently-reading",
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible",
+        "goodreads"
+      ]
+    },
+    {
+      "title": "Beartown",
+      "authors": [
+        "Fredrik Backman"
+      ],
+      "series": "Beartown",
+      "series_num": "1",
+      "audible_purchased": "2022-07-07",
+      "gr_shelf": "read",
+      "gr_date_read": "2022/07/11",
+      "gr_rating": 4,
+      "status": "read",
+      "sources": [
+        "audible",
+        "goodreads"
+      ]
+    },
+    {
+      "title": "Armored",
+      "authors": [
+        "Mark Greaney"
+      ],
+      "series": "Joshua Duffy",
+      "series_num": "1",
+      "audible_purchased": "2021-12-11",
+      "gr_shelf": "currently-reading",
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible",
+        "goodreads"
+      ]
+    },
+    {
+      "title": "Misery",
+      "authors": [
+        "Stephen King"
+      ],
+      "series": null,
+      "series_num": null,
+      "audible_purchased": "2022-07-04",
+      "gr_shelf": "currently-reading",
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible",
+        "goodreads"
+      ]
+    },
+    {
+      "title": "And Then There Were None",
+      "authors": [
+        "Agatha Christie"
+      ],
+      "series": null,
+      "series_num": null,
+      "audible_purchased": "2022-07-03",
+      "gr_shelf": "currently-reading",
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible",
+        "goodreads"
+      ]
+    },
+    {
+      "title": "The Hitchhiker's Guide to the Galaxy",
+      "authors": [
+        "Douglas Adams"
+      ],
+      "series": "Hitchhiker's Guide to the Galaxy",
+      "series_num": "1",
+      "audible_purchased": "2022-07-03",
+      "gr_shelf": "currently-reading",
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible",
+        "goodreads"
+      ]
+    },
+    {
+      "title": "The Law of Innocence",
+      "authors": [
+        "Michael Connelly"
+      ],
+      "series": "A Lincoln Lawyer Novel",
+      "series_num": "6",
+      "audible_purchased": "2022-07-01",
+      "gr_shelf": "currently-reading",
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible",
+        "goodreads"
+      ]
+    },
+    {
+      "title": "A Man Called Ove",
+      "authors": [
+        "Fredrik Backman"
+      ],
+      "series": null,
+      "series_num": null,
+      "audible_purchased": "2022-06-28",
+      "gr_shelf": "read",
+      "gr_date_read": "2022/07/01",
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible",
+        "goodreads"
+      ]
+    },
+    {
+      "title": "The Lies I Tell",
+      "authors": [
+        "Julie Clark"
+      ],
+      "series": null,
+      "series_num": null,
+      "audible_purchased": "2022-06-27",
+      "gr_shelf": "read",
+      "gr_date_read": "2022/06/28",
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible",
+        "goodreads"
+      ]
+    },
+    {
+      "title": "This Light Between Us",
+      "authors": [
+        "Andrew Fukuda"
+      ],
+      "series": null,
+      "series_num": null,
+      "audible_purchased": "2022-06-25",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "The Gods of Guilt",
+      "authors": [
+        "Michael Connelly"
+      ],
+      "series": "A Lincoln Lawyer Novel",
+      "series_num": "5",
+      "audible_purchased": "2022-06-13",
+      "gr_shelf": "currently-reading",
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible",
+        "goodreads"
+      ]
+    },
+    {
+      "title": "The Fifth Witness",
+      "authors": [
+        "Michael Connelly"
+      ],
+      "series": "A Lincoln Lawyer Novel",
+      "series_num": "4",
+      "audible_purchased": "2022-06-09",
+      "gr_shelf": "currently-reading",
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible",
+        "goodreads"
+      ]
+    },
+    {
+      "title": "Nothing to Lose",
+      "authors": [
+        "Lee Child"
+      ],
+      "series": "Jack Reacher",
+      "series_num": "12",
+      "audible_purchased": "2022-05-25",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "The Reversal",
+      "authors": [
+        "Michael Connelly"
+      ],
+      "series": "A Lincoln Lawyer Novel",
+      "series_num": "3",
+      "audible_purchased": "2022-05-25",
+      "gr_shelf": "currently-reading",
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible",
+        "goodreads"
+      ]
+    },
+    {
+      "title": "The Brass Verdict",
+      "authors": [
+        "Michael Connelly"
+      ],
+      "series": "A Lincoln Lawyer Novel",
+      "series_num": "2",
+      "audible_purchased": "2022-05-23",
+      "gr_shelf": "currently-reading",
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible",
+        "goodreads"
+      ]
+    },
+    {
+      "title": "In the Blood",
+      "authors": [
+        "Jack Carr"
+      ],
+      "series": "Terminal List",
+      "series_num": "5",
+      "audible_purchased": "2022-05-23",
+      "gr_shelf": "currently-reading",
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible",
+        "goodreads"
+      ]
+    },
+    {
+      "title": "The Lincoln Lawyer",
+      "authors": [
+        "Michael Connelly"
+      ],
+      "series": "A Lincoln Lawyer Novel",
+      "series_num": "1",
+      "audible_purchased": "2022-05-20",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "Bad Luck and Trouble",
+      "authors": [
+        "Lee Child"
+      ],
+      "series": "Jack Reacher",
+      "series_num": "11",
+      "audible_purchased": "2022-05-14",
+      "gr_shelf": "currently-reading",
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible",
+        "goodreads"
+      ]
+    },
+    {
+      "title": "Eye of the Needle",
+      "authors": [
+        "Ken Follett"
+      ],
+      "series": null,
+      "series_num": null,
+      "audible_purchased": "2022-05-08",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "Different Seasons",
+      "authors": [
+        "Stephen King"
+      ],
+      "series": null,
+      "series_num": null,
+      "audible_purchased": "2022-05-08",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "The Hard Way",
+      "authors": [
+        "Lee Child"
+      ],
+      "series": "Jack Reacher",
+      "series_num": "10",
+      "audible_purchased": "2022-05-01",
+      "gr_shelf": "currently-reading",
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible",
+        "goodreads"
+      ]
+    },
+    {
+      "title": "End of Days",
+      "authors": [
+        "Brad Taylor"
+      ],
+      "series": "Pike Logan",
+      "series_num": "16",
+      "audible_purchased": "2022-04-27",
+      "gr_shelf": "currently-reading",
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible",
+        "goodreads"
+      ]
+    },
+    {
+      "title": "American Traitor",
+      "authors": [
+        "Brad Taylor"
+      ],
+      "series": "Pike Logan",
+      "series_num": "15",
+      "audible_purchased": "2022-04-21",
+      "gr_shelf": "currently-reading",
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible",
+        "goodreads"
+      ]
+    },
+    {
+      "title": "One Shot",
+      "authors": [
+        "Lee Child"
+      ],
+      "series": "Jack Reacher",
+      "series_num": "9",
+      "audible_purchased": "2022-04-18",
+      "gr_shelf": "currently-reading",
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible",
+        "goodreads"
+      ]
+    },
+    {
+      "title": "Hunter Killer",
+      "authors": [
+        "Brad Taylor"
+      ],
+      "series": "Pike Logan",
+      "series_num": "14",
+      "audible_purchased": "2022-04-13",
+      "gr_shelf": "currently-reading",
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible",
+        "goodreads"
+      ]
+    },
+    {
+      "title": "The Bourne Identity (Jason Bourne Book #1)",
+      "authors": [
+        "Robert Ludlum"
+      ],
+      "series": "Jason Bourne Series (abridged)",
+      "series_num": "1",
+      "audible_purchased": "2022-04-12",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "Daughter of War",
+      "authors": [
+        "Brad Taylor"
+      ],
+      "series": "Pike Logan",
+      "series_num": "13",
+      "audible_purchased": "2022-04-08",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "Celine",
+      "authors": [
+        "Peter Heller"
+      ],
+      "series": null,
+      "series_num": null,
+      "audible_purchased": "2022-04-05",
+      "gr_shelf": "currently-reading",
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible",
+        "goodreads"
+      ]
+    },
+    {
+      "title": "The Enemy",
+      "authors": [
+        "Lee Child"
+      ],
+      "series": "Jack Reacher",
+      "series_num": "8",
+      "audible_purchased": "2022-04-01",
+      "gr_shelf": "currently-reading",
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible",
+        "goodreads"
+      ]
+    },
+    {
+      "title": "Operator Down",
+      "authors": [
+        "Brad Taylor"
+      ],
+      "series": "Pike Logan",
+      "series_num": "12",
+      "audible_purchased": "2022-03-28",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "Ring of Fire",
+      "authors": [
+        "Brad Taylor"
+      ],
+      "series": "Pike Logan",
+      "series_num": "11",
+      "audible_purchased": "2022-03-18",
+      "gr_shelf": "currently-reading",
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible",
+        "goodreads"
+      ]
+    },
+    {
+      "title": "Blue Fire",
+      "authors": [
+        "John Gilstrap"
+      ],
+      "series": "Victoria Emerson",
+      "series_num": "2",
+      "audible_purchased": "2022-03-14",
+      "gr_shelf": "currently-reading",
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible",
+        "goodreads"
+      ]
+    },
+    {
+      "title": "The Kill Clause",
+      "authors": [
+        "Gregg Hurwitz"
+      ],
+      "series": "Tim Rackley",
+      "series_num": "1",
+      "audible_purchased": "2022-03-13",
+      "gr_shelf": "currently-reading",
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible",
+        "goodreads"
+      ]
+    },
+    {
+      "title": "Persuader",
+      "authors": [
+        "Lee Child"
+      ],
+      "series": "Jack Reacher",
+      "series_num": "7",
+      "audible_purchased": "2022-03-08",
+      "gr_shelf": "currently-reading",
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible",
+        "goodreads"
+      ]
+    },
+    {
+      "title": "Without Fail",
+      "authors": [
+        "Lee Child"
+      ],
+      "series": "Jack Reacher",
+      "series_num": "6",
+      "audible_purchased": "2022-03-04",
+      "gr_shelf": "currently-reading",
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible",
+        "goodreads"
+      ]
+    },
+    {
+      "title": "Sierra Six",
+      "authors": [
+        "Mark Greaney"
+      ],
+      "series": "Gray Man",
+      "series_num": "11",
+      "audible_purchased": "2022-02-28",
+      "gr_shelf": "currently-reading",
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible",
+        "goodreads"
+      ]
+    },
+    {
+      "title": "Echo Burning",
+      "authors": [
+        "Lee Child"
+      ],
+      "series": "Jack Reacher",
+      "series_num": "5",
+      "audible_purchased": "2022-02-23",
+      "gr_shelf": "currently-reading",
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible",
+        "goodreads"
+      ]
+    },
+    {
+      "title": "Running Blind",
+      "authors": [
+        "Lee Child"
+      ],
+      "series": "Jack Reacher",
+      "series_num": "4",
+      "audible_purchased": "2022-02-19",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "Tripwire",
+      "authors": [
+        "Lee Child"
+      ],
+      "series": "Jack Reacher",
+      "series_num": "3",
+      "audible_purchased": "2022-02-15",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "Die Trying",
+      "authors": [
+        "Lee Child"
+      ],
+      "series": "Jack Reacher",
+      "series_num": "2",
+      "audible_purchased": "2022-02-11",
+      "gr_shelf": "currently-reading",
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible",
+        "goodreads"
+      ]
+    },
+    {
+      "title": "Dark Horse",
+      "authors": [
+        "Gregg Hurwitz"
+      ],
+      "series": "An Orphan X Novel",
+      "series_num": "7",
+      "audible_purchased": "2022-02-08",
+      "gr_shelf": "currently-reading",
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible",
+        "goodreads"
+      ]
+    },
+    {
+      "title": "Thirteen Moons",
+      "authors": [
+        "Charles Frazier"
+      ],
+      "series": null,
+      "series_num": null,
+      "audible_purchased": "2022-02-05",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "Ghosts of War",
+      "authors": [
+        "Brad Taylor"
+      ],
+      "series": "Pike Logan",
+      "series_num": "10",
+      "audible_purchased": "2022-02-03",
+      "gr_shelf": "currently-reading",
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible",
+        "goodreads"
+      ]
+    },
+    {
+      "title": "The Beekeeper of Aleppo",
+      "authors": [
+        "Christy Lefteri"
+      ],
+      "series": null,
+      "series_num": null,
+      "audible_purchased": "2022-02-01",
+      "gr_shelf": "currently-reading",
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible",
+        "goodreads"
+      ]
+    },
+    {
+      "title": "The Lincoln Highway",
+      "authors": [
+        "Amor Towles"
+      ],
+      "series": null,
+      "series_num": null,
+      "audible_purchased": "2022-01-24",
+      "gr_shelf": "read",
+      "gr_date_read": "2022/01/31",
+      "gr_rating": 5,
+      "status": "read",
+      "sources": [
+        "audible",
+        "goodreads"
+      ]
+    },
+    {
+      "title": "The Forgotten Soldier",
+      "authors": [
+        "Brad Taylor"
+      ],
+      "series": "Pike Logan",
+      "series_num": "9",
+      "audible_purchased": "2022-01-18",
+      "gr_shelf": "currently-reading",
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible",
+        "goodreads"
+      ]
+    },
+    {
+      "title": "24 Hours",
+      "authors": [
+        "Greg Iles"
+      ],
+      "series": "Mississippi",
+      "series_num": "2",
+      "audible_purchased": "2022-01-13",
+      "gr_shelf": "currently-reading",
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible",
+        "goodreads"
+      ]
+    },
+    {
+      "title": "The Insider Threat",
+      "authors": [
+        "Brad Taylor"
+      ],
+      "series": "Pike Logan",
+      "series_num": "8",
+      "audible_purchased": "2022-01-10",
+      "gr_shelf": "currently-reading",
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible",
+        "goodreads"
+      ]
+    },
+    {
+      "title": "Daisy Jones & The Six",
+      "authors": [
+        "Taylor Jenkins Reid"
+      ],
+      "series": null,
+      "series_num": null,
+      "audible_purchased": "2022-01-08",
+      "gr_shelf": "currently-reading",
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible",
+        "goodreads"
+      ]
+    },
+    {
+      "title": "Sooley",
+      "authors": [
+        "John Grisham"
+      ],
+      "series": null,
+      "series_num": null,
+      "audible_purchased": "2022-01-06",
+      "gr_shelf": "read",
+      "gr_date_read": "2022/05/07",
+      "gr_rating": 5,
+      "status": "read",
+      "sources": [
+        "audible",
+        "goodreads"
+      ]
+    },
+    {
+      "title": "The Rise of Magicks",
+      "authors": [
+        "Nora Roberts"
+      ],
+      "series": "Chronicles of The One",
+      "series_num": "3",
+      "audible_purchased": "2022-01-02",
+      "gr_shelf": "currently-reading",
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible",
+        "goodreads"
+      ]
+    },
+    {
+      "title": "Of Blood and Bone",
+      "authors": [
+        "Nora Roberts"
+      ],
+      "series": "Chronicles of The One",
+      "series_num": "2",
+      "audible_purchased": "2021-12-30",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "Year One",
+      "authors": [
+        "Nora Roberts"
+      ],
+      "series": "Chronicles of The One",
+      "series_num": "1",
+      "audible_purchased": "2021-12-23",
+      "gr_shelf": "read",
+      "gr_date_read": "2021/12/23",
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible",
+        "goodreads"
+      ]
+    },
+    {
+      "title": "No Fortunate Son",
+      "authors": [
+        "Brad Taylor"
+      ],
+      "series": "Pike Logan",
+      "series_num": "7",
+      "audible_purchased": "2021-12-15",
+      "gr_shelf": "currently-reading",
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible",
+        "goodreads"
+      ]
+    },
+    {
+      "title": "Days of Rage",
+      "authors": [
+        "Brad Taylor"
+      ],
+      "series": "Pike Logan",
+      "series_num": "6",
+      "audible_purchased": "2021-12-07",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "The Polaris Protocol",
+      "authors": [
+        "Brad Taylor"
+      ],
+      "series": "Pike Logan",
+      "series_num": "5",
+      "audible_purchased": "2021-12-03",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "Children of Dune",
+      "authors": [
+        "Frank Herbert"
+      ],
+      "series": "Dune",
+      "series_num": "3",
+      "audible_purchased": "2021-11-14",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "Dune Messiah",
+      "authors": [
+        "Frank Herbert"
+      ],
+      "series": "Dune",
+      "series_num": "2",
+      "audible_purchased": "2021-11-12",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "Dune",
+      "authors": [
+        "Frank Herbert"
+      ],
+      "series": "Dune",
+      "series_num": "1",
+      "audible_purchased": "2021-11-06",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "2034",
+      "authors": [
+        "Elliot Ackerman",
+        "James Stavridis USN"
+      ],
+      "series": null,
+      "series_num": null,
+      "audible_purchased": "2021-11-02",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "Dust",
+      "authors": [
+        "Hugh Howey"
+      ],
+      "series": "The Silo Saga",
+      "series_num": "3",
+      "audible_purchased": "2021-10-28",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "Shift Omnibus Edition",
+      "authors": [
+        "Hugh Howey"
+      ],
+      "series": "The Silo Saga",
+      "series_num": "2",
+      "audible_purchased": "2021-10-22",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "Wool",
+      "authors": [
+        "Hugh Howey"
+      ],
+      "series": "The Silo Saga",
+      "series_num": "1",
+      "audible_purchased": "2021-10-19",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "The Widow's Strike",
+      "authors": [
+        "Brad Taylor"
+      ],
+      "series": "Pike Logan",
+      "series_num": "4",
+      "audible_purchased": "2021-10-14",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "The Silence of the Lambs",
+      "authors": [
+        "Thomas Harris",
+        "Thomas Harris - introduction"
+      ],
+      "series": "Hannibal Lecter Series",
+      "series_num": "2",
+      "audible_purchased": "2021-10-11",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "The Guide",
+      "authors": [
+        "Peter Heller"
+      ],
+      "series": null,
+      "series_num": null,
+      "audible_purchased": "2021-10-09",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "Crimson Phoenix",
+      "authors": [
+        "John Gilstrap"
+      ],
+      "series": "Victoria Emerson",
+      "series_num": "1",
+      "audible_purchased": "2021-09-30",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "Red Dragon",
+      "authors": [
+        "Thomas Harris"
+      ],
+      "series": "Hannibal Lecter Series",
+      "series_num": "1",
+      "audible_purchased": "2021-09-30",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "The Psychedelic Explorer's Guide",
+      "authors": [
+        "James Fadiman PhD"
+      ],
+      "series": null,
+      "series_num": null,
+      "audible_purchased": "2021-09-23",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "The Devil's Hand",
+      "authors": [
+        "Jack Carr"
+      ],
+      "series": "Terminal List",
+      "series_num": "4",
+      "audible_purchased": "2021-09-23",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "Savage Son",
+      "authors": [
+        "Jack Carr"
+      ],
+      "series": "Terminal List",
+      "series_num": "3",
+      "audible_purchased": "2021-09-19",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "Billy Summers",
+      "authors": [
+        "Stephen King"
+      ],
+      "series": null,
+      "series_num": null,
+      "audible_purchased": "2021-09-09",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "True Believer",
+      "authors": [
+        "Jack Carr"
+      ],
+      "series": "Terminal List",
+      "series_num": "2",
+      "audible_purchased": "2021-08-31",
+      "gr_shelf": "read",
+      "gr_date_read": "2021/10/13",
+      "gr_rating": 4,
+      "status": "read",
+      "sources": [
+        "audible",
+        "goodreads"
+      ]
+    },
+    {
+      "title": "The Terminal List",
+      "authors": [
+        "Jack Carr"
+      ],
+      "series": "Terminal List",
+      "series_num": "1",
+      "audible_purchased": "2021-08-08",
+      "gr_shelf": "currently-reading",
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible",
+        "goodreads"
+      ]
+    },
+    {
+      "title": "The River",
+      "authors": [
+        "Peter Heller"
+      ],
+      "series": null,
+      "series_num": null,
+      "audible_purchased": "2021-07-26",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "The Guns of August",
+      "authors": [
+        "Barbara W. Tuchman"
+      ],
+      "series": null,
+      "series_num": null,
+      "audible_purchased": "2021-07-09",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "The Dog Stars",
+      "authors": [
+        "Peter Heller"
+      ],
+      "series": null,
+      "series_num": null,
+      "audible_purchased": "2021-07-01",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "The Breaker",
+      "authors": [
+        "Nick Petrie"
+      ],
+      "series": "Peter Ash",
+      "series_num": "6",
+      "audible_purchased": "2021-06-18",
+      "gr_shelf": "currently-reading",
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible",
+        "goodreads"
+      ]
+    },
+    {
+      "title": "The Wild One",
+      "authors": [
+        "Nick Petrie"
+      ],
+      "series": "Peter Ash",
+      "series_num": "5",
+      "audible_purchased": "2021-06-14",
+      "gr_shelf": "currently-reading",
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible",
+        "goodreads"
+      ]
+    },
+    {
+      "title": "Tear It Down",
+      "authors": [
+        "Nick Petrie"
+      ],
+      "series": "Peter Ash",
+      "series_num": "4",
+      "audible_purchased": "2021-06-09",
+      "gr_shelf": "currently-reading",
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible",
+        "goodreads"
+      ]
+    },
+    {
+      "title": "Light It Up",
+      "authors": [
+        "Nick Petrie"
+      ],
+      "series": "Peter Ash",
+      "series_num": "3",
+      "audible_purchased": "2021-06-06",
+      "gr_shelf": "read",
+      "gr_date_read": "2021/06/09",
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible",
+        "goodreads"
+      ]
+    },
+    {
+      "title": "Burning Bright",
+      "authors": [
+        "Nick Petrie"
+      ],
+      "series": "Peter Ash",
+      "series_num": "2",
+      "audible_purchased": "2021-06-03",
+      "gr_shelf": "currently-reading",
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible",
+        "goodreads"
+      ]
+    },
+    {
+      "title": "The Drifter",
+      "authors": [
+        "Nick Petrie"
+      ],
+      "series": "Peter Ash",
+      "series_num": "1",
+      "audible_purchased": "2021-05-15",
+      "gr_shelf": "read",
+      "gr_date_read": "2021/06/03",
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible",
+        "goodreads"
+      ]
+    },
+    {
+      "title": "Prodigal Son",
+      "authors": [
+        "Gregg Hurwitz"
+      ],
+      "series": "An Orphan X Novel",
+      "series_num": "6",
+      "audible_purchased": "2021-04-11",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "Into the Fire",
+      "authors": [
+        "Gregg Hurwitz"
+      ],
+      "series": "An Orphan X Novel",
+      "series_num": "5",
+      "audible_purchased": "2021-04-05",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "Out of the Dark",
+      "authors": [
+        "Gregg Hurwitz"
+      ],
+      "series": "An Orphan X Novel",
+      "series_num": "4",
+      "audible_purchased": "2021-04-03",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "Hellbent",
+      "authors": [
+        "Gregg Hurwitz"
+      ],
+      "series": "An Orphan X Novel",
+      "series_num": "3",
+      "audible_purchased": "2021-04-01",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "The Nowhere Man",
+      "authors": [
+        "Gregg Hurwitz"
+      ],
+      "series": "An Orphan X Novel",
+      "series_num": "2",
+      "audible_purchased": "2021-03-30",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "Orphan X",
+      "authors": [
+        "Gregg Hurwitz"
+      ],
+      "series": "An Orphan X Novel",
+      "series_num": "1",
+      "audible_purchased": "2021-03-20",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "Enemy of Mine",
+      "authors": [
+        "Brad Taylor"
+      ],
+      "series": "Pike Logan",
+      "series_num": "3",
+      "audible_purchased": "2021-03-15",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "Later",
+      "authors": [
+        "Stephen King"
+      ],
+      "series": null,
+      "series_num": null,
+      "audible_purchased": "2021-03-10",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "Relentless",
+      "authors": [
+        "Mark Greaney"
+      ],
+      "series": "Gray Man",
+      "series_num": "10",
+      "audible_purchased": "2021-03-07",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "Zen Golf",
+      "authors": [
+        "Dr. Joseph Parent"
+      ],
+      "series": null,
+      "series_num": null,
+      "audible_purchased": "2021-03-03",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "How to Avoid a Climate Disaster",
+      "authors": [
+        "Bill Gates"
+      ],
+      "series": null,
+      "series_num": null,
+      "audible_purchased": "2021-02-24",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "The Art of Living",
+      "authors": [
+        "Thich Nhat Hanh"
+      ],
+      "series": null,
+      "series_num": null,
+      "audible_purchased": "2021-02-23",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "How to Change Your Mind",
+      "authors": [
+        "Michael Pollan"
+      ],
+      "series": null,
+      "series_num": null,
+      "audible_purchased": "2021-02-18",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "Lonesome Dove",
+      "authors": [
+        "Larry McMurtry"
+      ],
+      "series": "Lonesome Dove Saga",
+      "series_num": "3",
+      "audible_purchased": "2021-02-11",
+      "gr_shelf": "to-read",
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "to_read",
+      "sources": [
+        "audible",
+        "goodreads"
+      ]
+    },
+    {
+      "title": "All Necessary Force",
+      "authors": [
+        "Brad Taylor"
+      ],
+      "series": "Pike Logan",
+      "series_num": "2",
+      "audible_purchased": "2021-02-03",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "A Widow for One Year",
+      "authors": [
+        "John Irving"
+      ],
+      "series": null,
+      "series_num": null,
+      "audible_purchased": "2021-01-14",
+      "gr_shelf": "read",
+      "gr_date_read": null,
+      "gr_rating": 5,
+      "status": "read_no_date",
+      "sources": [
+        "audible",
+        "goodreads"
+      ]
+    },
+    {
+      "title": "One Rough Man",
+      "authors": [
+        "Brad Taylor"
+      ],
+      "series": "Pike Logan",
+      "series_num": "1",
+      "audible_purchased": "2021-01-07",
+      "gr_shelf": "to-read",
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "to_read",
+      "sources": [
+        "audible",
+        "goodreads"
+      ]
+    },
+    {
+      "title": "The Splendid and the Vile",
+      "authors": [
+        "Erik Larson"
+      ],
+      "series": null,
+      "series_num": null,
+      "audible_purchased": "2021-01-07",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "1984",
+      "authors": [
+        "George Orwell"
+      ],
+      "series": null,
+      "series_num": null,
+      "audible_purchased": "2021-01-04",
+      "gr_shelf": "read",
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read_no_date",
+      "sources": [
+        "audible",
+        "goodreads"
+      ]
+    },
+    {
+      "title": "In Cold Blood",
+      "authors": [
+        "Truman Capote"
+      ],
+      "series": null,
+      "series_num": null,
+      "audible_purchased": "2020-12-28",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "Carrie",
+      "authors": [
+        "Stephen King"
+      ],
+      "series": null,
+      "series_num": null,
+      "audible_purchased": "2020-12-26",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "The Shining",
+      "authors": [
+        "Stephen King"
+      ],
+      "series": "The Shining",
+      "series_num": "1",
+      "audible_purchased": "2020-12-21",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "Pet Sematary",
+      "authors": [
+        "Stephen King"
+      ],
+      "series": null,
+      "series_num": null,
+      "audible_purchased": "2020-12-14",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "Bound by Duty",
+      "authors": [
+        "Cora Reilly"
+      ],
+      "series": "Born in Blood Mafia Chronicles",
+      "series_num": "2",
+      "audible_purchased": "2020-12-13",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "Bound by Honor",
+      "authors": [
+        "Cora Reilly"
+      ],
+      "series": "Born in Blood Mafia Chronicles",
+      "series_num": "1",
+      "audible_purchased": "2020-12-11",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "Call for the Dead (Dramatised)",
+      "authors": [
+        "John le Carré"
+      ],
+      "series": "Smiley Radio Plays",
+      "series_num": "1",
+      "audible_purchased": "2020-12-11",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "True Evil",
+      "authors": [
+        "Greg Iles"
+      ],
+      "series": null,
+      "series_num": null,
+      "audible_purchased": "2020-12-08",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "Needful Things",
+      "authors": [
+        "Stephen King"
+      ],
+      "series": null,
+      "series_num": null,
+      "audible_purchased": "2020-11-30",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "American Dirt",
+      "authors": [
+        "Jeanine Cummins"
+      ],
+      "series": null,
+      "series_num": null,
+      "audible_purchased": "2020-11-23",
+      "gr_shelf": "read",
+      "gr_date_read": null,
+      "gr_rating": 4,
+      "status": "read_no_date",
+      "sources": [
+        "audible",
+        "goodreads"
+      ]
+    },
+    {
+      "title": "Beneath a Scarlet Sky",
+      "authors": [
+        "Mark Sullivan"
+      ],
+      "series": null,
+      "series_num": null,
+      "audible_purchased": "2020-11-16",
+      "gr_shelf": "read",
+      "gr_date_read": null,
+      "gr_rating": 5,
+      "status": "read_no_date",
+      "sources": [
+        "audible",
+        "goodreads"
+      ]
+    },
+    {
+      "title": "Walk the Wire",
+      "authors": [
+        "David Baldacci"
+      ],
+      "series": "Amos Decker",
+      "series_num": "6",
+      "audible_purchased": "2020-11-12",
+      "gr_shelf": "currently-reading",
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible",
+        "goodreads"
+      ]
+    },
+    {
+      "title": "Day of Wrath",
+      "authors": [
+        "William R. Forstchen"
+      ],
+      "series": null,
+      "series_num": null,
+      "audible_purchased": "2020-11-04",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "Four Blind Mice",
+      "authors": [
+        "James Patterson"
+      ],
+      "series": "Alex Cross Adventures",
+      "series_num": "8",
+      "audible_purchased": "2020-11-04",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "One Minute Out",
+      "authors": [
+        "Mark Greaney"
+      ],
+      "series": "Gray Man",
+      "series_num": "9",
+      "audible_purchased": "2020-10-29",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "Mission Critical",
+      "authors": [
+        "Mark Greaney"
+      ],
+      "series": "Gray Man",
+      "series_num": "8",
+      "audible_purchased": "2020-10-23",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "Agent in Place",
+      "authors": [
+        "Mark Greaney"
+      ],
+      "series": "Gray Man",
+      "series_num": "7",
+      "audible_purchased": "2020-10-16",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "Gunmetal Gray",
+      "authors": [
+        "Mark Greaney"
+      ],
+      "series": "Gray Man",
+      "series_num": "6",
+      "audible_purchased": "2020-10-12",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "Back Blast",
+      "authors": [
+        "Mark Greaney"
+      ],
+      "series": "Gray Man",
+      "series_num": "5",
+      "audible_purchased": "2020-10-08",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "End of Watch",
+      "authors": [
+        "Stephen King"
+      ],
+      "series": "Bill Hodges Trilogy",
+      "series_num": "3",
+      "audible_purchased": "2020-09-29",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "The Heart's Invisible Furies",
+      "authors": [
+        "John Boyne"
+      ],
+      "series": null,
+      "series_num": null,
+      "audible_purchased": "2020-09-04",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "Violets Are Blue",
+      "authors": [
+        "James Patterson"
+      ],
+      "series": "Alex Cross Adventures",
+      "series_num": "7",
+      "audible_purchased": "2020-09-02",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "Finders Keepers",
+      "authors": [
+        "Stephen King"
+      ],
+      "series": "Bill Hodges Trilogy",
+      "series_num": "2",
+      "audible_purchased": "2020-09-02",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "Roses Are Red",
+      "authors": [
+        "James Patterson"
+      ],
+      "series": "Alex Cross Adventures",
+      "series_num": "6",
+      "audible_purchased": "2020-08-24",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "Mr. Mercedes",
+      "authors": [
+        "Stephen King"
+      ],
+      "series": "Bill Hodges Trilogy",
+      "series_num": "1",
+      "audible_purchased": "2020-08-06",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "Dead Eye",
+      "authors": [
+        "Mark Greaney"
+      ],
+      "series": "Gray Man",
+      "series_num": "4",
+      "audible_purchased": "2020-07-30",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "Pop Goes the Weasel",
+      "authors": [
+        "James Patterson"
+      ],
+      "series": "Alex Cross Adventures",
+      "series_num": "5",
+      "audible_purchased": "2020-07-25",
+      "gr_shelf": "read",
+      "gr_date_read": "2024/09/13",
+      "gr_rating": 5,
+      "status": "read",
+      "sources": [
+        "audible",
+        "goodreads"
+      ]
+    },
+    {
+      "title": "Cat & Mouse",
+      "authors": [
+        "James Patterson"
+      ],
+      "series": "Alex Cross Adventures",
+      "series_num": "4",
+      "audible_purchased": "2020-07-21",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "Jack & Jill",
+      "authors": [
+        "James Patterson"
+      ],
+      "series": "Alex Cross Adventures",
+      "series_num": "3",
+      "audible_purchased": "2020-07-12",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "Kiss the Girls",
+      "authors": [
+        "James Patterson"
+      ],
+      "series": "Alex Cross Adventures",
+      "series_num": "2",
+      "audible_purchased": "2020-07-04",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "Along Came a Spider",
+      "authors": [
+        "James Patterson"
+      ],
+      "series": "Alex Cross Adventures",
+      "series_num": "1",
+      "audible_purchased": "2020-06-28",
+      "gr_shelf": "read",
+      "gr_date_read": "2024/09/11",
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible",
+        "goodreads"
+      ]
+    },
+    {
+      "title": "The Green Mile",
+      "authors": [
+        "Stephen King"
+      ],
+      "series": null,
+      "series_num": null,
+      "audible_purchased": "2020-06-10",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "The Family",
+      "authors": [
+        "Mario Puzo"
+      ],
+      "series": null,
+      "series_num": null,
+      "audible_purchased": "2020-06-06",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "Fools Die",
+      "authors": [
+        "Mario Puzo"
+      ],
+      "series": null,
+      "series_num": null,
+      "audible_purchased": "2020-05-31",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "Mortal Fear",
+      "authors": [
+        "Greg Iles"
+      ],
+      "series": "Mississippi",
+      "series_num": "1",
+      "audible_purchased": "2020-05-21",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "It",
+      "authors": [
+        "Stephen King"
+      ],
+      "series": null,
+      "series_num": null,
+      "audible_purchased": "2020-05-11",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "Turning Angel",
+      "authors": [
+        "Greg Iles"
+      ],
+      "series": "Penn Cage",
+      "series_num": "2",
+      "audible_purchased": "2020-05-05",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "The Quiet Game",
+      "authors": [
+        "Greg Iles"
+      ],
+      "series": "Penn Cage",
+      "series_num": "1",
+      "audible_purchased": "2020-04-30",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "The Fourth Hand",
+      "authors": [
+        "John Irving"
+      ],
+      "series": null,
+      "series_num": null,
+      "audible_purchased": "2020-04-25",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "Spandau Phoenix",
+      "authors": [
+        "Greg Iles"
+      ],
+      "series": "World War II",
+      "series_num": "2",
+      "audible_purchased": "2020-04-14",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "Black Cross",
+      "authors": [
+        "Greg Iles"
+      ],
+      "series": "World War II",
+      "series_num": "1",
+      "audible_purchased": "2020-04-07",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "The Painter",
+      "authors": [
+        "Peter Heller"
+      ],
+      "series": null,
+      "series_num": null,
+      "audible_purchased": "2020-03-29",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "Ballistic",
+      "authors": [
+        "Mark Greaney"
+      ],
+      "series": "Gray Man",
+      "series_num": "3",
+      "audible_purchased": "2020-03-17",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "Dark Tower I",
+      "authors": [
+        "Stephen King"
+      ],
+      "series": "The Dark Tower",
+      "series_num": "1",
+      "audible_purchased": "2020-03-16",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "On Target",
+      "authors": [
+        "Mark Greaney"
+      ],
+      "series": "Gray Man",
+      "series_num": "2",
+      "audible_purchased": "2020-03-12",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "The Gray Man",
+      "authors": [
+        "Mark Greaney"
+      ],
+      "series": "Gray Man",
+      "series_num": "1",
+      "audible_purchased": "2020-03-04",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "The Dead Zone",
+      "authors": [
+        "Stephen King"
+      ],
+      "series": null,
+      "series_num": null,
+      "audible_purchased": "2020-03-04",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "Tell No One",
+      "authors": [
+        "Harlan Coben"
+      ],
+      "series": null,
+      "series_num": null,
+      "audible_purchased": "2020-02-28",
+      "gr_shelf": "read",
+      "gr_date_read": null,
+      "gr_rating": 4,
+      "status": "read_no_date",
+      "sources": [
+        "audible",
+        "goodreads"
+      ]
+    },
+    {
+      "title": "The Silent Patient",
+      "authors": [
+        "Alex Michaelides"
+      ],
+      "series": null,
+      "series_num": null,
+      "audible_purchased": "2020-02-19",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "Recursion",
+      "authors": [
+        "Blake Crouch"
+      ],
+      "series": null,
+      "series_num": null,
+      "audible_purchased": "2020-02-10",
+      "gr_shelf": "read",
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read_no_date",
+      "sources": [
+        "audible",
+        "goodreads"
+      ]
+    },
+    {
+      "title": "Dark Matter",
+      "authors": [
+        "Blake Crouch"
+      ],
+      "series": null,
+      "series_num": null,
+      "audible_purchased": "2020-02-03",
+      "gr_shelf": "read",
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read_no_date",
+      "sources": [
+        "audible",
+        "goodreads"
+      ]
+    },
+    {
+      "title": "The Outsider",
+      "authors": [
+        "Stephen King"
+      ],
+      "series": "Holly Gibney",
+      "series_num": "1",
+      "audible_purchased": "2020-01-25",
+      "gr_shelf": "read",
+      "gr_date_read": null,
+      "gr_rating": 5,
+      "status": "read_no_date",
+      "sources": [
+        "audible",
+        "goodreads"
+      ]
+    },
+    {
+      "title": "The Stand",
+      "authors": [
+        "Stephen King"
+      ],
+      "series": null,
+      "series_num": null,
+      "audible_purchased": "2020-01-02",
+      "gr_shelf": "read",
+      "gr_date_read": null,
+      "gr_rating": 5,
+      "status": "read_no_date",
+      "sources": [
+        "audible",
+        "goodreads"
+      ]
+    },
+    {
+      "title": "'Salem's Lot",
+      "authors": [
+        "Stephen King",
+        "Joe Hill - introduction"
+      ],
+      "series": null,
+      "series_num": null,
+      "audible_purchased": "2019-12-29",
+      "gr_shelf": "read",
+      "gr_date_read": null,
+      "gr_rating": 5,
+      "status": "read_no_date",
+      "sources": [
+        "audible",
+        "goodreads"
+      ]
+    },
+    {
+      "title": "11-22-63",
+      "authors": [
+        "Stephen King"
+      ],
+      "series": null,
+      "series_num": null,
+      "audible_purchased": "2019-12-16",
+      "gr_shelf": "read",
+      "gr_date_read": null,
+      "gr_rating": 5,
+      "status": "read_no_date",
+      "sources": [
+        "audible",
+        "goodreads"
+      ]
+    },
+    {
+      "title": "The Institute",
+      "authors": [
+        "Stephen King"
+      ],
+      "series": null,
+      "series_num": null,
+      "audible_purchased": "2019-12-12",
+      "gr_shelf": "read",
+      "gr_date_read": null,
+      "gr_rating": 5,
+      "status": "read_no_date",
+      "sources": [
+        "audible",
+        "goodreads"
+      ]
+    },
+    {
+      "title": "The World According to Garp",
+      "authors": [
+        "John Irving",
+        "John Irving - introduction"
+      ],
+      "series": null,
+      "series_num": null,
+      "audible_purchased": "2019-11-20",
+      "gr_shelf": "read",
+      "gr_date_read": null,
+      "gr_rating": 5,
+      "status": "read_no_date",
+      "sources": [
+        "audible",
+        "goodreads"
+      ]
+    },
+    {
+      "title": "A Prayer for Owen Meany",
+      "authors": [
+        "John Irving"
+      ],
+      "series": null,
+      "series_num": null,
+      "audible_purchased": "2019-11-08",
+      "gr_shelf": "read",
+      "gr_date_read": null,
+      "gr_rating": 5,
+      "status": "read_no_date",
+      "sources": [
+        "audible",
+        "goodreads"
+      ]
+    },
+    {
+      "title": "Term Limits",
+      "authors": [
+        "Vince Flynn"
+      ],
+      "series": null,
+      "series_num": null,
+      "audible_purchased": "2019-10-30",
+      "gr_shelf": "read",
+      "gr_date_read": null,
+      "gr_rating": 5,
+      "status": "read_no_date",
+      "sources": [
+        "audible",
+        "goodreads"
+      ]
+    },
+    {
+      "title": "Where the Crawdads Sing: Reese's Book Club",
+      "authors": [
+        "Delia Owens"
+      ],
+      "series": null,
+      "series_num": null,
+      "audible_purchased": "2019-09-02",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "Redemption",
+      "authors": [
+        "David Baldacci"
+      ],
+      "series": "Amos Decker",
+      "series_num": "5",
+      "audible_purchased": "2019-08-29",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "The Bone Tree",
+      "authors": [
+        "Greg Iles"
+      ],
+      "series": "Penn Cage",
+      "series_num": "5",
+      "audible_purchased": "2019-03-21",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "The Last Mile",
+      "authors": [
+        "David Baldacci"
+      ],
+      "series": "Amos Decker",
+      "series_num": "2",
+      "audible_purchased": "2019-01-03",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "Homo Deus",
+      "authors": [
+        "Yuval Noah Harari"
+      ],
+      "series": "Sapiens",
+      "series_num": null,
+      "audible_purchased": "2018-12-26",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "Memory Man",
+      "authors": [
+        "David Baldacci"
+      ],
+      "series": "Amos Decker",
+      "series_num": "1",
+      "audible_purchased": "2018-12-26",
+      "gr_shelf": null,
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "audible"
+      ]
+    },
+    {
+      "title": "The Road",
+      "authors": [
+        "Cormac McCarthy"
+      ],
+      "series": null,
+      "series_num": null,
+      "audible_purchased": null,
+      "gr_shelf": "to-read",
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "to_read",
+      "sources": [
+        "goodreads"
+      ]
+    },
+    {
+      "title": "The Things They Carried",
+      "authors": [
+        "Tim O'Brien"
+      ],
+      "series": null,
+      "series_num": null,
+      "audible_purchased": null,
+      "gr_shelf": "to-read",
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "to_read",
+      "sources": [
+        "goodreads"
+      ]
+    },
+    {
+      "title": "The Frozen River",
+      "authors": [
+        "Ariel Lawhon"
+      ],
+      "series": null,
+      "series_num": null,
+      "audible_purchased": null,
+      "gr_shelf": "read",
+      "gr_date_read": "2025/11/11",
+      "gr_rating": 5,
+      "status": "read",
+      "sources": [
+        "goodreads"
+      ]
+    },
+    {
+      "title": "The Minders (The Dark Future Series)",
+      "authors": [
+        "John Marrs"
+      ],
+      "series": null,
+      "series_num": null,
+      "audible_purchased": null,
+      "gr_shelf": "read",
+      "gr_date_read": "2024/09/11",
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "goodreads"
+      ]
+    },
+    {
+      "title": "The Passengers (The Dark Future Series)",
+      "authors": [
+        "John Marrs"
+      ],
+      "series": null,
+      "series_num": null,
+      "audible_purchased": null,
+      "gr_shelf": "currently-reading",
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "in_library",
+      "sources": [
+        "goodreads"
+      ]
+    },
+    {
+      "title": "Wayward: Wayward Pines: 2 (The Wayward Pines Trilogy)",
+      "authors": [
+        "Blake Crouch"
+      ],
+      "series": null,
+      "series_num": null,
+      "audible_purchased": null,
+      "gr_shelf": "read",
+      "gr_date_read": "2024/01/02",
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "goodreads"
+      ]
+    },
+    {
+      "title": "The Housemaid's Secret",
+      "authors": [
+        "Freida McFadden"
+      ],
+      "series": "The Housemaid",
+      "series_num": "2",
+      "audible_purchased": null,
+      "gr_shelf": "read",
+      "gr_date_read": "2024/01/04",
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "goodreads"
+      ]
+    },
+    {
+      "title": "The Housemaid",
+      "authors": [
+        "Freida McFadden"
+      ],
+      "series": "The Housemaid",
+      "series_num": "1",
+      "audible_purchased": null,
+      "gr_shelf": "read",
+      "gr_date_read": "2023/12/25",
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "goodreads"
+      ]
+    },
+    {
+      "title": "Lessons in Chemistry",
+      "authors": [
+        "Bonnie Garmus"
+      ],
+      "series": null,
+      "series_num": null,
+      "audible_purchased": null,
+      "gr_shelf": "read",
+      "gr_date_read": "2023/12/23",
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "goodreads"
+      ]
+    },
+    {
+      "title": "Relic",
+      "authors": [
+        "Douglas Preston"
+      ],
+      "series": "Pendergast",
+      "series_num": "1",
+      "audible_purchased": null,
+      "gr_shelf": "currently-reading",
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "in_library",
+      "sources": [
+        "goodreads"
+      ]
+    },
+    {
+      "title": "A Court of Thorns and Roses eBook Bundle",
+      "authors": [
+        "Sarah J. Maas"
+      ],
+      "series": null,
+      "series_num": null,
+      "audible_purchased": null,
+      "gr_shelf": "read",
+      "gr_date_read": "2023/11/13",
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "goodreads"
+      ]
+    },
+    {
+      "title": "Lords of the Fly: Madness, Obsession, and the Hunt for the World Record Tarpon",
+      "authors": [
+        "Monte Burke"
+      ],
+      "series": null,
+      "series_num": null,
+      "audible_purchased": null,
+      "gr_shelf": "currently-reading",
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "in_library",
+      "sources": [
+        "goodreads"
+      ]
+    },
+    {
+      "title": "The Younger Wife",
+      "authors": [
+        "Sally Hepworth"
+      ],
+      "series": null,
+      "series_num": null,
+      "audible_purchased": null,
+      "gr_shelf": "read",
+      "gr_date_read": "2023/05/23",
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "goodreads"
+      ]
+    },
+    {
+      "title": "The Paper Palace",
+      "authors": [
+        "Miranda Cowley Heller"
+      ],
+      "series": null,
+      "series_num": null,
+      "audible_purchased": null,
+      "gr_shelf": "read",
+      "gr_date_read": "2023/03/10",
+      "gr_rating": 5,
+      "status": "read",
+      "sources": [
+        "goodreads"
+      ]
+    },
+    {
+      "title": "The Russia Conundrum: How the West Fell for Putin’s Power Gambit – and How to Fix It",
+      "authors": [
+        "Mikhail Khodorkovsky"
+      ],
+      "series": null,
+      "series_num": null,
+      "audible_purchased": null,
+      "gr_shelf": "to-read",
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "to_read",
+      "sources": [
+        "goodreads"
+      ]
+    },
+    {
+      "title": "Fire & Blood",
+      "authors": [
+        "George R.R. Martin"
+      ],
+      "series": null,
+      "series_num": null,
+      "audible_purchased": null,
+      "gr_shelf": "currently-reading",
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "in_library",
+      "sources": [
+        "goodreads"
+      ]
+    },
+    {
+      "title": "The Da Vinci Code",
+      "authors": [
+        "Dan    Brown"
+      ],
+      "series": "Robert Langdon",
+      "series_num": "2",
+      "audible_purchased": null,
+      "gr_shelf": "read",
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read_no_date",
+      "sources": [
+        "goodreads"
+      ]
+    },
+    {
+      "title": "The Alchemist",
+      "authors": [
+        "Paulo Coelho"
+      ],
+      "series": null,
+      "series_num": null,
+      "audible_purchased": null,
+      "gr_shelf": "read",
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read_no_date",
+      "sources": [
+        "goodreads"
+      ]
+    },
+    {
+      "title": "This Light Between Us: A Novel of World War II",
+      "authors": [
+        "Andrew Fukuda"
+      ],
+      "series": null,
+      "series_num": null,
+      "audible_purchased": null,
+      "gr_shelf": "currently-reading",
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "in_library",
+      "sources": [
+        "goodreads"
+      ]
+    },
+    {
+      "title": "Last Night in Twisted River",
+      "authors": [
+        "John Irving"
+      ],
+      "series": null,
+      "series_num": null,
+      "audible_purchased": null,
+      "gr_shelf": "read",
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read_no_date",
+      "sources": [
+        "goodreads"
+      ]
+    },
+    {
+      "title": "The Splendid and the Vile: A Saga of Churchill, Family, and Defiance During the Blitz",
+      "authors": [
+        "Erik Larson"
+      ],
+      "series": null,
+      "series_num": null,
+      "audible_purchased": null,
+      "gr_shelf": "read",
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "read_no_date",
+      "sources": [
+        "goodreads"
+      ]
+    },
+    {
+      "title": "Lord of the Flies",
+      "authors": [
+        "William Golding"
+      ],
+      "series": null,
+      "series_num": null,
+      "audible_purchased": null,
+      "gr_shelf": "read",
+      "gr_date_read": "2021/06/01",
+      "gr_rating": 4,
+      "status": "read",
+      "sources": [
+        "goodreads"
+      ]
+    },
+    {
+      "title": "The Count of Monte Cristo",
+      "authors": [
+        "Alexandre Dumas"
+      ],
+      "series": null,
+      "series_num": null,
+      "audible_purchased": null,
+      "gr_shelf": "read",
+      "gr_date_read": "2021/05/05",
+      "gr_rating": null,
+      "status": "read",
+      "sources": [
+        "goodreads"
+      ]
+    },
+    {
+      "title": "The Queen of the Damned",
+      "authors": [
+        "Anne Rice"
+      ],
+      "series": "The Vampire Chronicles",
+      "series_num": "3",
+      "audible_purchased": null,
+      "gr_shelf": "read",
+      "gr_date_read": null,
+      "gr_rating": 5,
+      "status": "read_no_date",
+      "sources": [
+        "goodreads"
+      ]
+    },
+    {
+      "title": "The Vampire Lestat",
+      "authors": [
+        "Anne Rice"
+      ],
+      "series": "The Vampire Chronicles",
+      "series_num": "2",
+      "audible_purchased": null,
+      "gr_shelf": "read",
+      "gr_date_read": null,
+      "gr_rating": 5,
+      "status": "read_no_date",
+      "sources": [
+        "goodreads"
+      ]
+    },
+    {
+      "title": "Interview with the Vampire",
+      "authors": [
+        "Anne Rice"
+      ],
+      "series": "The Vampire Chronicles",
+      "series_num": "1",
+      "audible_purchased": null,
+      "gr_shelf": "read",
+      "gr_date_read": null,
+      "gr_rating": 5,
+      "status": "read_no_date",
+      "sources": [
+        "goodreads"
+      ]
+    },
+    {
+      "title": "Where the Crawdads Sing",
+      "authors": [
+        "Delia Owens"
+      ],
+      "series": null,
+      "series_num": null,
+      "audible_purchased": null,
+      "gr_shelf": "read",
+      "gr_date_read": null,
+      "gr_rating": 4,
+      "status": "read_no_date",
+      "sources": [
+        "goodreads"
+      ]
+    },
+    {
+      "title": "The Pilgrim's Progress",
+      "authors": [
+        "John Bunyan"
+      ],
+      "series": null,
+      "series_num": null,
+      "audible_purchased": null,
+      "gr_shelf": "currently-reading",
+      "gr_date_read": null,
+      "gr_rating": null,
+      "status": "in_library",
+      "sources": [
+        "goodreads"
+      ]
+    },
+    {
+      "title": "In One Person",
+      "authors": [
+        "John Irving"
+      ],
+      "series": null,
+      "series_num": null,
+      "audible_purchased": null,
+      "gr_shelf": "read",
+      "gr_date_read": null,
+      "gr_rating": 5,
+      "status": "read_no_date",
+      "sources": [
+        "goodreads"
+      ]
+    },
+    {
+      "title": "The Cider House Rules",
+      "authors": [
+        "John Irving"
+      ],
+      "series": null,
+      "series_num": null,
+      "audible_purchased": null,
+      "gr_shelf": "read",
+      "gr_date_read": null,
+      "gr_rating": 5,
+      "status": "read_no_date",
+      "sources": [
+        "goodreads"
+      ]
+    },
+    {
+      "title": "The Hotel New Hampshire",
+      "authors": [
+        "John Irving"
+      ],
+      "series": null,
+      "series_num": null,
+      "audible_purchased": null,
+      "gr_shelf": "read",
+      "gr_date_read": null,
+      "gr_rating": 5,
+      "status": "read_no_date",
+      "sources": [
+        "goodreads"
+      ]
+    },
+    {
+      "title": "The Girl With the Dragon Tattoo",
+      "authors": [
+        "Stieg Larsson"
+      ],
+      "series": "Millennium",
+      "series_num": "1",
+      "audible_purchased": null,
+      "gr_shelf": "read",
+      "gr_date_read": null,
+      "gr_rating": 4,
+      "status": "read_no_date",
+      "sources": [
+        "goodreads"
+      ]
+    },
+    {
+      "title": "Killing Floor",
+      "authors": [
+        "Lee Child"
+      ],
+      "series": "Jack Reacher",
+      "series_num": "1",
+      "audible_purchased": null,
+      "gr_shelf": "read",
+      "gr_date_read": null,
+      "gr_rating": 4,
+      "status": "read_no_date",
+      "sources": [
+        "goodreads"
+      ]
+    },
+    {
+      "title": "Edge of Eternity",
+      "authors": [
+        "Ken Follett"
+      ],
+      "series": "The Century Trilogy",
+      "series_num": "3",
+      "audible_purchased": null,
+      "gr_shelf": "read",
+      "gr_date_read": null,
+      "gr_rating": 5,
+      "status": "read_no_date",
+      "sources": [
+        "goodreads"
+      ]
+    },
+    {
+      "title": "Winter of the World",
+      "authors": [
+        "Ken Follett"
+      ],
+      "series": "The Century Trilogy",
+      "series_num": "2",
+      "audible_purchased": null,
+      "gr_shelf": "read",
+      "gr_date_read": null,
+      "gr_rating": 5,
+      "status": "read_no_date",
+      "sources": [
+        "goodreads"
+      ]
+    },
+    {
+      "title": "Fall of Giants",
+      "authors": [
+        "Ken Follett"
+      ],
+      "series": "The Century Trilogy",
+      "series_num": "1",
+      "audible_purchased": null,
+      "gr_shelf": "read",
+      "gr_date_read": null,
+      "gr_rating": 5,
+      "status": "read_no_date",
+      "sources": [
+        "goodreads"
+      ]
+    },
+    {
+      "title": "Atlas Shrugged",
+      "authors": [
+        "Ayn Rand"
+      ],
+      "series": null,
+      "series_num": null,
+      "audible_purchased": null,
+      "gr_shelf": "read",
+      "gr_date_read": null,
+      "gr_rating": 5,
+      "status": "read_no_date",
+      "sources": [
+        "goodreads"
+      ]
+    },
+    {
+      "title": "The Catcher in the Rye",
+      "authors": [
+        "J.D. Salinger"
+      ],
+      "series": null,
+      "series_num": null,
+      "audible_purchased": null,
+      "gr_shelf": "read",
+      "gr_date_read": null,
+      "gr_rating": 5,
+      "status": "read_no_date",
+      "sources": [
+        "goodreads"
+      ]
+    },
+    {
+      "title": "The Hunger Games",
+      "authors": [
+        "Suzanne Collins"
+      ],
+      "series": "The Hunger Games",
+      "series_num": "1",
+      "audible_purchased": null,
+      "gr_shelf": "read",
+      "gr_date_read": null,
+      "gr_rating": 3,
+      "status": "read_no_date",
+      "sources": [
+        "goodreads"
+      ]
+    },
+    {
+      "title": "The Pillars of the Earth",
+      "authors": [
+        "Ken Follett"
+      ],
+      "series": "Kingsbridge",
+      "series_num": "1",
+      "audible_purchased": null,
+      "gr_shelf": "read",
+      "gr_date_read": null,
+      "gr_rating": 5,
+      "status": "read_no_date",
+      "sources": [
+        "goodreads"
+      ]
+    },
+    {
+      "title": "Angels & Demons",
+      "authors": [
+        "Dan    Brown"
+      ],
+      "series": "Robert Langdon",
+      "series_num": "1",
+      "audible_purchased": null,
+      "gr_shelf": "read",
+      "gr_date_read": null,
+      "gr_rating": 4,
+      "status": "read_no_date",
+      "sources": [
+        "goodreads"
+      ]
+    },
+    {
+      "title": "The Kite Runner",
+      "authors": [
+        "Khaled Hosseini"
+      ],
+      "series": null,
+      "series_num": null,
+      "audible_purchased": null,
+      "gr_shelf": "read",
+      "gr_date_read": null,
+      "gr_rating": 5,
+      "status": "read_no_date",
+      "sources": [
+        "goodreads"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,357 @@
+{
+  "lastChecked": "2026-03-09",
+  "confirmedReleases": [
+    {
+      "series": "Alex Cross",
+      "seriesNumber": 35,
+      "title": "Cross and Sampson",
+      "author": "James Patterson & Brian Sitts",
+      "releaseDate": "2026-02-09",
+      "status": "released",
+      "preorderUrl": "https://www.amazon.com/s?k=Cross+and+Sampson+James+Patterson",
+      "notes": "Spinoff crossover with John Sampson"
+    },
+    {
+      "series": "Orphan X",
+      "seriesNumber": 11,
+      "title": "Antihero",
+      "author": "Gregg Hurwitz",
+      "releaseDate": "2026-02-10",
+      "status": "released",
+      "preorderUrl": "https://www.amazon.com/s?k=Antihero+Gregg+Hurwitz",
+      "notes": null
+    },
+    {
+      "series": "Gray Man",
+      "seriesNumber": 15,
+      "title": "The Hard Line",
+      "author": "Mark Greaney",
+      "releaseDate": "2026-02-17",
+      "status": "released",
+      "preorderUrl": "https://www.amazon.com/s?k=The+Hard+Line+Mark+Greaney",
+      "notes": null
+    },
+    {
+      "series": "Cotton Malone",
+      "seriesNumber": 20,
+      "title": "The Devil's Bible",
+      "author": "Steve Berry",
+      "releaseDate": "2026-02-17",
+      "status": "released",
+      "preorderUrl": "https://www.amazon.com/s?k=The+Devils+Bible+Steve+Berry",
+      "notes": null
+    },
+    {
+      "series": "Jonathan Grave",
+      "seriesNumber": 17,
+      "title": "Scorched Earth",
+      "author": "John Gilstrap",
+      "releaseDate": "2026-02-24",
+      "status": "released",
+      "preorderUrl": "https://www.amazon.com/s?k=Scorched+Earth+John+Gilstrap",
+      "notes": null
+    },
+    {
+      "series": "Peter Ash",
+      "seriesNumber": 9,
+      "title": "The Dark Time",
+      "author": "Nick Petrie",
+      "releaseDate": "2026-03-10",
+      "status": "released",
+      "preorderUrl": "https://www.amazon.com/s?k=The+Dark+Time+Nick+Petrie",
+      "notes": null
+    },
+    {
+      "series": "Pike Logan",
+      "seriesNumber": 20,
+      "title": "Shadow Strike",
+      "author": "Brad Taylor",
+      "releaseDate": "2026-04-21",
+      "status": "upcoming",
+      "preorderUrl": "https://www.amazon.com/s?k=Shadow+Strike+Brad+Taylor",
+      "notes": null
+    },
+    {
+      "series": "Tom Reece",
+      "seriesNumber": 1,
+      "title": "The Fourth Option",
+      "author": "Jack Carr & M.P. Woodward",
+      "releaseDate": "2026-05-12",
+      "status": "upcoming",
+      "preorderUrl": "https://www.amazon.com/s?k=The+Fourth+Option+Jack+Carr",
+      "notes": "New series by Jack Carr, outside the Terminal List universe"
+    },
+    {
+      "series": "Mickey Haller / Catalina",
+      "seriesNumber": 2,
+      "title": "Ironwood",
+      "author": "Michael Connelly",
+      "releaseDate": "2026-05-19",
+      "status": "upcoming",
+      "preorderUrl": "https://www.barnesandnoble.com/w/ironwood-michael-connelly/1148712683",
+      "notes": "Features Mickey Haller; connected to Lincoln Lawyer and Bosch universes"
+    },
+    {
+      "series": "Scot Harvath",
+      "seriesNumber": 25,
+      "title": "Choke Point",
+      "author": "Brad Thor",
+      "releaseDate": "2026-06-16",
+      "status": "upcoming",
+      "preorderUrl": "https://www.amazon.com/s?k=Choke+Point+Brad+Thor",
+      "notes": "Note: Edge of Honor (#24) was released in 2025 and may also be unread"
+    },
+    {
+      "series": "Department Q",
+      "seriesNumber": 11,
+      "title": "No Song for the Dead",
+      "author": "Jussi Adler-Olsen",
+      "releaseDate": "2026-09-08",
+      "status": "upcoming",
+      "preorderUrl": "https://www.amazon.com/s?k=No+Song+for+the+Dead+Jussi+Adler-Olsen",
+      "notes": null
+    },
+    {
+      "series": "Mitch Rapp",
+      "seriesNumber": 25,
+      "title": "Double Tap",
+      "author": "Don Bentley",
+      "releaseDate": "2026-09-15",
+      "status": "upcoming",
+      "preorderUrl": "https://www.amazon.com/s?k=Double+Tap+Mitch+Rapp+Don+Bentley",
+      "notes": "Note: Denied Access (#24) was released Sep 9, 2025 and may also be unread"
+    },
+    {
+      "series": "Jack Reacher",
+      "seriesNumber": 31,
+      "title": "Chain Reaction",
+      "author": "Lee Child & Andrew Child",
+      "releaseDate": "2026-10-20",
+      "status": "upcoming",
+      "preorderUrl": "https://www.amazon.com/s?k=Chain+Reaction+Jack+Reacher",
+      "notes": "Darrin is far behind on this series (tracker shows through #15)"
+    },
+    {
+      "series": "Chief Inspector Gamache",
+      "seriesNumber": 21,
+      "title": "Miss Wolcott's Ghost",
+      "author": "Louise Penny",
+      "releaseDate": "2026-10-27",
+      "status": "upcoming",
+      "preorderUrl": "https://www.gamacheseries.com/books/miss-wolcotts-ghost/",
+      "notes": "Darrin is far behind on this series (tracker shows #1)"
+    },
+    {
+      "series": "Harry Bosch",
+      "seriesNumber": null,
+      "title": "The Hollow",
+      "author": "Michael Connelly",
+      "releaseDate": "2026-11-03",
+      "status": "upcoming",
+      "preorderUrl": "https://www.amazon.com/s?k=The+Hollow+Michael+Connelly+2026",
+      "notes": "Bosch/Haller crossover novel"
+    }
+  ],
+  "comingSoonTBA": [
+    {
+      "series": "Red Rising",
+      "seriesNumber": 7,
+      "title": "Red God",
+      "author": "Pierce Brown",
+      "releaseDate": null,
+      "status": "tba",
+      "preorderUrl": null,
+      "notes": "Author estimated summer 2026 window in Jan 2025. No official announcement. May be split into two books."
+    },
+    {
+      "series": "Cormoran Strike",
+      "seriesNumber": 9,
+      "title": "Sleep Tight, Evangeline",
+      "author": "Robert Galbraith (J.K. Rowling)",
+      "releaseDate": null,
+      "status": "tba",
+      "preorderUrl": null,
+      "notes": "Announced Feb 13, 2026. No release date set."
+    },
+    {
+      "series": "The Empyrean",
+      "seriesNumber": 4,
+      "title": "TBA",
+      "author": "Rebecca Yarros",
+      "releaseDate": null,
+      "status": "tba",
+      "preorderUrl": null,
+      "notes": "Author started writing Jan 2026. No title or date. Est. late 2026 or 2027."
+    },
+    {
+      "series": "Gray Man",
+      "seriesNumber": 16,
+      "title": "TBA",
+      "author": "Mark Greaney",
+      "releaseDate": null,
+      "status": "tba",
+      "preorderUrl": null,
+      "notes": "Expected 2027."
+    },
+    {
+      "series": "Joshua Duffy",
+      "seriesNumber": 3,
+      "title": "TBA",
+      "author": "Mark Greaney",
+      "releaseDate": null,
+      "status": "tba",
+      "preorderUrl": null,
+      "notes": "No announcement yet."
+    },
+    {
+      "series": "Amos Decker",
+      "seriesNumber": 8,
+      "title": "TBA",
+      "author": "David Baldacci",
+      "releaseDate": null,
+      "status": "tba",
+      "preorderUrl": null,
+      "notes": "Confirmed forthcoming in 2026, no date."
+    },
+    {
+      "series": "Kingkiller Chronicle",
+      "seriesNumber": 3,
+      "title": "The Doors of Stone",
+      "author": "Patrick Rothfuss",
+      "releaseDate": null,
+      "status": "tba",
+      "preorderUrl": null,
+      "notes": "Author says 'moving forward' but heavily delayed (14+ years). Some fan speculation about Nov 2026 but nothing official from publisher."
+    },
+    {
+      "series": "Stormlight Archive",
+      "seriesNumber": 6,
+      "title": "TBA (Second Arc Book 1)",
+      "author": "Brandon Sanderson",
+      "releaseDate": null,
+      "status": "tba",
+      "preorderUrl": null,
+      "notes": "First arc concluded with Wind and Truth (Dec 2024). Second arc (books 6-10) years away."
+    },
+    {
+      "series": "Pilgrim",
+      "seriesNumber": 3,
+      "title": "TBA",
+      "author": "Terry Hayes",
+      "releaseDate": null,
+      "status": "tba",
+      "preorderUrl": null,
+      "notes": "The Year of the Locust (#2) released Nov 2023. Author says sequel is planned but no timeline."
+    }
+  ],
+  "seriesConcluded": [
+    {
+      "series": "Silo Saga",
+      "author": "Hugh Howey",
+      "finalBook": "Dust",
+      "finalBookYear": 2013,
+      "notes": "Original trilogy complete. A new Silo 40 trilogy is reportedly planned."
+    },
+    {
+      "series": "The Passage Trilogy",
+      "author": "Justin Cronin",
+      "finalBook": "The City of Mirrors",
+      "finalBookYear": 2016,
+      "notes": null
+    },
+    {
+      "series": "Wayward Pines",
+      "author": "Blake Crouch",
+      "finalBook": "The Last Town",
+      "finalBookYear": 2014,
+      "notes": null
+    },
+    {
+      "series": "The Rains",
+      "author": "Gregg Hurwitz",
+      "finalBook": "End of the World as We Know It",
+      "finalBookYear": 2018,
+      "notes": "Duology concluded."
+    },
+    {
+      "series": "Beartown",
+      "author": "Fredrik Backman",
+      "finalBook": "The Winners",
+      "finalBookYear": 2021,
+      "notes": "Trilogy concluded."
+    },
+    {
+      "series": "Button Box",
+      "author": "Stephen King & Richard Chizmar",
+      "finalBook": "Gwendy's Final Task",
+      "finalBookYear": 2022,
+      "notes": null
+    },
+    {
+      "series": "Chronicles of The One",
+      "author": "Nora Roberts",
+      "finalBook": "The Choice",
+      "finalBookYear": 2023,
+      "notes": "Trilogy concluded."
+    },
+    {
+      "series": "Lord of the Rings",
+      "author": "J.R.R. Tolkien",
+      "finalBook": "The Return of the King",
+      "finalBookYear": 1955,
+      "notes": "Author deceased. Series complete."
+    },
+    {
+      "series": "Dune (original arc)",
+      "author": "Frank Herbert",
+      "finalBook": "Chapterhouse: Dune",
+      "finalBookYear": 1985,
+      "notes": "Author deceased. Brian Herbert and Kevin J. Anderson continue the franchise."
+    },
+    {
+      "series": "Lives of the Mayfair Witches",
+      "author": "Anne Rice",
+      "finalBook": "Taltos",
+      "finalBookYear": 1994,
+      "notes": "Author died 2021. Series never completed as planned."
+    }
+  ],
+  "statusUnknown": [
+    {
+      "series": "Sam Dryden",
+      "author": "Patrick Lee",
+      "notes": "2 books published. No Book 3 announced."
+    },
+    {
+      "series": "Travis Devine",
+      "author": "David Baldacci",
+      "notes": "3 books published. No Book 4 announced yet."
+    },
+    {
+      "series": "Victoria Emerson",
+      "author": "John Gilstrap",
+      "notes": "3 books published. No Book 4 announced."
+    },
+    {
+      "series": "Holly Gibney",
+      "author": "Stephen King",
+      "notes": "3 books in series. No Book 4 announced. King is active."
+    },
+    {
+      "series": "Penn Cage",
+      "author": "Greg Iles",
+      "notes": "Iles has indicated Southern Man (#7, 2023) may be the final book."
+    },
+    {
+      "series": "The Grandest Game (Inheritance Games spinoff)",
+      "author": "Jennifer Lynn Barnes",
+      "notes": "Active spinoff series. Glorious Rivals (#2) released 2025. More expected."
+    }
+  ],
+  "soonestUpcoming": {
+    "title": "Shadow Strike",
+    "series": "Pike Logan #20",
+    "author": "Brad Taylor",
+    "releaseDate": "2026-04-21"
+  }
+}
