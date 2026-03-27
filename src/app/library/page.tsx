@@ -12,6 +12,7 @@ export default async function LibraryPage({ searchParams }: PageProps) {
 
   let books: Book[] = []
   let isAuthed = false
+  let isNewUser = false
 
   try {
     const supabase = await createClient()
@@ -27,8 +28,8 @@ export default async function LibraryPage({ searchParams }: PageProps) {
       if (data && data.length > 0) {
         books = data.map((ub: SupabaseUserBook) => mapToBook(ub))
       } else {
-        // User is authenticated but has no synced books yet — show static data as preview
-        books = getAllBooks()
+        // Authenticated but no synced books — show empty state
+        isNewUser = true
       }
     }
   } catch {
@@ -48,7 +49,7 @@ export default async function LibraryPage({ searchParams }: PageProps) {
           </p>
         </div>
       )}
-      <LibraryClient books={books} />
+      <LibraryClient books={books} isAuthed={isAuthed} isNewUser={isNewUser} />
     </>
   )
 }

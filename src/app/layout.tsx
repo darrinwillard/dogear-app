@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import './globals.css'
 import Nav from '@/components/Nav'
+import BottomNav from '@/components/BottomNav'
 
 export const metadata: Metadata = {
   title: 'DogEar — Your Reading Life',
@@ -19,15 +20,16 @@ export default function RootLayout({
     <html lang="en" className="dark">
       <body className="min-h-screen bg-slate-950 text-amber-50 antialiased">
         <Nav />
-        <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 pb-24 sm:pb-8">
           {children}
         </main>
-        <footer className="border-t border-slate-800 mt-16 py-8">
+        <footer className="border-t border-slate-800 mt-16 py-8 mb-16 sm:mb-0">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between text-sm text-slate-500">
             <span>🐾 DogEar — Your Reading Life</span>
             <span>Data synced from Audible & Goodreads</span>
           </div>
         </footer>
+        <BottomNav />
       </body>
     </html>
   )

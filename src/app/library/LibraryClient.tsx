@@ -2,10 +2,14 @@
 
 import { useState, useMemo, useEffect, useCallback } from 'react'
 import Image from 'next/image'
+import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 import { Book, getStatusLabel, getStatusColor, formatDate, formatRuntime } from '@/lib/books'
 
 interface Props {
   books: Book[]
+  isAuthed?: boolean
+  isNewUser?: boolean
 }
 
 type FilterTab = 'all' | 'audible' | 'goodreads' | 'read' | 'reading' | 'want'
@@ -32,10 +36,12 @@ const STATUS_CYCLE: Record<string, string> = {
   read_no_date: 'to_read',
 }
 
-export default function LibraryClient({ books }: Props) {
+export default function LibraryClient({ books, isAuthed = false, isNewUser = false }: Props) {
+  const router = useRouter()
   const [search, setSearch] = useState('')
   const [activeTab, setActiveTab] = useState<FilterTab>('all')
   const [view, setView] = useState<'grid' | 'list'>('grid')
+  const [syncing, setSyncing] = useState(false)
   // Per-book overrides from localStorage
   const [ratings, setRatings] = useState<Record<string, number>>({})
   const [statuses, setStatuses] = useState<Record<string, string>>({})
@@ -73,6 +79,20 @@ export default function LibraryClient({ books }: Props) {
     lsSet(`dogear_status_${key}`, next)
     setStatuses(prev => ({ ...prev, [key]: next }))
   }, [])
+
+  async function handleSync() {
+    setSyncing(true)
+    try {
+      await fetch('/api/audible/sync', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: '{}',
+      })
+      router.refresh()
+    } finally {
+      setSyncing(false)
+    }
+  }
 
   const getEffectiveStatus = useCallback((book: Book) => {
     return statuses[bookKey(book.title)] || book.status
@@ -129,6 +149,35 @@ export default function LibraryClient({ books }: Props) {
     { key: 'want', label: 'Want to Read', count: books.filter(b => getEffectiveStatus(b) === 'to_read').length },
   ]
 
+  // Empty state for new authenticated users
+  if (isNewUser) {
+    return (
+      <div className="space-y-6">
+        <h1 className="font-serif text-3xl font-bold text-amber-400">Library</h1>
+        <div className="text-center py-20">
+          <div className="text-6xl mb-5">🎧</div>
+          <h2 className="text-xl font-semibold text-amber-50 mb-2">Your library is empty</h2>
+          <p className="text-slate-400 mb-8 max-w-sm mx-auto">
+            Connect your Audible account to sync your books and get started.
+          </p>
+          <Link
+            href="/settings/connect-audible"
+            className="inline-flex items-center gap-2 px-6 py-3 bg-amber-500 hover:bg-amber-400 text-slate-900 font-semibold rounded-xl transition-colors"
+          >
+            <span>🎧</span> Connect Audible Account
+          </Link>
+          <p className="mt-4 text-slate-500 text-sm">
+            You can also{' '}
+            <Link href="/settings" className="text-amber-500 hover:text-amber-400">
+              visit Settings
+            </Link>
+            {' '}to manage your account.
+          </p>
+        </div>
+      </div>
+    )
+  }
+
   return (
     <div className="space-y-6">
       {/* Header */}
@@ -140,6 +189,20 @@ export default function LibraryClient({ books }: Props) {
           </p>
         </div>
         <div className="flex items-center gap-2">
+          {isAuthed && (
+            <button
+              onClick={handleSync}
+              disabled={syncing}
+              className={`p-2 rounded-lg transition-colors text-sm font-medium ${
+                syncing
+                  ? 'text-amber-400 bg-amber-500/10 cursor-not-allowed'
+                  : 'text-slate-500 hover:text-amber-400 hover:bg-amber-500/10'
+              }`}
+              title={syncing ? 'Syncing...' : 'Sync Audible library'}
+            >
+              {syncing ? '⏳' : '🔄'}
+            </button>
+          )}
           <button
             onClick={() => setView('grid')}
             className={`p-2 rounded-lg transition-colors ${view === 'grid' ? 'bg-amber-500/20 text-amber-400' : 'text-slate-500 hover:text-slate-300'}`}

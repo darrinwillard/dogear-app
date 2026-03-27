@@ -39,18 +39,15 @@ export default function ConnectAudiblePage() {
         throw new Error(data.error ?? `Request failed (${connectRes.status})`)
       }
 
-      setStatus('Connected! Syncing your library...')
+      setStatus('Connected! Redirecting to your library...')
 
-      const syncRes = await fetch('/api/audible/sync', {
+      // Kick off sync in the background — don't await so we redirect immediately
+      fetch('/api/audible/sync', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({}),
-      })
-
-      if (!syncRes.ok) {
-        // Sync failure is non-fatal — library can be resynced later
-        console.error('Sync failed:', await syncRes.text())
-      }
+        keepalive: true,
+      }).catch(() => {})
 
       router.push('/library?syncing=1')
     } catch (err) {
