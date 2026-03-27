@@ -8,7 +8,7 @@ const SUPABASE_SERVICE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY!;
 export async function POST(_req: NextRequest) {
   try {
     // Verify authenticated session
-    const supabaseServer = createServerClient();
+    const supabaseServer = await createServerClient();
     const { data: { user } } = await supabaseServer.auth.getUser();
     if (!user) {
       return NextResponse.json({ error: "Not authenticated" }, { status: 401 });

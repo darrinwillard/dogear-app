@@ -14,7 +14,7 @@ export default async function LibraryPage({ searchParams }: PageProps) {
   let isAuthed = false
 
   try {
-    const supabase = createClient()
+    const supabase = await createClient()
     const { data: { user } } = await supabase.auth.getUser()
 
     if (user) {

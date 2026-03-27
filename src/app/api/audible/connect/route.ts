@@ -17,7 +17,7 @@ const AUDIBLE_LOCALES: Record<string, { marketPlaceId: string; countryCode: stri
 export async function POST(req: NextRequest) {
   try {
     // Verify authenticated session
-    const supabaseServer = createServerClient();
+    const supabaseServer = await createServerClient();
     const { data: { user } } = await supabaseServer.auth.getUser();
     if (!user) {
       return NextResponse.json({ error: "Not authenticated" }, { status: 401 });

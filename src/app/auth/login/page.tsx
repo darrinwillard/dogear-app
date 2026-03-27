@@ -1,37 +1,32 @@
 'use client'
 
 import { useState } from 'react'
-import { useRouter } from 'next/navigation'
+import { useFormState, useFormStatus } from 'react-dom'
 import Link from 'next/link'
 import { createClient } from '@/lib/supabase/client'
+import { login } from './actions'
+
+function SubmitButton() {
+  const { pending } = useFormStatus()
+  return (
+    <button
+      type="submit"
+      disabled={pending}
+      className="w-full py-2.5 px-4 bg-amber-400 hover:bg-amber-300 text-slate-900 font-semibold rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+    >
+      {pending ? 'Signing in...' : 'Sign in'}
+    </button>
+  )
+}
 
 export default function LoginPage() {
-  const router = useRouter()
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [error, setError] = useState<string | null>(null)
-  const [loading, setLoading] = useState(false)
-
-  async function handleEmailLogin(e: React.FormEvent) {
-    e.preventDefault()
-    setLoading(true)
-    setError(null)
-
-    const supabase = createClient()
-    const { error } = await supabase.auth.signInWithPassword({ email, password })
-
-    if (error) {
-      setError(error.message)
-      setLoading(false)
-    } else {
-      router.push('/library')
-      router.refresh()
-    }
-  }
+  const [state, formAction] = useFormState(login, null)
+  const [googleLoading, setGoogleLoading] = useState(false)
+  const [googleError, setGoogleError] = useState<string | null>(null)
 
   async function handleGoogleLogin() {
-    setLoading(true)
-    setError(null)
+    setGoogleLoading(true)
+    setGoogleError(null)
 
     const supabase = createClient()
     const { error } = await supabase.auth.signInWithOAuth({
@@ -40,10 +35,13 @@ export default function LoginPage() {
     })
 
     if (error) {
-      setError(error.message)
-      setLoading(false)
+      setGoogleError(error.message)
+      setGoogleLoading(false)
     }
   }
+
+  const error = state?.error || googleError
+  const loading = googleLoading
 
   return (
     <div className="min-h-screen bg-slate-950 flex items-center justify-center px-4">
@@ -63,15 +61,14 @@ export default function LoginPage() {
             </div>
           )}
 
-          <form onSubmit={handleEmailLogin} className="space-y-4">
+          <form action={formAction} className="space-y-4">
             <div>
               <label className="block text-sm font-medium text-slate-300 mb-1">
                 Email
               </label>
               <input
                 type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                name="email"
                 required
                 className="w-full px-4 py-2.5 rounded-lg bg-slate-800 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500"
                 placeholder="you@example.com"
@@ -84,21 +81,14 @@ export default function LoginPage() {
               </label>
               <input
                 type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                name="password"
                 required
                 className="w-full px-4 py-2.5 rounded-lg bg-slate-800 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500"
                 placeholder="••••••••"
               />
             </div>
 
-            <button
-              type="submit"
-              disabled={loading}
-              className="w-full py-2.5 px-4 bg-amber-400 hover:bg-amber-300 text-slate-900 font-semibold rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-            >
-              {loading ? 'Signing in...' : 'Sign in'}
-            </button>
+            <SubmitButton />
           </form>
 
           <div className="relative my-6">
