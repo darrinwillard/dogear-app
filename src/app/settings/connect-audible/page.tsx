@@ -1,7 +1,8 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
+import { createClient } from '@/lib/supabase/client'
 
 export default function ConnectAudiblePage() {
   const router = useRouter()
@@ -10,27 +11,51 @@ export default function ConnectAudiblePage() {
   const [locale, setLocale] = useState('us')
   const [error, setError] = useState<string | null>(null)
   const [loading, setLoading] = useState(false)
+  const [status, setStatus] = useState<string | null>(null)
+
+  // Redirect to login if not authenticated
+  useEffect(() => {
+    const supabase = createClient()
+    supabase.auth.getUser().then(({ data: { user } }) => {
+      if (!user) router.replace('/login')
+    })
+  }, [router])
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
     setLoading(true)
     setError(null)
+    setStatus('Connecting to Amazon...')
 
     try {
-      const res = await fetch('/api/audible/connect', {
+      const connectRes = await fetch('/api/audible/connect', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password, locale }),
       })
 
-      if (!res.ok) {
-        const data = await res.json().catch(() => ({}))
-        throw new Error(data.error ?? `Request failed (${res.status})`)
+      if (!connectRes.ok) {
+        const data = await connectRes.json().catch(() => ({}))
+        throw new Error(data.error ?? `Request failed (${connectRes.status})`)
+      }
+
+      setStatus('Connected! Syncing your library...')
+
+      const syncRes = await fetch('/api/audible/sync', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({}),
+      })
+
+      if (!syncRes.ok) {
+        // Sync failure is non-fatal — library can be resynced later
+        console.error('Sync failed:', await syncRes.text())
       }
 
       router.push('/library?syncing=1')
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Something went wrong')
+      setStatus(null)
       setLoading(false)
     }
   }
@@ -63,6 +88,12 @@ export default function ConnectAudiblePage() {
           {error && (
             <div className="mb-5 p-3 rounded-lg bg-red-900/30 border border-red-800 text-red-300 text-sm">
               {error}
+            </div>
+          )}
+
+          {status && (
+            <div className="mb-5 p-3 rounded-lg bg-amber-900/20 border border-amber-800/50 text-amber-300 text-sm">
+              {status}
             </div>
           )}
 

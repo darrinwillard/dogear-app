@@ -31,7 +31,6 @@
       ],
       "asin": "B002V1O4XU",
       "runtime_length_min": 989,
-      "narrator": "Pablo Schreiber",
       "cover_url": "https://covers.openlibrary.org/b/id/8401686-M.jpg"
     },
     {
@@ -51,7 +50,6 @@
       ],
       "asin": "B00WNBF0RM",
       "runtime_length_min": 1915,
-      "narrator": "Mary Robinette Kowal, Will Damron",
       "cover_url": "https://covers.openlibrary.org/b/id/9295719-M.jpg"
     },
     {
@@ -70,8 +68,7 @@
         "audible"
       ],
       "asin": "B0FPJ3PT2Q",
-      "runtime_length_min": 902,
-      "narrator": "Jay Snyder"
+      "runtime_length_min": 902
     },
     {
       "title": "High Treason",
@@ -90,7 +87,6 @@
       ],
       "asin": "B09NB4M8BN",
       "runtime_length_min": 785,
-      "narrator": "Basil Sands",
       "cover_url": "https://covers.openlibrary.org/b/id/14474931-M.jpg"
     },
     {
@@ -109,8 +105,7 @@
         "audible"
       ],
       "asin": "B0FKHKJ18K",
-      "runtime_length_min": 852,
-      "narrator": "Scott Brick"
+      "runtime_length_min": 852
     },
     {
       "title": "Damage Control",
@@ -129,7 +124,6 @@
       ],
       "asin": "B0087GLHRE",
       "runtime_length_min": 682,
-      "narrator": "Basil Sands",
       "cover_url": "https://covers.openlibrary.org/b/id/7617766-M.jpg"
     },
     {
@@ -148,8 +142,7 @@
         "audible"
       ],
       "asin": "B09NB3YHQQ",
-      "runtime_length_min": 726,
-      "narrator": "Basil Sands"
+      "runtime_length_min": 726
     },
     {
       "title": "Hostage Zero",
@@ -168,7 +161,6 @@
       ],
       "asin": "B09NB39T7G",
       "runtime_length_min": 860,
-      "narrator": "Basil Sands",
       "cover_url": "https://covers.openlibrary.org/b/id/6453181-M.jpg"
     },
     {
@@ -188,7 +180,6 @@
       ],
       "asin": "B09KT355K2",
       "runtime_length_min": 870,
-      "narrator": "Basil Sands",
       "cover_url": "https://covers.openlibrary.org/b/id/7352301-M.jpg"
     },
     {
@@ -208,7 +199,6 @@
       ],
       "asin": "1250622182",
       "runtime_length_min": 639,
-      "narrator": "Richard Armitage, Stephanie Racine",
       "cover_url": "https://covers.openlibrary.org/b/id/10088461-M.jpg"
     },
     {
@@ -227,8 +217,7 @@
         "audible"
       ],
       "asin": "B0F6FJCXM3",
-      "runtime_length_min": 538,
-      "narrator": "Bel Powley, Henry Rowley, Richard Armitage"
+      "runtime_length_min": 538
     },
     {
       "title": "The Fellowship of the Ring",
@@ -247,7 +236,6 @@
       ],
       "asin": "1705047572",
       "runtime_length_min": 1358,
-      "narrator": "Andy Serkis",
       "cover_url": "https://covers.openlibrary.org/b/id/14627060-M.jpg"
     },
     {
@@ -267,7 +255,6 @@
       ],
       "asin": "B0099RKI5W",
       "runtime_length_min": 665,
-      "narrator": "Rob Inglis",
       "cover_url": "https://covers.openlibrary.org/b/id/14627509-M.jpg"
     },
     {
@@ -288,7 +275,7 @@
       ],
       "asin": "1478998997",
       "runtime_length_min": 975,
-      "narrator": "Kevin Stillwell"
+      "cover_url": "https://covers.openlibrary.org/b/id/12194469-M.jpg"
     },
     {
       "title": "Alchemised",
@@ -307,7 +294,6 @@
       ],
       "asin": "B0DQR9D4YG",
       "runtime_length_min": 2174,
-      "narrator": "Saskia Maarleveld",
       "cover_url": "https://covers.openlibrary.org/b/id/15162548-M.jpg"
     },
     {
@@ -327,7 +313,6 @@
       ],
       "asin": "B004QISZN6",
       "runtime_length_min": 2575,
-      "narrator": "Nick Podehl",
       "cover_url": "https://covers.openlibrary.org/b/id/8294024-M.jpg"
     },
     {
@@ -347,7 +332,6 @@
       ],
       "asin": "B002UZMLXM",
       "runtime_length_min": 1675,
-      "narrator": "Nick Podehl",
       "cover_url": "https://covers.openlibrary.org/b/id/11480483-M.jpg"
     },
     {
@@ -366,9 +350,7 @@
         "audible"
       ],
       "asin": "B002V0TILE",
-      "runtime_length_min": 810,
-      "narrator": "Gabrielle de Cuir, John Rubinstein",
-      "cover_url": "https://covers.openlibrary.org/b/id/9315107-M.jpg"
+      "runtime_length_min": 810
     },
     {
       "title": "Xenocide",
@@ -387,7 +369,6 @@
       ],
       "asin": "B002V1OPY8",
       "runtime_length_min": 1210,
-      "narrator": "Scott Brick, Gabrielle de Cuir, Amanda Karr, John Rubinstein, Stefan Rudnicki",
       "cover_url": "https://covers.openlibrary.org/b/id/10564838-M.jpg"
     },
     {
@@ -406,9 +387,7 @@
         "audible"
       ],
       "asin": "B002V8N9VG",
-      "runtime_length_min": 848,
-      "narrator": "David Birney, Stefan Rudnicki",
-      "cover_url": "https://covers.openlibrary.org/b/id/9315123-M.jpg"
+      "runtime_length_min": 848
     },
     {
       "title": "Ender's Game",
@@ -426,8 +405,7 @@
         "audible"
       ],
       "asin": "B002V5A12Y",
-      "runtime_length_min": 717,
-      "narrator": "Stefan Rudnicki, Harlan Ellison, Gabrielle de Cuir"
+      "runtime_length_min": 717
     },
     {
       "title": "Flash Point",
@@ -445,8 +423,7 @@
         "audible"
       ],
       "asin": "B0BYL6KC82",
-      "runtime_length_min": 792,
-      "narrator": "Mark Garkusha"
+      "runtime_length_min": 792
     },
     {
       "title": "Iron Gold",
@@ -464,8 +441,7 @@
         "audible"
       ],
       "asin": "B074NBTRGL",
-      "runtime_length_min": 1403,
-      "narrator": "Tim Gerard Reynolds, John Curless, Julian Elfer, Aedin Moloney"
+      "runtime_length_min": 1403
     },
     {
       "title": "False Flag",
@@ -483,8 +459,7 @@
         "audible"
       ],
       "asin": "B0BN7H29FR",
-      "runtime_length_min": 745,
-      "narrator": "Mark Garkusha"
+      "runtime_length_min": 745
     },
     {
       "title": "Dark State",
@@ -502,8 +477,7 @@
         "audible"
       ],
       "asin": "B0B12NW22M",
-      "runtime_length_min": 690,
-      "narrator": "Mark Garkusha"
+      "runtime_length_min": 690
     },
     {
       "title": "Golf in the Kingdom",
@@ -521,8 +495,7 @@
         "audible"
       ],
       "asin": "B002UZZ06W",
-      "runtime_length_min": 352,
-      "narrator": "John Hannah"
+      "runtime_length_min": 352
     },
     {
       "title": "Remarkably Bright Creatures",
@@ -540,9 +513,7 @@
         "audible"
       ],
       "asin": "B09DTFJ94X",
-      "runtime_length_min": 676,
-      "narrator": "Marin Ireland, Michael Urie",
-      "cover_url": "https://covers.openlibrary.org/b/id/12019989-M.jpg"
+      "runtime_length_min": 676
     },
     {
       "title": "The God of the Woods",
@@ -560,9 +531,7 @@
         "audible"
       ],
       "asin": "B0CLGLVBMH",
-      "runtime_length_min": 875,
-      "narrator": "Saskia Maarleveld",
-      "cover_url": "https://covers.openlibrary.org/b/id/14645734-M.jpg"
+      "runtime_length_min": 875
     },
     {
       "title": "Still Life",
@@ -580,9 +549,7 @@
         "audible"
       ],
       "asin": "B00JS9K7OI",
-      "runtime_length_min": 574,
-      "narrator": "Ralph Cosham",
-      "cover_url": "https://covers.openlibrary.org/b/id/1170673-M.jpg"
+      "runtime_length_min": 574
     },
     {
       "title": "Duskbound",
@@ -601,8 +568,7 @@
         "audible"
       ],
       "asin": "B0FFHDLKJL",
-      "runtime_length_min": 1043,
-      "narrator": "Adriene Arce, Phillip Nathaniel Freeman"
+      "runtime_length_min": 1043
     },
     {
       "title": "Riftborne",
@@ -621,8 +587,7 @@
         "audible"
       ],
       "asin": "B0DQFFHXW2",
-      "runtime_length_min": 764,
-      "narrator": "Adriene Arce"
+      "runtime_length_min": 764
     },
     {
       "title": "Endurance",
@@ -640,9 +605,7 @@
         "audible"
       ],
       "asin": "B002V9ZA6C",
-      "runtime_length_min": 621,
-      "narrator": "Simon Prebble",
-      "cover_url": "https://covers.openlibrary.org/b/id/542833-M.jpg"
+      "runtime_length_min": 621
     },
     {
       "title": "Edge of Honor",
@@ -660,9 +623,7 @@
         "audible"
       ],
       "asin": "B0DJRNXP2C",
-      "runtime_length_min": 615,
-      "narrator": "Armand Schultz",
-      "cover_url": "https://covers.openlibrary.org/b/id/15104502-M.jpg"
+      "runtime_length_min": 615
     },
     {
       "title": "Into the Gray Zone",
@@ -680,9 +641,7 @@
         "audible"
       ],
       "asin": "B0D2JTDRF6",
-      "runtime_length_min": 749,
-      "narrator": "Rich Orlow",
-      "cover_url": "https://covers.openlibrary.org/b/id/14861419-M.jpg"
+      "runtime_length_min": 749
     },
     {
       "title": "Cry Havoc",
@@ -701,7 +660,6 @@
       ],
       "asin": "B0DHY73W12",
       "runtime_length_min": 925,
-      "narrator": "Ray Porter",
       "cover_url": "https://covers.openlibrary.org/b/id/15130684-M.jpg"
     },
     {
@@ -721,7 +679,6 @@
       ],
       "asin": "B0DV1119K4",
       "runtime_length_min": 1370,
-      "narrator": "Paul Michael",
       "cover_url": "https://covers.openlibrary.org/b/id/15164648-M.jpg"
     },
     {
@@ -741,7 +698,6 @@
       ],
       "asin": "B002V1AGNC",
       "runtime_length_min": 1067,
-      "narrator": "Paul Michael",
       "cover_url": "https://covers.openlibrary.org/b/id/8373389-M.jpg"
     },
     {
@@ -761,7 +717,6 @@
       ],
       "asin": "B0078TAKKG",
       "runtime_length_min": 895,
-      "narrator": "George Guidall",
       "cover_url": "https://covers.openlibrary.org/b/id/370144-M.jpg"
     },
     {
@@ -781,7 +736,6 @@
       ],
       "asin": "B0DM3CXZXQ",
       "runtime_length_min": 1868,
-      "narrator": "Robert Glenister",
       "cover_url": "https://covers.openlibrary.org/b/id/15123274-M.jpg"
     },
     {
@@ -801,7 +755,6 @@
       ],
       "asin": "B007IWA1OS",
       "runtime_length_min": 453,
-      "narrator": "Barrett Whitener",
       "cover_url": "https://covers.openlibrary.org/b/id/6821128-M.jpg"
     },
     {
@@ -820,8 +773,7 @@
         "audible"
       ],
       "asin": "B0FGDQ6Y4R",
-      "runtime_length_min": 100,
-      "narrator": "Scott Brick"
+      "runtime_length_min": 100
     },
     {
       "title": "The Black Echo: Harry Bosch Series, Book 1",
@@ -839,8 +791,7 @@
         "audible"
       ],
       "asin": "B002VACGL8",
-      "runtime_length_min": 829,
-      "narrator": "Dick Hill"
+      "runtime_length_min": 829
     },
     {
       "title": "Outlander",
@@ -859,7 +810,6 @@
       ],
       "asin": "B002V1CJ8W",
       "runtime_length_min": 1958,
-      "narrator": "Davina Porter",
       "cover_url": "https://covers.openlibrary.org/b/id/14428230-M.jpg"
     },
     {
@@ -879,7 +829,6 @@
       ],
       "asin": "B01DJHG6OO",
       "runtime_length_min": 916,
-      "narrator": "William Dufris",
       "cover_url": "https://covers.openlibrary.org/b/id/4970043-M.jpg"
     },
     {
@@ -900,7 +849,6 @@
       ],
       "asin": "B0CVSHMMHY",
       "runtime_length_min": 506,
-      "narrator": "Barrett Whitener",
       "cover_url": "https://covers.openlibrary.org/b/id/13056284-M.jpg"
     },
     {
@@ -919,9 +867,7 @@
         "audible"
       ],
       "asin": "0593346564",
-      "runtime_length_min": 622,
-      "narrator": "Erin Bennett",
-      "cover_url": "https://covers.openlibrary.org/b/id/10873392-M.jpg"
+      "runtime_length_min": 622
     },
     {
       "title": "The Empty Chair",
@@ -940,7 +886,6 @@
       ],
       "asin": "B007MW6BTS",
       "runtime_length_min": 844,
-      "narrator": "Richard Turner Perry",
       "cover_url": "https://covers.openlibrary.org/b/id/427851-M.jpg"
     },
     {
@@ -960,7 +905,6 @@
       ],
       "asin": "B01CEW7YXC",
       "runtime_length_min": 811,
-      "narrator": "Jeff Harding",
       "cover_url": "https://covers.openlibrary.org/b/id/404193-M.jpg"
     },
     {
@@ -980,7 +924,6 @@
       ],
       "asin": "0593211170",
       "runtime_length_min": 664,
-      "narrator": "Cady McClain, Jon Lindstrom",
       "cover_url": "https://covers.openlibrary.org/b/id/10184769-M.jpg"
     },
     {
@@ -1000,7 +943,6 @@
       ],
       "asin": "B0085XRNWM",
       "runtime_length_min": 1197,
-      "narrator": "Julia Whelan, Kirby Heyborne",
       "cover_url": "https://covers.openlibrary.org/b/id/8368314-M.jpg"
     },
     {
@@ -1019,9 +961,7 @@
         "audible"
       ],
       "asin": "B09J65FR8C",
-      "runtime_length_min": 685,
-      "narrator": "Christie Moreau",
-      "cover_url": "https://covers.openlibrary.org/b/id/13217735-M.jpg"
+      "runtime_length_min": 685
     },
     {
       "title": "The Hawthorne Legacy",
@@ -1040,7 +980,6 @@
       ],
       "asin": "1549109308",
       "runtime_length_min": 624,
-      "narrator": "Christie Moreau",
       "cover_url": "https://covers.openlibrary.org/b/id/10703547-M.jpg"
     },
     {
@@ -1059,9 +998,7 @@
         "audible"
       ],
       "asin": "154916046X",
-      "runtime_length_min": 645,
-      "narrator": "Christie Moreau",
-      "cover_url": "https://covers.openlibrary.org/b/id/10472357-M.jpg"
+      "runtime_length_min": 645
     },
     {
       "title": "Sunrise on the Reaping (The Hunger Games)",
@@ -1080,7 +1017,7 @@
       ],
       "asin": "B0D6P455PH",
       "runtime_length_min": 768,
-      "narrator": "Jefferson White"
+      "cover_url": "https://covers.openlibrary.org/b/id/15169776-M.jpg"
     },
     {
       "title": "Blacktop Wasteland",
@@ -1099,7 +1036,6 @@
       ],
       "asin": "1250751934",
       "runtime_length_min": 668,
-      "narrator": "Adam Lazarre-White",
       "cover_url": "https://covers.openlibrary.org/b/id/10172565-M.jpg"
     },
     {
@@ -1119,7 +1055,6 @@
       ],
       "asin": "B0DN249RGR",
       "runtime_length_min": 799,
-      "narrator": "Adam Lazarre-White",
       "cover_url": "https://covers.openlibrary.org/b/id/15101761-M.jpg"
     },
     {
@@ -1139,7 +1074,6 @@
       ],
       "asin": "B002V0TG34",
       "runtime_length_min": 649,
-      "narrator": "full cast",
       "cover_url": "https://covers.openlibrary.org/b/id/210076-M.jpg"
     },
     {
@@ -1159,7 +1093,6 @@
       ],
       "asin": "B07M92ZQVP",
       "runtime_length_min": 671,
-      "narrator": "Bronson Pinchot",
       "cover_url": "https://covers.openlibrary.org/b/id/8803663-M.jpg"
     },
     {
@@ -1179,7 +1112,6 @@
       ],
       "asin": "B0DNV1L72N",
       "runtime_length_min": 543,
-      "narrator": "Will Damron",
       "cover_url": "https://covers.openlibrary.org/b/id/15091608-M.jpg"
     },
     {
@@ -1203,7 +1135,6 @@
       ],
       "asin": "B007JJSURA",
       "runtime_length_min": 1128,
-      "narrator": "Joe Mantegna, Anthony Puzo, Angelo Di Loreto",
       "cover_url": "https://covers.openlibrary.org/b/id/6507069-M.jpg"
     },
     {
@@ -1223,7 +1154,6 @@
       ],
       "asin": "B008UYGE6C",
       "runtime_length_min": 852,
-      "narrator": "Steven Pacey",
       "cover_url": "https://covers.openlibrary.org/b/id/11401351-M.jpg"
     },
     {
@@ -1243,7 +1173,6 @@
       ],
       "asin": "B005JF0E6Q",
       "runtime_length_min": 936,
-      "narrator": "Erik Davies",
       "cover_url": "https://covers.openlibrary.org/b/id/6906197-M.jpg"
     },
     {
@@ -1263,7 +1192,6 @@
       ],
       "asin": "B0BFFM17L1",
       "runtime_length_min": 540,
-      "narrator": "Bronson Pinchot",
       "cover_url": "https://covers.openlibrary.org/b/id/14410497-M.jpg"
     },
     {
@@ -1283,7 +1211,6 @@
       ],
       "asin": "B01N0TLKIR",
       "runtime_length_min": 731,
-      "narrator": "Bronson Pinchot",
       "cover_url": "https://covers.openlibrary.org/b/id/8443255-M.jpg"
     },
     {
@@ -1303,7 +1230,6 @@
       ],
       "asin": "B014LLB1UG",
       "runtime_length_min": 591,
-      "narrator": "Bronson Pinchot",
       "cover_url": "https://covers.openlibrary.org/b/id/8289187-M.jpg"
     },
     {
@@ -1323,7 +1249,6 @@
       ],
       "asin": "B002V1O7UU",
       "runtime_length_min": 797,
-      "narrator": "Joe Barrett",
       "cover_url": "https://covers.openlibrary.org/b/id/6457468-M.jpg"
     },
     {
@@ -1343,7 +1268,6 @@
       ],
       "asin": "B082BHJMFF",
       "runtime_length_min": 659,
-      "narrator": "Wil Wheaton",
       "cover_url": "https://covers.openlibrary.org/b/id/11447888-M.jpg"
     },
     {
@@ -1363,7 +1287,6 @@
       ],
       "asin": "B08G9PRS1K",
       "runtime_length_min": 970,
-      "narrator": "Ray Porter",
       "cover_url": "https://covers.openlibrary.org/b/id/11200092-M.jpg"
     },
     {
@@ -1382,8 +1305,7 @@
         "audible"
       ],
       "asin": "B0DHDFMSVQ",
-      "runtime_length_min": 567,
-      "narrator": "Mozhan Navabi, Andrew Eiden, Adam Lazarre-White, J. S. Arquin, Brittany Pressley, Andi Arndt"
+      "runtime_length_min": 567
     },
     {
       "title": "The Perfect Marriage",
@@ -1402,7 +1324,6 @@
       ],
       "asin": "B0DMQ32MPL",
       "runtime_length_min": 528,
-      "narrator": "Mozhan Navabi, Andrew Eiden",
       "cover_url": "https://covers.openlibrary.org/b/id/10833503-M.jpg"
     },
     {
@@ -1422,7 +1343,6 @@
       ],
       "asin": "B0DG371VGL",
       "runtime_length_min": 1151,
-      "narrator": "Amanda Dolan",
       "cover_url": "https://covers.openlibrary.org/b/id/15130060-M.jpg"
     },
     {
@@ -1441,8 +1361,7 @@
         "audible"
       ],
       "asin": "B0C5YLDVBD",
-      "runtime_length_min": 2054,
-      "narrator": "Robert Glenister"
+      "runtime_length_min": 2054
     },
     {
       "title": "The Ink Black Heart",
@@ -1461,7 +1380,6 @@
       ],
       "asin": "B09WBW7CSB",
       "runtime_length_min": 1962,
-      "narrator": "Robert Glenister",
       "cover_url": "https://covers.openlibrary.org/b/id/15123655-M.jpg"
     },
     {
@@ -1481,7 +1399,6 @@
       ],
       "asin": "1549157736",
       "runtime_length_min": 1911,
-      "narrator": "Robert Glenister",
       "cover_url": "https://covers.openlibrary.org/b/id/10147317-M.jpg"
     },
     {
@@ -1501,7 +1418,6 @@
       ],
       "asin": "B0DJFY1GZ6",
       "runtime_length_min": 951,
-      "narrator": "Jay Snyder",
       "cover_url": "https://covers.openlibrary.org/b/id/14845328-M.jpg"
     },
     {
@@ -1521,7 +1437,6 @@
       ],
       "asin": "1549119842",
       "runtime_length_min": 1351,
-      "narrator": "Robert Glenister",
       "cover_url": "https://covers.openlibrary.org/b/id/9243445-M.jpg"
     },
     {
@@ -1541,7 +1456,6 @@
       ],
       "asin": "B014JYRSPW",
       "runtime_length_min": 1077,
-      "narrator": "Robert Glenister",
       "cover_url": "https://covers.openlibrary.org/b/id/9243446-M.jpg"
     },
     {
@@ -1561,7 +1475,6 @@
       ],
       "asin": "B00IMLEZG4",
       "runtime_length_min": 1037,
-      "narrator": "Robert Glenister",
       "cover_url": "https://covers.openlibrary.org/b/id/7403180-M.jpg"
     },
     {
@@ -1581,7 +1494,6 @@
       ],
       "asin": "B09BK93VZC",
       "runtime_length_min": 738,
-      "narrator": "Michael Hacker",
       "cover_url": "https://covers.openlibrary.org/b/id/8004248-M.jpg"
     },
     {
@@ -1601,7 +1513,6 @@
       ],
       "asin": "B0CZFKLZ9M",
       "runtime_length_min": 1432,
-      "narrator": "Jasmin Walker, Justis Bolding, Teddy Hamilton, Rebecca Soler",
       "cover_url": "https://covers.openlibrary.org/b/id/14826089-M.jpg"
     },
     {
@@ -1620,9 +1531,7 @@
         "audible"
       ],
       "asin": "B00CS522EW",
-      "runtime_length_min": 954,
-      "narrator": "Robert Glenister",
-      "cover_url": "https://covers.openlibrary.org/b/id/7261207-M.jpg"
+      "runtime_length_min": 954
     },
     {
       "title": "Iron Flame",
@@ -1641,7 +1550,6 @@
       ],
       "asin": "B0C9V5SLQQ",
       "runtime_length_min": 1696,
-      "narrator": "Rebecca Soler, Teddy Hamilton",
       "cover_url": "https://covers.openlibrary.org/b/id/14405746-M.jpg"
     },
     {
@@ -1661,7 +1569,6 @@
       ],
       "asin": "B002ZG512E",
       "runtime_length_min": 802,
-      "narrator": "Simon Prebble",
       "cover_url": "https://covers.openlibrary.org/b/id/77394-M.jpg"
     },
     {
@@ -1681,7 +1588,6 @@
       ],
       "asin": "B0D488X977",
       "runtime_length_min": 979,
-      "narrator": "Scott Brick",
       "cover_url": "https://covers.openlibrary.org/b/id/14853338-M.jpg"
     },
     {
@@ -1701,7 +1607,6 @@
       ],
       "asin": "B0BVD25SYT",
       "runtime_length_min": 1322,
-      "narrator": "Rebecca Soler, Teddy Hamilton",
       "cover_url": "https://covers.openlibrary.org/b/id/14407898-M.jpg"
     },
     {
@@ -1721,7 +1626,6 @@
       ],
       "asin": "B00EAXOVEY",
       "runtime_length_min": 412,
-      "narrator": "Simon Scardifield",
       "cover_url": "https://covers.openlibrary.org/b/id/206536-M.jpg"
     },
     {
@@ -1742,7 +1646,6 @@
       ],
       "asin": "B002V1OC5A",
       "runtime_length_min": 1260,
-      "narrator": "John Slattery",
       "cover_url": "https://covers.openlibrary.org/b/id/14652203-M.jpg"
     },
     {
@@ -1762,7 +1665,6 @@
       ],
       "asin": "B003A2TCP4",
       "runtime_length_min": 496,
-      "narrator": "Michael Page",
       "cover_url": "https://covers.openlibrary.org/b/id/11629919-M.jpg"
     },
     {
@@ -1782,8 +1684,7 @@
         "audible"
       ],
       "asin": "B0CVMW1XS4",
-      "runtime_length_min": 876,
-      "narrator": "Ray Porter"
+      "runtime_length_min": 876
     },
     {
       "title": "Morning Star",
@@ -1803,7 +1704,6 @@
       ],
       "asin": "B019NMZ6FE",
       "runtime_length_min": 1310,
-      "narrator": "Tim Gerard Reynolds",
       "cover_url": "https://covers.openlibrary.org/b/id/8566174-M.jpg"
     },
     {
@@ -1824,7 +1724,6 @@
       ],
       "asin": "B00R6S1RCY",
       "runtime_length_min": 1143,
-      "narrator": "Tim Gerard Reynolds",
       "cover_url": "https://covers.openlibrary.org/b/id/8454351-M.jpg"
     },
     {
@@ -1844,9 +1743,7 @@
         "goodreads"
       ],
       "asin": "B00I2VWW5U",
-      "runtime_length_min": 972,
-      "narrator": "Tim Gerard Reynolds",
-      "cover_url": "https://covers.openlibrary.org/b/id/7316188-M.jpg"
+      "runtime_length_min": 972
     },
     {
       "title": "The Elementals",
@@ -1865,9 +1762,7 @@
         "goodreads"
       ],
       "asin": "B0CC424557",
-      "runtime_length_min": 472,
-      "narrator": "R. C. Bray",
-      "cover_url": "https://covers.openlibrary.org/b/id/9341153-M.jpg"
+      "runtime_length_min": 472
     },
     {
       "title": "NOS4A2",
@@ -1886,7 +1781,6 @@
       ],
       "asin": "B00BR1TYNK",
       "runtime_length_min": 1181,
-      "narrator": "Kate Mulgrew",
       "cover_url": "https://covers.openlibrary.org/b/id/7254564-M.jpg"
     },
     {
@@ -1906,7 +1800,6 @@
       ],
       "asin": "1250222508",
       "runtime_length_min": 578,
-      "narrator": "Christopher Eccleston",
       "cover_url": "https://covers.openlibrary.org/b/id/8758647-M.jpg"
     },
     {
@@ -1926,7 +1819,6 @@
       ],
       "asin": "B09DQD1S6W",
       "runtime_length_min": 2743,
-      "narrator": "Scott Brick",
       "cover_url": "https://covers.openlibrary.org/b/id/12375454-M.jpg"
     },
     {
@@ -1946,7 +1838,6 @@
       ],
       "asin": "B003ZWFO7E",
       "runtime_length_min": 2730,
-      "narrator": "Kate Reading, Michael Kramer",
       "cover_url": "https://covers.openlibrary.org/b/id/14658316-M.jpg"
     },
     {
@@ -1966,7 +1857,6 @@
       ],
       "asin": "B076CTX432",
       "runtime_length_min": 596,
-      "narrator": "Todd Haberkorn",
       "cover_url": "https://covers.openlibrary.org/b/id/8541568-M.jpg"
     },
     {
@@ -1986,7 +1876,6 @@
       ],
       "asin": "B01M18N4YF",
       "runtime_length_min": 595,
-      "narrator": "Todd Haberkorn",
       "cover_url": "https://covers.openlibrary.org/b/id/8541568-M.jpg"
     },
     {
@@ -2005,8 +1894,7 @@
         "audible"
       ],
       "asin": "B07CTTSFZL",
-      "runtime_length_min": 536,
-      "narrator": "Suzanne Toren"
+      "runtime_length_min": 536
     },
     {
       "title": "The Murder House",
@@ -2026,7 +1914,6 @@
       ],
       "asin": "B013RKZLFS",
       "runtime_length_min": 686,
-      "narrator": "Th\u00e9r\u00e8se Plummer",
       "cover_url": "https://covers.openlibrary.org/b/id/8175118-M.jpg"
     },
     {
@@ -2045,8 +1932,7 @@
         "audible"
       ],
       "asin": "B0CXKT32XX",
-      "runtime_length_min": 578,
-      "narrator": "Wayne Carr, Inger Tudor, William Christopher Stephens, Peter Giles, Zeno Robinson, Christine Lakin, Andrew Kishino"
+      "runtime_length_min": 578
     },
     {
       "title": "A Time to Kill",
@@ -2065,7 +1951,6 @@
       ],
       "asin": "B004Q1EDWK",
       "runtime_length_min": 1007,
-      "narrator": "Michael Beck",
       "cover_url": "https://covers.openlibrary.org/b/id/8445673-M.jpg"
     },
     {
@@ -2085,7 +1970,6 @@
       ],
       "asin": "B00VGSQTHS",
       "runtime_length_min": 495,
-      "narrator": "David Morse",
       "cover_url": "https://covers.openlibrary.org/b/id/9330577-M.jpg"
     },
     {
@@ -2105,7 +1989,7 @@
       ],
       "asin": "B005STYAZ4",
       "runtime_length_min": 799,
-      "narrator": "Jonathan Marosz"
+      "cover_url": "https://covers.openlibrary.org/b/id/9296993-M.jpg"
     },
     {
       "title": "To Die For",
@@ -2123,8 +2007,7 @@
         "audible"
       ],
       "asin": "B0CXKZ62SP",
-      "runtime_length_min": 718,
-      "narrator": "Zach Villa, Mela Lee, Cassandra Morris, Rena-Marie Villano, Christine Lakin, Will Collyer, Kiff VandenHeuvel, Erin Bennett"
+      "runtime_length_min": 718
     },
     {
       "title": "The Bone Collector",
@@ -2143,7 +2026,7 @@
       ],
       "asin": "B00HVGXXR8",
       "runtime_length_min": 682,
-      "narrator": "Connor O'Brien"
+      "cover_url": "https://covers.openlibrary.org/b/id/292075-M.jpg"
     },
     {
       "title": "The Edge",
@@ -2161,8 +2044,7 @@
         "audible"
       ],
       "asin": "B0BYBHXDL8",
-      "runtime_length_min": 705,
-      "narrator": "Zachary Webber, Erin Cottrell, Will Collyer, Erin Bennett, Tiffany Smith"
+      "runtime_length_min": 705
     },
     {
       "title": "The 6:20 Man",
@@ -2181,7 +2063,6 @@
       ],
       "asin": "B09VRBP7VH",
       "runtime_length_min": 708,
-      "narrator": "Zachary Webber, Christine Lakin, Mela Lee",
       "cover_url": "https://covers.openlibrary.org/b/id/13012447-M.jpg"
     },
     {
@@ -2201,7 +2082,6 @@
       ],
       "asin": "B004889IW6",
       "runtime_length_min": 863,
-      "narrator": "Ron McLarty, Orlagh Cassidy",
       "cover_url": "https://covers.openlibrary.org/b/id/12656814-M.jpg"
     },
     {
@@ -2221,7 +2101,6 @@
       ],
       "asin": "B002V8KKTK",
       "runtime_length_min": 693,
-      "narrator": "Ron McLarty",
       "cover_url": "https://covers.openlibrary.org/b/id/9296961-M.jpg"
     },
     {
@@ -2241,7 +2120,6 @@
       ],
       "asin": "B002VA3QV2",
       "runtime_length_min": 639,
-      "narrator": "Ron McLarty",
       "cover_url": "https://covers.openlibrary.org/b/id/8567952-M.jpg"
     },
     {
@@ -2261,7 +2139,6 @@
       ],
       "asin": "B002VAENNW",
       "runtime_length_min": 762,
-      "narrator": "L.J. Ganser, Aimee Jolson, Richard Mover",
       "cover_url": "https://covers.openlibrary.org/b/id/8569272-M.jpg"
     },
     {
@@ -2281,7 +2158,6 @@
       ],
       "asin": "B002V0KCDW",
       "runtime_length_min": 970,
-      "narrator": "Jonathan Davis",
       "cover_url": "https://covers.openlibrary.org/b/id/8580434-M.jpg"
     },
     {
@@ -2301,7 +2177,6 @@
       ],
       "asin": "B075XR9V8S",
       "runtime_length_min": 714,
-      "narrator": "Kyf Brewer, Orlagh Cassidy",
       "cover_url": "https://covers.openlibrary.org/b/id/12659781-M.jpg"
     },
     {
@@ -2321,7 +2196,6 @@
       ],
       "asin": "B014JWR5I4",
       "runtime_length_min": 706,
-      "narrator": "Kyf Brewer, Orlagh Cassidy",
       "cover_url": "https://covers.openlibrary.org/b/id/12656816-M.jpg"
     },
     {
@@ -2341,7 +2215,6 @@
       ],
       "asin": "B00J5490FI",
       "runtime_length_min": 771,
-      "narrator": "Ron McLarty, Orlagh Cassidy",
       "cover_url": "https://covers.openlibrary.org/b/id/9297017-M.jpg"
     },
     {
@@ -2360,8 +2233,7 @@
         "audible"
       ],
       "asin": "B00HQ1RSUG",
-      "runtime_length_min": 122,
-      "narrator": "Ron McLarty"
+      "runtime_length_min": 122
     },
     {
       "title": "The Hit",
@@ -2380,7 +2252,6 @@
       ],
       "asin": "B00BWX30JM",
       "runtime_length_min": 705,
-      "narrator": "Ron McLarty, Orlagh Cassidy",
       "cover_url": "https://covers.openlibrary.org/b/id/9297009-M.jpg"
     },
     {
@@ -2399,8 +2270,7 @@
         "audible"
       ],
       "asin": "B007KSRURG",
-      "runtime_length_min": 734,
-      "narrator": "Ron McLarty, Orlagh Cassidy"
+      "runtime_length_min": 734
     },
     {
       "title": "Red Sky Mourning",
@@ -2419,7 +2289,6 @@
       ],
       "asin": "B0CLGVVKS4",
       "runtime_length_min": 943,
-      "narrator": "Ray Porter",
       "cover_url": "https://covers.openlibrary.org/b/id/14633610-M.jpg"
     },
     {
@@ -2439,7 +2308,6 @@
       ],
       "asin": "B0176UMEQE",
       "runtime_length_min": 553,
-      "narrator": "Jorjeana Marie",
       "cover_url": "https://covers.openlibrary.org/b/id/9338646-M.jpg"
     },
     {
@@ -2459,7 +2327,6 @@
       ],
       "asin": "B00VAZZ7I4",
       "runtime_length_min": 604,
-      "narrator": "Jorjeana Marie",
       "cover_url": "https://covers.openlibrary.org/b/id/10382768-M.jpg"
     },
     {
@@ -2479,7 +2346,6 @@
       ],
       "asin": "B00L5OMO04",
       "runtime_length_min": 486,
-      "narrator": "Jorjeana Marie",
       "cover_url": "https://covers.openlibrary.org/b/id/9020271-M.jpg"
     },
     {
@@ -2499,7 +2365,6 @@
       ],
       "asin": "B0785N8KV3",
       "runtime_length_min": 566,
-      "narrator": "Andrea Izzy Anthony",
       "cover_url": "https://covers.openlibrary.org/b/id/10114620-M.jpg"
     },
     {
@@ -2519,7 +2384,6 @@
       ],
       "asin": "1713507285",
       "runtime_length_min": 542,
-      "narrator": "Carly Robins, Amy Landon, Tristan James",
       "cover_url": "https://covers.openlibrary.org/b/id/10540080-M.jpg"
     },
     {
@@ -2538,8 +2402,7 @@
         "audible"
       ],
       "asin": "B0CZ4WYJ57",
-      "runtime_length_min": 583,
-      "narrator": "Amy Bentley, Will Damron, Neil Hellegers, Ellen Quay"
+      "runtime_length_min": 583
     },
     {
       "title": "Capture or Kill",
@@ -2558,8 +2421,7 @@
         "audible"
       ],
       "asin": "B0CVJB15DK",
-      "runtime_length_min": 775,
-      "narrator": "Steven Weber"
+      "runtime_length_min": 775
     },
     {
       "title": "The Good Lie",
@@ -2579,7 +2441,6 @@
       ],
       "asin": "1713584603",
       "runtime_length_min": 486,
-      "narrator": "Susan Dalian",
       "cover_url": "https://covers.openlibrary.org/b/id/11408147-M.jpg"
     },
     {
@@ -2598,8 +2459,7 @@
         "audible"
       ],
       "asin": "B0BYB6RXFS",
-      "runtime_length_min": 532,
-      "narrator": "William Christopher Stephens, Kiff VandenHeuvel, Jim Meskimen, Inger Tudor, Zeno Robinson, Peter Giles, Wayne Carr"
+      "runtime_length_min": 532
     },
     {
       "title": "Cross Down",
@@ -2619,7 +2479,7 @@
       ],
       "asin": "B0BHF4HTKL",
       "runtime_length_min": 586,
-      "narrator": "William Christopher Stephens, Kiff VandenHeuvel, Mela Lee, Inger Tudor, Zeno Robinson, Wayne Carr, Peter Giles"
+      "cover_url": "https://covers.openlibrary.org/b/id/13299557-M.jpg"
     },
     {
       "title": "Imminent",
@@ -2638,7 +2498,6 @@
       ],
       "asin": "B0D3G42774",
       "runtime_length_min": 600,
-      "narrator": "Luis Elizondo, Christopher Mellon",
       "cover_url": "https://covers.openlibrary.org/b/id/14809146-M.jpg"
     },
     {
@@ -2657,8 +2516,7 @@
         "audible"
       ],
       "asin": "B09XVJ972Q",
-      "runtime_length_min": 553,
-      "narrator": "Wayne Carr, Mela Lee, Inger Tudor, Kiff VandenHeuvel"
+      "runtime_length_min": 553
     },
     {
       "title": "Shadow of Doubt",
@@ -2676,8 +2534,7 @@
         "audible"
       ],
       "asin": "B0CLGVYBPM",
-      "runtime_length_min": 700,
-      "narrator": "Armand Schultz"
+      "runtime_length_min": 700
     },
     {
       "title": "Fear No Evil",
@@ -2696,7 +2553,7 @@
       ],
       "asin": "B09F74SCS4",
       "runtime_length_min": 502,
-      "narrator": "Cary Hite"
+      "cover_url": "https://covers.openlibrary.org/b/id/11307506-M.jpg"
     },
     {
       "title": "Deadly Cross",
@@ -2715,7 +2572,6 @@
       ],
       "asin": "1549128981",
       "runtime_length_min": 523,
-      "narrator": "Brad Sanders",
       "cover_url": "https://covers.openlibrary.org/b/id/10315484-M.jpg"
     },
     {
@@ -2735,7 +2591,6 @@
       ],
       "asin": "1549120824",
       "runtime_length_min": 496,
-      "narrator": "Andre Blake",
       "cover_url": "https://covers.openlibrary.org/b/id/9151814-M.jpg"
     },
     {
@@ -2754,8 +2609,7 @@
         "audible"
       ],
       "asin": "1549194887",
-      "runtime_length_min": 561,
-      "narrator": "Andre Blake"
+      "runtime_length_min": 561
     },
     {
       "title": "The People vs. Alex Cross",
@@ -2774,7 +2628,6 @@
       ],
       "asin": "B074XJR3GK",
       "runtime_length_min": 519,
-      "narrator": "Andre Blake",
       "cover_url": "https://covers.openlibrary.org/b/id/10118797-M.jpg"
     },
     {
@@ -2794,7 +2647,6 @@
       ],
       "asin": "B01K3F4F1G",
       "runtime_length_min": 512,
-      "narrator": "Ryan Vincent Anderson, Pete Bradbury",
       "cover_url": "https://covers.openlibrary.org/b/id/10102942-M.jpg"
     },
     {
@@ -2814,7 +2666,6 @@
       ],
       "asin": "B014LL5T2M",
       "runtime_length_min": 579,
-      "narrator": "Ruben Santiago-Hudson, Jefferson Mays",
       "cover_url": "https://covers.openlibrary.org/b/id/7400509-M.jpg"
     },
     {
@@ -2834,7 +2685,6 @@
       ],
       "asin": "B00MP2GHA8",
       "runtime_length_min": 581,
-      "narrator": "Michael Boatman, Scott Sowers",
       "cover_url": "https://covers.openlibrary.org/b/id/10144631-M.jpg"
     },
     {
@@ -2853,8 +2703,7 @@
         "audible"
       ],
       "asin": "B0CKKLNGKK",
-      "runtime_length_min": 814,
-      "narrator": "Adam Gold"
+      "runtime_length_min": 814
     },
     {
       "title": "Cross My Heart",
@@ -2873,7 +2722,6 @@
       ],
       "asin": "B00FVZNG3M",
       "runtime_length_min": 586,
-      "narrator": "Michael Boatman, Tom Wopat",
       "cover_url": "https://covers.openlibrary.org/b/id/7380051-M.jpg"
     },
     {
@@ -2894,7 +2742,6 @@
       ],
       "asin": "0241533228",
       "runtime_length_min": 2586,
-      "narrator": "Luke Thompson",
       "cover_url": "https://covers.openlibrary.org/b/id/11263774-M.jpg"
     },
     {
@@ -2913,8 +2760,7 @@
         "audible"
       ],
       "asin": "B003UC45I8",
-      "runtime_length_min": 5881,
-      "narrator": "Jim Caviezel, Richard Dreyfuss, Gary Sinise, Jason Alexander, Marisa Tomei, Stacy Keach, Louis Gossett Jr., Jon Voight, Marcia Harden, Joan Allen, Max Sydow, Malcolm McDowell"
+      "runtime_length_min": 5881
     },
     {
       "title": "Alex Cross, Run",
@@ -2933,7 +2779,7 @@
       ],
       "asin": "B00B5Z62O2",
       "runtime_length_min": 483,
-      "narrator": "Michael Boatman, Steven Boyer"
+      "cover_url": "https://covers.openlibrary.org/b/id/7387629-M.jpg"
     },
     {
       "title": "The Beach",
@@ -2952,7 +2798,6 @@
       ],
       "asin": "B09X8Z64X1",
       "runtime_length_min": 675,
-      "narrator": "Michael Page",
       "cover_url": "https://covers.openlibrary.org/b/id/2912802-M.jpg"
     },
     {
@@ -2972,7 +2817,6 @@
       ],
       "asin": "B0065N50AG",
       "runtime_length_min": 406,
-      "narrator": "Andre Braugher, Zach Grenier",
       "cover_url": "https://covers.openlibrary.org/b/id/7779168-M.jpg"
     },
     {
@@ -2992,7 +2836,6 @@
       ],
       "asin": "B0049WFH08",
       "runtime_length_min": 384,
-      "narrator": "Andre Braugher, Jay O. Sanders",
       "cover_url": "https://covers.openlibrary.org/b/id/7821169-M.jpg"
     },
     {
@@ -3012,7 +2855,7 @@
       ],
       "asin": "B002V1LQHW",
       "runtime_length_min": 421,
-      "narrator": "Tim Cain, Michael Cerveris"
+      "cover_url": "https://covers.openlibrary.org/b/id/6307116-M.jpg"
     },
     {
       "title": "Cross Country",
@@ -3031,7 +2874,6 @@
       ],
       "asin": "B002V19WUU",
       "runtime_length_min": 441,
-      "narrator": "Peter Jay Fernandez, Dion Graham",
       "cover_url": "https://covers.openlibrary.org/b/id/6685029-M.jpg"
     },
     {
@@ -3051,7 +2893,6 @@
       ],
       "asin": "B002V8KN7Y",
       "runtime_length_min": 486,
-      "narrator": "Peter Jay Fernandez, Michael Stuhlbarg",
       "cover_url": "https://covers.openlibrary.org/b/id/2598552-M.jpg"
     },
     {
@@ -3071,7 +2912,6 @@
       ],
       "asin": "B008JH6Q9K",
       "runtime_length_min": 447,
-      "narrator": "Peter Jay Fernandez, Jay O. Sanders",
       "cover_url": "https://covers.openlibrary.org/b/id/7779168-M.jpg"
     },
     {
@@ -3090,9 +2930,7 @@
         "audible"
       ],
       "asin": "B002V0RA1O",
-      "runtime_length_min": 503,
-      "narrator": "Peter Jay Fernandez, Melissa Leo, Michael Louis Wells",
-      "cover_url": "https://covers.openlibrary.org/b/id/6449411-M.jpg"
+      "runtime_length_min": 503
     },
     {
       "title": "London Bridges",
@@ -3111,7 +2949,6 @@
       ],
       "asin": "B002V0JTWC",
       "runtime_length_min": 490,
-      "narrator": "Peter Jay Fernandez, Denis O'Hare",
       "cover_url": "https://covers.openlibrary.org/b/id/187500-M.jpg"
     },
     {
@@ -3131,7 +2968,6 @@
       ],
       "asin": "B002UUQVKG",
       "runtime_length_min": 493,
-      "narrator": "Peter Jay Fernandez, Denis O'Hare",
       "cover_url": "https://covers.openlibrary.org/b/id/189358-M.jpg"
     },
     {
@@ -3151,7 +2987,6 @@
       ],
       "asin": "B09QH6P7X4",
       "runtime_length_min": 1263,
-      "narrator": "Charlie Thurston",
       "cover_url": "https://covers.openlibrary.org/b/id/13141227-M.jpg"
     },
     {
@@ -3172,9 +3007,7 @@
         "goodreads"
       ],
       "asin": "B07THDVL4P",
-      "runtime_length_min": 1281,
-      "narrator": "Marc Vietor",
-      "cover_url": "https://covers.openlibrary.org/b/id/8747850-M.jpg"
+      "runtime_length_min": 1281
     },
     {
       "title": "The Atlas Maneuver",
@@ -3194,7 +3027,6 @@
       ],
       "asin": "B0C7HJJY39",
       "runtime_length_min": 800,
-      "narrator": "Scott Brick",
       "cover_url": "https://covers.openlibrary.org/b/id/14550046-M.jpg"
     },
     {
@@ -3213,8 +3045,7 @@
         "audible"
       ],
       "asin": "B0CPZ1YNZW",
-      "runtime_length_min": 1756,
-      "narrator": "Ralph Lister"
+      "runtime_length_min": 1756
     },
     {
       "title": "Sho\u0304gun, Part One",
@@ -3233,7 +3064,6 @@
       ],
       "asin": "B0CPYZWTVR",
       "runtime_length_min": 1458,
-      "narrator": "Ralph Lister",
       "cover_url": "https://covers.openlibrary.org/b/id/14828398-M.jpg"
     },
     {
@@ -3254,7 +3084,6 @@
       ],
       "asin": "B0C2W3X7TM",
       "runtime_length_min": 763,
-      "narrator": "Rich Orlow",
       "cover_url": "https://covers.openlibrary.org/b/id/15128113-M.jpg"
     },
     {
@@ -3273,8 +3102,7 @@
         "audible"
       ],
       "asin": "B0CCG7ZL2F",
-      "runtime_length_min": 1054,
-      "narrator": "Jay Snyder"
+      "runtime_length_min": 1054
     },
     {
       "title": "The Minders",
@@ -3293,7 +3121,6 @@
       ],
       "asin": "0593412729",
       "runtime_length_min": 674,
-      "narrator": "Katherine Press, Oliver Hembrough",
       "cover_url": "https://covers.openlibrary.org/b/id/10671922-M.jpg"
     },
     {
@@ -3314,7 +3141,6 @@
       ],
       "asin": "B0C3NNGJR1",
       "runtime_length_min": 811,
-      "narrator": "Scott Brick",
       "cover_url": "https://covers.openlibrary.org/b/id/14564275-M.jpg"
     },
     {
@@ -3334,8 +3160,7 @@
         "goodreads"
       ],
       "asin": "B0BJ1B9841",
-      "runtime_length_min": 798,
-      "narrator": "Stephen Mendel"
+      "runtime_length_min": 798
     },
     {
       "title": "The Passengers",
@@ -3354,7 +3179,6 @@
       ],
       "asin": "0593151178",
       "runtime_length_min": 699,
-      "narrator": "Clare Corbett, Roy McMillan, Tom Bateman, Shaheen Khan, Kristin Atherton, Patience Tomlinson",
       "cover_url": "https://covers.openlibrary.org/b/id/8775617-M.jpg"
     },
     {
@@ -3375,7 +3199,6 @@
       ],
       "asin": "B078B3V9SS",
       "runtime_length_min": 661,
-      "narrator": "Clare Corbett, Vicki Hall, Simon Bubb, Jot Davies, Sophie Aldred",
       "cover_url": "https://covers.openlibrary.org/b/id/9171896-M.jpg"
     },
     {
@@ -3394,8 +3217,7 @@
         "audible"
       ],
       "asin": "B0CQ3K77XT",
-      "runtime_length_min": 177,
-      "narrator": "Peter Berkrot"
+      "runtime_length_min": 177
     },
     {
       "title": "The Runaway",
@@ -3415,7 +3237,6 @@
       ],
       "asin": "0593453476",
       "runtime_length_min": 695,
-      "narrator": "Stephen Mendel",
       "cover_url": "https://covers.openlibrary.org/b/id/10964658-M.jpg"
     },
     {
@@ -3435,7 +3256,6 @@
       ],
       "asin": "B00EPKU8XU",
       "runtime_length_min": 759,
-      "narrator": "Scott Brick",
       "cover_url": "https://covers.openlibrary.org/b/id/10379057-M.jpg"
     },
     {
@@ -3455,9 +3275,7 @@
         "goodreads"
       ],
       "asin": "B00XZ1K98O",
-      "runtime_length_min": 514,
-      "narrator": "Ari Fliakos",
-      "cover_url": "https://covers.openlibrary.org/b/id/8969039-M.jpg"
+      "runtime_length_min": 514
     },
     {
       "title": "Runner",
@@ -3477,7 +3295,6 @@
       ],
       "asin": "B00H4ER38C",
       "runtime_length_min": 514,
-      "narrator": "Raul Esparza",
       "cover_url": "https://covers.openlibrary.org/b/id/9908678-M.jpg"
     },
     {
@@ -3498,7 +3315,6 @@
       ],
       "asin": "B00B3YAT0S",
       "runtime_length_min": 515,
-      "narrator": "Edoardo Ballerini",
       "cover_url": "https://covers.openlibrary.org/b/id/8345374-M.jpg"
     },
     {
@@ -3519,7 +3335,6 @@
       ],
       "asin": "B09YKFFW18",
       "runtime_length_min": 761,
-      "narrator": "Soneela Nankani, Jennifer Jill Araya, Timothy Jackson, Max Meyers",
       "cover_url": "https://covers.openlibrary.org/b/id/6822926-M.jpg"
     },
     {
@@ -3540,7 +3355,6 @@
       ],
       "asin": "B09L9TXHN4",
       "runtime_length_min": 587,
-      "narrator": "Henry Levya",
       "cover_url": "https://covers.openlibrary.org/b/id/13236900-M.jpg"
     },
     {
@@ -3561,7 +3375,6 @@
       ],
       "asin": "B09VNN94X8",
       "runtime_length_min": 456,
-      "narrator": "Max Meyers",
       "cover_url": "https://covers.openlibrary.org/b/id/12538975-M.jpg"
     },
     {
@@ -3581,7 +3394,6 @@
       ],
       "asin": "B09VN49VN7",
       "runtime_length_min": 564,
-      "narrator": "Max Meyers",
       "cover_url": "https://covers.openlibrary.org/b/id/9211388-M.jpg"
     },
     {
@@ -3602,7 +3414,6 @@
       ],
       "asin": "B09VNFV4XF",
       "runtime_length_min": 538,
-      "narrator": "Max Meyers",
       "cover_url": "https://covers.openlibrary.org/b/id/10114653-M.jpg"
     },
     {
@@ -3623,7 +3434,7 @@
       ],
       "asin": "B002V9ZA3K",
       "runtime_length_min": 828,
-      "narrator": "Dick Hill"
+      "cover_url": "https://covers.openlibrary.org/b/id/182579-M.jpg"
     },
     {
       "title": "Fool Me Once",
@@ -3642,7 +3453,6 @@
       ],
       "asin": "B01CPN2DT0",
       "runtime_length_min": 605,
-      "narrator": "January LaVoy",
       "cover_url": "https://covers.openlibrary.org/b/id/10665020-M.jpg"
     },
     {
@@ -3662,7 +3472,6 @@
       ],
       "asin": "B072BFQF1N",
       "runtime_length_min": 1509,
-      "narrator": "Amanda Leigh Cobb",
       "cover_url": "https://covers.openlibrary.org/b/id/8506724-M.jpg"
     },
     {
@@ -3682,7 +3491,6 @@
       ],
       "asin": "B01DYO4QRQ",
       "runtime_length_min": 1396,
-      "narrator": "Jennifer Ikeda",
       "cover_url": "https://covers.openlibrary.org/b/id/14315081-M.jpg"
     },
     {
@@ -3702,7 +3510,6 @@
       ],
       "asin": "B00WRHY15Y",
       "runtime_length_min": 967,
-      "narrator": "Jennifer Ikeda",
       "cover_url": "https://covers.openlibrary.org/b/id/8738585-M.jpg"
     },
     {
@@ -3722,7 +3529,6 @@
       ],
       "asin": "B0BT26TPP1",
       "runtime_length_min": 630,
-      "narrator": "Peter Giles, Titus Welliver, Christine Lakin",
       "cover_url": "https://covers.openlibrary.org/b/id/13277584-M.jpg"
     },
     {
@@ -3742,7 +3548,6 @@
       ],
       "asin": "B00JQOFMD6",
       "runtime_length_min": 531,
-      "narrator": "Jay Snyder",
       "cover_url": "https://covers.openlibrary.org/b/id/10422297-M.jpg"
     },
     {
@@ -3762,7 +3567,6 @@
       ],
       "asin": "B0083BW2HM",
       "runtime_length_min": 560,
-      "narrator": "Jay Snyder",
       "cover_url": "https://covers.openlibrary.org/b/id/7978281-M.jpg"
     },
     {
@@ -3782,7 +3586,6 @@
       ],
       "asin": "B0BSY3PTSV",
       "runtime_length_min": 947,
-      "narrator": "Justine Lupe, Stephen King",
       "cover_url": "https://covers.openlibrary.org/b/id/14655773-M.jpg"
     },
     {
@@ -3802,7 +3605,6 @@
       ],
       "asin": "0062984179",
       "runtime_length_min": 468,
-      "narrator": "Will Damron",
       "cover_url": "https://covers.openlibrary.org/b/id/9324198-M.jpg"
     },
     {
@@ -3822,7 +3624,6 @@
       ],
       "asin": "0062890468",
       "runtime_length_min": 647,
-      "narrator": "Chris Andrew Ciulla",
       "cover_url": "https://covers.openlibrary.org/b/id/8797323-M.jpg"
     },
     {
@@ -3843,7 +3644,6 @@
       ],
       "asin": "0593289501",
       "runtime_length_min": 746,
-      "narrator": "Lesley Manville",
       "cover_url": "https://covers.openlibrary.org/b/id/10201431-M.jpg"
     },
     {
@@ -3863,9 +3663,7 @@
         "goodreads"
       ],
       "asin": "B006OBUOTG",
-      "runtime_length_min": 568,
-      "narrator": "Jeff Gurner",
-      "cover_url": "https://covers.openlibrary.org/b/id/14564356-M.jpg"
+      "runtime_length_min": 568
     },
     {
       "title": "Lords of the Fly",
@@ -3883,8 +3681,7 @@
         "audible"
       ],
       "asin": "1705284604",
-      "runtime_length_min": 628,
-      "narrator": "Mike Chamberlain"
+      "runtime_length_min": 628
     },
     {
       "title": "Ghost Country",
@@ -3904,7 +3701,6 @@
       ],
       "asin": "B004H2STB4",
       "runtime_length_min": 510,
-      "narrator": "Jeff Gurner",
       "cover_url": "https://covers.openlibrary.org/b/id/6675321-M.jpg"
     },
     {
@@ -3924,7 +3720,6 @@
       ],
       "asin": "B003A984V0",
       "runtime_length_min": 514,
-      "narrator": "Jeff Gurner",
       "cover_url": "https://covers.openlibrary.org/b/id/6610263-M.jpg"
     },
     {
@@ -3944,7 +3739,6 @@
       ],
       "asin": "B018SQNZ4U",
       "runtime_length_min": 873,
-      "narrator": "Tom Stechschulte",
       "cover_url": "https://covers.openlibrary.org/b/id/165032-M.jpg"
     },
     {
@@ -3966,7 +3760,6 @@
       ],
       "asin": "B0BW2D2R2S",
       "runtime_length_min": 582,
-      "narrator": "Steven Weber",
       "cover_url": "https://covers.openlibrary.org/b/id/13467422-M.jpg"
     },
     {
@@ -3988,7 +3781,6 @@
       ],
       "asin": "B09SJ43HT7",
       "runtime_length_min": 575,
-      "narrator": "George Guidall",
       "cover_url": "https://covers.openlibrary.org/b/id/12992695-M.jpg"
     },
     {
@@ -4010,7 +3802,6 @@
       ],
       "asin": "1797128264",
       "runtime_length_min": 516,
-      "narrator": "George Guidall",
       "cover_url": "https://covers.openlibrary.org/b/id/10612699-M.jpg"
     },
     {
@@ -4032,7 +3823,6 @@
       ],
       "asin": "1797111272",
       "runtime_length_min": 567,
-      "narrator": "George Guidall",
       "cover_url": "https://covers.openlibrary.org/b/id/10357633-M.jpg"
     },
     {
@@ -4054,7 +3844,6 @@
       ],
       "asin": "1508287716",
       "runtime_length_min": 589,
-      "narrator": "George Guidall",
       "cover_url": "https://covers.openlibrary.org/b/id/8788859-M.jpg"
     },
     {
@@ -4075,7 +3864,6 @@
       ],
       "asin": "B00ZJQ8D8Q",
       "runtime_length_min": 780,
-      "narrator": "Scott Brick",
       "cover_url": "https://covers.openlibrary.org/b/id/9254423-M.jpg"
     },
     {
@@ -4095,7 +3883,6 @@
       ],
       "asin": "B00PRAIAUA",
       "runtime_length_min": 846,
-      "narrator": "Jonathan Keeble",
       "cover_url": "https://covers.openlibrary.org/b/id/38813-M.jpg"
     },
     {
@@ -4117,7 +3904,6 @@
       ],
       "asin": "B079VPVBSW",
       "runtime_length_min": 573,
-      "narrator": "George Guidall",
       "cover_url": "https://covers.openlibrary.org/b/id/12430749-M.jpg"
     },
     {
@@ -4139,7 +3925,6 @@
       ],
       "asin": "B072F77W4D",
       "runtime_length_min": 693,
-      "narrator": "Scott Brick",
       "cover_url": "https://covers.openlibrary.org/b/id/8289166-M.jpg"
     },
     {
@@ -4160,7 +3945,6 @@
       ],
       "asin": "B0BJRVX31C",
       "runtime_length_min": 711,
-      "narrator": "Armand Schultz",
       "cover_url": "https://covers.openlibrary.org/b/id/13128680-M.jpg"
     },
     {
@@ -4181,7 +3965,6 @@
       ],
       "asin": "B01FCY3W12",
       "runtime_length_min": 590,
-      "narrator": "George Guidall",
       "cover_url": "https://covers.openlibrary.org/b/id/9327239-M.jpg"
     },
     {
@@ -4203,7 +3986,6 @@
       ],
       "asin": "B00WXJHXQK",
       "runtime_length_min": 639,
-      "narrator": "George Guidall",
       "cover_url": "https://covers.openlibrary.org/b/id/10311489-M.jpg"
     },
     {
@@ -4224,7 +4006,6 @@
       ],
       "asin": "B009PPNDWS",
       "runtime_length_min": 713,
-      "narrator": "George Guidall",
       "cover_url": "https://covers.openlibrary.org/b/id/9040886-M.jpg"
     },
     {
@@ -4245,7 +4026,6 @@
       ],
       "asin": "B0071NK7KM",
       "runtime_length_min": 648,
-      "narrator": "George Guidall",
       "cover_url": "https://covers.openlibrary.org/b/id/7893590-M.jpg"
     },
     {
@@ -4266,7 +4046,6 @@
       ],
       "asin": "B0044UOB2K",
       "runtime_length_min": 704,
-      "narrator": "George Guidall",
       "cover_url": "https://covers.openlibrary.org/b/id/6581609-M.jpg"
     },
     {
@@ -4287,7 +4066,6 @@
       ],
       "asin": "B00PRAGG2Y",
       "runtime_length_min": 808,
-      "narrator": "Jonathan Keeble",
       "cover_url": "https://covers.openlibrary.org/b/id/27716-M.jpg"
     },
     {
@@ -4308,7 +4086,7 @@
       ],
       "asin": "B002V0RKRI",
       "runtime_length_min": 711,
-      "narrator": "George Guidall"
+      "cover_url": "https://covers.openlibrary.org/b/id/6635449-M.jpg"
     },
     {
       "title": "Extreme Measures",
@@ -4328,7 +4106,6 @@
       ],
       "asin": "B002V1LAIM",
       "runtime_length_min": 729,
-      "narrator": "George Guidall",
       "cover_url": "https://covers.openlibrary.org/b/id/7251905-M.jpg"
     },
     {
@@ -4349,7 +4126,7 @@
       ],
       "asin": "B002VA9O4U",
       "runtime_length_min": 619,
-      "narrator": "George Guidall"
+      "cover_url": "https://covers.openlibrary.org/b/id/1384846-M.jpg"
     },
     {
       "title": "Act of Treason",
@@ -4369,7 +4146,6 @@
       ],
       "asin": "B002V5CSTS",
       "runtime_length_min": 666,
-      "narrator": "George Guidall",
       "cover_url": "https://covers.openlibrary.org/b/id/474725-M.jpg"
     },
     {
@@ -4390,7 +4166,6 @@
       ],
       "asin": "B002V0KCTQ",
       "runtime_length_min": 1036,
-      "narrator": "George Guidall",
       "cover_url": "https://covers.openlibrary.org/b/id/474724-M.jpg"
     },
     {
@@ -4410,7 +4185,6 @@
       ],
       "asin": "B0BJ13SVSB",
       "runtime_length_min": 929,
-      "narrator": "Ray Porter",
       "cover_url": "https://covers.openlibrary.org/b/id/13202818-M.jpg"
     },
     {
@@ -4431,7 +4205,6 @@
       ],
       "asin": "B004JPFTD0",
       "runtime_length_min": 792,
-      "narrator": "George Guidall",
       "cover_url": "https://covers.openlibrary.org/b/id/1957670-M.jpg"
     },
     {
@@ -4452,7 +4225,6 @@
       ],
       "asin": "B004VTB33E",
       "runtime_length_min": 783,
-      "narrator": "George Guidall",
       "cover_url": "https://covers.openlibrary.org/b/id/6805958-M.jpg"
     },
     {
@@ -4473,7 +4245,6 @@
       ],
       "asin": "B004YLAC4A",
       "runtime_length_min": 836,
-      "narrator": "Ken Kilban",
       "cover_url": "https://covers.openlibrary.org/b/id/1786803-M.jpg"
     },
     {
@@ -4492,9 +4263,7 @@
         "audible"
       ],
       "asin": "B002V8DH36",
-      "runtime_length_min": 359,
-      "narrator": "Various",
-      "cover_url": "https://covers.openlibrary.org/b/id/168106-M.jpg"
+      "runtime_length_min": 359
     },
     {
       "title": "The Third Option",
@@ -4514,7 +4283,6 @@
       ],
       "asin": "B004YLIJH2",
       "runtime_length_min": 705,
-      "narrator": "Nick Sullivan",
       "cover_url": "https://covers.openlibrary.org/b/id/405312-M.jpg"
     },
     {
@@ -4535,7 +4303,6 @@
       ],
       "asin": "B004YLIJ04",
       "runtime_length_min": 1003,
-      "narrator": "Nick Sullivan",
       "cover_url": "https://covers.openlibrary.org/b/id/4309601-M.jpg"
     },
     {
@@ -4556,7 +4323,6 @@
       ],
       "asin": "0062955489",
       "runtime_length_min": 1108,
-      "narrator": "Lesley Manville, Allan Corduner",
       "cover_url": "https://covers.openlibrary.org/b/id/10096871-M.jpg"
     },
     {
@@ -4576,7 +4342,6 @@
       ],
       "asin": "B002V5BE1Q",
       "runtime_length_min": 500,
-      "narrator": "Scott Brick",
       "cover_url": "https://covers.openlibrary.org/b/id/6517784-M.jpg"
     },
     {
@@ -4597,7 +4362,6 @@
       ],
       "asin": "B0BP9H8DBQ",
       "runtime_length_min": 623,
-      "narrator": "Kate Forbes",
       "cover_url": "https://covers.openlibrary.org/b/id/13295221-M.jpg"
     },
     {
@@ -4618,7 +4382,6 @@
       ],
       "asin": "B01CRMRCK4",
       "runtime_length_min": 1769,
-      "narrator": "Scott Brick",
       "cover_url": "https://covers.openlibrary.org/b/id/12884475-M.jpg"
     },
     {
@@ -4639,7 +4402,6 @@
       ],
       "asin": "B0045VT4NY",
       "runtime_length_min": 825,
-      "narrator": "Dick Hill",
       "cover_url": "https://covers.openlibrary.org/b/id/14424674-M.jpg"
     },
     {
@@ -4660,7 +4422,6 @@
       ],
       "asin": "B009H8KSA8",
       "runtime_length_min": 1583,
-      "narrator": "Scott Brick",
       "cover_url": "https://covers.openlibrary.org/b/id/12884497-M.jpg"
     },
     {
@@ -4681,7 +4442,6 @@
       ],
       "asin": "B0B6CWW9MF",
       "runtime_length_min": 998,
-      "narrator": "Jay Snyder",
       "cover_url": "https://covers.openlibrary.org/b/id/13176672-M.jpg"
     },
     {
@@ -4701,7 +4461,6 @@
       ],
       "asin": "B003O9GBFC",
       "runtime_length_min": 2209,
-      "narrator": "Scott Brick",
       "cover_url": "https://covers.openlibrary.org/b/id/8261369-M.jpg"
     },
     {
@@ -4722,7 +4481,6 @@
       ],
       "asin": "B09YGBSQ4Z",
       "runtime_length_min": 706,
-      "narrator": "Scott Brick",
       "cover_url": "https://covers.openlibrary.org/b/id/13263446-M.jpg"
     },
     {
@@ -4742,7 +4500,6 @@
       ],
       "asin": "B002V1CO82",
       "runtime_length_min": 918,
-      "narrator": "Scott Brick",
       "cover_url": "https://covers.openlibrary.org/b/id/10656102-M.jpg"
     },
     {
@@ -4763,7 +4520,6 @@
       ],
       "asin": "B00U7UORMU",
       "runtime_length_min": 910,
-      "narrator": "Scott Brick",
       "cover_url": "https://covers.openlibrary.org/b/id/12882940-M.jpg"
     },
     {
@@ -4783,8 +4539,7 @@
         "goodreads"
       ],
       "asin": "B09YVKH15W",
-      "runtime_length_min": 655,
-      "narrator": "Rich Orlow"
+      "runtime_length_min": 655
     },
     {
       "title": "Taltos",
@@ -4804,7 +4559,6 @@
       ],
       "asin": "B016P4NLCS",
       "runtime_length_min": 1323,
-      "narrator": "Kate Reading",
       "cover_url": "https://covers.openlibrary.org/b/id/208328-M.jpg"
     },
     {
@@ -4824,7 +4578,6 @@
       ],
       "asin": "B016QYKCQ0",
       "runtime_length_min": 1710,
-      "narrator": "Kate Reading",
       "cover_url": "https://covers.openlibrary.org/b/id/9196533-M.jpg"
     },
     {
@@ -4844,7 +4597,6 @@
       ],
       "asin": "B015WVQUBO",
       "runtime_length_min": 3002,
-      "narrator": "Kate Reading",
       "cover_url": "https://covers.openlibrary.org/b/id/10701482-M.jpg"
     },
     {
@@ -4865,7 +4617,6 @@
       ],
       "asin": "B06Y5R9X2S",
       "runtime_length_min": 948,
-      "narrator": "Samantha Bond, Allan Corduner",
       "cover_url": "https://covers.openlibrary.org/b/id/8189045-M.jpg"
     },
     {
@@ -4886,7 +4637,6 @@
       ],
       "asin": "B003G8RX9O",
       "runtime_length_min": 793,
-      "narrator": "Dick Hill",
       "cover_url": "https://covers.openlibrary.org/b/id/9747748-M.jpg"
     },
     {
@@ -4907,7 +4657,7 @@
       ],
       "asin": "B09KYH633K",
       "runtime_length_min": 632,
-      "narrator": "Armand Schultz"
+      "cover_url": "https://covers.openlibrary.org/b/id/12881439-M.jpg"
     },
     {
       "title": "Black Ice",
@@ -4927,7 +4677,6 @@
       ],
       "asin": "1797122207",
       "runtime_length_min": 629,
-      "narrator": "Armand Schultz",
       "cover_url": "https://covers.openlibrary.org/b/id/11699257-M.jpg"
     },
     {
@@ -4948,7 +4697,6 @@
       ],
       "asin": "1797104748",
       "runtime_length_min": 680,
-      "narrator": "Armand Schultz",
       "cover_url": "https://covers.openlibrary.org/b/id/10300452-M.jpg"
     },
     {
@@ -4968,7 +4716,6 @@
       ],
       "asin": "B07MGS7H4C",
       "runtime_length_min": 728,
-      "narrator": "Armand Schultz",
       "cover_url": "https://covers.openlibrary.org/b/id/8745975-M.jpg"
     },
     {
@@ -4989,7 +4736,6 @@
       ],
       "asin": "B079K6X9GR",
       "runtime_length_min": 602,
-      "narrator": "Armand Schultz",
       "cover_url": "https://covers.openlibrary.org/b/id/13566911-M.jpg"
     },
     {
@@ -5009,9 +4755,7 @@
         "goodreads"
       ],
       "asin": "B06WD5LTWM",
-      "runtime_length_min": 686,
-      "narrator": "Armand Schultz",
-      "cover_url": "https://covers.openlibrary.org/b/id/14529567-M.jpg"
+      "runtime_length_min": 686
     },
     {
       "title": "Foreign Agent",
@@ -5031,7 +4775,7 @@
       ],
       "asin": "B0188179II",
       "runtime_length_min": 659,
-      "narrator": "Armand Schultz"
+      "cover_url": "https://covers.openlibrary.org/b/id/13057376-M.jpg"
     },
     {
       "title": "Code of Conduct",
@@ -5050,7 +4794,6 @@
       ],
       "asin": "B00TYUE2RY",
       "runtime_length_min": 757,
-      "narrator": "Armand Schultz",
       "cover_url": "https://covers.openlibrary.org/b/id/10216991-M.jpg"
     },
     {
@@ -5071,7 +4814,6 @@
       ],
       "asin": "B00KGHJ7JW",
       "runtime_length_min": 697,
-      "narrator": "Armand Schultz",
       "cover_url": "https://covers.openlibrary.org/b/id/10364629-M.jpg"
     },
     {
@@ -5092,7 +4834,6 @@
       ],
       "asin": "B00CP7F2WW",
       "runtime_length_min": 679,
-      "narrator": "Armand Schultz",
       "cover_url": "https://covers.openlibrary.org/b/id/10307522-M.jpg"
     },
     {
@@ -5113,7 +4854,6 @@
       ],
       "asin": "B008KPJGY8",
       "runtime_length_min": 723,
-      "narrator": "Armand Schultz",
       "cover_url": "https://covers.openlibrary.org/b/id/7960707-M.jpg"
     },
     {
@@ -5133,7 +4873,6 @@
       ],
       "asin": "B005CQU93U",
       "runtime_length_min": 723,
-      "narrator": "Armand Schultz",
       "cover_url": "https://covers.openlibrary.org/b/id/8969806-M.jpg"
     },
     {
@@ -5154,7 +4893,6 @@
       ],
       "asin": "B00J54M7EY",
       "runtime_length_min": 1361,
-      "narrator": "Christopher Ragland",
       "cover_url": "https://covers.openlibrary.org/b/id/9128395-M.jpg"
     },
     {
@@ -5175,7 +4913,6 @@
       ],
       "asin": "B00GT1240I",
       "runtime_length_min": 2579,
-      "narrator": "Humphrey Bower",
       "cover_url": "https://covers.openlibrary.org/b/id/6788945-M.jpg"
     },
     {
@@ -5196,7 +4933,6 @@
       ],
       "asin": "1797135015",
       "runtime_length_min": 443,
-      "narrator": "Marin Ireland",
       "cover_url": "https://covers.openlibrary.org/b/id/14655224-M.jpg"
     },
     {
@@ -5216,7 +4952,6 @@
       ],
       "asin": "1797101781",
       "runtime_length_min": 277,
-      "narrator": "Maggie Siff",
       "cover_url": "https://covers.openlibrary.org/b/id/12657277-M.jpg"
     },
     {
@@ -5237,7 +4972,6 @@
       ],
       "asin": "B06XPLDVPC",
       "runtime_length_min": 162,
-      "narrator": "Maggie Siff",
       "cover_url": "https://covers.openlibrary.org/b/id/9325640-M.jpg"
     },
     {
@@ -5258,7 +4992,6 @@
       ],
       "asin": "B09R62PV4B",
       "runtime_length_min": 1446,
-      "narrator": "Seth Numrich, Stephen King",
       "cover_url": "https://covers.openlibrary.org/b/id/14655682-M.jpg"
     },
     {
@@ -5279,7 +5012,6 @@
       ],
       "asin": "B09TTM9N28",
       "runtime_length_min": 1967,
-      "narrator": "Jacques Roy, Raquel Beattie, Cassandra Campbell, Chris Henry Coffey, Piper Goodeve, Em Grosland, Aden Hakimi, Graham Halstead, Chant\u00e9 McCormick, Natalie Naudus, Aida Reluzco, Pete Simonelli, Natasha Soudek, Travis Tonn, Erin Ruth Walker",
       "cover_url": "https://covers.openlibrary.org/b/id/13775611-M.jpg"
     },
     {
@@ -5300,7 +5032,6 @@
       ],
       "asin": "B0B29G6NWN",
       "runtime_length_min": 723,
-      "narrator": "Kyf Brewer, Orlagh Cassidy",
       "cover_url": "https://covers.openlibrary.org/b/id/12866673-M.jpg"
     },
     {
@@ -5321,7 +5052,6 @@
       ],
       "asin": "B0048G19IE",
       "runtime_length_min": 1385,
-      "narrator": "Johnny Depp, Joe Hurley, Keith Richards",
       "cover_url": "https://covers.openlibrary.org/b/id/6651227-M.jpg"
     },
     {
@@ -5342,7 +5072,6 @@
       ],
       "asin": "0593294181",
       "runtime_length_min": 411,
-      "narrator": "Matthew McConaughey",
       "cover_url": "https://covers.openlibrary.org/b/id/10512439-M.jpg"
     },
     {
@@ -5361,8 +5090,7 @@
         "audible"
       ],
       "asin": "B07CL3F5H2",
-      "runtime_length_min": 1584,
-      "narrator": "Simon Vance"
+      "runtime_length_min": 1584
     },
     {
       "title": "Foreign Influence",
@@ -5382,7 +5110,6 @@
       ],
       "asin": "B003PSGLKM",
       "runtime_length_min": 666,
-      "narrator": "Armand Schultz",
       "cover_url": "https://covers.openlibrary.org/b/id/11633769-M.jpg"
     },
     {
@@ -5403,7 +5130,6 @@
       ],
       "asin": "B002V8KTJQ",
       "runtime_length_min": 887,
-      "narrator": "Dick Hill",
       "cover_url": "https://covers.openlibrary.org/b/id/14425142-M.jpg"
     },
     {
@@ -5424,7 +5150,6 @@
       ],
       "asin": "B002V8MBQK",
       "runtime_length_min": 624,
-      "narrator": "Armand Schultz",
       "cover_url": "https://covers.openlibrary.org/b/id/9795075-M.jpg"
     },
     {
@@ -5445,7 +5170,6 @@
       ],
       "asin": "B004JPE5J4",
       "runtime_length_min": 538,
-      "narrator": "George Guidall",
       "cover_url": "https://covers.openlibrary.org/b/id/6459716-M.jpg"
     },
     {
@@ -5465,9 +5189,7 @@
         "goodreads"
       ],
       "asin": "B004VNKA8O",
-      "runtime_length_min": 653,
-      "narrator": "George Guidall",
-      "cover_url": "https://covers.openlibrary.org/b/id/760422-M.jpg"
+      "runtime_length_min": 653
     },
     {
       "title": "The Great Gatsby",
@@ -5487,7 +5209,6 @@
       ],
       "asin": "B0B133HJ49",
       "runtime_length_min": 413,
-      "narrator": "Gary D. MacFadden",
       "cover_url": "https://covers.openlibrary.org/b/id/10590366-M.jpg"
     },
     {
@@ -5508,7 +5229,7 @@
       ],
       "asin": "B01FEAW1SE",
       "runtime_length_min": 557,
-      "narrator": "George Guidall"
+      "cover_url": "https://covers.openlibrary.org/b/id/474772-M.jpg"
     },
     {
       "title": "The Idea of You",
@@ -5527,7 +5248,6 @@
       ],
       "asin": "B07C8M8V7M",
       "runtime_length_min": 715,
-      "narrator": "Robinne Lee",
       "cover_url": "https://covers.openlibrary.org/b/id/14315744-M.jpg"
     },
     {
@@ -5548,7 +5268,7 @@
       ],
       "asin": "B01FEAWX4G",
       "runtime_length_min": 812,
-      "narrator": "George Guidall"
+      "cover_url": "https://covers.openlibrary.org/b/id/474770-M.jpg"
     },
     {
       "title": "State of the Union",
@@ -5568,7 +5288,6 @@
       ],
       "asin": "B004KAW5GS",
       "runtime_length_min": 695,
-      "narrator": "George Guidall",
       "cover_url": "https://covers.openlibrary.org/b/id/760418-M.jpg"
     },
     {
@@ -5589,7 +5308,6 @@
       ],
       "asin": "B00BEJYKPM",
       "runtime_length_min": 777,
-      "narrator": "Armand Schultz",
       "cover_url": "https://covers.openlibrary.org/b/id/6889826-M.jpg"
     },
     {
@@ -5609,7 +5327,6 @@
       ],
       "asin": "B007IK1518",
       "runtime_length_min": 2034,
-      "narrator": "Arthur Morey",
       "cover_url": "https://covers.openlibrary.org/b/id/7234641-M.jpg"
     },
     {
@@ -5630,7 +5347,6 @@
       ],
       "asin": "B009WU5YJ6",
       "runtime_length_min": 923,
-      "narrator": "Armand Schultz",
       "cover_url": "https://covers.openlibrary.org/b/id/476908-M.jpg"
     },
     {
@@ -5651,7 +5367,6 @@
       ],
       "asin": "B079K2XWVW",
       "runtime_length_min": 857,
-      "narrator": "Marin Ireland",
       "cover_url": "https://covers.openlibrary.org/b/id/11262102-M.jpg"
     },
     {
@@ -5672,7 +5387,6 @@
       ],
       "asin": "B004FG2QGQ",
       "runtime_length_min": 1627,
-      "narrator": "Michael Prichard",
       "cover_url": "https://covers.openlibrary.org/b/id/417780-M.jpg"
     },
     {
@@ -5693,7 +5407,6 @@
       ],
       "asin": "B06XH9B3TH",
       "runtime_length_min": 791,
-      "narrator": "Marin Ireland",
       "cover_url": "https://covers.openlibrary.org/b/id/11202500-M.jpg"
     },
     {
@@ -5714,7 +5427,6 @@
       ],
       "asin": "B09LK5H8T3",
       "runtime_length_min": 1005,
-      "narrator": "Adam Gold",
       "cover_url": "https://covers.openlibrary.org/b/id/12081613-M.jpg"
     },
     {
@@ -5735,7 +5447,6 @@
       ],
       "asin": "B019FQZ9DC",
       "runtime_length_min": 731,
-      "narrator": "Lindsay Crouse",
       "cover_url": "https://covers.openlibrary.org/b/id/8259296-M.jpg"
     },
     {
@@ -5756,7 +5467,6 @@
       ],
       "asin": "B00ENI4SS0",
       "runtime_length_min": 361,
-      "narrator": "Dan Stevens",
       "cover_url": "https://covers.openlibrary.org/b/id/11172296-M.jpg"
     },
     {
@@ -5777,7 +5487,6 @@
       ],
       "asin": "B002VA9SWS",
       "runtime_length_min": 351,
-      "narrator": "Stephen Fry",
       "cover_url": "https://covers.openlibrary.org/b/id/11972784-M.jpg"
     },
     {
@@ -5798,7 +5507,6 @@
       ],
       "asin": "1549129007",
       "runtime_length_min": 747,
-      "narrator": "Peter Giles",
       "cover_url": "https://covers.openlibrary.org/b/id/10236760-M.jpg"
     },
     {
@@ -5818,8 +5526,7 @@
         "goodreads"
       ],
       "asin": "1797108263",
-      "runtime_length_min": 553,
-      "narrator": "J. K. Simmons"
+      "runtime_length_min": 553
     },
     {
       "title": "The Lies I Tell",
@@ -5839,7 +5546,6 @@
       ],
       "asin": "B0B31ZF1QH",
       "runtime_length_min": 552,
-      "narrator": "Anna Caputo, Amanda Dolan",
       "cover_url": "https://covers.openlibrary.org/b/id/12855494-M.jpg"
     },
     {
@@ -5859,7 +5565,7 @@
       ],
       "asin": "1250263492",
       "runtime_length_min": 640,
-      "narrator": "Emily Ellet, Greg Chun"
+      "cover_url": "https://covers.openlibrary.org/b/id/9261604-M.jpg"
     },
     {
       "title": "The Gods of Guilt",
@@ -5879,7 +5585,6 @@
       ],
       "asin": "B00G5HFAQG",
       "runtime_length_min": 709,
-      "narrator": "Peter Giles",
       "cover_url": "https://covers.openlibrary.org/b/id/8330112-M.jpg"
     },
     {
@@ -5900,7 +5605,6 @@
       ],
       "asin": "B004T3KA0O",
       "runtime_length_min": 831,
-      "narrator": "Peter Giles",
       "cover_url": "https://covers.openlibrary.org/b/id/6684807-M.jpg"
     },
     {
@@ -5920,7 +5624,6 @@
       ],
       "asin": "B002V5H4NI",
       "runtime_length_min": 865,
-      "narrator": "Dick Hill",
       "cover_url": "https://covers.openlibrary.org/b/id/15027615-M.jpg"
     },
     {
@@ -5941,7 +5644,6 @@
       ],
       "asin": "B0043BFH9G",
       "runtime_length_min": 695,
-      "narrator": "Peter Giles",
       "cover_url": "https://covers.openlibrary.org/b/id/11983547-M.jpg"
     },
     {
@@ -5962,7 +5664,6 @@
       ],
       "asin": "B002V1AE98",
       "runtime_length_min": 714,
-      "narrator": "Peter Giles",
       "cover_url": "https://covers.openlibrary.org/b/id/6384749-M.jpg"
     },
     {
@@ -5983,7 +5684,6 @@
       ],
       "asin": "1797134833",
       "runtime_length_min": 728,
-      "narrator": "Ray Porter",
       "cover_url": "https://covers.openlibrary.org/b/id/11694320-M.jpg"
     },
     {
@@ -6003,7 +5703,6 @@
       ],
       "asin": "B002V59YC2",
       "runtime_length_min": 696,
-      "narrator": "Adam Grupper",
       "cover_url": "https://covers.openlibrary.org/b/id/499937-M.jpg"
     },
     {
@@ -6024,7 +5723,6 @@
       ],
       "asin": "B002V5GR5Y",
       "runtime_length_min": 797,
-      "narrator": "Dick Hill",
       "cover_url": "https://covers.openlibrary.org/b/id/14424663-M.jpg"
     },
     {
@@ -6044,7 +5742,6 @@
       ],
       "asin": "0593452445",
       "runtime_length_min": 662,
-      "narrator": "Samuel West",
       "cover_url": "https://covers.openlibrary.org/b/id/12685057-M.jpg"
     },
     {
@@ -6064,7 +5761,6 @@
       ],
       "asin": "B019HBKK02",
       "runtime_length_min": 1190,
-      "narrator": "Frank Muller",
       "cover_url": "https://covers.openlibrary.org/b/id/14655761-M.jpg"
     },
     {
@@ -6085,7 +5781,6 @@
       ],
       "asin": "B00LI7VIRS",
       "runtime_length_min": 854,
-      "narrator": "Dick Hill",
       "cover_url": "https://covers.openlibrary.org/b/id/14425111-M.jpg"
     },
     {
@@ -6106,7 +5801,6 @@
       ],
       "asin": "0062886134",
       "runtime_length_min": 730,
-      "narrator": "Rich Orlow",
       "cover_url": "https://covers.openlibrary.org/b/id/11209160-M.jpg"
     },
     {
@@ -6127,7 +5821,6 @@
       ],
       "asin": "0062886096",
       "runtime_length_min": 805,
-      "narrator": "Rich Orlow",
       "cover_url": "https://covers.openlibrary.org/b/id/10554261-M.jpg"
     },
     {
@@ -6148,7 +5841,6 @@
       ],
       "asin": "B00LI9GZTM",
       "runtime_length_min": 873,
-      "narrator": "Dick Hill",
       "cover_url": "https://covers.openlibrary.org/b/id/14424685-M.jpg"
     },
     {
@@ -6169,7 +5861,6 @@
       ],
       "asin": "0062886053",
       "runtime_length_min": 688,
-      "narrator": "Rich Orlow",
       "cover_url": "https://covers.openlibrary.org/b/id/14681441-M.jpg"
     },
     {
@@ -6188,8 +5879,7 @@
         "audible"
       ],
       "asin": "B002V1OH6Y",
-      "runtime_length_min": 127,
-      "narrator": "Darren McGavin"
+      "runtime_length_min": 127
     },
     {
       "title": "Daughter of War",
@@ -6208,7 +5898,6 @@
       ],
       "asin": "0735205906",
       "runtime_length_min": 688,
-      "narrator": "Rich Orlow",
       "cover_url": "https://covers.openlibrary.org/b/id/8804785-M.jpg"
     },
     {
@@ -6229,7 +5918,6 @@
       ],
       "asin": "B01MYCEN5V",
       "runtime_length_min": 680,
-      "narrator": "Kimberly Farr",
       "cover_url": "https://covers.openlibrary.org/b/id/8870942-M.jpg"
     },
     {
@@ -6250,7 +5938,6 @@
       ],
       "asin": "0593339126",
       "runtime_length_min": 849,
-      "narrator": "Dick Hill",
       "cover_url": "https://covers.openlibrary.org/b/id/14424689-M.jpg"
     },
     {
@@ -6270,7 +5957,6 @@
       ],
       "asin": "B075DH58JR",
       "runtime_length_min": 866,
-      "narrator": "Rich Orlow, Henry Strozier",
       "cover_url": "https://covers.openlibrary.org/b/id/8841714-M.jpg"
     },
     {
@@ -6291,7 +5977,6 @@
       ],
       "asin": "B01IQ2210U",
       "runtime_length_min": 851,
-      "narrator": "Henry Strozier, Rich Orlow",
       "cover_url": "https://covers.openlibrary.org/b/id/8852230-M.jpg"
     },
     {
@@ -6312,7 +5997,6 @@
       ],
       "asin": "B09QRKQY1R",
       "runtime_length_min": 707,
-      "narrator": "Kate Forbes",
       "cover_url": "https://covers.openlibrary.org/b/id/14795380-M.jpg"
     },
     {
@@ -6333,7 +6017,6 @@
       ],
       "asin": "B002UZN6MC",
       "runtime_length_min": 365,
-      "narrator": "Peter Friedman",
       "cover_url": "https://covers.openlibrary.org/b/id/27698-M.jpg"
     },
     {
@@ -6354,7 +6037,6 @@
       ],
       "asin": "0593339096",
       "runtime_length_min": 826,
-      "narrator": "Dick Hill",
       "cover_url": "https://covers.openlibrary.org/b/id/14424684-M.jpg"
     },
     {
@@ -6375,7 +6057,7 @@
       ],
       "asin": "B016J85CWW",
       "runtime_length_min": 995,
-      "narrator": "Dick Hill"
+      "cover_url": "https://covers.openlibrary.org/b/id/14424682-M.jpg"
     },
     {
       "title": "Sierra Six",
@@ -6395,7 +6077,6 @@
       ],
       "asin": "B09B46TC3F",
       "runtime_length_min": 958,
-      "narrator": "Jay Snyder",
       "cover_url": "https://covers.openlibrary.org/b/id/11165566-M.jpg"
     },
     {
@@ -6416,7 +6097,6 @@
       ],
       "asin": "B0160FSUW8",
       "runtime_length_min": 1054,
-      "narrator": "Dick Hill",
       "cover_url": "https://covers.openlibrary.org/b/id/14812320-M.jpg"
     },
     {
@@ -6436,7 +6116,6 @@
       ],
       "asin": "B009WRO5LW",
       "runtime_length_min": 796,
-      "narrator": "Johnathan McClain",
       "cover_url": "https://covers.openlibrary.org/b/id/1818524-M.jpg"
     },
     {
@@ -6456,7 +6135,6 @@
       ],
       "asin": "B009WU6R8I",
       "runtime_length_min": 892,
-      "narrator": "Johnathan McClain",
       "cover_url": "https://covers.openlibrary.org/b/id/14424673-M.jpg"
     },
     {
@@ -6477,7 +6155,7 @@
       ],
       "asin": "B009WROSXW",
       "runtime_length_min": 859,
-      "narrator": "Johnathan McClain"
+      "cover_url": "https://covers.openlibrary.org/b/id/14424757-M.jpg"
     },
     {
       "title": "Dark Horse",
@@ -6497,7 +6175,6 @@
       ],
       "asin": "1250787882",
       "runtime_length_min": 907,
-      "narrator": "Scott Brick",
       "cover_url": "https://covers.openlibrary.org/b/id/11133098-M.jpg"
     },
     {
@@ -6517,7 +6194,6 @@
       ],
       "asin": "B002V1NNF0",
       "runtime_length_min": 944,
-      "narrator": "Will Patton",
       "cover_url": "https://covers.openlibrary.org/b/id/8363381-M.jpg"
     },
     {
@@ -6537,8 +6213,7 @@
         "goodreads"
       ],
       "asin": "B01GIOPVEG",
-      "runtime_length_min": 759,
-      "narrator": "Henry Strozier, Rich Orlow"
+      "runtime_length_min": 759
     },
     {
       "title": "The Beekeeper of Aleppo",
@@ -6557,8 +6232,7 @@
         "goodreads"
       ],
       "asin": "0593147642",
-      "runtime_length_min": 523,
-      "narrator": "Art Malik"
+      "runtime_length_min": 523
     },
     {
       "title": "The Lincoln Highway",
@@ -6578,7 +6252,6 @@
       ],
       "asin": "0593452100",
       "runtime_length_min": 999,
-      "narrator": "Edoardo Ballerini, Marin Ireland, Dion Graham",
       "cover_url": "https://covers.openlibrary.org/b/id/10648601-M.jpg"
     },
     {
@@ -6599,7 +6272,6 @@
       ],
       "asin": "B0191YAUVE",
       "runtime_length_min": 781,
-      "narrator": "Henry Strozier, Rich Orlow",
       "cover_url": "https://covers.openlibrary.org/b/id/8919929-M.jpg"
     },
     {
@@ -6620,7 +6292,6 @@
       ],
       "asin": "B002VA8GSK",
       "runtime_length_min": 642,
-      "narrator": "Dick Hill",
       "cover_url": "https://covers.openlibrary.org/b/id/1911043-M.jpg"
     },
     {
@@ -6640,8 +6311,7 @@
         "goodreads"
       ],
       "asin": "B00ZZOBVO0",
-      "runtime_length_min": 838,
-      "narrator": "Henry Strozier, Rich Orlow"
+      "runtime_length_min": 838
     },
     {
       "title": "Daisy Jones & The Six",
@@ -6661,7 +6331,6 @@
       ],
       "asin": "1984845306",
       "runtime_length_min": 543,
-      "narrator": "Jennifer Beals, Benjamin Bratt, Judy Greer, Pablo Schreiber",
       "cover_url": "https://covers.openlibrary.org/b/id/8742674-M.jpg"
     },
     {
@@ -6682,7 +6351,6 @@
       ],
       "asin": "0593459296",
       "runtime_length_min": 627,
-      "narrator": "Dion Graham",
       "cover_url": "https://covers.openlibrary.org/b/id/10585498-M.jpg"
     },
     {
@@ -6703,7 +6371,6 @@
       ],
       "asin": "1531834604",
       "runtime_length_min": 843,
-      "narrator": "Julia Whelan",
       "cover_url": "https://covers.openlibrary.org/b/id/9154264-M.jpg"
     },
     {
@@ -6723,7 +6390,6 @@
       ],
       "asin": "1531834515",
       "runtime_length_min": 822,
-      "narrator": "Julia Whelan",
       "cover_url": "https://covers.openlibrary.org/b/id/8758039-M.jpg"
     },
     {
@@ -6744,7 +6410,6 @@
       ],
       "asin": "B074XHTN3W",
       "runtime_length_min": 740,
-      "narrator": "Julia Whelan",
       "cover_url": "https://covers.openlibrary.org/b/id/8841058-M.jpg"
     },
     {
@@ -6764,8 +6429,7 @@
         "goodreads"
       ],
       "asin": "B00QVW7O9G",
-      "runtime_length_min": 797,
-      "narrator": "Henry Strozier, Rich Orlow"
+      "runtime_length_min": 797
     },
     {
       "title": "Days of Rage",
@@ -6784,7 +6448,6 @@
       ],
       "asin": "B00K5VJ63Q",
       "runtime_length_min": 852,
-      "narrator": "Rich Orlow, Henry Strozier",
       "cover_url": "https://covers.openlibrary.org/b/id/9449851-M.jpg"
     },
     {
@@ -6804,7 +6467,6 @@
       ],
       "asin": "B00HLSH5P2",
       "runtime_length_min": 762,
-      "narrator": "Henry Strozier",
       "cover_url": "https://covers.openlibrary.org/b/id/12875903-M.jpg"
     },
     {
@@ -6824,7 +6486,6 @@
       ],
       "asin": "B002V57VRC",
       "runtime_length_min": 1011,
-      "narrator": "Scott Brick, Simon Vance",
       "cover_url": "https://covers.openlibrary.org/b/id/6976407-M.jpg"
     },
     {
@@ -6844,7 +6505,6 @@
       ],
       "asin": "B002V8H660",
       "runtime_length_min": 537,
-      "narrator": "Scott Brick, Euan Morton, Simon Vance, Katherine Kellgren",
       "cover_url": "https://covers.openlibrary.org/b/id/2421405-M.jpg"
     },
     {
@@ -6864,7 +6524,6 @@
       ],
       "asin": "B002V1OF70",
       "runtime_length_min": 1262,
-      "narrator": "Scott Brick, Orlagh Cassidy, Euan Morton, Simon Vance, Ilyana Kadushin, Byron Jennings, David R. Gordon, Jason Culp, Kent Broadhurst, Oliver Wyman, Patricia Kilgarriff, Scott Sowers",
       "cover_url": "https://covers.openlibrary.org/b/id/11481354-M.jpg"
     },
     {
@@ -6885,7 +6544,6 @@
       ],
       "asin": "0593394747",
       "runtime_length_min": 649,
-      "narrator": "Emily Woo Zeller, P.J. Ochlan, Vikas Adam, Dion Graham, Feodor Chin",
       "cover_url": "https://covers.openlibrary.org/b/id/10698911-M.jpg"
     },
     {
@@ -6905,7 +6563,6 @@
       ],
       "asin": "B00ELMX0HS",
       "runtime_length_min": 754,
-      "narrator": "Tim Gerard Reynolds",
       "cover_url": "https://covers.openlibrary.org/b/id/10054840-M.jpg"
     },
     {
@@ -6924,8 +6581,7 @@
         "audible"
       ],
       "asin": "B00CONNQLG",
-      "runtime_length_min": 1102,
-      "narrator": "Tim Gerard Reynolds"
+      "runtime_length_min": 1102
     },
     {
       "title": "Wool",
@@ -6944,7 +6600,6 @@
       ],
       "asin": "B00C7R2NQ8",
       "runtime_length_min": 1063,
-      "narrator": "Amanda Sayle",
       "cover_url": "https://covers.openlibrary.org/b/id/14369537-M.jpg"
     },
     {
@@ -6964,7 +6619,6 @@
       ],
       "asin": "B00EDONOP2",
       "runtime_length_min": 728,
-      "narrator": "Henry Strozier, Rich Orlow",
       "cover_url": "https://covers.openlibrary.org/b/id/10657878-M.jpg"
     },
     {
@@ -6985,7 +6639,7 @@
       ],
       "asin": "B004VA839A",
       "runtime_length_min": 643,
-      "narrator": "Frank Muller"
+      "cover_url": "https://covers.openlibrary.org/b/id/8580475-M.jpg"
     },
     {
       "title": "The Guide",
@@ -7004,7 +6658,6 @@
       ],
       "asin": "0593454715",
       "runtime_length_min": 419,
-      "narrator": "Mark Deakins",
       "cover_url": "https://covers.openlibrary.org/b/id/10943008-M.jpg"
     },
     {
@@ -7024,7 +6677,6 @@
       ],
       "asin": "1705026125",
       "runtime_length_min": 711,
-      "narrator": "Kate Forbes",
       "cover_url": "https://covers.openlibrary.org/b/id/10693491-M.jpg"
     },
     {
@@ -7044,7 +6696,6 @@
       ],
       "asin": "B007IKTSTY",
       "runtime_length_min": 726,
-      "narrator": "Alan Sklar",
       "cover_url": "https://covers.openlibrary.org/b/id/6997898-M.jpg"
     },
     {
@@ -7063,8 +6714,7 @@
         "audible"
       ],
       "asin": "B07BRBB739",
-      "runtime_length_min": 698,
-      "narrator": "Steven Jay Cohen"
+      "runtime_length_min": 698
     },
     {
       "title": "The Devil's Hand",
@@ -7083,7 +6733,6 @@
       ],
       "asin": "1797117157",
       "runtime_length_min": 877,
-      "narrator": "Ray Porter",
       "cover_url": "https://covers.openlibrary.org/b/id/11694316-M.jpg"
     },
     {
@@ -7103,7 +6752,6 @@
       ],
       "asin": "1508299625",
       "runtime_length_min": 776,
-      "narrator": "Ray Porter",
       "cover_url": "https://covers.openlibrary.org/b/id/11694314-M.jpg"
     },
     {
@@ -7123,7 +6771,6 @@
       ],
       "asin": "1797122703",
       "runtime_length_min": 1017,
-      "narrator": "Paul Sparks",
       "cover_url": "https://covers.openlibrary.org/b/id/14654070-M.jpg"
     },
     {
@@ -7144,7 +6791,6 @@
       ],
       "asin": "B07HY7TSLY",
       "runtime_length_min": 944,
-      "narrator": "Ray Porter",
       "cover_url": "https://covers.openlibrary.org/b/id/9245694-M.jpg"
     },
     {
@@ -7165,7 +6811,6 @@
       ],
       "asin": "B078SG5VPQ",
       "runtime_length_min": 723,
-      "narrator": "Ray Porter",
       "cover_url": "https://covers.openlibrary.org/b/id/9211494-M.jpg"
     },
     {
@@ -7185,7 +6830,6 @@
       ],
       "asin": "1984839926",
       "runtime_length_min": 438,
-      "narrator": "Mark Deakins",
       "cover_url": "https://covers.openlibrary.org/b/id/8798383-M.jpg"
     },
     {
@@ -7205,7 +6849,6 @@
       ],
       "asin": "B004UC5EEQ",
       "runtime_length_min": 1139,
-      "narrator": "John Lee",
       "cover_url": "https://covers.openlibrary.org/b/id/6616967-M.jpg"
     },
     {
@@ -7225,7 +6868,6 @@
       ],
       "asin": "B008LYE1FC",
       "runtime_length_min": 641,
-      "narrator": "Mark Deakins",
       "cover_url": "https://covers.openlibrary.org/b/id/8226289-M.jpg"
     },
     {
@@ -7246,7 +6888,6 @@
       ],
       "asin": "0593287126",
       "runtime_length_min": 730,
-      "narrator": "Stephen Mendel",
       "cover_url": "https://covers.openlibrary.org/b/id/10580468-M.jpg"
     },
     {
@@ -7267,7 +6908,6 @@
       ],
       "asin": "0593107047",
       "runtime_length_min": 599,
-      "narrator": "Stephen Mendel",
       "cover_url": "https://covers.openlibrary.org/b/id/9248545-M.jpg"
     },
     {
@@ -7288,7 +6928,6 @@
       ],
       "asin": "0525636218",
       "runtime_length_min": 660,
-      "narrator": "Stephen Mendel",
       "cover_url": "https://covers.openlibrary.org/b/id/8808486-M.jpg"
     },
     {
@@ -7309,7 +6948,6 @@
       ],
       "asin": "B075DH2CXV",
       "runtime_length_min": 644,
-      "narrator": "Stephen Mendel",
       "cover_url": "https://covers.openlibrary.org/b/id/8824667-M.jpg"
     },
     {
@@ -7329,9 +6967,7 @@
         "goodreads"
       ],
       "asin": "B01MSUNXIB",
-      "runtime_length_min": 715,
-      "narrator": "Stephen Mendel",
-      "cover_url": "https://covers.openlibrary.org/b/id/8552554-M.jpg"
+      "runtime_length_min": 715
     },
     {
       "title": "The Drifter",
@@ -7351,7 +6987,6 @@
       ],
       "asin": "B01995G62W",
       "runtime_length_min": 552,
-      "narrator": "Stephen Mendel",
       "cover_url": "https://covers.openlibrary.org/b/id/8918791-M.jpg"
     },
     {
@@ -7371,7 +7006,6 @@
       ],
       "asin": "1250787920",
       "runtime_length_min": 855,
-      "narrator": "Scott Brick",
       "cover_url": "https://covers.openlibrary.org/b/id/10164660-M.jpg"
     },
     {
@@ -7391,7 +7025,6 @@
       ],
       "asin": "1799751511",
       "runtime_length_min": 718,
-      "narrator": "Scott Brick",
       "cover_url": "https://covers.openlibrary.org/b/id/9260108-M.jpg"
     },
     {
@@ -7411,7 +7044,6 @@
       ],
       "asin": "1522649689",
       "runtime_length_min": 769,
-      "narrator": "Scott Brick",
       "cover_url": "https://covers.openlibrary.org/b/id/8803751-M.jpg"
     },
     {
@@ -7431,7 +7063,6 @@
       ],
       "asin": "B078X15P2P",
       "runtime_length_min": 750,
-      "narrator": "Scott Brick",
       "cover_url": "https://covers.openlibrary.org/b/id/8836552-M.jpg"
     },
     {
@@ -7451,7 +7082,6 @@
       ],
       "asin": "B01NCP56QD",
       "runtime_length_min": 732,
-      "narrator": "Scott Brick",
       "cover_url": "https://covers.openlibrary.org/b/id/13391810-M.jpg"
     },
     {
@@ -7471,7 +7101,6 @@
       ],
       "asin": "B0198MEIOO",
       "runtime_length_min": 675,
-      "narrator": "Scott Brick",
       "cover_url": "https://covers.openlibrary.org/b/id/9388095-M.jpg"
     },
     {
@@ -7491,7 +7120,6 @@
       ],
       "asin": "B00AYGXKLG",
       "runtime_length_min": 760,
-      "narrator": "Rich Orlow, Henry Strozier",
       "cover_url": "https://covers.openlibrary.org/b/id/7920040-M.jpg"
     },
     {
@@ -7511,7 +7139,6 @@
       ],
       "asin": "1797121758",
       "runtime_length_min": 392,
-      "narrator": "Seth Numrich",
       "cover_url": "https://covers.openlibrary.org/b/id/14654000-M.jpg"
     },
     {
@@ -7531,7 +7158,6 @@
       ],
       "asin": "B08HDPMTGV",
       "runtime_length_min": 939,
-      "narrator": "Jay Snyder",
       "cover_url": "https://covers.openlibrary.org/b/id/10833601-M.jpg"
     },
     {
@@ -7550,8 +7176,7 @@
         "audible"
       ],
       "asin": "B002UUOYEQ",
-      "runtime_length_min": 288,
-      "narrator": "Dr. Joseph Parent"
+      "runtime_length_min": 288
     },
     {
       "title": "How to Avoid a Climate Disaster",
@@ -7570,7 +7195,6 @@
       ],
       "asin": "0593215753",
       "runtime_length_min": 431,
-      "narrator": "Wil Wheaton, Bill Gates",
       "cover_url": "https://covers.openlibrary.org/b/id/10656063-M.jpg"
     },
     {
@@ -7590,7 +7214,6 @@
       ],
       "asin": "B06Y8MR777",
       "runtime_length_min": 301,
-      "narrator": "Edoardo Ballerini, Gabra Zackman",
       "cover_url": "https://covers.openlibrary.org/b/id/11489108-M.jpg"
     },
     {
@@ -7610,7 +7233,6 @@
       ],
       "asin": "B07B1J873J",
       "runtime_length_min": 815,
-      "narrator": "Michael Pollan",
       "cover_url": "https://covers.openlibrary.org/b/id/8805168-M.jpg"
     },
     {
@@ -7631,7 +7253,6 @@
       ],
       "asin": "B07BGQ2ZQ3",
       "runtime_length_min": 2207,
-      "narrator": "Lee Horsley",
       "cover_url": "https://covers.openlibrary.org/b/id/8376548-M.jpg"
     },
     {
@@ -7650,8 +7271,7 @@
         "audible"
       ],
       "asin": "B006VGQG82",
-      "runtime_length_min": 804,
-      "narrator": "Henry Strozier, Rich Orlow"
+      "runtime_length_min": 804
     },
     {
       "title": "A Widow for One Year",
@@ -7671,7 +7291,6 @@
       ],
       "asin": "B002V1LO3I",
       "runtime_length_min": 1444,
-      "narrator": "George Guidall",
       "cover_url": "https://covers.openlibrary.org/b/id/9275640-M.jpg"
     },
     {
@@ -7692,7 +7311,6 @@
       ],
       "asin": "B004NPXELK",
       "runtime_length_min": 918,
-      "narrator": "JD Jackson, Neil Kaplan",
       "cover_url": "https://covers.openlibrary.org/b/id/6680911-M.jpg"
     },
     {
@@ -7712,7 +7330,6 @@
       ],
       "asin": "0593167171",
       "runtime_length_min": 1069,
-      "narrator": "John Lee, Erik Larson",
       "cover_url": "https://covers.openlibrary.org/b/id/9293917-M.jpg"
     },
     {
@@ -7733,7 +7350,6 @@
       ],
       "asin": "B002V19RO6",
       "runtime_length_min": 682,
-      "narrator": "Simon Prebble",
       "cover_url": "https://covers.openlibrary.org/b/id/8745958-M.jpg"
     },
     {
@@ -7753,7 +7369,6 @@
       ],
       "asin": "B002UZJTXM",
       "runtime_length_min": 867,
-      "narrator": "Scott Brick",
       "cover_url": "https://covers.openlibrary.org/b/id/228066-M.jpg"
     },
     {
@@ -7773,7 +7388,6 @@
       ],
       "asin": "B008O890OW",
       "runtime_length_min": 466,
-      "narrator": "Sissy Spacek, Margaret Atwood",
       "cover_url": "https://covers.openlibrary.org/b/id/9256043-M.jpg"
     },
     {
@@ -7793,7 +7407,6 @@
       ],
       "asin": "B008OLF29Q",
       "runtime_length_min": 950,
-      "narrator": "Campbell Scott",
       "cover_url": "https://covers.openlibrary.org/b/id/12376585-M.jpg"
     },
     {
@@ -7813,7 +7426,6 @@
       ],
       "asin": "B0797FYNDC",
       "runtime_length_min": 941,
-      "narrator": "Michael C. Hall",
       "cover_url": "https://covers.openlibrary.org/b/id/12015500-M.jpg"
     },
     {
@@ -7832,8 +7444,7 @@
         "audible"
       ],
       "asin": "B0876HY7SM",
-      "runtime_length_min": 506,
-      "narrator": "Ava Lucas"
+      "runtime_length_min": 506
     },
     {
       "title": "Bound by Honor",
@@ -7852,7 +7463,6 @@
       ],
       "asin": "B07V9JP4LN",
       "runtime_length_min": 545,
-      "narrator": "Savannah Peachwood",
       "cover_url": "https://covers.openlibrary.org/b/id/10558598-M.jpg"
     },
     {
@@ -7871,8 +7481,7 @@
         "audible"
       ],
       "asin": "B002V5A282",
-      "runtime_length_min": 87,
-      "narrator": "Kenneth Cranham, Eleanor Bron, Anna Chancellor"
+      "runtime_length_min": 87
     },
     {
       "title": "True Evil",
@@ -7891,7 +7500,6 @@
       ],
       "asin": "B002V5A3OK",
       "runtime_length_min": 1020,
-      "narrator": "Dick Hill",
       "cover_url": "https://covers.openlibrary.org/b/id/6797688-M.jpg"
     },
     {
@@ -7911,7 +7519,6 @@
       ],
       "asin": "B019HMBEWE",
       "runtime_length_min": 1511,
-      "narrator": "Stephen King",
       "cover_url": "https://covers.openlibrary.org/b/id/8404327-M.jpg"
     },
     {
@@ -7932,7 +7539,6 @@
       ],
       "asin": "1250260604",
       "runtime_length_min": 1003,
-      "narrator": "Yareli Arizmendi",
       "cover_url": "https://covers.openlibrary.org/b/id/9255156-M.jpg"
     },
     {
@@ -7953,7 +7559,6 @@
       ],
       "asin": "B06XS3VMBM",
       "runtime_length_min": 1063,
-      "narrator": "Will Damron",
       "cover_url": "https://covers.openlibrary.org/b/id/8315357-M.jpg"
     },
     {
@@ -7974,7 +7579,6 @@
       ],
       "asin": "1478999268",
       "runtime_length_min": 717,
-      "narrator": "Kyf Brewer, Orlagh Cassidy",
       "cover_url": "https://covers.openlibrary.org/b/id/9330288-M.jpg"
     },
     {
@@ -7994,7 +7598,6 @@
       ],
       "asin": "B00OPH9MNK",
       "runtime_length_min": 276,
-      "narrator": "Bronson Pinchot",
       "cover_url": "https://covers.openlibrary.org/b/id/11286761-M.jpg"
     },
     {
@@ -8014,7 +7617,6 @@
       ],
       "asin": "B002VA8J96",
       "runtime_length_min": 482,
-      "narrator": "Peter Jay Fernandez, Michael Emerson",
       "cover_url": "https://covers.openlibrary.org/b/id/189670-M.jpg"
     },
     {
@@ -8034,7 +7636,6 @@
       ],
       "asin": "B083L91MGM",
       "runtime_length_min": 959,
-      "narrator": "Jay Snyder",
       "cover_url": "https://covers.openlibrary.org/b/id/9274752-M.jpg"
     },
     {
@@ -8054,7 +7655,6 @@
       ],
       "asin": "B07L16HDFL",
       "runtime_length_min": 1021,
-      "narrator": "Jay Snyder",
       "cover_url": "https://covers.openlibrary.org/b/id/11140753-M.jpg"
     },
     {
@@ -8073,8 +7673,7 @@
         "audible"
       ],
       "asin": "B078HHFB23",
-      "runtime_length_min": 986,
-      "narrator": "Jay Snyder"
+      "runtime_length_min": 986
     },
     {
       "title": "Gunmetal Gray",
@@ -8093,7 +7692,6 @@
       ],
       "asin": "B01N6DLACM",
       "runtime_length_min": 1014,
-      "narrator": "Jay Snyder",
       "cover_url": "https://covers.openlibrary.org/b/id/8289172-M.jpg"
     },
     {
@@ -8113,7 +7711,6 @@
       ],
       "asin": "B01B8IGYGQ",
       "runtime_length_min": 1100,
-      "narrator": "Jay Snyder",
       "cover_url": "https://covers.openlibrary.org/b/id/8875248-M.jpg"
     },
     {
@@ -8133,7 +7730,6 @@
       ],
       "asin": "B018RDY61A",
       "runtime_length_min": 773,
-      "narrator": "Will Patton",
       "cover_url": "https://covers.openlibrary.org/b/id/12376085-M.jpg"
     },
     {
@@ -8153,7 +7749,6 @@
       ],
       "asin": "B073XSZJKR",
       "runtime_length_min": 1270,
-      "narrator": "Stephen Hogan",
       "cover_url": "https://covers.openlibrary.org/b/id/12718262-M.jpg"
     },
     {
@@ -8173,7 +7768,6 @@
       ],
       "asin": "B002V0TL8Y",
       "runtime_length_min": 485,
-      "narrator": "Daniel Whitner, Kevin O'Rourke",
       "cover_url": "https://covers.openlibrary.org/b/id/1954942-M.jpg"
     },
     {
@@ -8193,7 +7787,6 @@
       ],
       "asin": "B00U7T90L4",
       "runtime_length_min": 785,
-      "narrator": "Will Patton",
       "cover_url": "https://covers.openlibrary.org/b/id/8339525-M.jpg"
     },
     {
@@ -8213,7 +7806,6 @@
       ],
       "asin": "B002UZN0T6",
       "runtime_length_min": 485,
-      "narrator": "Peter Jay Fernandez",
       "cover_url": "https://covers.openlibrary.org/b/id/286934-M.jpg"
     },
     {
@@ -8233,7 +7825,6 @@
       ],
       "asin": "B00J8VK1WY",
       "runtime_length_min": 862,
-      "narrator": "Will Patton",
       "cover_url": "https://covers.openlibrary.org/b/id/14653120-M.jpg"
     },
     {
@@ -8253,7 +7844,6 @@
       ],
       "asin": "B00FW2B3H0",
       "runtime_length_min": 844,
-      "narrator": "Jay Snyder",
       "cover_url": "https://covers.openlibrary.org/b/id/12178174-M.jpg"
     },
     {
@@ -8274,7 +7864,6 @@
       ],
       "asin": "B002V0K86I",
       "runtime_length_min": 597,
-      "narrator": "Michael Kramer",
       "cover_url": "https://covers.openlibrary.org/b/id/392452-M.jpg"
     },
     {
@@ -8328,7 +7917,6 @@
       ],
       "asin": "B07B5S4PBB",
       "runtime_length_min": 656,
-      "narrator": "Michael Kramer",
       "cover_url": "https://covers.openlibrary.org/b/id/535208-M.jpg"
     },
     {
@@ -8349,7 +7937,6 @@
       ],
       "asin": "1549168967",
       "runtime_length_min": 660,
-      "narrator": "Taye Diggs",
       "cover_url": "https://covers.openlibrary.org/b/id/189680-M.jpg"
     },
     {
@@ -8369,7 +7956,6 @@
       ],
       "asin": "B002UZKWLA",
       "runtime_length_min": 833,
-      "narrator": "Frank Muller",
       "cover_url": "https://covers.openlibrary.org/b/id/9334567-M.jpg"
     },
     {
@@ -8389,7 +7975,6 @@
       ],
       "asin": "B002V0TM2Y",
       "runtime_length_min": 865,
-      "narrator": "Philip Bosco",
       "cover_url": "https://covers.openlibrary.org/b/id/8276478-M.jpg"
     },
     {
@@ -8409,7 +7994,6 @@
       ],
       "asin": "B003C28SHK",
       "runtime_length_min": 1184,
-      "narrator": "Kristoffer Tabori",
       "cover_url": "https://covers.openlibrary.org/b/id/8315188-M.jpg"
     },
     {
@@ -8429,7 +8013,6 @@
       ],
       "asin": "B003284MQK",
       "runtime_length_min": 1289,
-      "narrator": "Eric G. Dove",
       "cover_url": "https://covers.openlibrary.org/b/id/361798-M.jpg"
     },
     {
@@ -8449,7 +8032,6 @@
       ],
       "asin": "B019WPM4ZM",
       "runtime_length_min": 2695,
-      "narrator": "Steven Weber",
       "cover_url": "https://covers.openlibrary.org/b/id/8569284-M.jpg"
     },
     {
@@ -8469,7 +8051,6 @@
       ],
       "asin": "B002UZLAES",
       "runtime_length_min": 1057,
-      "narrator": "Dick Hill",
       "cover_url": "https://covers.openlibrary.org/b/id/760271-M.jpg"
     },
     {
@@ -8489,7 +8070,6 @@
       ],
       "asin": "B00M789KYK",
       "runtime_length_min": 1200,
-      "narrator": "Tom Stechschulte",
       "cover_url": "https://covers.openlibrary.org/b/id/4527891-M.jpg"
     },
     {
@@ -8509,7 +8089,6 @@
       ],
       "asin": "B002UZJQW6",
       "runtime_length_min": 677,
-      "narrator": "Jason Culp",
       "cover_url": "https://covers.openlibrary.org/b/id/210432-M.jpg"
     },
     {
@@ -8529,7 +8108,6 @@
       ],
       "asin": "B003D8WG7Q",
       "runtime_length_min": 1590,
-      "narrator": "Dick Hill",
       "cover_url": "https://covers.openlibrary.org/b/id/1971956-M.jpg"
     },
     {
@@ -8549,7 +8127,6 @@
       ],
       "asin": "B002UZJDBA",
       "runtime_length_min": 1271,
-      "narrator": "Dick Hill",
       "cover_url": "https://covers.openlibrary.org/b/id/1818735-M.jpg"
     },
     {
@@ -8569,7 +8146,6 @@
       ],
       "asin": "B00J5QJ3YO",
       "runtime_length_min": 685,
-      "narrator": "Mark Deakins",
       "cover_url": "https://covers.openlibrary.org/b/id/10231595-M.jpg"
     },
     {
@@ -8589,7 +8165,6 @@
       ],
       "asin": "B005R1BMAY",
       "runtime_length_min": 848,
-      "narrator": "Jay Snyder",
       "cover_url": "https://covers.openlibrary.org/b/id/7945480-M.jpg"
     },
     {
@@ -8608,8 +8183,7 @@
         "audible"
       ],
       "asin": "B019NNU7XE",
-      "runtime_length_min": 440,
-      "narrator": "George Guidall"
+      "runtime_length_min": 440
     },
     {
       "title": "On Target",
@@ -8627,8 +8201,7 @@
         "audible"
       ],
       "asin": "B0043BUG3I",
-      "runtime_length_min": 755,
-      "narrator": "Jay Snyder"
+      "runtime_length_min": 755
     },
     {
       "title": "The Gray Man",
@@ -8647,7 +8220,6 @@
       ],
       "asin": "B003UNYZ7I",
       "runtime_length_min": 671,
-      "narrator": "Jay Snyder",
       "cover_url": "https://covers.openlibrary.org/b/id/10402247-M.jpg"
     },
     {
@@ -8667,7 +8239,6 @@
       ],
       "asin": "B01ITNQKC6",
       "runtime_length_min": 972,
-      "narrator": "James Franco",
       "cover_url": "https://covers.openlibrary.org/b/id/14653991-M.jpg"
     },
     {
@@ -8688,7 +8259,6 @@
       ],
       "asin": "B0077ROVPO",
       "runtime_length_min": 636,
-      "narrator": "Ed Sala",
       "cover_url": "https://covers.openlibrary.org/b/id/6387477-M.jpg"
     },
     {
@@ -8708,7 +8278,6 @@
       ],
       "asin": "1250317533",
       "runtime_length_min": 513,
-      "narrator": "Jack Hawkins, Louise Brealey",
       "cover_url": "https://covers.openlibrary.org/b/id/9407338-M.jpg"
     },
     {
@@ -8729,7 +8298,6 @@
       ],
       "asin": "1984886878",
       "runtime_length_min": 647,
-      "narrator": "Jon Lindstrom, Abby Craden",
       "cover_url": "https://covers.openlibrary.org/b/id/8748478-M.jpg"
     },
     {
@@ -8750,7 +8318,6 @@
       ],
       "asin": "B01CUKULGA",
       "runtime_length_min": 608,
-      "narrator": "Jon Lindstrom",
       "cover_url": "https://covers.openlibrary.org/b/id/7436634-M.jpg"
     },
     {
@@ -8771,7 +8338,6 @@
       ],
       "asin": "B07957SPGB",
       "runtime_length_min": 1121,
-      "narrator": "Will Patton",
       "cover_url": "https://covers.openlibrary.org/b/id/11412999-M.jpg"
     },
     {
@@ -8792,7 +8358,6 @@
       ],
       "asin": "B0077DEH7A",
       "runtime_length_min": 2867,
-      "narrator": "Grover Gardner",
       "cover_url": "https://covers.openlibrary.org/b/id/9255992-M.jpg"
     },
     {
@@ -8814,7 +8379,6 @@
       ],
       "asin": "B008PEX62M",
       "runtime_length_min": 1057,
-      "narrator": "Ron McLarty, Joe Hill",
       "cover_url": "https://covers.openlibrary.org/b/id/14654118-M.jpg"
     },
     {
@@ -8835,7 +8399,6 @@
       ],
       "asin": "B005UR3VFO",
       "runtime_length_min": 1840,
-      "narrator": "Craig Wasson",
       "cover_url": "https://covers.openlibrary.org/b/id/10713447-M.jpg"
     },
     {
@@ -8856,7 +8419,6 @@
       ],
       "asin": "1508279071",
       "runtime_length_min": 1139,
-      "narrator": "Santino Fontana",
       "cover_url": "https://covers.openlibrary.org/b/id/10712767-M.jpg"
     },
     {
@@ -8878,7 +8440,6 @@
       ],
       "asin": "198488901X",
       "runtime_length_min": 1254,
-      "narrator": "MacLeod Andrews, John Irving",
       "cover_url": "https://covers.openlibrary.org/b/id/13080378-M.jpg"
     },
     {
@@ -8899,7 +8460,6 @@
       ],
       "asin": "B002V8N8WG",
       "runtime_length_min": 1639,
-      "narrator": "Joe Barrett",
       "cover_url": "https://covers.openlibrary.org/b/id/5414972-M.jpg"
     },
     {
@@ -8920,7 +8480,6 @@
       ],
       "asin": "B004YLIGYS",
       "runtime_length_min": 930,
-      "narrator": "Nick Sullivan",
       "cover_url": "https://covers.openlibrary.org/b/id/4309641-M.jpg"
     },
     {
@@ -8939,8 +8498,7 @@
         "audible"
       ],
       "asin": "B07FSNSLZ1",
-      "runtime_length_min": 732,
-      "narrator": "Cassandra Campbell"
+      "runtime_length_min": 732
     },
     {
       "title": "Redemption",
@@ -8959,7 +8517,6 @@
       ],
       "asin": "147899925X",
       "runtime_length_min": 740,
-      "narrator": "Kyf Brewer, Orlagh Cassidy",
       "cover_url": "https://covers.openlibrary.org/b/id/8574445-M.jpg"
     },
     {
@@ -8979,7 +8536,6 @@
       ],
       "asin": "B00U07ABJI",
       "runtime_length_min": 1937,
-      "narrator": "Robert Petkoff",
       "cover_url": "https://covers.openlibrary.org/b/id/10291407-M.jpg"
     },
     {
@@ -8999,7 +8555,6 @@
       ],
       "asin": "B01ATTSTCM",
       "runtime_length_min": 709,
-      "narrator": "Kyf Brewer",
       "cover_url": "https://covers.openlibrary.org/b/id/9297022-M.jpg"
     },
     {
@@ -9019,7 +8574,6 @@
       ],
       "asin": "B01N4DCBK6",
       "runtime_length_min": 894,
-      "narrator": "Derek Perkins",
       "cover_url": "https://covers.openlibrary.org/b/id/14421556-M.jpg"
     },
     {
@@ -9039,7 +8593,6 @@
       ],
       "asin": "B00V6HEXGI",
       "runtime_length_min": 796,
-      "narrator": "Ron McLarty, Orlagh Cassidy",
       "cover_url": "https://covers.openlibrary.org/b/id/12728587-M.jpg"
     },
     {
@@ -9056,8 +8609,7 @@
       "status": "to_read",
       "sources": [
         "goodreads"
-      ],
-      "cover_url": "https://covers.openlibrary.org/b/id/198120-M.jpg"
+      ]
     },
     {
       "title": "The Things They Carried",
@@ -9155,7 +8707,8 @@
       "status": "read",
       "sources": [
         "goodreads"
-      ]
+      ],
+      "cover_url": "https://covers.openlibrary.org/b/id/13439869-M.jpg"
     },
     {
       "title": "The Housemaid",
@@ -9171,7 +8724,8 @@
       "status": "read",
       "sources": [
         "goodreads"
-      ]
+      ],
+      "cover_url": "https://covers.openlibrary.org/b/id/15105883-M.jpg"
     },
     {
       "title": "Lessons in Chemistry",
@@ -9187,7 +8741,8 @@
       "status": "read",
       "sources": [
         "goodreads"
-      ]
+      ],
+      "cover_url": "https://covers.openlibrary.org/b/id/12725772-M.jpg"
     },
     {
       "title": "Relic",
@@ -9203,7 +8758,8 @@
       "status": "in_library",
       "sources": [
         "goodreads"
-      ]
+      ],
+      "cover_url": "https://covers.openlibrary.org/b/id/4963085-M.jpg"
     },
     {
       "title": "A Court of Thorns and Roses eBook Bundle",
@@ -9251,7 +8807,8 @@
       "status": "read",
       "sources": [
         "goodreads"
-      ]
+      ],
+      "cover_url": "https://covers.openlibrary.org/b/id/11246485-M.jpg"
     },
     {
       "title": "The Paper Palace",
@@ -9299,7 +8856,8 @@
       "status": "in_library",
       "sources": [
         "goodreads"
-      ]
+      ],
+      "cover_url": "https://covers.openlibrary.org/b/id/12063529-M.jpg"
     },
     {
       "title": "The Da Vinci Code",
@@ -9315,7 +8873,8 @@
       "status": "read_no_date",
       "sources": [
         "goodreads"
-      ]
+      ],
+      "cover_url": "https://covers.openlibrary.org/b/id/9255229-M.jpg"
     },
     {
       "title": "The Alchemist",
@@ -9331,7 +8890,8 @@
       "status": "read_no_date",
       "sources": [
         "goodreads"
-      ]
+      ],
+      "cover_url": "https://covers.openlibrary.org/b/id/11556106-M.jpg"
     },
     {
       "title": "This Light Between Us: A Novel of World War II",
@@ -9363,7 +8923,8 @@
       "status": "read_no_date",
       "sources": [
         "goodreads"
-      ]
+      ],
+      "cover_url": "https://covers.openlibrary.org/b/id/6305573-M.jpg"
     },
     {
       "title": "The Splendid and the Vile: A Saga of Churchill, Family, and Defiance During the Blitz",
@@ -9395,7 +8956,8 @@
       "status": "read",
       "sources": [
         "goodreads"
-      ]
+      ],
+      "cover_url": "https://covers.openlibrary.org/b/id/8684447-M.jpg"
     },
     {
       "title": "The Count of Monte Cristo",
@@ -9411,7 +8973,8 @@
       "status": "read",
       "sources": [
         "goodreads"
-      ]
+      ],
+      "cover_url": "https://covers.openlibrary.org/b/id/8851690-M.jpg"
     },
     {
       "title": "The Queen of the Damned",
@@ -9427,7 +8990,8 @@
       "status": "read_no_date",
       "sources": [
         "goodreads"
-      ]
+      ],
+      "cover_url": "https://covers.openlibrary.org/b/id/9255774-M.jpg"
     },
     {
       "title": "The Vampire Lestat",
@@ -9443,7 +9007,8 @@
       "status": "read_no_date",
       "sources": [
         "goodreads"
-      ]
+      ],
+      "cover_url": "https://covers.openlibrary.org/b/id/8579529-M.jpg"
     },
     {
       "title": "Interview with the Vampire",
@@ -9459,7 +9024,8 @@
       "status": "read_no_date",
       "sources": [
         "goodreads"
-      ]
+      ],
+      "cover_url": "https://covers.openlibrary.org/b/id/8401488-M.jpg"
     },
     {
       "title": "Where the Crawdads Sing",
@@ -9475,7 +9041,8 @@
       "status": "read_no_date",
       "sources": [
         "goodreads"
-      ]
+      ],
+      "cover_url": "https://covers.openlibrary.org/b/id/8362947-M.jpg"
     },
     {
       "title": "The Pilgrim's Progress",
@@ -9491,7 +9058,8 @@
       "status": "in_library",
       "sources": [
         "goodreads"
-      ]
+      ],
+      "cover_url": "https://covers.openlibrary.org/b/id/8229224-M.jpg"
     },
     {
       "title": "In One Person",
@@ -9507,7 +9075,8 @@
       "status": "read_no_date",
       "sources": [
         "goodreads"
-      ]
+      ],
+      "cover_url": "https://covers.openlibrary.org/b/id/7104999-M.jpg"
     },
     {
       "title": "The Cider House Rules",
@@ -9523,7 +9092,8 @@
       "status": "read_no_date",
       "sources": [
         "goodreads"
-      ]
+      ],
+      "cover_url": "https://covers.openlibrary.org/b/id/12369293-M.jpg"
     },
     {
       "title": "The Hotel New Hampshire",
@@ -9539,7 +9109,8 @@
       "status": "read_no_date",
       "sources": [
         "goodreads"
-      ]
+      ],
+      "cover_url": "https://covers.openlibrary.org/b/id/407361-M.jpg"
     },
     {
       "title": "The Girl With the Dragon Tattoo",
@@ -9571,7 +9142,8 @@
       "status": "read_no_date",
       "sources": [
         "goodreads"
-      ]
+      ],
+      "cover_url": "https://covers.openlibrary.org/b/id/877871-M.jpg"
     },
     {
       "title": "Edge of Eternity",
@@ -9587,7 +9159,8 @@
       "status": "read_no_date",
       "sources": [
         "goodreads"
-      ]
+      ],
+      "cover_url": "https://covers.openlibrary.org/b/id/7895714-M.jpg"
     },
     {
       "title": "Winter of the World",
@@ -9603,7 +9176,8 @@
       "status": "read_no_date",
       "sources": [
         "goodreads"
-      ]
+      ],
+      "cover_url": "https://covers.openlibrary.org/b/id/7245065-M.jpg"
     },
     {
       "title": "Fall of Giants",
@@ -9619,7 +9193,8 @@
       "status": "read_no_date",
       "sources": [
         "goodreads"
-      ]
+      ],
+      "cover_url": "https://covers.openlibrary.org/b/id/6929288-M.jpg"
     },
     {
       "title": "Atlas Shrugged",
@@ -9635,7 +9210,8 @@
       "status": "read_no_date",
       "sources": [
         "goodreads"
-      ]
+      ],
+      "cover_url": "https://covers.openlibrary.org/b/id/362277-M.jpg"
     },
     {
       "title": "The Catcher in the Rye",
@@ -9651,7 +9227,8 @@
       "status": "read_no_date",
       "sources": [
         "goodreads"
-      ]
+      ],
+      "cover_url": "https://covers.openlibrary.org/b/id/9273490-M.jpg"
     },
     {
       "title": "The Hunger Games",
@@ -9667,7 +9244,8 @@
       "status": "read_no_date",
       "sources": [
         "goodreads"
-      ]
+      ],
+      "cover_url": "https://covers.openlibrary.org/b/id/12646537-M.jpg"
     },
     {
       "title": "The Pillars of the Earth",
@@ -9683,7 +9261,8 @@
       "status": "read_no_date",
       "sources": [
         "goodreads"
-      ]
+      ],
+      "cover_url": "https://covers.openlibrary.org/b/id/9269909-M.jpg"
     },
     {
       "title": "Angels & Demons",
@@ -9699,7 +9278,8 @@
       "status": "read_no_date",
       "sources": [
         "goodreads"
-      ]
+      ],
+      "cover_url": "https://covers.openlibrary.org/b/id/11408459-M.jpg"
     },
     {
       "title": "The Kite Runner",
@@ -9715,7 +9295,8 @@
       "status": "read_no_date",
       "sources": [
         "goodreads"
-      ]
+      ],
+      "cover_url": "https://covers.openlibrary.org/b/id/14846827-M.jpg"
     },
     {
       "title": "The Light Through the Leaves",
@@ -9731,7 +9312,7 @@
         "audible"
       ],
       "asin": "1713560941",
-      "narrator": "Susannah Jones",
+      "narrator": null,
       "runtime_length_min": 854,
       "cover_url": null
     },
@@ -9749,7 +9330,7 @@
         "audible"
       ],
       "asin": "B017J2HIP6",
-      "narrator": "Jeff Harding",
+      "narrator": null,
       "runtime_length_min": 638,
       "cover_url": null
     },
@@ -9767,7 +9348,7 @@
         "audible"
       ],
       "asin": "B074N7YWRG",
-      "narrator": "Ron Butler, Maxwell Hamilton",
+      "narrator": null,
       "runtime_length_min": 730,
       "cover_url": null
     }
