@@ -1,10 +1,7 @@
 {
   "functions": {
     "api/**/*.py": {
-      "runtime": "python3.12"
+      "runtime": "vercel-python@4.2.0"
     }
-  },
-  "rewrites": [
-    { "source": "/api/(.*)", "destination": "/api/$1" }
-  ]
+  }
 }
