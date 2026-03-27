@@ -12,6 +12,10 @@ export interface Book {
   gr_rating: number | null
   status: string
   sources: string[]
+  cover_url?: string | null
+  narrator?: string | null
+  runtime_length_min?: number | null
+  asin?: string | null
 }
 
 export interface UpcomingRelease {
@@ -197,6 +201,15 @@ export function formatDate(dateStr: string | null): string {
   } catch {
     return dateStr
   }
+}
+
+export function formatRuntime(minutes: number | null | undefined): string {
+  if (!minutes) return ''
+  const h = Math.floor(minutes / 60)
+  const m = minutes % 60
+  if (h === 0) return `${m}m`
+  if (m === 0) return `${h}h`
+  return `${h}h ${m}m`
 }
 
 export function getGenreForSeries(seriesName: string): string {
