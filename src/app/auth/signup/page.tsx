@@ -29,8 +29,9 @@ export default function SignupPage() {
       setError(error.message)
       setLoading(false)
     } else {
-      setSuccess(true)
-      setLoading(false)
+      // Auto-confirm is enabled — redirect straight to library
+      router.push('/library')
+      router.refresh()
     }
   }
 
