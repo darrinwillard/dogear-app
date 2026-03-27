@@ -65,7 +65,7 @@ def fetch_library(auth) -> list[dict]:
                 "1.0/library",
                 num_results=page_size,
                 page=page,
-                response_groups="product_desc,product_attrs,relationships",
+                response_groups="product_desc,product_attrs,relationships,contributors",
                 sort_by="-PurchaseDate",
             )
             items = response.get("items", [])
@@ -82,13 +82,13 @@ def fetch_library(auth) -> list[dict]:
 def parse_item(item: dict) -> dict:
     """Extract relevant fields from an Audible library item."""
     authors = []
-    for contrib in item.get("authors", []):
+    for contrib in (item.get("authors") or []):
         name = contrib.get("name", "")
         if name:
             authors.append(name)
 
     narrators = []
-    for contrib in item.get("narrators", []):
+    for contrib in (item.get("narrators") or []):
         name = contrib.get("name", "")
         if name:
             narrators.append(name)
