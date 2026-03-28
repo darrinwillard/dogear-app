@@ -1,18 +1,30 @@
 "use client"
-import { useState } from "react"
+import { useState, useEffect } from "react"
+import { createClient } from "@/lib/supabase/client"
 import Link from "next/link"
 
 export default function ConnectAudiblePage() {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
+  const [userId, setUserId] = useState<string | null>(null)
+
+  useEffect(() => {
+    const supabase = createClient()
+    supabase.auth.getUser().then(({ data: { user } }) => {
+      if (user) setUserId(user.id)
+    })
+  }, [])
 
   async function handleConnect() {
+    if (!userId) {
+      setError("Not logged in. Please sign in first.")
+      return
+    }
     setLoading(true)
     setError(null)
     try {
-      const res = await fetch("/api/audible/auth-url")
+      const res = await fetch(`/api/audible/auth-url?userId=${userId}`)
       const { url } = await res.json()
-      // Same-tab redirect — no popup needed
       window.location.href = url
     } catch (e: any) {
       setError("Failed to start Amazon login. Please try again.")
@@ -21,7 +33,7 @@ export default function ConnectAudiblePage() {
   }
 
   return (
-    <div className="min-h-screen bg-slate-950 flex items-center justify-center p-6">
+    <div className="min-h-screen bg-slate-950 flex items-center justify-center p-6 pb-24">
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
           <div className="text-5xl mb-4">🎧</div>
@@ -40,7 +52,7 @@ export default function ConnectAudiblePage() {
 
         <button
           onClick={handleConnect}
-          disabled={loading}
+          disabled={loading || !userId}
           className="w-full bg-amber-500 hover:bg-amber-400 disabled:opacity-50 text-slate-950 font-bold py-4 px-6 rounded-xl text-lg transition-colors"
         >
           {loading ? "Redirecting to Amazon..." : "Sign in with Amazon"}

@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from "next/server"
-import { createClient } from "@/lib/supabase/server"
-import { createClient as createServiceClient } from "@supabase/supabase-js"
+import { createClient } from "@supabase/supabase-js"
 
 function buildClientId(serial: string): string {
   const combined = Buffer.concat([
@@ -15,15 +14,34 @@ export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url)
 
   const authCode = searchParams.get("openid.oa2.authorization_code")
-  const codeVerifierHex = req.cookies.get("audible_code_verifier")?.value
-  const serial = req.cookies.get("audible_serial")?.value
+  const state = searchParams.get("state")
+  const userId = searchParams.get("uid")
 
-  if (!authCode || !codeVerifierHex || !serial) {
-    console.error("Missing params:", { authCode: !!authCode, codeVerifier: !!codeVerifierHex, serial: !!serial })
+  if (!authCode || !state || !userId) {
     return NextResponse.redirect(`${siteUrl}/settings?error=missing_params`)
   }
 
-  const codeVerifier = Buffer.from(codeVerifierHex, "hex").toString()
+  const supabase = createClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.SUPABASE_SERVICE_ROLE_KEY!
+  )
+
+  // Retrieve PKCE data stored server-side
+  const { data: profile } = await supabase
+    .from("user_profiles")
+    .select("audible_refresh_token")
+    .eq("id", userId)
+    .single()
+
+  let pkceData: any = {}
+  try { pkceData = JSON.parse(profile?.audible_refresh_token || "{}") } catch {}
+
+  if (pkceData.pkce_state !== state || !pkceData.pending) {
+    return NextResponse.redirect(`${siteUrl}/settings?error=invalid_state`)
+  }
+
+  const codeVerifier = Buffer.from(pkceData.pkce_verifier, "hex").toString()
+  const serial = pkceData.pkce_serial
   const clientId = buildClientId(serial)
 
   try {
@@ -57,40 +75,27 @@ export async function GET(req: NextRequest) {
       return NextResponse.redirect(`${siteUrl}/settings?error=registration_failed`)
     }
 
-    const supabaseAuth = await createClient()
-    const { data: { user } } = await supabaseAuth.auth.getUser()
-
-    if (!user) {
-      return NextResponse.redirect(`${siteUrl}/auth/login`)
-    }
-
-    const supabase = createServiceClient(
-      process.env.NEXT_PUBLIC_SUPABASE_URL!,
-      process.env.SUPABASE_SERVICE_ROLE_KEY!
-    )
-
+    // Store real tokens (overwrite the pending PKCE data)
     await supabase.from("user_profiles").upsert({
-      id: user.id,
+      id: userId,
       audible_refresh_token: JSON.stringify({
         refresh_token: tokens.bearer.refresh_token,
         adp_token: tokens.mac_dms?.adp_token,
         device_private_key: tokens.mac_dms?.device_private_key,
         serial, locale: "us"
       }),
-      audible_locale: "us"
+      audible_locale: "us",
+      last_synced_at: null
     })
 
     // Fire sync in background
     fetch(`${siteUrl}/api/audible/sync`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ userId: user.id })
+      body: JSON.stringify({ userId })
     }).catch(() => {})
 
-    const response = NextResponse.redirect(`${siteUrl}/library?syncing=1`)
-    response.cookies.delete("audible_code_verifier")
-    response.cookies.delete("audible_serial")
-    return response
+    return NextResponse.redirect(`${siteUrl}/library?syncing=1`)
 
   } catch (error: any) {
     console.error("Callback error:", error)
