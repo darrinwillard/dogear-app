@@ -47,7 +47,7 @@ export default function LoginPage() {
     <div className="min-h-screen bg-slate-950 flex items-center justify-center px-4">
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
-          <div className="text-4xl mb-2">🐾</div>
+          <img src="/logo.png" alt="DogEar" className="w-20 h-20 rounded-2xl mx-auto mb-2" />
           <h1 className="text-3xl font-bold text-white">DogEar</h1>
           <p className="text-slate-400 mt-1">Your audiobook reading tracker</p>
         </div>

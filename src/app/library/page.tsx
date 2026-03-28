@@ -20,13 +20,14 @@ export default async function LibraryPage({ searchParams }: PageProps) {
 
     if (user) {
       isAuthed = true
-      const { data } = await supabase
+      const { data: userBooks } = await supabase
         .from('user_books')
-        .select('*, books(*)')
+        .select('*, book:books(*)')
+        .eq('user_id', user.id)
         .order('created_at', { ascending: false })
 
-      if (data && data.length > 0) {
-        books = data.map((ub: SupabaseUserBook) => mapToBook(ub))
+      if (userBooks && userBooks.length > 0) {
+        books = userBooks.map((ub: SupabaseUserBook) => mapToBook(ub))
       } else {
         // Authenticated but no synced books — show empty state
         isNewUser = true
@@ -77,7 +78,7 @@ interface SupabaseUserBook {
   purchase_date: string | null
   status: 'unstarted' | 'in_progress' | 'completed'
   rating: number | null
-  books: SupabaseBook | null
+  book: SupabaseBook | null
 }
 
 function mapStatus(s: SupabaseUserBook['status']): string {
@@ -89,7 +90,7 @@ function mapStatus(s: SupabaseUserBook['status']): string {
 }
 
 function mapToBook(ub: SupabaseUserBook): Book {
-  const b = ub.books
+  const b = ub.book
   return {
     title: b?.title ?? 'Unknown',
     authors: b?.authors ?? [],

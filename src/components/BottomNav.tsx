@@ -4,10 +4,10 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
 const tabs = [
-  { href: '/library', label: 'Library', emoji: '📚' },
-  { href: '/search', label: 'Search', emoji: '🔍' },
-  { href: '/stats', label: 'Stats', emoji: '📊' },
-  { href: '/settings', label: 'Settings', emoji: '⚙️' },
+  { href: '/library', label: 'Library', emoji: null, isLogo: true },
+  { href: '/search', label: 'Search', emoji: '🔍', isLogo: false },
+  { href: '/stats', label: 'Stats', emoji: '📊', isLogo: false },
+  { href: '/settings', label: 'Settings', emoji: '⚙️', isLogo: false },
 ]
 
 export default function BottomNav() {
@@ -29,7 +29,11 @@ export default function BottomNav() {
                 active ? 'text-amber-400' : 'text-slate-500'
               }`}
             >
-              <span className="text-xl leading-none">{tab.emoji}</span>
+              {tab.isLogo ? (
+                <img src="/logo.png" alt="Library" className="w-6 h-6 rounded-md" />
+              ) : (
+                <span className="text-xl leading-none">{tab.emoji}</span>
+              )}
               <span className="text-xs font-medium">{tab.label}</span>
             </Link>
           )
