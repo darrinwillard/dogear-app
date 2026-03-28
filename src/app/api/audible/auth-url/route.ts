@@ -27,9 +27,11 @@ export async function GET(req: NextRequest) {
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://dogear-app-darrinwillards-projects.vercel.app"
 
   const scheme = searchParams.get("scheme") || "web"
+  // Amazon REQUIRES maplanding for web flows — no custom redirect allowed
+  // iOS uses dogear:// URL scheme via ASWebAuthenticationSession
   const returnTo = scheme === "dogear"
     ? "dogear://audible/callback"
-    : `${siteUrl}/api/audible/callback?state=${state}&uid=${userId}`
+    : "https://www.amazon.com/ap/maplanding"
 
   // Store verifier + serial server-side keyed to state — survives iOS redirect
   const supabase = createClient(
