@@ -1,5 +1,14 @@
 import { NextRequest, NextResponse } from "next/server"
+import crypto from "crypto"
 import { createClient } from "@/lib/supabase/server"
+
+function buildClientId(serial: string): string {
+  const combined = Buffer.concat([
+    Buffer.from(serial, "utf8"),
+    Buffer.from("#A2CZJZGLK2JJVM", "utf8"),
+  ])
+  return combined.toString("hex")
+}
 
 export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url)
@@ -8,7 +17,10 @@ export async function GET(req: NextRequest) {
   const authCode =
     searchParams.get("openid.oa2.authorization_code") || searchParams.get("code")
 
-  const codeVerifier = req.cookies.get("audible_code_verifier")?.value
+  const codeVerifierHex = req.cookies.get("audible_code_verifier")?.value
+  const codeVerifier = codeVerifierHex
+    ? Buffer.from(codeVerifierHex, "hex").toString()
+    : null
   const serial = req.cookies.get("audible_serial")?.value
 
   if (!authCode || !codeVerifier) {
@@ -41,12 +53,7 @@ export async function GET(req: NextRequest) {
           app_name: "Audible",
         },
         auth_data: {
-          client_id: `device:${Buffer.from(
-            "68336e6c314d5436714d624c4c504f4549505545382341327446754147415357564c5355304a4a464d"
-              .match(/.{2}/g)!
-              .map(h => parseInt(h, 16))
-              .reduce((s, b) => s + String.fromCharCode(b), "")
-          ).toString("base64")}#A2CZJZGLK2JJVM`,
+          client_id: `device:${buildClientId(serial || crypto.randomUUID().replace(/-/g, "").toUpperCase())}`,
           authorization_code: authCode,
           code_verifier: codeVerifier,
           code_algorithm: "SHA-256",

@@ -1,43 +1,62 @@
 import { NextRequest, NextResponse } from "next/server"
 import crypto from "crypto"
 
-export async function GET(req: NextRequest) {
-  // Generate PKCE values
-  const codeVerifier = crypto.randomBytes(32).toString("base64url")
-  const codeChallenge = crypto.createHash("sha256").update(codeVerifier).digest("base64url")
-  const serial = crypto.randomBytes(16).toString("hex").toUpperCase()
+function buildDeviceSerial(): string {
+  return crypto.randomUUID().replace(/-/g, "").toUpperCase()
+}
 
-  // Amazon Audible OAuth URL
-  const clientId = `device:${Buffer.from(
-    `68336e6c314d5436714d624c4c504f4549505545382341327446754147415357564c5355304a4a464d`
-      .match(/.{2}/g)!
-      .map(h => parseInt(h, 16))
-      .reduce((s, b) => s + String.fromCharCode(b), "")
-  ).toString("base64")}#A2CZJZGLK2JJVM`
+function buildClientId(serial: string): string {
+  const combined = Buffer.concat([
+    Buffer.from(serial, "utf8"),
+    Buffer.from("#A2CZJZGLK2JJVM", "utf8"),
+  ])
+  return combined.toString("hex")
+}
+
+function createCodeVerifier(): Buffer {
+  return crypto.randomBytes(32)
+}
+
+function createS256CodeChallenge(codeVerifier: Buffer): string {
+  return crypto.createHash("sha256").update(codeVerifier).digest("base64url")
+}
+
+export async function GET(req: NextRequest) {
+  const serial = buildDeviceSerial()
+  const codeVerifier = createCodeVerifier()
+  const codeChallenge = createS256CodeChallenge(codeVerifier)
+  const clientId = buildClientId(serial)
+
+  const siteUrl =
+    process.env.NEXT_PUBLIC_SITE_URL ||
+    "https://dogear-app-darrinwillards-projects.vercel.app"
 
   const params = new URLSearchParams({
-    "openid.ns": "http://specs.openid.net/auth/2.0",
+    "openid.oa2.response_type": "code",
+    "openid.oa2.code_challenge_method": "S256",
+    "openid.oa2.code_challenge": codeChallenge,
+    "openid.return_to": `${siteUrl}/api/audible/callback`,
+    "openid.assoc_handle": "amzn_audible_ios_us",
     "openid.identity": "http://specs.openid.net/auth/2.0/identifier_select",
+    pageId: "amzn_audible_ios",
+    accountStatusPolicy: "P1",
     "openid.claimed_id": "http://specs.openid.net/auth/2.0/identifier_select",
     "openid.mode": "checkid_setup",
-    "openid.oa2.response_type": "code",
-    "openid.oa2.code_challenge": codeChallenge,
-    "openid.oa2.code_challenge_method": "S256",
     "openid.ns.oa2": "http://www.amazon.com/ap/ext/oauth/2",
-    "openid.oa2.client_id": clientId,
-    "openid.oa2.scope": "device_auth_access",
-    "language": "en_US",
-    "marketPlaceId": "AF2M0KC94RCEA",
-    "openid.return_to": `${process.env.NEXT_PUBLIC_SITE_URL}/api/audible/callback`,
-    "openid.assoc_handle": "amzn_audible_ios_us",
+    "openid.oa2.client_id": `device:${clientId}`,
     "openid.ns.pape": "http://specs.openid.net/extensions/pape/1.0",
+    marketPlaceId: "AF2M0KC94RCEA",
+    "openid.oa2.scope": "device_auth_access",
+    forceMobileLayout: "true",
+    "openid.ns": "http://specs.openid.net/auth/2.0",
+    "openid.pape.max_auth_age": "0",
   })
 
-  const amazonLoginUrl = `https://www.amazon.com/ap/signin?${params.toString()}`
+  const loginUrl = `https://www.amazon.com/ap/signin?${params.toString()}`
 
-  // Store verifier in cookie for callback
-  const response = NextResponse.json({ url: amazonLoginUrl })
-  response.cookies.set("audible_code_verifier", codeVerifier, {
+  const response = NextResponse.json({ url: loginUrl })
+
+  response.cookies.set("audible_code_verifier", codeVerifier.toString("hex"), {
     httpOnly: true,
     secure: true,
     sameSite: "lax",
