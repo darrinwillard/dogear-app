@@ -1,3 +1,18 @@
+Build a polished "paste URL" Audible connect flow for the DogEar web app.
+
+## THE PROBLEM
+Amazon's Audible OAuth requires openid.return_to = amazon.com/ap/maplanding
+We cannot intercept this redirect server-side.
+The user lands on maplanding which shows "Page not found" — but the auth code is in the URL.
+
+## THE SOLUTION
+Build a guided 3-step onboarding flow that makes this feel intentional and clean.
+
+## TASK 1: Update src/app/settings/connect-audible/page.tsx
+
+Replace the current broken flow with this guided flow:
+
+```tsx
 "use client"
 import { useState, useEffect } from "react"
 import { createClient } from "@/lib/supabase/client"
@@ -93,7 +108,7 @@ export default function ConnectAudiblePage() {
               <h2 className="text-lg font-bold text-white">Sign in to Amazon</h2>
             </div>
             <p className="text-slate-400 text-sm mb-6">
-              Click below to open Amazon&apos;s login page. Sign in with your Amazon account. After logging in, you&apos;ll see a &quot;page not found&quot; &mdash; that&apos;s normal! Come back here for step 2.
+              Click below to open Amazon's login page. Sign in with your Amazon account. After logging in, you'll see a "page not found" — that's normal! Come back here for step 2.
             </p>
             <a
               href={loginUrl}
@@ -107,7 +122,7 @@ export default function ConnectAudiblePage() {
               onClick={() => setStep("paste")}
               className="w-full bg-slate-800 hover:bg-slate-700 text-white font-semibold py-3 px-6 rounded-xl transition-colors"
             >
-              I&apos;ve signed in → Continue
+              I've signed in → Continue
             </button>
           </div>
         )}
@@ -120,7 +135,7 @@ export default function ConnectAudiblePage() {
               <h2 className="text-lg font-bold text-white">Copy the URL</h2>
             </div>
             <div className="bg-slate-800 rounded-xl p-4 mb-6 border border-slate-700">
-              <p className="text-slate-300 text-sm mb-3">After signing in, Amazon shows an error page. That&apos;s expected! Copy the full URL from your browser&apos;s address bar &mdash; it starts with:</p>
+              <p className="text-slate-300 text-sm mb-3">After signing in, Amazon shows an error page. That's expected! Copy the full URL from your browser's address bar — it starts with:</p>
               <code className="text-amber-400 text-xs break-all">https://www.amazon.com/ap/maplanding?...</code>
             </div>
             {error && <div className="bg-red-900/30 border border-red-700 rounded-xl p-4 mb-4 text-red-300 text-sm">{error}</div>}
@@ -168,3 +183,11 @@ export default function ConnectAudiblePage() {
     </div>
   )
 }
+```
+
+## TASK 2: Update src/app/api/audible/auth-url/route.ts
+Return codeVerifier and serial in the JSON response (already done) — verify it's still returning them.
+
+## TASK 3: Run npm run build — must pass 0 errors.
+
+When done: openclaw system event --text "Done: DogEar paste-URL connect flow built" --mode now

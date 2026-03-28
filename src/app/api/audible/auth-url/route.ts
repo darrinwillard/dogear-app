@@ -26,6 +26,11 @@ export async function GET(req: NextRequest) {
 
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://dogear-app-darrinwillards-projects.vercel.app"
 
+  const scheme = searchParams.get("scheme") || "web"
+  const returnTo = scheme === "dogear"
+    ? "dogear://audible/callback"
+    : `${siteUrl}/api/audible/callback?state=${state}&uid=${userId}`
+
   // Store verifier + serial server-side keyed to state — survives iOS redirect
   const supabase = createClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -46,7 +51,7 @@ export async function GET(req: NextRequest) {
     ["openid.oa2.response_type", "code"],
     ["openid.oa2.code_challenge_method", "S256"],
     ["openid.oa2.code_challenge", codeChallenge],
-    ["openid.return_to", `${siteUrl}/api/audible/callback?state=${state}&uid=${userId}`],
+    ["openid.return_to", returnTo],
     ["openid.assoc_handle", "amzn_audible_ios_us"],
     ["openid.identity", "http://specs.openid.net/auth/2.0/identifier_select"],
     ["pageId", "amzn_audible_ios"],
@@ -64,6 +69,8 @@ export async function GET(req: NextRequest) {
   ])
 
   return NextResponse.json({
-    url: `https://www.amazon.com/ap/signin?${params.toString()}`
+    url: `https://www.amazon.com/ap/signin?${params.toString()}`,
+    codeVerifier: codeVerifier.toString("hex"),
+    serial
   })
 }
