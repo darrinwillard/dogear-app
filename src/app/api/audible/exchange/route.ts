@@ -41,7 +41,7 @@ export async function POST(req: NextRequest) {
     const tokens = deviceData?.response?.success?.tokens
 
     if (!tokens?.bearer?.refresh_token) {
-      return NextResponse.json({ error: "Amazon authentication failed. Please try again.", detail: JSON.stringify(deviceData).slice(0, 200) }, { status: 401 })
+      const detail = JSON.stringify(deviceData).slice(0, 300); console.error("Device registration failed:", detail); return NextResponse.json({ error: "Amazon authentication failed: " + (deviceData?.response?.error?.message || detail) }, { status: 401 })
     }
 
     const supabase = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env.SUPABASE_SERVICE_ROLE_KEY!)
