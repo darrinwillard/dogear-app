@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from "next/server"
 import crypto from "crypto"
-import { createClient } from "@supabase/supabase-js"
 
 function buildDeviceSerial(): string {
   return crypto.randomUUID().replace(/-/g, "").toUpperCase()
@@ -16,38 +15,17 @@ function buildClientId(serial: string): string {
 
 export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url)
-  const userId = searchParams.get("userId")
+  const userId = searchParams.get("userId") || ""
+  const scheme = searchParams.get("scheme") || "web"
 
   const serial = buildDeviceSerial()
   const codeVerifier = crypto.randomBytes(32)
   const codeChallenge = crypto.createHash("sha256").update(codeVerifier).digest("base64url")
   const clientId = buildClientId(serial)
-  const state = crypto.randomUUID()
 
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://dogear-app-darrinwillards-projects.vercel.app"
-
-  const scheme = searchParams.get("scheme") || "web"
-  // Amazon REQUIRES maplanding for web flows — no custom redirect allowed
-  // iOS uses dogear:// URL scheme via ASWebAuthenticationSession
   const returnTo = scheme === "dogear"
     ? "dogear://audible/callback"
     : "https://www.amazon.com/ap/maplanding"
-
-  // Store verifier + serial server-side keyed to state — survives iOS redirect
-  const supabase = createClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.SUPABASE_SERVICE_ROLE_KEY!
-  )
-
-  await supabase.from("user_profiles").upsert({
-    id: userId,
-    audible_refresh_token: JSON.stringify({
-      pkce_state: state,
-      pkce_verifier: codeVerifier.toString("hex"),
-      pkce_serial: serial,
-      pending: true
-    })
-  })
 
   const params = new URLSearchParams([
     ["openid.oa2.response_type", "code"],
@@ -70,9 +48,11 @@ export async function GET(req: NextRequest) {
     ["openid.pape.max_auth_age", "0"],
   ])
 
+  // Return verifier + serial to client — client stores in sessionStorage, no expiry
   return NextResponse.json({
     url: `https://www.amazon.com/ap/signin?${params.toString()}`,
     codeVerifier: codeVerifier.toString("hex"),
-    serial
+    serial,
+    userId,
   })
 }
