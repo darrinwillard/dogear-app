@@ -27,10 +27,10 @@ export default function ConnectAudiblePage() {
       const res = await fetch(`/api/audible/auth-url?userId=${userId}`)
       const data = await res.json()
       
-      // Store in sessionStorage — survives tab switches, no server expiry
-      sessionStorage.setItem("audible_code_verifier", data.codeVerifier)
-      sessionStorage.setItem("audible_serial", data.serial)
-      sessionStorage.setItem("audible_user_id", data.userId)
+      // Store in localStorage — survives tab switches, no server expiry
+      localStorage.setItem("audible_code_verifier", data.codeVerifier)
+      localStorage.setItem("audible_serial", data.serial)
+      localStorage.setItem("audible_user_id", data.userId)
       
       setLoginUrl(data.url)
       setStep("login")
@@ -57,10 +57,10 @@ export default function ConnectAudiblePage() {
       return
     }
 
-    // Retrieve from sessionStorage
-    const codeVerifier = sessionStorage.getItem("audible_code_verifier")
-    const serial = sessionStorage.getItem("audible_serial")
-    const storedUserId = sessionStorage.getItem("audible_user_id") || userId
+    // Retrieve from localStorage
+    const codeVerifier = localStorage.getItem("audible_code_verifier")
+    const serial = localStorage.getItem("audible_serial")
+    const storedUserId = localStorage.getItem("audible_user_id") || userId
 
     if (!codeVerifier || !serial) {
       setError("Session expired. Please tap 'Start Over' and try again.")
@@ -85,9 +85,9 @@ export default function ConnectAudiblePage() {
       }
 
       // Clear session storage
-      sessionStorage.removeItem("audible_code_verifier")
-      sessionStorage.removeItem("audible_serial")
-      sessionStorage.removeItem("audible_user_id")
+      localStorage.removeItem("audible_code_verifier")
+      localStorage.removeItem("audible_serial")
+      localStorage.removeItem("audible_user_id")
 
       setStep("done")
       setTimeout(() => { window.location.href = "/library?syncing=1" }, 2000)
