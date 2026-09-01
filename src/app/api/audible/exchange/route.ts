@@ -19,11 +19,11 @@ export async function POST(req: NextRequest) {
       method: "POST",
       headers: { "Content-Type": "application/json", "x-amzn-identity-auth-domain": "api.amazon.com" },
       body: JSON.stringify({
-        requested_token_type: ["bearer", "mac_dms", "website_cookies"],
+        requested_token_type: ["bearer", "mac_dms", "website_cookies", "store_authentication_cookie"],
         cookies: { website_cookies: [], domain: ".amazon.com" },
         registration_data: {
           domain: "Device", app_version: "3.56.2", device_serial: serial,
-          device_type: "A2CZJZGLK2JJVM", device_name: "DogEar",
+          device_type: "A2CZJZGLK2JJVM", device_name: "%FIRST_NAME%%FIRST_NAME_POSSESSIVE_STRING%%DUPE_STRATEGY_1ST%Audible for iPhone",
           os_version: "15.0.0", software_version: "35602678", device_model: "iPhone", app_name: "Audible"
         },
         auth_data: {
