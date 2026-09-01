@@ -19,6 +19,7 @@ export default function SettingsPage() {
   const [syncing, setSyncing] = useState(false)
   const [syncMsg, setSyncMsg] = useState<string | null>(null)
   const [syncError, setSyncError] = useState<string | null>(null)
+  const [syncElapsed, setSyncElapsed] = useState(0)
 
   useEffect(() => {
     const supabase = createClient()
@@ -43,10 +44,37 @@ export default function SettingsPage() {
     router.push('/auth/login')
   }
 
+  async function refreshProfile() {
+    const supabase = createClient()
+    const { data: { user } } = await supabase.auth.getUser()
+    if (!user) return null
+    const { data: updated } = await supabase
+      .from('user_profiles')
+      .select('audible_refresh_token, audible_locale, last_synced_at')
+      .eq('id', user.id)
+      .single()
+    setProfile(updated)
+    return updated
+  }
+
   async function handleSync() {
     setSyncing(true)
     setSyncMsg(null)
     setSyncError(null)
+    setSyncElapsed(0)
+
+    const startedAt = Date.now()
+    const tickInterval = setInterval(() => {
+      setSyncElapsed(Math.floor((Date.now() - startedAt) / 1000))
+    }, 1000)
+
+    // Sync runs as a long server request (up to ~5 min for a full library).
+    // Mobile browsers/networks can drop the connection before the fetch
+    // resolves even though the server-side job completes successfully.
+    // If that happens, poll last_synced_at so the UI still reflects reality
+    // instead of hanging on "Syncing..." forever.
+    const priorLastSynced = profile?.last_synced_at ?? null
+
     try {
       const res = await fetch('/api/audible/sync', {
         method: 'POST',
@@ -56,24 +84,35 @@ export default function SettingsPage() {
       const data = await res.json()
       if (res.ok) {
         setSyncMsg(`Synced ${data.books_synced ?? 0} books`)
-        // Refresh profile to get updated last_synced_at
-        const supabase = createClient()
-        const { data: { user } } = await supabase.auth.getUser()
-        if (user) {
-          const { data: updated } = await supabase
-            .from('user_profiles')
-            .select('audible_refresh_token, audible_locale, last_synced_at')
-            .eq('id', user.id)
-            .single()
-          setProfile(updated)
-        }
+        await refreshProfile()
       } else {
         setSyncError(data.error ?? 'Sync failed')
       }
     } catch {
-      setSyncError('Sync failed — check your connection')
+      // Fetch itself failed/dropped client-side — the server job may still be
+      // running or may have already finished. Poll last_synced_at for up to
+      // ~6 minutes (longer than the server's own 5-minute max) before giving
+      // up and telling the user to check back manually.
+      setSyncError(null)
+      const pollStart = Date.now()
+      const maxPollMs = 6 * 60 * 1000
+      let resolved = false
+      while (Date.now() - pollStart < maxPollMs) {
+        await new Promise(r => setTimeout(r, 5000))
+        const updated = await refreshProfile()
+        if (updated?.last_synced_at && updated.last_synced_at !== priorLastSynced) {
+          setSyncMsg('Sync completed — connection dropped before confirmation, but your library is up to date')
+          resolved = true
+          break
+        }
+      }
+      if (!resolved) {
+        setSyncError('Lost connection to the sync — check back in a few minutes, or try again')
+      }
     } finally {
+      clearInterval(tickInterval)
       setSyncing(false)
+      setSyncElapsed(0)
     }
   }
 
