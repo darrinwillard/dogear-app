@@ -20,6 +20,18 @@ export interface AudibleItem {
   publisher_name?: string
 }
 
+/**
+ * Library response_groups for DogEar sync.
+ *
+ * `media` is REQUIRED for cover art — without it, `product_images` is null
+ * even when product_desc/product_attrs are present. Confirmed via live API
+ * probes 2026-09-01: media alone (or any set including media) returns
+ * product_images like { "500": "https://m.media-amazon.com/..." }; sets
+ * without media return product_images: null.
+ *
+ * series / percent_complete / is_finished / listening_status can be combined
+ * with media in one call — combining them does NOT drop product_images.
+ */
 export const AUDIBLE_LIBRARY_RESPONSE_GROUPS = [
   'product_desc',
   'product_attrs',
@@ -82,12 +94,26 @@ export function readSeriesFields(item: AudibleItem): {
 }
 
 export function readCoverUrl(item: AudibleItem): string | null | undefined {
-  if (!item.product_images) return undefined
-  return (
-    item.product_images['500'] ||
-    item.product_images['1024'] ||
-    item.product_images['300'] ||
-    item.product_images['0'] ||
-    null
-  )
+  const images = item.product_images
+  if (!images || typeof images !== 'object') return undefined
+
+  // Prefer known sizes first (Audible commonly returns only "500" today).
+  const preferred =
+    images['500'] ||
+    images['1024'] ||
+    images['300'] ||
+    images['0'] ||
+    images['100'] ||
+    images['60']
+  if (typeof preferred === 'string' && preferred.trim()) {
+    return preferred.trim()
+  }
+
+  // Fallback: first non-empty string value in the map (size keys vary by locale/API).
+  for (const value of Object.values(images)) {
+    if (typeof value === 'string' && value.trim()) return value.trim()
+  }
+
+  // Present but empty/unusable — caller should not clobber an existing cover.
+  return undefined
 }

@@ -93,9 +93,12 @@ export async function POST(_req: NextRequest) {
       );
     }
 
-    // Paginate library — Audible caps at 1000/page
+    // Paginate library — Audible caps at 1000/page.
+    // IMPORTANT: Audible's library API is 1-indexed. page=0 returns HTTP 400
+    // ("Member must have value greater than or equal to 1"), so we start at 1.
+    // `media` in AUDIBLE_LIBRARY_RESPONSE_GROUPS is required for product_images.
     const items: AudibleItem[] = [];
-    let page = 0;
+    let page = 1;
     let hitPageCap = false;
     while (true) {
       const params = new URLSearchParams({
@@ -118,7 +121,7 @@ export async function POST(_req: NextRequest) {
       // Full page — may be more; keep going, but flag if we stop after one full page without next
       hitPageCap = true;
       page += 1;
-      // Safety: don't infinite-loop
+      // Safety: don't infinite-loop (page is 1-indexed)
       if (page > 20) break;
     }
 
@@ -127,15 +130,18 @@ export async function POST(_req: NextRequest) {
         ? `Library page returned exactly ${PAGE_SIZE} items on last page — possible truncation if Audible has more.`
         : null;
 
-    // Log one sample shape for progress fields (redacted) once
-    const sample = items.find(
-      (i) =>
-        i.percent_complete != null ||
-        i.is_finished != null ||
-        i.listening_status != null ||
-        (Array.isArray(i.series) && i.series.length > 0)
-    );
+    // Log one sample shape for progress + cover fields (redacted) once
+    const sample =
+      items.find(
+        (i) =>
+          i.percent_complete != null ||
+          i.is_finished != null ||
+          i.listening_status != null ||
+          (Array.isArray(i.series) && i.series.length > 0) ||
+          i.product_images != null
+      ) ?? items[0];
     if (sample) {
+      const coverSample = readCoverUrl(sample);
       console.log(
         "[audible-sync] sample fields",
         JSON.stringify({
@@ -147,6 +153,11 @@ export async function POST(_req: NextRequest) {
           listening_status_keys: sample.listening_status
             ? Object.keys(sample.listening_status)
             : null,
+          product_images_keys: sample.product_images
+            ? Object.keys(sample.product_images)
+            : null,
+          cover_url_parsed: coverSample ?? null,
+          items_total: items.length,
         })
       );
     }
