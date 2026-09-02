@@ -1,12 +1,30 @@
-import { getStats, getWhatToReadNext, getUpcomingReleases, formatDate, getSeriesData } from '@/lib/books'
+import { formatDate, isInProgressSeries } from '@/lib/books'
+import { getDashboardData } from '@/lib/books/queries'
 import Link from 'next/link'
 
-export default function Dashboard() {
-  const stats = getStats()
-  const whatToReadNext = getWhatToReadNext()
-  const upcomingReleases = getUpcomingReleases(3)
-  const allSeries = getSeriesData()
-  const activeSeries = allSeries.filter(s => s.readCount > 0 && s.nextToRead !== null).slice(0, 5)
+export const dynamic = 'force-dynamic'
+
+export default async function Dashboard() {
+  const {
+    stats,
+    whatToReadNext,
+    upcoming: upcomingReleases,
+    series: allSeries,
+    isDemo,
+    isAuthed,
+    lastUpdatedLabel,
+    isNewUser,
+  } = await getDashboardData()
+
+  const activeSeries = allSeries
+    .filter(s => isInProgressSeries(s) && s.nextToRead !== null)
+    .slice(0, 5)
+
+  // Fall back to any series with next book if nothing is "in progress" yet (pre-seed)
+  const seriesForHome =
+    activeSeries.length > 0
+      ? activeSeries
+      : allSeries.filter(s => s.nextToRead !== null).slice(0, 5)
 
   return (
     <div className="space-y-10">
@@ -16,8 +34,18 @@ export default function Dashboard() {
           Your Reading Life
         </h1>
         <p className="text-slate-400 text-lg">
-          Synced from Audible & Goodreads · Last updated March 9, 2026
+          {lastUpdatedLabel}
         </p>
+        {isDemo && (
+          <p className="text-amber-500/80 text-sm mt-2">
+            Demo snapshot — sign in and sync Audible for your live library.
+          </p>
+        )}
+        {isAuthed && isNewUser && (
+          <p className="text-amber-400 text-sm mt-2">
+            Library empty — connect Audible in Settings and run Sync.
+          </p>
+        )}
       </div>
 
       {/* Stats Bar */}
@@ -26,23 +54,23 @@ export default function Dashboard() {
           value={stats.totalBooks.toLocaleString()}
           label="Total Books"
           icon="📚"
-          sub="in your library"
+          sub={isDemo ? 'demo library' : 'in your library'}
         />
         <StatCard
           value={stats.confirmedRead.toLocaleString()}
           label="Books Read"
           icon="✅"
-          sub="confirmed read"
+          sub={isDemo ? 'demo confirmed' : 'marked read'}
         />
         <StatCard
           value={stats.totalSeries.toString()}
           label="Series Tracked"
           icon="🔖"
-          sub="across all libraries"
+          sub={isDemo ? 'demo series' : 'with series names'}
         />
         <StatCard
           value={stats.booksThisYear.toString()}
-          label="Read in 2026"
+          label={`Read in ${new Date().getFullYear()}`}
           icon="🗓️"
           sub="this year so far"
         />
@@ -79,11 +107,13 @@ export default function Dashboard() {
         <p className="text-slate-400 text-sm mb-4">Based on your series momentum — you were just reading these:</p>
         <div className="grid sm:grid-cols-3 gap-4">
           {whatToReadNext.map((book, i) => (
-            <NextReadCard key={i} book={book} rank={i + 1} />
+            <NextReadCard key={book.asin || `${book.title}-${i}`} book={book} rank={i + 1} />
           ))}
           {whatToReadNext.length === 0 && (
             <div className="col-span-3 text-slate-500 text-center py-8">
-              No recommendations available
+              {isAuthed
+                ? 'No series recommendations yet — sync Audible and mark books read to build momentum.'
+                : 'No recommendations available'}
             </div>
           )}
         </div>
@@ -100,9 +130,16 @@ export default function Dashboard() {
           </Link>
         </div>
         <div className="space-y-3">
-          {activeSeries.map(s => (
+          {seriesForHome.map(s => (
             <SeriesProgressRow key={s.name} series={s} />
           ))}
+          {seriesForHome.length === 0 && (
+            <div className="text-slate-500 text-center py-6 text-sm">
+              {isAuthed
+                ? 'No series progress to show yet. After Sync, series names appear here.'
+                : 'Sign in to track live series progress.'}
+            </div>
+          )}
         </div>
       </section>
 
@@ -116,9 +153,12 @@ export default function Dashboard() {
             See full calendar →
           </Link>
         </div>
+        <p className="text-slate-500 text-xs mb-3">
+          Curated list (last checked March 9, 2026) — live series-release refresh comes in a later phase.
+        </p>
         <div className="grid sm:grid-cols-3 gap-4">
           {upcomingReleases.map((release, i) => (
-            <UpcomingCard key={i} release={release} />
+            <UpcomingCard key={`${release.title}-${i}`} release={release} />
           ))}
         </div>
       </section>
@@ -137,7 +177,7 @@ function StatCard({ value, label, icon, sub }: { value: string; label: string; i
   )
 }
 
-function NextReadCard({ book, rank }: { book: { title: string; authors: string[]; series: string | null; series_num: string | null }; rank: number }) {
+function NextReadCard({ book, rank }: { book: { title: string; authors: string[]; series: string | null; series_num: string | null; asin?: string | null }; rank: number }) {
   const rankColors = ['text-amber-400', 'text-slate-300', 'text-amber-700']
   const rankEmojis = ['🥇', '🥈', '🥉']
 
@@ -166,7 +206,7 @@ function NextReadCard({ book, rank }: { book: { title: string; authors: string[]
 }
 
 function SeriesProgressRow({ series }: { series: { name: string; author: string; readCount: number; totalCount: number; nextToRead: { title: string } | null } }) {
-  const pct = Math.round((series.readCount / series.totalCount) * 100)
+  const pct = series.totalCount > 0 ? Math.round((series.readCount / series.totalCount) * 100) : 0
 
   return (
     <div className="bg-slate-900 rounded-lg border border-slate-800 p-4 hover:border-slate-700 transition-colors">

@@ -5,61 +5,116 @@ import { SeriesInfo, formatDate, getGenreForSeries } from '@/lib/books'
 
 interface Props {
   series: SeriesInfo[]
+  isAuthed?: boolean
+  source?: 'live' | 'demo'
 }
 
-export default function SeriesClient({ series }: Props) {
+type Filter = 'all' | 'active' | 'complete' | 'in_progress'
+
+export default function SeriesClient({
+  series,
+  isAuthed = false,
+  source = 'demo',
+}: Props) {
   const [search, setSearch] = useState('')
-  const [filterComplete, setFilterComplete] = useState<'all' | 'active' | 'complete'>('all')
+  // Default 'all' until historical seed lands (Phase 2) — in_progress would look empty
+  const [filterComplete, setFilterComplete] = useState<Filter>('all')
 
   const filtered = useMemo(() => {
-    return series.filter(s => {
-      const matchSearch = !search ||
+    return series.filter((s) => {
+      const matchSearch =
+        !search ||
         s.name.toLowerCase().includes(search.toLowerCase()) ||
         s.author.toLowerCase().includes(search.toLowerCase())
-      const pct = s.readCount / s.totalCount
+      const pct = s.totalCount > 0 ? s.readCount / s.totalCount : 0
       const matchComplete =
         filterComplete === 'all' ||
         (filterComplete === 'complete' && pct >= 1) ||
-        (filterComplete === 'active' && pct < 1)
+        (filterComplete === 'active' && pct < 1) ||
+        (filterComplete === 'in_progress' &&
+          s.readCount >= 1 &&
+          s.readCount < s.totalCount)
       return matchSearch && matchComplete
     })
   }, [series, search, filterComplete])
 
-  const activeCount = series.filter(s => s.readCount < s.totalCount).length
-  const completeCount = series.filter(s => s.readCount >= s.totalCount).length
+  const activeCount = series.filter((s) => s.readCount < s.totalCount).length
+  const completeCount = series.filter((s) => s.readCount >= s.totalCount).length
+  const inProgressCount = series.filter(
+    (s) => s.readCount >= 1 && s.readCount < s.totalCount
+  ).length
+
+  const filters: { key: Filter; label: string; count?: number }[] = [
+    { key: 'all', label: 'all' },
+    { key: 'in_progress', label: 'in progress', count: inProgressCount },
+    { key: 'active', label: 'incomplete', count: activeCount },
+    { key: 'complete', label: 'complete', count: completeCount },
+  ]
+
+  if (series.length === 0) {
+    return (
+      <div className="space-y-6">
+        <div>
+          <h1 className="font-serif text-3xl font-bold text-amber-400">
+            Series Tracker
+          </h1>
+          <p className="text-slate-400 mt-1">
+            {source === 'live' && isAuthed ? 'live library' : 'demo'}
+          </p>
+        </div>
+        <div className="text-center py-16 text-slate-400 max-w-lg mx-auto">
+          <div className="text-4xl mb-3">📚</div>
+          <div className="text-amber-100 font-medium mb-2">No series to show yet</div>
+          <p className="text-sm text-slate-500">
+            {isAuthed
+              ? 'Run Audible Sync Now in Settings to backfill series names from Audible. Until series tags land (and status seed later), this page stays empty rather than silently showing zero.'
+              : 'Sign in and sync Audible to track series from your live library.'}
+          </p>
+        </div>
+      </div>
+    )
+  }
 
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="font-serif text-3xl font-bold text-amber-400">Series Tracker</h1>
+          <h1 className="font-serif text-3xl font-bold text-amber-400">
+            Series Tracker
+          </h1>
           <p className="text-slate-400 mt-1">
-            {series.length} series · {activeCount} active · {completeCount} complete
+            {series.length} series · {inProgressCount} in progress ·{' '}
+            {completeCount} complete
+            {source === 'live' && isAuthed
+              ? ' · live'
+              : source === 'demo'
+                ? ' · demo'
+                : ''}
           </p>
         </div>
       </div>
 
-      {/* Filters */}
       <div className="flex flex-col sm:flex-row gap-3">
         <input
           type="text"
           placeholder="Search series or author..."
           value={search}
-          onChange={e => setSearch(e.target.value)}
+          onChange={(e) => setSearch(e.target.value)}
           className="flex-1 bg-slate-900 border border-slate-800 rounded-lg px-4 py-2.5 text-amber-50 placeholder:text-slate-500 focus:outline-none focus:border-amber-500 text-sm"
         />
-        <div className="flex gap-2">
-          {(['all', 'active', 'complete'] as const).map(f => (
+        <div className="flex gap-2 flex-wrap">
+          {filters.map((f) => (
             <button
-              key={f}
-              onClick={() => setFilterComplete(f)}
+              key={f.key}
+              onClick={() => setFilterComplete(f.key)}
               className={`px-4 py-2 rounded-lg text-sm font-medium capitalize transition-colors ${
-                filterComplete === f
+                filterComplete === f.key
                   ? 'bg-amber-500/20 text-amber-400 border border-amber-500/30'
                   : 'bg-slate-900 text-slate-400 border border-slate-800 hover:border-slate-700'
               }`}
             >
-              {f}
+              {f.label}
+              {f.count !== undefined ? ` (${f.count})` : ''}
             </button>
           ))}
         </div>
@@ -67,9 +122,8 @@ export default function SeriesClient({ series }: Props) {
 
       <p className="text-slate-500 text-sm">Showing {filtered.length} series</p>
 
-      {/* Series Grid */}
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {filtered.map(s => (
+        {filtered.map((s) => (
           <SeriesCard key={s.name} series={s} />
         ))}
       </div>
@@ -85,7 +139,8 @@ export default function SeriesClient({ series }: Props) {
 }
 
 function SeriesCard({ series }: { series: SeriesInfo }) {
-  const pct = series.totalCount > 0 ? (series.readCount / series.totalCount) * 100 : 0
+  const pct =
+    series.totalCount > 0 ? (series.readCount / series.totalCount) * 100 : 0
   const isComplete = pct >= 100
   const genre = getGenreForSeries(series.name)
 
@@ -97,15 +152,24 @@ function SeriesCard({ series }: { series: SeriesInfo }) {
   }
 
   return (
-    <div className={`bg-slate-900 rounded-xl border ${isComplete ? 'border-emerald-500/30' : 'border-slate-800'} p-5 hover:border-amber-500/30 transition-all`}>
-      {/* Header */}
+    <div
+      className={`bg-slate-900 rounded-xl border ${
+        isComplete ? 'border-emerald-500/30' : 'border-slate-800'
+      } p-5 hover:border-amber-500/30 transition-all`}
+    >
       <div className="flex items-start justify-between gap-2 mb-3">
         <div>
-          <h3 className="font-semibold text-amber-100 leading-snug">{series.name}</h3>
+          <h3 className="font-semibold text-amber-100 leading-snug">
+            {series.name}
+          </h3>
           <p className="text-slate-400 text-sm mt-0.5">{series.author}</p>
         </div>
         <div className="flex flex-col items-end gap-1 shrink-0">
-          <span className={`text-xs px-2 py-0.5 rounded-full font-medium ${genreColors[genre] || genreColors.Fiction}`}>
+          <span
+            className={`text-xs px-2 py-0.5 rounded-full font-medium ${
+              genreColors[genre] || genreColors.Fiction
+            }`}
+          >
             {genre}
           </span>
           {isComplete && (
@@ -114,7 +178,6 @@ function SeriesCard({ series }: { series: SeriesInfo }) {
         </div>
       </div>
 
-      {/* Progress */}
       <div className="mb-3">
         <div className="flex items-center justify-between mb-1">
           <span className="text-xs text-slate-400">Progress</span>
@@ -124,20 +187,24 @@ function SeriesCard({ series }: { series: SeriesInfo }) {
         </div>
         <div className="bg-slate-800 rounded-full h-2">
           <div
-            className={`h-2 rounded-full transition-all ${isComplete ? 'bg-emerald-500' : 'bg-amber-500'}`}
+            className={`h-2 rounded-full transition-all ${
+              isComplete ? 'bg-emerald-500' : 'bg-amber-500'
+            }`}
             style={{ width: `${Math.min(pct, 100)}%` }}
           />
         </div>
-        <div className="text-right text-xs text-slate-500 mt-1">{Math.round(pct)}%</div>
+        <div className="text-right text-xs text-slate-500 mt-1">
+          {Math.round(pct)}%
+        </div>
       </div>
 
-      {/* Books visual dots */}
       <div className="flex flex-wrap gap-1 mb-3">
         {series.books.slice(0, 20).map((book, i) => {
-          const isRead = book.status === 'read' || book.status === 'read_no_date'
+          const isRead =
+            book.status === 'read' || book.status === 'read_no_date'
           return (
             <div
-              key={i}
+              key={book.asin || `${book.title}-${i}`}
               title={`${book.title} (#${book.series_num})`}
               className={`w-5 h-5 rounded-sm text-xs flex items-center justify-center font-mono ${
                 isRead
@@ -150,28 +217,33 @@ function SeriesCard({ series }: { series: SeriesInfo }) {
           )
         })}
         {series.books.length > 20 && (
-          <div className="text-xs text-slate-500 self-center">+{series.books.length - 20}</div>
+          <div className="text-xs text-slate-500 self-center">
+            +{series.books.length - 20}
+          </div>
         )}
       </div>
 
-      {/* Next to read */}
       {series.nextToRead && (
         <div className="bg-slate-800/50 rounded-lg p-2.5 mb-3">
           <div className="text-xs text-slate-500 mb-1">📖 Next to read:</div>
-          <div className="text-sm text-amber-300 font-medium truncate">{series.nextToRead.title}</div>
+          <div className="text-sm text-amber-300 font-medium truncate">
+            {series.nextToRead.title}
+          </div>
         </div>
       )}
 
-      {/* Upcoming release */}
       {series.upcomingRelease && series.upcomingRelease.status === 'upcoming' && (
         <div className="bg-amber-500/5 border border-amber-500/20 rounded-lg p-2.5 mb-3">
           <div className="text-xs text-amber-600 mb-1">📅 Coming soon:</div>
-          <div className="text-sm text-amber-400 font-medium truncate">{series.upcomingRelease.title}</div>
-          <div className="text-xs text-slate-400 mt-0.5">{formatDate(series.upcomingRelease.releaseDate)}</div>
+          <div className="text-sm text-amber-400 font-medium truncate">
+            {series.upcomingRelease.title}
+          </div>
+          <div className="text-xs text-slate-400 mt-0.5">
+            {formatDate(series.upcomingRelease.releaseDate)}
+          </div>
         </div>
       )}
 
-      {/* Last read */}
       {series.lastReadDate && (
         <div className="text-xs text-slate-500">
           Last read: {formatDate(series.lastReadDate)}
