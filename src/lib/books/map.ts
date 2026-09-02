@@ -13,8 +13,8 @@ export function mapDbStatusToUi(status: DbStatus | string | null | undefined): s
 }
 
 export function mapUiStatusToDb(status: string): DbStatus {
-  if (status === 'read' || status === 'read_no_date') return 'completed'
-  if (status === 'reading' || status === 'currently-reading') return 'in_progress'
+  if (status === 'read' || status === 'read_no_date' || status === 'completed') return 'completed'
+  if (status === 'reading' || status === 'currently-reading' || status === 'in_progress') return 'in_progress'
   return 'unstarted'
 }
 
