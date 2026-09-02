@@ -706,27 +706,48 @@ function StarRating({
   disabled?: boolean
 }) {
   const [hover, setHover] = useState<number | null>(null)
+  const effective = hover ?? rating ?? 0
+
+  function starFill(starIndex: number): 'full' | 'half' | 'empty' {
+    if (effective >= starIndex) return 'full'
+    if (effective >= starIndex - 0.5) return 'half'
+    return 'empty'
+  }
+
   return (
     <div className="flex gap-0.5">
-      {[1, 2, 3, 4, 5].map((star) => (
-        <button
-          key={star}
-          disabled={disabled}
-          onClick={(e) => {
-            e.stopPropagation()
-            onRate(asin, star)
-          }}
-          onMouseEnter={() => setHover(star)}
-          onMouseLeave={() => setHover(null)}
-          className={`text-xs leading-none transition-colors disabled:opacity-40 ${
-            star <= (hover ?? rating ?? 0)
-              ? 'text-amber-400'
-              : 'text-slate-600 hover:text-amber-600'
-          }`}
-        >
-          ★
-        </button>
-      ))}
+      {[1, 2, 3, 4, 5].map((star) => {
+        const fill = starFill(star)
+        return (
+          <button
+            key={star}
+            disabled={disabled}
+            onClick={(e) => {
+              e.stopPropagation()
+              const rect = e.currentTarget.getBoundingClientRect()
+              const clickedLeftHalf = e.clientX - rect.left < rect.width / 2
+              onRate(asin, clickedLeftHalf ? star - 0.5 : star)
+            }}
+            onMouseMove={(e) => {
+              const rect = e.currentTarget.getBoundingClientRect()
+              const leftHalf = e.clientX - rect.left < rect.width / 2
+              setHover(leftHalf ? star - 0.5 : star)
+            }}
+            onMouseLeave={() => setHover(null)}
+            className="relative text-xs leading-none transition-colors disabled:opacity-40 text-slate-600 hover:text-amber-600"
+            title={`Rate ${star - 0.5} or ${star} stars`}
+          >
+            <span aria-hidden className="invisible">★</span>
+            <span
+              className={`absolute inset-0 overflow-hidden ${
+                fill === 'empty' ? 'w-0' : fill === 'half' ? 'w-1/2' : 'w-full'
+              }`}
+            >
+              <span className="text-amber-400">★</span>
+            </span>
+          </button>
+        )
+      })}
     </div>
   )
 }
