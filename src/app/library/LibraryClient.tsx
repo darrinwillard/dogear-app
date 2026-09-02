@@ -12,6 +12,10 @@ import {
   mapUiStatusToDb,
   isAlmostFinishedCandidate,
   almostFinishedLabel,
+  isWantToRead,
+  isOwnedUnread,
+  buyOrPreorderUrl,
+  isFutureRelease,
 } from '@/lib/books'
 
 interface Props {
@@ -28,6 +32,7 @@ type FilterTab =
   | 'goodreads'
   | 'read'
   | 'reading'
+  | 'owned'
   | 'want'
   | 'almost'
 
@@ -139,7 +144,9 @@ export default function LibraryClient({
           ? 'read'
           : dbStatus === 'in_progress'
             ? 'reading'
-            : 'to_read'
+            : previous?.wantToRead && !previous?.audible_purchased
+              ? 'want_to_read'
+              : 'owned_unread'
 
       // Optimistic
       patchBookLocal(asin, {
@@ -196,24 +203,99 @@ export default function LibraryClient({
         setStatusNote('Missing ASIN — cannot change status.')
         return
       }
-      const order = ['to_read', 'reading', 'read'] as const
+      // Progress cycle only: Owned/Unread → Reading → Read → Owned/Unread
+      // Want-to-read is a separate flag (not part of this cycle).
+      const order = ['owned_unread', 'reading', 'read'] as const
       const normalized =
-        currentStatus === 'read_no_date'
+        currentStatus === 'read_no_date' || currentStatus === 'completed'
           ? 'read'
-          : currentStatus === 'currently-reading'
+          : currentStatus === 'currently-reading' || currentStatus === 'in_progress'
             ? 'reading'
-            : currentStatus === 'unstarted'
-              ? 'to_read'
-              : currentStatus === 'in_progress'
-                ? 'reading'
-                : currentStatus === 'completed'
-                  ? 'read'
-                  : currentStatus
+            : currentStatus === 'unstarted' ||
+                currentStatus === 'to_read' ||
+                currentStatus === 'want_to_read'
+              ? 'owned_unread'
+              : currentStatus
       const idx = order.indexOf(normalized as (typeof order)[number])
-      const next = order[(idx + 1) % order.length]
+      const next = order[(idx >= 0 ? idx + 1 : 0) % order.length]
       void applyStatus(asin, next)
     },
     [applyStatus]
+  )
+
+  const setWantFlag = useCallback(
+    async (
+      asin: string,
+      action: 'add' | 'remove' | 'not_interested',
+      extra?: Partial<Book>
+    ) => {
+      if (!isAuthed) {
+        setStatusNote('Sign in to update Want to Read.')
+        return
+      }
+      setPendingAsin(asin, true)
+      const previous = books.find((b) => b.asin === asin)
+      // Optimistic
+      if (action === 'add') {
+        patchBookLocal(asin, {
+          wantToRead: true,
+          notInterested: false,
+          status:
+            previous?.status === 'read' || previous?.status === 'reading'
+              ? previous.status
+              : previous?.audible_purchased
+                ? previous.status
+                : 'want_to_read',
+          ...extra,
+        })
+      } else if (action === 'not_interested') {
+        patchBookLocal(asin, {
+          wantToRead: false,
+          notInterested: true,
+        })
+      } else {
+        patchBookLocal(asin, { wantToRead: false })
+      }
+      try {
+        const res = await fetch('/api/books/want', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ asin, action }),
+        })
+        const data = await res.json().catch(() => ({}))
+        if (!res.ok) {
+          if (previous) {
+            patchBookLocal(asin, {
+              wantToRead: previous.wantToRead,
+              notInterested: previous.notInterested,
+              status: previous.status,
+            })
+          }
+          setStatusNote(data.error || 'Failed to update Want to Read')
+          return
+        }
+        setStatusNote(
+          action === 'add'
+            ? 'Added to Want to Read ✓'
+            : action === 'not_interested'
+              ? 'Marked Not Interested — removed from Want to Read'
+              : 'Removed from Want to Read'
+        )
+        router.refresh()
+      } catch (e) {
+        if (previous) {
+          patchBookLocal(asin, {
+            wantToRead: previous.wantToRead,
+            notInterested: previous.notInterested,
+            status: previous.status,
+          })
+        }
+        setStatusNote(e instanceof Error ? e.message : 'Failed to update Want to Read')
+      } finally {
+        setPendingAsin(asin, false)
+      }
+    },
+    [books, isAuthed, patchBookLocal, router, setPendingAsin]
   )
 
   const markAsRead = useCallback(
@@ -299,7 +381,8 @@ export default function LibraryClient({
       if (activeTab === 'read') return status === 'read' || status === 'read_no_date'
       if (activeTab === 'reading')
         return status === 'reading' || status === 'currently-reading'
-      if (activeTab === 'want') return status === 'to_read'
+      if (activeTab === 'owned') return isOwnedUnread(book)
+      if (activeTab === 'want') return isWantToRead(book)
       if (activeTab === 'almost') return isAlmostFinishedCandidate(book)
       return true
     })
@@ -370,9 +453,14 @@ export default function LibraryClient({
       }).length,
     },
     {
+      key: 'owned',
+      label: 'Owned · Unread',
+      count: books.filter((b) => isOwnedUnread(b)).length,
+    },
+    {
       key: 'want',
       label: 'Want to Read',
-      count: books.filter((b) => getEffectiveStatus(b) === 'to_read').length,
+      count: books.filter((b) => isWantToRead(b)).length,
     },
     {
       key: 'almost',
@@ -558,10 +646,12 @@ export default function LibraryClient({
               effectiveRating={getEffectiveRating(book)}
               isPending={!!(book.asin && pending[book.asin])}
               showAlmost={isAlmostFinishedCandidate(book)}
+              showWantActions={activeTab === 'want' || isWantToRead(book)}
               onRate={(asin, stars) => void setRating(asin, stars)}
               onCycleStatus={cycleStatus}
               onMarkRead={markAsRead}
               onDismiss={dismissAlmostFinished}
+              onWantAction={(asin, action) => void setWantFlag(asin, action)}
             />
           ))}
         </div>
@@ -575,10 +665,12 @@ export default function LibraryClient({
               effectiveRating={getEffectiveRating(book)}
               isPending={!!(book.asin && pending[book.asin])}
               showAlmost={isAlmostFinishedCandidate(book)}
+              showWantActions={activeTab === 'want' || isWantToRead(book)}
               onRate={(asin, stars) => void setRating(asin, stars)}
               onCycleStatus={cycleStatus}
               onMarkRead={markAsRead}
               onDismiss={dismissAlmostFinished}
+              onWantAction={(asin, action) => void setWantFlag(asin, action)}
             />
           ))}
         </div>
@@ -688,10 +780,12 @@ interface CardProps {
   effectiveRating: number | null
   isPending: boolean
   showAlmost: boolean
+  showWantActions?: boolean
   onRate: (asin: string | null | undefined, stars: number) => void
   onCycleStatus: (asin: string | null | undefined, currentStatus: string) => void
   onMarkRead: (asin: string) => void
   onDismiss: (asin: string) => void
+  onWantAction: (asin: string, action: 'add' | 'remove' | 'not_interested') => void
 }
 
 function StarRating({
@@ -757,11 +851,13 @@ function StatusBadge({
   onCycle,
   asin,
   disabled,
+  wantToRead,
 }: {
   status: string
   onCycle: (asin: string | null | undefined, s: string) => void
   asin: string | null | undefined
   disabled?: boolean
+  wantToRead?: boolean
 }) {
   const colorMap: Record<string, string> = {
     read: 'bg-emerald-400/10 text-emerald-400 border-emerald-400/20',
@@ -769,9 +865,15 @@ function StatusBadge({
     reading: 'bg-blue-400/10 text-blue-400 border-blue-400/20',
     'currently-reading': 'bg-blue-400/10 text-blue-400 border-blue-400/20',
     to_read: 'bg-amber-400/10 text-amber-400 border-amber-400/20',
+    owned_unread: 'bg-amber-400/10 text-amber-400 border-amber-400/20',
+    want_to_read: 'bg-violet-400/10 text-violet-300 border-violet-400/20',
   }
+  const displayStatus =
+    wantToRead && (status === 'owned_unread' || status === 'to_read' || status === 'unstarted')
+      ? 'want_to_read'
+      : status
   const color =
-    colorMap[status] || 'bg-slate-400/10 text-slate-400 border-slate-400/20'
+    colorMap[displayStatus] || 'bg-slate-400/10 text-slate-400 border-slate-400/20'
   return (
     <button
       disabled={disabled}
@@ -780,10 +882,56 @@ function StatusBadge({
         onCycle(asin, status)
       }}
       className={`text-xs px-2 py-0.5 rounded-full border font-medium transition-opacity hover:opacity-70 disabled:opacity-40 ${color}`}
-      title="Click to cycle status (saves to your account)"
+      title="Click to cycle reading progress (Owned → Reading → Read)"
     >
-      {getStatusLabel(status)}
+      {getStatusLabel(displayStatus)}
     </button>
+  )
+}
+
+function WantActions({
+  book,
+  busy,
+  onWantAction,
+  compact,
+}: {
+  book: Book
+  busy: boolean
+  onWantAction: (asin: string, action: 'add' | 'remove' | 'not_interested') => void
+  compact?: boolean
+}) {
+  const asin = book.asin
+  if (!asin) return null
+  const url = buyOrPreorderUrl(book)
+  const future = isFutureRelease(book.releaseDate)
+  const buyLabel = future ? 'Pre-order' : 'Buy'
+
+  return (
+    <div className={`flex ${compact ? 'flex-col gap-1' : 'flex-wrap gap-1.5'} w-full`}>
+      {url && (
+        <a
+          href={url}
+          target="_blank"
+          rel="noopener noreferrer"
+          onClick={(e) => e.stopPropagation()}
+          className="flex-1 text-center px-2 py-1 rounded-md text-[11px] font-semibold bg-amber-500 text-slate-900 hover:bg-amber-400"
+        >
+          {buyLabel} →
+        </a>
+      )}
+      <button
+        type="button"
+        disabled={busy}
+        onClick={(e) => {
+          e.stopPropagation()
+          onWantAction(asin, 'not_interested')
+        }}
+        className="flex-1 px-2 py-1 rounded-md text-[11px] font-medium bg-slate-800 text-slate-300 hover:bg-slate-700 disabled:opacity-50"
+        title="Remove from Want to Read"
+      >
+        Not interested
+      </button>
+    </div>
   )
 }
 
@@ -877,31 +1025,42 @@ function BookCard({
   effectiveRating,
   isPending,
   showAlmost,
+  showWantActions,
   onRate,
   onCycleStatus,
   onMarkRead,
   onDismiss,
+  onWantAction,
 }: CardProps) {
   const runtime = formatRuntime(book.runtime_length_min)
   const asin = book.asin
+  const onWant = isWantToRead(book)
 
   return (
     <div
       className={`group bg-slate-900 rounded-xl border overflow-hidden transition-all hover:-translate-y-0.5 ${
         showAlmost
           ? 'border-orange-500/50 hover:border-orange-400/70'
-          : 'border-slate-800 hover:border-amber-500/40'
+          : onWant
+            ? 'border-violet-500/40 hover:border-violet-400/60'
+            : 'border-slate-800 hover:border-amber-500/40'
       }`}
     >
       <div className="aspect-[2/3] relative overflow-hidden">
         <CoverImage book={book} />
         <div className="absolute top-2 right-2 z-10 flex flex-col items-end gap-1">
           {showAlmost && <AlmostBadge book={book} />}
+          {onWant && !showAlmost && (
+            <div className="text-[10px] leading-tight px-1.5 py-0.5 rounded-md bg-violet-500 text-slate-900 font-semibold shadow-sm">
+              Want
+            </div>
+          )}
           <StatusBadge
             status={effectiveStatus}
             onCycle={onCycleStatus}
             asin={asin}
             disabled={isPending}
+            wantToRead={onWant}
           />
         </div>
         {runtime && (
@@ -926,6 +1085,12 @@ function BookCard({
             #{book.series_num} · {book.series}
           </p>
         )}
+        {book.releaseDate && onWant && (
+          <p className="text-[10px] text-violet-300/80 truncate">
+            {isFutureRelease(book.releaseDate) ? 'Releases' : 'Released'}{' '}
+            {formatDate(book.releaseDate)}
+          </p>
+        )}
         <StarRating
           rating={effectiveRating}
           onRate={onRate}
@@ -941,6 +1106,27 @@ function BookCard({
             compact
           />
         )}
+        {showWantActions && onWant && (
+          <WantActions
+            book={book}
+            busy={isPending}
+            onWantAction={onWantAction}
+            compact
+          />
+        )}
+        {!onWant && isOwnedUnread(book) && asin && (
+          <button
+            type="button"
+            disabled={isPending}
+            onClick={(e) => {
+              e.stopPropagation()
+              onWantAction(asin, 'add')
+            }}
+            className="w-full px-2 py-1 rounded-md text-[11px] font-medium bg-violet-500/15 text-violet-300 border border-violet-500/30 hover:bg-violet-500/25 disabled:opacity-50"
+          >
+            + Want to Read
+          </button>
+        )}
       </div>
     </div>
   )
@@ -952,21 +1138,26 @@ function BookRow({
   effectiveRating,
   isPending,
   showAlmost,
+  showWantActions,
   onRate,
   onCycleStatus,
   onMarkRead,
   onDismiss,
+  onWantAction,
 }: CardProps) {
   const [imgError, setImgError] = useState(false)
   const runtime = formatRuntime(book.runtime_length_min)
   const asin = book.asin
+  const onWant = isWantToRead(book)
 
   return (
     <div
       className={`bg-slate-900 rounded-lg border px-4 py-3 flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 transition-colors ${
         showAlmost
           ? 'border-orange-500/40 hover:border-orange-400/60'
-          : 'border-slate-800 hover:border-slate-700'
+          : onWant
+            ? 'border-violet-500/30 hover:border-violet-400/50'
+            : 'border-slate-800 hover:border-slate-700'
       }`}
     >
       <div className="flex items-center gap-4 min-w-0 flex-1">
@@ -1027,6 +1218,7 @@ function BookRow({
           onCycle={onCycleStatus}
           asin={asin}
           disabled={isPending}
+          wantToRead={onWant}
         />
         {showAlmost && asin && (
           <AlmostActions
@@ -1035,6 +1227,19 @@ function BookRow({
             onMarkRead={onMarkRead}
             onDismiss={onDismiss}
           />
+        )}
+        {showWantActions && onWant && (
+          <WantActions book={book} busy={isPending} onWantAction={onWantAction} />
+        )}
+        {!onWant && isOwnedUnread(book) && asin && (
+          <button
+            type="button"
+            disabled={isPending}
+            onClick={() => onWantAction(asin, 'add')}
+            className="px-2 py-1 rounded-md text-[11px] font-medium bg-violet-500/15 text-violet-300 border border-violet-500/30 hover:bg-violet-500/25 disabled:opacity-50"
+          >
+            + Want
+          </button>
         )}
         {book.sources.includes('audible') && (
           <span title="Audible" className="text-base">

@@ -1,10 +1,11 @@
 import Link from 'next/link'
-import { formatDate } from '@/lib/books'
+import { formatDate, isWantToRead } from '@/lib/books'
 import { getLibraryForCurrentUser } from '@/lib/books/queries'
 import { getUpcomingPageData, type UpcomingPageData } from '@/lib/books/releases'
 import type { UpcomingRelease } from '@/lib/books/types'
 import { createClient } from '@/lib/supabase/server'
 import ReleaseCover from './ReleaseCover'
+import WantButton from './WantButton'
 
 export const dynamic = 'force-dynamic'
 
@@ -58,6 +59,10 @@ export default async function UpcomingPage() {
     isAuthed: library.isAuthed,
     lastRefreshedAt,
   })
+
+  const wantedAsins = new Set(
+    library.books.filter((b) => isWantToRead(b) && b.asin).map((b) => b.asin as string)
+  )
 
   const refreshedLabel = lastRefreshedAt
     ? new Date(lastRefreshedAt).toLocaleString('en-US', {
@@ -131,6 +136,8 @@ export default async function UpcomingPage() {
             : undefined
         }
         showSeriesBadge
+        isAuthed={data.isAuthed}
+        wantedAsins={wantedAsins}
       />
 
       {/* Authors you've read */}
@@ -146,6 +153,8 @@ export default async function UpcomingPage() {
               : undefined
           }
           showSeriesBadge
+          isAuthed={data.isAuthed}
+          wantedAsins={wantedAsins}
         />
       )}
 
@@ -158,7 +167,12 @@ export default async function UpcomingPage() {
           </h2>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {data.announcedNoDate.map((release, i) => (
-              <CompactCard key={release.asin || `${release.title}-${i}`} release={release} />
+              <CompactCard
+                key={release.asin || `${release.title}-${i}`}
+                release={release}
+                isAuthed={data.isAuthed}
+                alreadyWanted={!!(release.asin && wantedAsins.has(release.asin))}
+              />
             ))}
           </div>
         </section>
@@ -186,20 +200,29 @@ export default async function UpcomingPage() {
                 </div>
                 <h3 className="font-semibold text-amber-100 mb-1">{release.title}</h3>
                 <p className="text-slate-400 text-sm mb-2">{release.author}</p>
-                <div className="flex items-center justify-between">
+                <div className="flex items-center justify-between gap-2 flex-wrap">
                   <span className="text-xs text-slate-500">
                     Released {formatDate(release.releaseDate)}
                   </span>
-                  {release.preorderUrl && (
-                    <a
-                      href={release.preorderUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-xs text-amber-500 hover:text-amber-400"
-                    >
-                      Buy →
-                    </a>
-                  )}
+                  <div className="flex items-center gap-2">
+                    {data.isAuthed && (
+                      <WantButton
+                        release={release}
+                        alreadyWanted={!!(release.asin && wantedAsins.has(release.asin))}
+                        compact
+                      />
+                    )}
+                    {release.preorderUrl && (
+                      <a
+                        href={release.preorderUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-xs text-amber-500 hover:text-amber-400"
+                      >
+                        Buy →
+                      </a>
+                    )}
+                  </div>
                 </div>
               </div>
             ))}
@@ -219,6 +242,8 @@ function ReleaseSection({
   releases,
   empty,
   showSeriesBadge,
+  isAuthed,
+  wantedAsins,
 }: {
   title: string
   emoji: string
@@ -226,6 +251,8 @@ function ReleaseSection({
   releases: UpcomingRelease[]
   empty?: string
   showSeriesBadge?: boolean
+  isAuthed?: boolean
+  wantedAsins?: Set<string>
 }) {
   return (
     <section>
@@ -300,20 +327,28 @@ function ReleaseSection({
                           <p className="text-slate-500 text-xs mt-2 italic">{release.notes}</p>
                         )}
                       </div>
-                      <div className="shrink-0 text-right">
+                      <div className="shrink-0 text-right space-y-2">
                         <div className="text-sm font-medium text-amber-400">
                           {formatDate(release.releaseDate)}
                         </div>
-                        {release.preorderUrl && (
-                          <a
-                            href={release.preorderUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="mt-2 inline-block text-xs bg-amber-500/15 text-amber-400 border border-amber-500/30 px-3 py-1.5 rounded-lg hover:bg-amber-500/25 transition-colors"
-                          >
-                            {isPast ? 'View on Audible →' : 'Pre-order →'}
-                          </a>
-                        )}
+                        <div className="flex flex-col items-end gap-2">
+                          {isAuthed && (
+                            <WantButton
+                              release={release}
+                              alreadyWanted={!!(release.asin && wantedAsins?.has(release.asin))}
+                            />
+                          )}
+                          {release.preorderUrl && (
+                            <a
+                              href={release.preorderUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="inline-block text-xs bg-amber-500/15 text-amber-400 border border-amber-500/30 px-3 py-1.5 rounded-lg hover:bg-amber-500/25 transition-colors"
+                            >
+                              {isPast ? 'View on Audible →' : 'Pre-order →'}
+                            </a>
+                          )}
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -327,7 +362,15 @@ function ReleaseSection({
   )
 }
 
-function CompactCard({ release }: { release: UpcomingRelease }) {
+function CompactCard({
+  release,
+  isAuthed,
+  alreadyWanted,
+}: {
+  release: UpcomingRelease
+  isAuthed?: boolean
+  alreadyWanted?: boolean
+}) {
   return (
     <div className="bg-slate-900/60 rounded-xl border border-slate-800 p-4 hover:border-slate-700 transition-all">
       <div className="flex gap-3">
@@ -342,8 +385,11 @@ function CompactCard({ release }: { release: UpcomingRelease }) {
           <h3 className="font-semibold text-amber-100 mb-1">{release.title}</h3>
           <p className="text-slate-400 text-sm mb-2">{release.author}</p>
           {release.notes && <p className="text-slate-500 text-xs italic">{release.notes}</p>}
-          <div className="mt-2">
+          <div className="mt-2 flex items-center justify-between gap-2">
             <span className="text-xs text-slate-600">📅 Date TBA</span>
+            {isAuthed && (
+              <WantButton release={release} alreadyWanted={alreadyWanted} compact />
+            )}
           </div>
         </div>
       </div>

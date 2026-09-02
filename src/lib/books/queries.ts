@@ -18,8 +18,17 @@ const BOOK_EMBED = `
     cover_url, series_name, series_position, publisher, release_date
 `
 
-/** Includes Phase 0 progress columns when migration 002 is applied. */
+/** Includes progress + want-to-read flags (migrations 002/005). */
 const USER_BOOK_SELECT_FULL = `
+  id, asin, purchase_date, status, rating, notes,
+  started_at, finished_at, percent_complete, is_finished,
+  almost_finished_dismissed_at, status_source,
+  want_to_read, not_interested, updated_at,
+  book:books ( ${BOOK_EMBED} )
+`
+
+/** Progress columns without want flags (pre-migration 005). */
+const USER_BOOK_SELECT_PROGRESS = `
   id, asin, purchase_date, status, rating, notes,
   started_at, finished_at, percent_complete, is_finished,
   almost_finished_dismissed_at, status_source, updated_at,
@@ -74,18 +83,28 @@ export async function getLibraryForCurrentUser(): Promise<LibraryLoadResult> {
       .order('purchase_date', { ascending: false, nullsFirst: false })
 
     if (full.error) {
-      // Migration 002 may not be applied yet — fall back to base columns.
-      console.warn('full user_books select failed, trying base columns:', full.error.message)
-      const base = await supabase
+      // Migration 005 may not be applied — try progress-only, then base.
+      console.warn('full user_books select failed, trying progress columns:', full.error.message)
+      const progress = await supabase
         .from('user_books')
-        .select(USER_BOOK_SELECT_BASE)
+        .select(USER_BOOK_SELECT_PROGRESS)
         .eq('user_id', user.id)
         .order('purchase_date', { ascending: false, nullsFirst: false })
-      if (base.error) {
-        errorMessage = base.error.message
-        console.error('getLibraryForCurrentUser error', base.error.message)
+      if (progress.error) {
+        console.warn('progress user_books select failed, trying base columns:', progress.error.message)
+        const base = await supabase
+          .from('user_books')
+          .select(USER_BOOK_SELECT_BASE)
+          .eq('user_id', user.id)
+          .order('purchase_date', { ascending: false, nullsFirst: false })
+        if (base.error) {
+          errorMessage = base.error.message
+          console.error('getLibraryForCurrentUser error', base.error.message)
+        } else {
+          userBooks = (base.data || []) as SupabaseUserBookRow[]
+        }
       } else {
-        userBooks = (base.data || []) as SupabaseUserBookRow[]
+        userBooks = (progress.data || []) as SupabaseUserBookRow[]
       }
     } else {
       userBooks = (full.data || []) as SupabaseUserBookRow[]
@@ -109,8 +128,51 @@ export async function getLibraryForCurrentUser(): Promise<LibraryLoadResult> {
       }
     }
 
+    let books = rows.map(mapUserBookToBook)
+
+    // Attach preorder_url / release_date from series_releases by ASIN when present
+    try {
+      const asins = Array.from(
+        new Set(books.map((b) => b.asin).filter((a): a is string => Boolean(a)))
+      )
+      if (asins.length) {
+        const preorderByAsin = new Map<
+          string,
+          { preorder_url: string | null; release_date: string | null }
+        >()
+        for (let i = 0; i < asins.length; i += 200) {
+          const chunk = asins.slice(i, i + 200)
+          const { data: releases } = await supabase
+            .from('series_releases')
+            .select('asin, preorder_url, release_date')
+            .in('asin', chunk)
+          for (const r of releases || []) {
+            if (!r.asin) continue
+            preorderByAsin.set(r.asin, {
+              preorder_url: r.preorder_url ?? null,
+              release_date: r.release_date ?? null,
+            })
+          }
+        }
+        if (preorderByAsin.size) {
+          books = books.map((b) => {
+            if (!b.asin) return b
+            const hit = preorderByAsin.get(b.asin)
+            if (!hit) return b
+            return {
+              ...b,
+              preorderUrl: b.preorderUrl || hit.preorder_url,
+              releaseDate: b.releaseDate || hit.release_date,
+            }
+          })
+        }
+      }
+    } catch (e) {
+      console.warn('attach series_releases urls failed', e)
+    }
+
     return {
-      books: rows.map(mapUserBookToBook),
+      books,
       isAuthed: true,
       isNewUser: false,
       userId: user.id,

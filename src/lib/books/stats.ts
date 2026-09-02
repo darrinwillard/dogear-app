@@ -1,5 +1,5 @@
 import type { Book, LibraryStats, SeriesInfo } from './types'
-import { isReadStatus, isReadingStatus } from './map'
+import { isReadStatus, isReadingStatus, isWantToRead } from './map'
 
 export function getStatsFromBooks(
   books: Book[],
@@ -12,7 +12,8 @@ export function getStatsFromBooks(
 
   const confirmedRead = books.filter(b => isReadStatus(b.status)).length
   const reading = books.filter(b => isReadingStatus(b.status)).length
-  const wantToRead = books.filter(b => !isReadStatus(b.status) && !isReadingStatus(b.status)).length
+  // Explicit wishlist only — not owned-unread bucket
+  const wantToRead = books.filter(b => isWantToRead(b)).length
 
   const booksThisYear = books.filter(b => {
     if (!isReadStatus(b.status)) return false

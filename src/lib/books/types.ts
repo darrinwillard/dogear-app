@@ -21,6 +21,14 @@ export interface Book {
   finishedAt?: string | null
   startedAt?: string | null
   almostFinishedDismissedAt?: string | null
+  /** Explicit wishlist (Upcoming add / manual). Independent of status. */
+  wantToRead?: boolean | null
+  /** Dismissed from Want to Read — not shown on want list. */
+  notInterested?: boolean | null
+  /** books.release_date when known (Upcoming / catalog). */
+  releaseDate?: string | null
+  /** Preferred buy/preorder URL (from series_releases.preorder_url when available). */
+  preorderUrl?: string | null
 }
 
 export type ReleaseInterestKind = 'series' | 'author' | 'both'

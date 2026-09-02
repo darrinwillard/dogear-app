@@ -21,8 +21,9 @@ const USER_BOOK_CHUNK = 100;
 
 /**
  * HARD RULE: this route must NEVER overwrite user_books.status, rating,
- * finished_at, started_at, notes, almost_finished_dismissed_at, or status_source.
- * Progress fields are advisory only. Status changes only via user APIs / seed.
+ * finished_at, started_at, notes, almost_finished_dismissed_at, status_source,
+ * want_to_read, or not_interested.
+ * Progress fields are advisory only. Status / want flags change only via user APIs / seed.
  */
 export async function POST(_req: NextRequest) {
   const startedAt = new Date().toISOString();
@@ -375,12 +376,16 @@ export async function POST(_req: NextRequest) {
       }
 
       if (!existing) {
+        // New Audible titles default to owned-unread (status=unstarted).
+        // want_to_read stays false — wishlist is explicit only.
         toInsert.push({
           user_id: user.id,
           book_id: book.id,
           asin,
           status: "unstarted",
           purchase_date: progress.purchase_date,
+          want_to_read: false,
+          not_interested: false,
           ...(progress.percent_complete !== undefined
             ? { percent_complete: progress.percent_complete }
             : {}),
@@ -402,28 +407,69 @@ export async function POST(_req: NextRequest) {
         .upsert(chunk, { onConflict: "user_id,asin", ignoreDuplicates: false })
         .select("id");
       if (error) {
-        // If progress columns missing (migration not applied), retry minimal insert
+        // If optional columns missing (migration not applied), retry stripped insert
+        const msg = error.message || "";
         if (
-          error.message?.includes("percent_complete") ||
-          error.message?.includes("is_finished") ||
-          error.message?.includes("progress_synced_at")
+          msg.includes("percent_complete") ||
+          msg.includes("is_finished") ||
+          msg.includes("progress_synced_at") ||
+          msg.includes("want_to_read") ||
+          msg.includes("not_interested")
         ) {
-          const minimal = chunk.map((r) => ({
-            user_id: r.user_id,
-            book_id: r.book_id,
-            asin: r.asin,
-            status: "unstarted",
-            purchase_date: r.purchase_date ?? null,
-          }));
+          const stripped = chunk.map((r) => {
+            const row: Record<string, unknown> = {
+              user_id: r.user_id,
+              book_id: r.book_id,
+              asin: r.asin,
+              status: "unstarted",
+              purchase_date: r.purchase_date ?? null,
+            };
+            // Keep progress if those columns exist; drop want flags on retry
+            if (
+              !msg.includes("percent_complete") &&
+              r.percent_complete !== undefined
+            ) {
+              row.percent_complete = r.percent_complete;
+            }
+            if (!msg.includes("is_finished") && r.is_finished !== undefined) {
+              row.is_finished = r.is_finished;
+            }
+            if (
+              !msg.includes("progress_synced_at") &&
+              r.progress_synced_at !== undefined
+            ) {
+              row.progress_synced_at = r.progress_synced_at;
+            }
+            return row;
+          });
           const retry = await supabase
             .from("user_books")
-            .upsert(minimal, {
+            .upsert(stripped, {
               onConflict: "user_id,asin",
               ignoreDuplicates: true,
             })
             .select("id");
-          if (retry.error) throw retry.error;
-          inserted += retry.data?.length || 0;
+          if (retry.error) {
+            // Last resort: bare minimum columns from schema 001
+            const minimal = chunk.map((r) => ({
+              user_id: r.user_id,
+              book_id: r.book_id,
+              asin: r.asin,
+              status: "unstarted",
+              purchase_date: r.purchase_date ?? null,
+            }));
+            const retry2 = await supabase
+              .from("user_books")
+              .upsert(minimal, {
+                onConflict: "user_id,asin",
+                ignoreDuplicates: true,
+              })
+              .select("id");
+            if (retry2.error) throw retry2.error;
+            inserted += retry2.data?.length || 0;
+          } else {
+            inserted += retry.data?.length || 0;
+          }
         } else {
           throw error;
         }
