@@ -1,6 +1,16 @@
 import { createServerClient } from '@supabase/ssr'
 import { NextResponse, type NextRequest } from 'next/server'
 
+/** Routes that render demo/static data when logged out (Phase 1 guest fallback). */
+const PUBLIC_APP_ROUTES = new Set([
+  '/',
+  '/library',
+  '/series',
+  '/stats',
+  '/upcoming',
+  '/search',
+])
+
 export async function middleware(request: NextRequest) {
   let supabaseResponse = NextResponse.next({ request })
 
@@ -31,7 +41,7 @@ export async function middleware(request: NextRequest) {
 
   const { pathname } = request.nextUrl
 
-  // Allow auth routes and static assets
+  // Allow auth routes, APIs, and static assets
   if (
     pathname.startsWith('/auth') ||
     pathname.startsWith('/_next') ||
@@ -41,7 +51,12 @@ export async function middleware(request: NextRequest) {
     return supabaseResponse
   }
 
-  // Redirect unauthenticated users to login
+  // Guest-readable app surfaces (demo data) — settings/onboarding stay authed
+  if (PUBLIC_APP_ROUTES.has(pathname)) {
+    return supabaseResponse
+  }
+
+  // Everything else (settings, onboarding, …) requires auth
   if (!user) {
     const url = request.nextUrl.clone()
     url.pathname = '/auth/login'
