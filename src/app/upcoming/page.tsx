@@ -4,6 +4,7 @@ import { getLibraryForCurrentUser } from '@/lib/books/queries'
 import { getUpcomingPageData, type UpcomingPageData } from '@/lib/books/releases'
 import type { UpcomingRelease } from '@/lib/books/types'
 import { createClient } from '@/lib/supabase/server'
+import ReleaseCover from './ReleaseCover'
 
 export const dynamic = 'force-dynamic'
 
@@ -266,6 +267,7 @@ function ReleaseSection({
                     } p-5 transition-all`}
                   >
                     <div className="flex items-start justify-between gap-4 flex-wrap">
+                      <ReleaseCover release={release} />
                       <div className="flex-1 min-w-0">
                         <div className="flex items-center gap-2 mb-2 flex-wrap">
                           {showSeriesBadge && (
@@ -328,17 +330,22 @@ function ReleaseSection({
 function CompactCard({ release }: { release: UpcomingRelease }) {
   return (
     <div className="bg-slate-900/60 rounded-xl border border-slate-800 p-4 hover:border-slate-700 transition-all">
-      <div className="mb-2">
-        <span className="text-xs bg-slate-800 text-slate-400 px-2 py-0.5 rounded-full">
-          {release.series}
-          {release.seriesNumber != null ? ` #${release.seriesNumber}` : ''}
-        </span>
-      </div>
-      <h3 className="font-semibold text-amber-100 mb-1">{release.title}</h3>
-      <p className="text-slate-400 text-sm mb-2">{release.author}</p>
-      {release.notes && <p className="text-slate-500 text-xs italic">{release.notes}</p>}
-      <div className="mt-2">
-        <span className="text-xs text-slate-600">📅 Date TBA</span>
+      <div className="flex gap-3">
+        <ReleaseCover release={release} />
+        <div className="flex-1 min-w-0">
+          <div className="mb-2">
+            <span className="text-xs bg-slate-800 text-slate-400 px-2 py-0.5 rounded-full">
+              {release.series}
+              {release.seriesNumber != null ? ` #${release.seriesNumber}` : ''}
+            </span>
+          </div>
+          <h3 className="font-semibold text-amber-100 mb-1">{release.title}</h3>
+          <p className="text-slate-400 text-sm mb-2">{release.author}</p>
+          {release.notes && <p className="text-slate-500 text-xs italic">{release.notes}</p>}
+          <div className="mt-2">
+            <span className="text-xs text-slate-600">📅 Date TBA</span>
+          </div>
+        </div>
       </div>
     </div>
   )
