@@ -238,17 +238,14 @@ export async function POST(_req: NextRequest) {
       if (series.seriesPresent && series.seriesName) {
         row.series_name = series.seriesName;
         if (series.seriesIsRange) {
-          // Range like "1-3": log + store leading number deliberately (not silent bare parseFloat).
+          // Range/omnibus like "1-3": write series NAME only. Never write a
+          // corrupted numeric position (old bug: parseFloat("1-3") === 1).
+          // Leave any existing series_position untouched.
           seriesRangeSkipped++;
-          if (series.seriesPosition != null) {
-            row.series_position = series.seriesPosition;
-          }
           console.log(
-            "[audible-sync] range sequence",
+            "[audible-sync] range sequence skipped for position",
             asin,
-            series.seriesPositionRaw,
-            "-> position",
-            series.seriesPosition
+            series.seriesPositionRaw
           );
         } else if (series.seriesPosition != null) {
           row.series_position = series.seriesPosition;
