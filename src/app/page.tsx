@@ -154,12 +154,24 @@ export default async function Dashboard() {
           </Link>
         </div>
         <p className="text-slate-500 text-xs mb-3">
-          Curated list (last checked March 9, 2026) — live series-release refresh comes in a later phase.
+          {isDemo
+            ? 'Demo snapshot — sign in and Refresh Releases for live Audible catalog data.'
+            : upcomingReleases.length > 0
+              ? 'From Audible catalog · series you follow + authors you’ve read.'
+              : 'No live upcoming titles yet — open Settings → Refresh Releases.'}
         </p>
         <div className="grid sm:grid-cols-3 gap-4">
           {upcomingReleases.map((release, i) => (
-            <UpcomingCard key={`${release.title}-${i}`} release={release} />
+            <UpcomingCard key={release.asin || `${release.title}-${i}`} release={release} />
           ))}
+          {!isDemo && upcomingReleases.length === 0 && (
+            <div className="col-span-3 text-slate-500 text-sm text-center py-6 border border-dashed border-slate-800 rounded-xl">
+              <Link href="/settings" className="text-amber-400 hover:text-amber-300">
+                Refresh Releases in Settings
+              </Link>{' '}
+              to populate this from Audible.
+            </div>
+          )}
         </div>
       </section>
     </div>

@@ -1,3 +1,10 @@
+/**
+ * Demo / guest fallbacks from static JSON snapshots.
+ *
+ * upcoming-releases.json is DEPRECATED as a live data source (stale as of 2026-03-09).
+ * Signed-in users must read series_releases via @/lib/books/releases.
+ * These helpers remain only for guest demo mode and emergency empty fallback.
+ */
 import readingTracker from '@/data/reading-tracker.json'
 import upcomingReleasesData from '@/data/upcoming-releases.json'
 import type { Book, UpcomingRelease } from './types'
@@ -30,6 +37,7 @@ export function getStaticWhatToReadNext() {
   return getWhatToReadNextFromSeries(getStaticSeriesData())
 }
 
+/** @deprecated Demo only — live path uses series_releases */
 export function getUpcomingReleases(limit?: number): UpcomingRelease[] {
   const upcoming = (upcomingReleasesData.confirmedReleases as UpcomingRelease[])
     .filter(r => r.status === 'upcoming')
@@ -42,14 +50,20 @@ export function getUpcomingReleases(limit?: number): UpcomingRelease[] {
   return limit ? upcoming.slice(0, limit) : upcoming
 }
 
+/** @deprecated Demo only — live path uses series_releases */
 export function getAllUpcoming(): UpcomingRelease[] {
   return upcomingReleasesData.confirmedReleases as UpcomingRelease[]
 }
 
+/** @deprecated Demo only — live path uses series_releases */
 export function getComingSoon(): UpcomingRelease[] {
-  return upcomingReleasesData.comingSoonTBA as UpcomingRelease[]
+  return (upcomingReleasesData.comingSoonTBA || []) as UpcomingRelease[]
 }
 
 export function getStaticLastUpdatedLabel(): string {
   return 'Demo data · snapshot March 9, 2026'
+}
+
+export function getStaticUpcomingLastChecked(): string | null {
+  return (upcomingReleasesData as { lastChecked?: string }).lastChecked ?? null
 }

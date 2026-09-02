@@ -22,15 +22,23 @@ export interface Book {
   startedAt?: string | null
 }
 
+export type ReleaseInterestKind = 'series' | 'author' | 'both'
+
 export interface UpcomingRelease {
   series: string
   seriesNumber: number | null
   title: string
   author: string
+  authors?: string[]
   releaseDate: string | null
   status: string
   preorderUrl: string | null
   notes: string | null
+  /** series = actively followed series; author = new from read authors; both */
+  interestKind?: ReleaseInterestKind | null
+  asin?: string | null
+  coverUrl?: string | null
+  source?: string | null
 }
 
 export interface SeriesInfo {

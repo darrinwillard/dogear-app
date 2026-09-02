@@ -11,6 +11,7 @@ import {
   getUpcomingReleases,
   getStaticLastUpdatedLabel,
 } from './static-fallback'
+import { getLiveUpcomingReleases } from './releases'
 
 const BOOK_EMBED = `
     id, asin, title, authors, narrator, runtime_minutes,
@@ -145,9 +146,13 @@ export async function getDashboardData() {
     }
   }
 
-  const series = getSeriesDataFromBooks(library.books, getUpcomingReleases())
+  const liveUpcoming = await getLiveUpcomingReleases()
+  const series = getSeriesDataFromBooks(library.books, liveUpcoming)
   const stats = getStatsFromBooks(library.books, { series })
   const whatToReadNext = getWhatToReadNextFromSeries(series)
+  const upcoming = liveUpcoming
+    .filter((r) => r.status === 'upcoming' || r.status === 'announced')
+    .slice(0, 3)
 
   const lastUpdatedLabel = library.lastSyncedAt
     ? `Live library · last synced ${new Date(library.lastSyncedAt).toLocaleString('en-US', {
@@ -160,7 +165,7 @@ export async function getDashboardData() {
     stats,
     series,
     whatToReadNext,
-    upcoming: getUpcomingReleases(3),
+    upcoming,
     isDemo: false,
     lastUpdatedLabel,
   }
@@ -192,7 +197,8 @@ export async function getSeriesPageData(): Promise<{
     }
   }
 
-  const series = getSeriesDataFromBooks(library.books, getUpcomingReleases())
+  const liveUpcoming = await getLiveUpcomingReleases()
+  const series = getSeriesDataFromBooks(library.books, liveUpcoming)
   const withSeries = series.length
   if (!withSeries) {
     return {
@@ -225,9 +231,10 @@ export async function loadLibraryBundle() {
     library.isAuthed
       ? library.books
       : getAllBooks()
+  const liveUpcoming = library.isAuthed ? await getLiveUpcomingReleases() : []
   const series =
     library.isAuthed
-      ? getSeriesDataFromBooks(library.books, getUpcomingReleases())
+      ? getSeriesDataFromBooks(library.books, liveUpcoming)
       : getStaticSeriesData()
   const stats =
     library.isAuthed

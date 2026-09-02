@@ -3,7 +3,7 @@
  * Server loaders: import from "@/lib/books/queries" in Server Components / route handlers.
  * Audible parsers: import from "@/lib/books/audible-parse" or "@/lib/books/sync-parse" in API routes.
  */
-export type { Book, UpcomingRelease, SeriesInfo, LibraryStats, DbStatus } from './types'
+export type { Book, UpcomingRelease, SeriesInfo, LibraryStats, DbStatus, ReleaseInterestKind } from './types'
 
 export {
   mapDbStatusToUi,
