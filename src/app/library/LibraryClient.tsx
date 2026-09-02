@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useMemo, useCallback } from 'react'
+import { useState, useMemo, useCallback, useEffect } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
@@ -9,6 +9,9 @@ import {
   getStatusLabel,
   formatDate,
   formatRuntime,
+  mapUiStatusToDb,
+  isAlmostFinishedCandidate,
+  almostFinishedLabel,
 } from '@/lib/books'
 
 interface Props {
@@ -19,26 +22,43 @@ interface Props {
   lastSyncedAt?: string | null
 }
 
-type FilterTab = 'all' | 'audible' | 'goodreads' | 'read' | 'reading' | 'want'
+type FilterTab =
+  | 'all'
+  | 'audible'
+  | 'goodreads'
+  | 'read'
+  | 'reading'
+  | 'want'
+  | 'almost'
+
+type PendingMap = Record<string, boolean>
 
 /**
- * Phase 1: server props are source of truth for status/rating when live.
- * localStorage is no longer written. Status/rating mutations land in Phase 2 APIs.
- * (Do not reintroduce title-slug localStorage keys — they can't join to ASIN reliably.)
+ * Live library UI.
+ * - Server props are baseline truth for status/rating/progress.
+ * - Status / mark-as-read / dismiss write via authenticated APIs (ASIN-keyed).
+ * - Almost-finished candidates (percent>=90 or is_finished) get a confirm strip + badge.
  */
 export default function LibraryClient({
-  books,
+  books: initialBooks,
   isAuthed = false,
   isNewUser = false,
   source = 'demo',
   lastSyncedAt = null,
 }: Props) {
   const router = useRouter()
+  const [books, setBooks] = useState<Book[]>(initialBooks)
   const [search, setSearch] = useState('')
   const [activeTab, setActiveTab] = useState<FilterTab>('all')
   const [view, setView] = useState<'grid' | 'list'>('grid')
   const [syncing, setSyncing] = useState(false)
   const [statusNote, setStatusNote] = useState<string | null>(null)
+  const [pending, setPending] = useState<PendingMap>({})
+
+  // Re-sync local optimistic state when server props change (router.refresh).
+  useEffect(() => {
+    setBooks(initialBooks)
+  }, [initialBooks])
 
   const getEffectiveStatus = useCallback((book: Book) => book.status, [])
   const getEffectiveRating = useCallback(
@@ -46,21 +66,196 @@ export default function LibraryClient({
     []
   )
 
-  const setRating = useCallback((_title: string, _stars: number) => {
-    setStatusNote(
-      isAuthed
-        ? 'Rating saves to Supabase in the next phase — not written yet.'
-        : 'Sign in to save ratings across devices.'
-    )
-  }, [isAuthed])
+  const setPendingAsin = useCallback((asin: string, value: boolean) => {
+    setPending((prev) => {
+      if (!!prev[asin] === value) return prev
+      const next = { ...prev }
+      if (value) next[asin] = true
+      else delete next[asin]
+      return next
+    })
+  }, [])
 
-  const cycleStatus = useCallback((_title: string, _currentStatus: string) => {
-    setStatusNote(
-      isAuthed
-        ? 'Status changes save to Supabase in the next phase — display is live read-only for now.'
-        : 'Sign in to save status across devices.'
+  const patchBookLocal = useCallback((asin: string, patch: Partial<Book>) => {
+    setBooks((prev) =>
+      prev.map((b) => (b.asin === asin ? { ...b, ...patch } : b))
     )
-  }, [isAuthed])
+  }, [])
+
+  const setRating = useCallback(
+    async (asin: string | null | undefined, stars: number) => {
+      if (!asin) {
+        setStatusNote('Missing ASIN — cannot save rating.')
+        return
+      }
+      if (!isAuthed) {
+        setStatusNote('Sign in to save ratings across devices.')
+        return
+      }
+      setPendingAsin(asin, true)
+      const previous = books.find((b) => b.asin === asin)?.gr_rating ?? null
+      patchBookLocal(asin, { gr_rating: stars })
+      try {
+        const res = await fetch('/api/books/rating', {
+          method: 'PATCH',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ asin, rating: stars }),
+        })
+        if (res.status === 404) {
+          // Rating API may not be shipped yet — soft message, keep optimistic
+          setStatusNote('Rating API not available yet — change not saved.')
+          patchBookLocal(asin, { gr_rating: previous })
+          return
+        }
+        const data = await res.json().catch(() => ({}))
+        if (!res.ok) {
+          patchBookLocal(asin, { gr_rating: previous })
+          setStatusNote(data.error || 'Failed to save rating')
+          return
+        }
+        setStatusNote(null)
+        router.refresh()
+      } catch (e) {
+        patchBookLocal(asin, { gr_rating: previous })
+        setStatusNote(e instanceof Error ? e.message : 'Failed to save rating')
+      } finally {
+        setPendingAsin(asin, false)
+      }
+    },
+    [books, isAuthed, patchBookLocal, router, setPendingAsin]
+  )
+
+  const applyStatus = useCallback(
+    async (asin: string, uiOrDbStatus: string) => {
+      if (!isAuthed) {
+        setStatusNote('Sign in to save status across devices.')
+        return
+      }
+      setPendingAsin(asin, true)
+      const previous = books.find((b) => b.asin === asin)
+      const dbStatus = mapUiStatusToDb(uiOrDbStatus)
+      const uiStatus =
+        dbStatus === 'completed'
+          ? 'read'
+          : dbStatus === 'in_progress'
+            ? 'reading'
+            : 'to_read'
+
+      // Optimistic
+      patchBookLocal(asin, {
+        status: uiStatus,
+        statusSource: 'user',
+        finishedAt: dbStatus === 'completed' ? new Date().toISOString() : null,
+        // Clear almost-finished once completed
+        ...(dbStatus === 'completed'
+          ? { almostFinishedDismissedAt: previous?.almostFinishedDismissedAt ?? null }
+          : {}),
+      })
+
+      try {
+        const res = await fetch('/api/books/status', {
+          method: 'PATCH',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ asin, status: dbStatus }),
+        })
+        const data = await res.json().catch(() => ({}))
+        if (!res.ok) {
+          if (previous) {
+            patchBookLocal(asin, {
+              status: previous.status,
+              statusSource: previous.statusSource,
+              finishedAt: previous.finishedAt,
+            })
+          }
+          setStatusNote(data.error || 'Failed to save status')
+          return
+        }
+        setStatusNote(
+          dbStatus === 'completed' ? 'Marked as read ✓' : `Status → ${getStatusLabel(uiStatus)}`
+        )
+        router.refresh()
+      } catch (e) {
+        if (previous) {
+          patchBookLocal(asin, {
+            status: previous.status,
+            statusSource: previous.statusSource,
+            finishedAt: previous.finishedAt,
+          })
+        }
+        setStatusNote(e instanceof Error ? e.message : 'Failed to save status')
+      } finally {
+        setPendingAsin(asin, false)
+      }
+    },
+    [books, isAuthed, patchBookLocal, router, setPendingAsin]
+  )
+
+  const cycleStatus = useCallback(
+    (asin: string | null | undefined, currentStatus: string) => {
+      if (!asin) {
+        setStatusNote('Missing ASIN — cannot change status.')
+        return
+      }
+      const order = ['to_read', 'reading', 'read'] as const
+      const normalized =
+        currentStatus === 'read_no_date'
+          ? 'read'
+          : currentStatus === 'currently-reading'
+            ? 'reading'
+            : currentStatus === 'unstarted'
+              ? 'to_read'
+              : currentStatus === 'in_progress'
+                ? 'reading'
+                : currentStatus === 'completed'
+                  ? 'read'
+                  : currentStatus
+      const idx = order.indexOf(normalized as (typeof order)[number])
+      const next = order[(idx + 1) % order.length]
+      void applyStatus(asin, next)
+    },
+    [applyStatus]
+  )
+
+  const markAsRead = useCallback(
+    (asin: string) => {
+      void applyStatus(asin, 'completed')
+    },
+    [applyStatus]
+  )
+
+  const dismissAlmostFinished = useCallback(
+    async (asin: string) => {
+      if (!isAuthed) {
+        setStatusNote('Sign in to dismiss prompts.')
+        return
+      }
+      setPendingAsin(asin, true)
+      const previous = books.find((b) => b.asin === asin)?.almostFinishedDismissedAt ?? null
+      const now = new Date().toISOString()
+      patchBookLocal(asin, { almostFinishedDismissedAt: now })
+      try {
+        const res = await fetch('/api/books/dismiss-almost-finished', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ asin }),
+        })
+        const data = await res.json().catch(() => ({}))
+        if (!res.ok) {
+          patchBookLocal(asin, { almostFinishedDismissedAt: previous })
+          setStatusNote(data.error || 'Failed to dismiss')
+          return
+        }
+        setStatusNote('Dismissed — won’t nag on this title.')
+        router.refresh()
+      } catch (e) {
+        patchBookLocal(asin, { almostFinishedDismissedAt: previous })
+        setStatusNote(e instanceof Error ? e.message : 'Failed to dismiss')
+      } finally {
+        setPendingAsin(asin, false)
+      }
+    },
+    [books, isAuthed, patchBookLocal, router, setPendingAsin]
+  )
 
   async function handleSync() {
     setSyncing(true)
@@ -79,6 +274,9 @@ export default function LibraryClient({
           `Synced ${data.books_synced ?? 0} books` +
             (data.series_fields_written != null
               ? ` · series tags written: ${data.series_fields_written}`
+              : '') +
+            (data.progress_fields_written != null
+              ? ` · progress updates: ${data.progress_fields_written}`
               : '')
         )
       }
@@ -87,6 +285,11 @@ export default function LibraryClient({
       setSyncing(false)
     }
   }
+
+  const almostFinished = useMemo(
+    () => books.filter(isAlmostFinishedCandidate),
+    [books]
+  )
 
   const tabFiltered = useMemo(() => {
     return books.filter((book) => {
@@ -97,6 +300,7 @@ export default function LibraryClient({
       if (activeTab === 'reading')
         return status === 'reading' || status === 'currently-reading'
       if (activeTab === 'want') return status === 'to_read'
+      if (activeTab === 'almost') return isAlmostFinishedCandidate(book)
       return true
     })
   }, [books, activeTab, getEffectiveStatus])
@@ -133,8 +337,9 @@ export default function LibraryClient({
       withSeries,
       avgRating,
       ratedCount: rated.length,
+      almost: almostFinished.length,
     }
-  }, [books, getEffectiveStatus, getEffectiveRating])
+  }, [books, getEffectiveStatus, getEffectiveRating, almostFinished.length])
 
   const tabs: { key: FilterTab; label: string; count?: number }[] = [
     { key: 'all', label: 'All', count: books.length },
@@ -168,6 +373,11 @@ export default function LibraryClient({
       key: 'want',
       label: 'Want to Read',
       count: books.filter((b) => getEffectiveStatus(b) === 'to_read').length,
+    },
+    {
+      key: 'almost',
+      label: 'Almost done',
+      count: almostFinished.length,
     },
   ]
 
@@ -259,9 +469,27 @@ export default function LibraryClient({
       </div>
 
       {statusNote && (
-        <div className="text-sm text-amber-200/90 bg-amber-500/10 border border-amber-500/20 rounded-lg px-3 py-2">
-          {statusNote}
+        <div className="text-sm text-amber-200/90 bg-amber-500/10 border border-amber-500/20 rounded-lg px-3 py-2 flex items-start justify-between gap-3">
+          <span>{statusNote}</span>
+          <button
+            type="button"
+            onClick={() => setStatusNote(null)}
+            className="text-slate-400 hover:text-slate-200 text-xs shrink-0"
+            aria-label="Dismiss"
+          >
+            ✕
+          </button>
         </div>
+      )}
+
+      {isAuthed && almostFinished.length > 0 && activeTab !== 'almost' && (
+        <AlmostFinishedStrip
+          books={almostFinished}
+          pending={pending}
+          onMarkRead={markAsRead}
+          onDismiss={dismissAlmostFinished}
+          onSeeAll={() => setActiveTab('almost')}
+        />
       )}
 
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
@@ -274,8 +502,8 @@ export default function LibraryClient({
           <div className="text-xs text-slate-400 mt-0.5">Read (DB)</div>
         </div>
         <div className="bg-slate-900 border border-slate-800 rounded-xl p-3 text-center">
-          <div className="text-xl font-bold text-blue-400">{stats.withSeries}</div>
-          <div className="text-xs text-slate-400 mt-0.5">With series</div>
+          <div className="text-xl font-bold text-orange-400">{stats.almost}</div>
+          <div className="text-xs text-slate-400 mt-0.5">Almost finished</div>
         </div>
         <div className="bg-slate-900 border border-slate-800 rounded-xl p-3 text-center">
           <div className="text-xl font-bold text-amber-400">
@@ -300,7 +528,9 @@ export default function LibraryClient({
             onClick={() => setActiveTab(tab.key)}
             className={`px-3 py-1.5 rounded-full text-sm font-medium transition-colors ${
               activeTab === tab.key
-                ? 'bg-amber-500 text-slate-900'
+                ? tab.key === 'almost'
+                  ? 'bg-orange-500 text-slate-900'
+                  : 'bg-amber-500 text-slate-900'
                 : 'bg-slate-800 text-slate-400 hover:text-amber-200 hover:bg-slate-700'
             }`}
           >
@@ -326,8 +556,12 @@ export default function LibraryClient({
               book={book}
               effectiveStatus={getEffectiveStatus(book)}
               effectiveRating={getEffectiveRating(book)}
-              onRate={setRating}
+              isPending={!!(book.asin && pending[book.asin])}
+              showAlmost={isAlmostFinishedCandidate(book)}
+              onRate={(asin, stars) => void setRating(asin, stars)}
               onCycleStatus={cycleStatus}
+              onMarkRead={markAsRead}
+              onDismiss={dismissAlmostFinished}
             />
           ))}
         </div>
@@ -339,8 +573,12 @@ export default function LibraryClient({
               book={book}
               effectiveStatus={getEffectiveStatus(book)}
               effectiveRating={getEffectiveRating(book)}
-              onRate={setRating}
+              isPending={!!(book.asin && pending[book.asin])}
+              showAlmost={isAlmostFinishedCandidate(book)}
+              onRate={(asin, stars) => void setRating(asin, stars)}
               onCycleStatus={cycleStatus}
+              onMarkRead={markAsRead}
+              onDismiss={dismissAlmostFinished}
             />
           ))}
         </div>
@@ -365,22 +603,107 @@ export default function LibraryClient({
   )
 }
 
+function AlmostFinishedStrip({
+  books,
+  pending,
+  onMarkRead,
+  onDismiss,
+  onSeeAll,
+}: {
+  books: Book[]
+  pending: PendingMap
+  onMarkRead: (asin: string) => void
+  onDismiss: (asin: string) => void
+  onSeeAll: () => void
+}) {
+  const preview = books.slice(0, 5)
+  return (
+    <div className="rounded-xl border border-orange-500/30 bg-orange-500/10 p-4 space-y-3">
+      <div className="flex items-start justify-between gap-3">
+        <div>
+          <h2 className="text-sm font-semibold text-orange-200">
+            Finish these? · {books.length} near the end
+          </h2>
+          <p className="text-xs text-orange-200/70 mt-0.5">
+            Audible shows ≥90% (or finished). Confirm to mark read — never auto-completed.
+          </p>
+        </div>
+        {books.length > preview.length && (
+          <button
+            type="button"
+            onClick={onSeeAll}
+            className="text-xs text-orange-300 hover:text-orange-100 shrink-0"
+          >
+            See all →
+          </button>
+        )}
+      </div>
+      <ul className="space-y-2">
+        {preview.map((book) => {
+          const asin = book.asin
+          if (!asin) return null
+          const busy = !!pending[asin]
+          return (
+            <li
+              key={asin}
+              className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3 bg-slate-950/40 rounded-lg px-3 py-2"
+            >
+              <div className="min-w-0 flex-1">
+                <div className="text-sm text-amber-50 truncate font-medium">
+                  {book.title}
+                </div>
+                <div className="text-xs text-slate-400 truncate">
+                  {book.authors[0] || 'Unknown'} · {almostFinishedLabel(book)}
+                </div>
+              </div>
+              <div className="flex items-center gap-2 shrink-0">
+                <button
+                  type="button"
+                  disabled={busy}
+                  onClick={() => onMarkRead(asin)}
+                  className="px-3 py-1.5 rounded-lg text-xs font-semibold bg-emerald-500 text-slate-900 hover:bg-emerald-400 disabled:opacity-50"
+                >
+                  Mark as read
+                </button>
+                <button
+                  type="button"
+                  disabled={busy}
+                  onClick={() => onDismiss(asin)}
+                  className="px-3 py-1.5 rounded-lg text-xs font-medium bg-slate-800 text-slate-300 hover:bg-slate-700 disabled:opacity-50"
+                >
+                  Not yet
+                </button>
+              </div>
+            </li>
+          )
+        })}
+      </ul>
+    </div>
+  )
+}
+
 interface CardProps {
   book: Book
   effectiveStatus: string
   effectiveRating: number | null
-  onRate: (title: string, stars: number) => void
-  onCycleStatus: (title: string, currentStatus: string) => void
+  isPending: boolean
+  showAlmost: boolean
+  onRate: (asin: string | null | undefined, stars: number) => void
+  onCycleStatus: (asin: string | null | undefined, currentStatus: string) => void
+  onMarkRead: (asin: string) => void
+  onDismiss: (asin: string) => void
 }
 
 function StarRating({
   rating,
   onRate,
-  title,
+  asin,
+  disabled,
 }: {
   rating: number | null
-  onRate: (t: string, s: number) => void
-  title: string
+  onRate: (asin: string | null | undefined, s: number) => void
+  asin: string | null | undefined
+  disabled?: boolean
 }) {
   const [hover, setHover] = useState<number | null>(null)
   return (
@@ -388,13 +711,14 @@ function StarRating({
       {[1, 2, 3, 4, 5].map((star) => (
         <button
           key={star}
+          disabled={disabled}
           onClick={(e) => {
             e.stopPropagation()
-            onRate(title, star)
+            onRate(asin, star)
           }}
           onMouseEnter={() => setHover(star)}
           onMouseLeave={() => setHover(null)}
-          className={`text-xs leading-none transition-colors ${
+          className={`text-xs leading-none transition-colors disabled:opacity-40 ${
             star <= (hover ?? rating ?? 0)
               ? 'text-amber-400'
               : 'text-slate-600 hover:text-amber-600'
@@ -410,11 +734,13 @@ function StarRating({
 function StatusBadge({
   status,
   onCycle,
-  title,
+  asin,
+  disabled,
 }: {
   status: string
-  onCycle: (t: string, s: string) => void
-  title: string
+  onCycle: (asin: string | null | undefined, s: string) => void
+  asin: string | null | undefined
+  disabled?: boolean
 }) {
   const colorMap: Record<string, string> = {
     read: 'bg-emerald-400/10 text-emerald-400 border-emerald-400/20',
@@ -427,15 +753,68 @@ function StatusBadge({
     colorMap[status] || 'bg-slate-400/10 text-slate-400 border-slate-400/20'
   return (
     <button
+      disabled={disabled}
       onClick={(e) => {
         e.stopPropagation()
-        onCycle(title, status)
+        onCycle(asin, status)
       }}
-      className={`text-xs px-2 py-0.5 rounded-full border font-medium transition-opacity hover:opacity-70 ${color}`}
-      title="Status from server (writes in Phase 2)"
+      className={`text-xs px-2 py-0.5 rounded-full border font-medium transition-opacity hover:opacity-70 disabled:opacity-40 ${color}`}
+      title="Click to cycle status (saves to your account)"
     >
       {getStatusLabel(status)}
     </button>
+  )
+}
+
+function AlmostBadge({ book }: { book: Book }) {
+  return (
+    <div
+      className="text-[10px] leading-tight px-1.5 py-0.5 rounded-md bg-orange-500 text-slate-900 font-semibold shadow-sm"
+      title="Audible progress suggests this may be finished"
+    >
+      Almost · {book.percentComplete != null ? `${Math.round(book.percentComplete)}%` : 'done'}
+    </div>
+  )
+}
+
+function AlmostActions({
+  asin,
+  busy,
+  onMarkRead,
+  onDismiss,
+  compact,
+}: {
+  asin: string
+  busy: boolean
+  onMarkRead: (asin: string) => void
+  onDismiss: (asin: string) => void
+  compact?: boolean
+}) {
+  return (
+    <div className={`flex ${compact ? 'flex-col gap-1' : 'flex-wrap gap-1.5'} w-full`}>
+      <button
+        type="button"
+        disabled={busy}
+        onClick={(e) => {
+          e.stopPropagation()
+          onMarkRead(asin)
+        }}
+        className="flex-1 px-2 py-1 rounded-md text-[11px] font-semibold bg-emerald-500 text-slate-900 hover:bg-emerald-400 disabled:opacity-50"
+      >
+        Mark as read?
+      </button>
+      <button
+        type="button"
+        disabled={busy}
+        onClick={(e) => {
+          e.stopPropagation()
+          onDismiss(asin)
+        }}
+        className="flex-1 px-2 py-1 rounded-md text-[11px] font-medium bg-slate-800 text-slate-300 hover:bg-slate-700 disabled:opacity-50"
+      >
+        Not yet
+      </button>
+    </div>
   )
 }
 
@@ -475,20 +854,33 @@ function BookCard({
   book,
   effectiveStatus,
   effectiveRating,
+  isPending,
+  showAlmost,
   onRate,
   onCycleStatus,
+  onMarkRead,
+  onDismiss,
 }: CardProps) {
   const runtime = formatRuntime(book.runtime_length_min)
+  const asin = book.asin
 
   return (
-    <div className="group bg-slate-900 rounded-xl border border-slate-800 overflow-hidden hover:border-amber-500/40 transition-all hover:-translate-y-0.5">
+    <div
+      className={`group bg-slate-900 rounded-xl border overflow-hidden transition-all hover:-translate-y-0.5 ${
+        showAlmost
+          ? 'border-orange-500/50 hover:border-orange-400/70'
+          : 'border-slate-800 hover:border-amber-500/40'
+      }`}
+    >
       <div className="aspect-[2/3] relative overflow-hidden">
         <CoverImage book={book} />
-        <div className="absolute top-2 right-2 z-10">
+        <div className="absolute top-2 right-2 z-10 flex flex-col items-end gap-1">
+          {showAlmost && <AlmostBadge book={book} />}
           <StatusBadge
             status={effectiveStatus}
             onCycle={onCycleStatus}
-            title={book.title}
+            asin={asin}
+            disabled={isPending}
           />
         </div>
         {runtime && (
@@ -513,7 +905,21 @@ function BookCard({
             #{book.series_num} · {book.series}
           </p>
         )}
-        <StarRating rating={effectiveRating} onRate={onRate} title={book.title} />
+        <StarRating
+          rating={effectiveRating}
+          onRate={onRate}
+          asin={asin}
+          disabled={isPending}
+        />
+        {showAlmost && asin && (
+          <AlmostActions
+            asin={asin}
+            busy={isPending}
+            onMarkRead={onMarkRead}
+            onDismiss={onDismiss}
+            compact
+          />
+        )}
       </div>
     </div>
   )
@@ -523,48 +929,64 @@ function BookRow({
   book,
   effectiveStatus,
   effectiveRating,
+  isPending,
+  showAlmost,
   onRate,
   onCycleStatus,
+  onMarkRead,
+  onDismiss,
 }: CardProps) {
   const [imgError, setImgError] = useState(false)
   const runtime = formatRuntime(book.runtime_length_min)
+  const asin = book.asin
 
   return (
-    <div className="bg-slate-900 rounded-lg border border-slate-800 px-4 py-3 flex items-center gap-4 hover:border-slate-700 transition-colors">
-      <div className="w-10 h-14 bg-slate-800 rounded overflow-hidden relative shrink-0">
-        {book.cover_url && !imgError ? (
-          <Image
-            src={book.cover_url}
-            alt={book.title}
-            fill
-            className="object-cover"
-            onError={() => setImgError(true)}
-            sizes="40px"
-            unoptimized
-          />
-        ) : (
-          <div className="absolute inset-0 flex items-center justify-center">
-            <span className="text-slate-600 text-xs font-serif">📖</span>
+    <div
+      className={`bg-slate-900 rounded-lg border px-4 py-3 flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 transition-colors ${
+        showAlmost
+          ? 'border-orange-500/40 hover:border-orange-400/60'
+          : 'border-slate-800 hover:border-slate-700'
+      }`}
+    >
+      <div className="flex items-center gap-4 min-w-0 flex-1">
+        <div className="w-10 h-14 bg-slate-800 rounded overflow-hidden relative shrink-0">
+          {book.cover_url && !imgError ? (
+            <Image
+              src={book.cover_url}
+              alt={book.title}
+              fill
+              className="object-cover"
+              onError={() => setImgError(true)}
+              sizes="40px"
+              unoptimized
+            />
+          ) : (
+            <div className="absolute inset-0 flex items-center justify-center">
+              <span className="text-slate-600 text-xs font-serif">📖</span>
+            </div>
+          )}
+        </div>
+
+        <div className="flex-1 min-w-0">
+          <div className="flex items-center gap-2 flex-wrap">
+            <h3 className="font-medium text-amber-100 text-sm truncate">{book.title}</h3>
+            {showAlmost && <AlmostBadge book={book} />}
           </div>
-        )}
+          <p className="text-slate-400 text-xs mt-0.5">{book.authors.join(', ')}</p>
+          {book.narrator && (
+            <p className="text-slate-500 text-xs mt-0.5 truncate">
+              🎙 {book.narrator}
+            </p>
+          )}
+          {book.series && (
+            <p className="text-amber-700 text-xs mt-0.5">
+              {book.series} #{book.series_num}
+            </p>
+          )}
+        </div>
       </div>
 
-      <div className="flex-1 min-w-0">
-        <h3 className="font-medium text-amber-100 text-sm truncate">{book.title}</h3>
-        <p className="text-slate-400 text-xs mt-0.5">{book.authors.join(', ')}</p>
-        {book.narrator && (
-          <p className="text-slate-500 text-xs mt-0.5 truncate">
-            🎙 {book.narrator}
-          </p>
-        )}
-        {book.series && (
-          <p className="text-amber-700 text-xs mt-0.5">
-            {book.series} #{book.series_num}
-          </p>
-        )}
-      </div>
-
-      <div className="shrink-0 flex items-center gap-3">
+      <div className="shrink-0 flex flex-wrap items-center gap-2 sm:gap-3">
         {runtime && (
           <span className="hidden sm:block text-xs text-slate-500">{runtime}</span>
         )}
@@ -573,12 +995,26 @@ function BookRow({
             {formatDate(book.audible_purchased)}
           </div>
         )}
-        <StarRating rating={effectiveRating} onRate={onRate} title={book.title} />
+        <StarRating
+          rating={effectiveRating}
+          onRate={onRate}
+          asin={asin}
+          disabled={isPending}
+        />
         <StatusBadge
           status={effectiveStatus}
           onCycle={onCycleStatus}
-          title={book.title}
+          asin={asin}
+          disabled={isPending}
         />
+        {showAlmost && asin && (
+          <AlmostActions
+            asin={asin}
+            busy={isPending}
+            onMarkRead={onMarkRead}
+            onDismiss={onDismiss}
+          />
+        )}
         {book.sources.includes('audible') && (
           <span title="Audible" className="text-base">
             🎧

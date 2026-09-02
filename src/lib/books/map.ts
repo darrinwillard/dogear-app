@@ -87,6 +87,7 @@ export function mapUserBookToBook(ub: SupabaseUserBookRow): Book {
     statusSource: ub.status_source ?? null,
     finishedAt: ub.finished_at ?? null,
     startedAt: ub.started_at ?? null,
+    almostFinishedDismissedAt: ub.almost_finished_dismissed_at ?? null,
   }
 }
 

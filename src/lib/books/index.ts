@@ -20,6 +20,11 @@ export {
 
 export { getSeriesDataFromBooks, getWhatToReadNextFromSeries, isInProgressSeries } from './series'
 export { getStatsFromBooks } from './stats'
+export {
+  ALMOST_FINISHED_THRESHOLD,
+  isAlmostFinishedCandidate,
+  almostFinishedLabel,
+} from './progress'
 
 export {
   getAllBooks,

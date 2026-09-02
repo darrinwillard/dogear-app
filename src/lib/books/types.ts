@@ -20,6 +20,7 @@ export interface Book {
   statusSource?: string | null
   finishedAt?: string | null
   startedAt?: string | null
+  almostFinishedDismissedAt?: string | null
 }
 
 export type ReleaseInterestKind = 'series' | 'author' | 'both'
