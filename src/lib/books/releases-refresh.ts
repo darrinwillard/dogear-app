@@ -394,6 +394,17 @@ export async function refreshReleasesForUser(opts: {
     }
   }
 
+  // Always mirror covers onto books by ASIN so Upcoming can join them even when
+  // migration 003 (series_releases.cover_url) has not been applied yet.
+  // books.cover_url has existed since migration 001.
+  try {
+    await mirrorReleaseCoversToBooks(supabase, Array.from(byAsin.values()))
+  } catch (e) {
+    errors.push(
+      `mirror covers to books: ${e instanceof Error ? e.message : String(e)}`
+    )
+  }
+
   // Stamp user profile when migration 003 column exists
   if (profileCols.has('last_releases_synced_at')) {
     await supabase
@@ -427,6 +438,64 @@ export async function refreshReleasesForUser(opts: {
     errors: errors.slice(0, 12),
     sample,
   }
+}
+
+/**
+ * Mirror catalog cover URLs onto books.cover_url by ASIN.
+ * Creates a lightweight books row when the ASIN is not already in the library,
+ * so Upcoming can join covers without requiring series_releases.cover_url.
+ */
+export async function mirrorReleaseCoversToBooks(
+  supabase: SupabaseClient,
+  releases: Array<{ asin: string; title: string; authors: string[]; coverUrl: string | null; releaseDate: string | null }>
+): Promise<{ mirrored: number; inserted: number }> {
+  const withCover = releases.filter((r) => r.asin && r.coverUrl)
+  if (!withCover.length) return { mirrored: 0, inserted: 0 }
+
+  const asins = withCover.map((r) => r.asin)
+  const existingByAsin = new Map<string, { id: string; cover_url: string | null }>()
+  for (let i = 0; i < asins.length; i += 200) {
+    const chunk = asins.slice(i, i + 200)
+    const { data } = await supabase
+      .from('books')
+      .select('id, asin, cover_url')
+      .in('asin', chunk)
+    for (const row of data || []) {
+      existingByAsin.set(row.asin, { id: row.id, cover_url: row.cover_url })
+    }
+  }
+
+  let mirrored = 0
+  let inserted = 0
+  const nowIso = new Date().toISOString()
+
+  for (const r of withCover) {
+    const existing = existingByAsin.get(r.asin)
+    if (existing?.id) {
+      if (existing.cover_url === r.coverUrl) continue
+      const { error } = await supabase
+        .from('books')
+        .update({ cover_url: r.coverUrl, updated_at: nowIso })
+        .eq('id', existing.id)
+      if (!error) mirrored++
+      continue
+    }
+
+    const { error } = await supabase.from('books').insert({
+      asin: r.asin,
+      title: r.title || r.asin,
+      authors: r.authors || [],
+      cover_url: r.coverUrl,
+      release_date: r.releaseDate,
+      updated_at: nowIso,
+    })
+    if (!error) {
+      inserted++
+      existingByAsin.set(r.asin, { id: 'new', cover_url: r.coverUrl })
+    }
+  }
+
+  return { mirrored, inserted }
 }
 
 // Re-export for tests / scripts

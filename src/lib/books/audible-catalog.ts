@@ -14,6 +14,7 @@
  */
 
 import { parseSeriesSequence } from './sync-parse'
+import { readCoverUrl, type AudibleItem } from './audible-parse'
 
 export const AUDIBLE_CATALOG_RESPONSE_GROUPS = [
   'contributors',
@@ -24,6 +25,9 @@ export const AUDIBLE_CATALOG_RESPONSE_GROUPS = [
   'series',
   'product_details',
 ].join(',')
+
+/** Request sizes that map cleanly into product_images keys (never include 0 — Audible 400s). */
+export const AUDIBLE_CATALOG_IMAGE_SIZES = '300,500,1024'
 
 export interface CatalogProduct {
   asin?: string
@@ -111,11 +115,10 @@ export function normalizeCatalogProduct(
     ymd(p.publication_datetime) ||
     ymd(p.date_first_available)
 
-  const cover =
-    p.product_images?.['500'] ||
-    p.product_images?.['300'] ||
-    p.product_images?.['0'] ||
-    null
+  // Same product_images shape as library when `media` is requested.
+  // Confirmed 2026-09-01: catalog search, product-by-ASIN, and sims all return
+  // product_images with media in response_groups (no separate field name).
+  const cover = readCoverUrl(p as AudibleItem) ?? null
 
   return {
     asin: p.asin,
@@ -153,6 +156,7 @@ export async function searchCatalogByAuthor(
     num_results: String(opts.numResults ?? 20),
     page: String(opts.page ?? 0),
     response_groups: AUDIBLE_CATALOG_RESPONSE_GROUPS,
+    image_sizes: AUDIBLE_CATALOG_IMAGE_SIZES,
   })
   const res = await audibleGet(accessToken, `/1.0/catalog/products?${params}`)
   if (!res.ok) {
@@ -176,6 +180,7 @@ export async function getSeriesSims(
     similarity_type: similarityType,
     num_results: String(numResults),
     response_groups: AUDIBLE_CATALOG_RESPONSE_GROUPS,
+    image_sizes: AUDIBLE_CATALOG_IMAGE_SIZES,
   })
   const res = await audibleGet(
     accessToken,
@@ -191,6 +196,62 @@ export async function getSeriesSims(
   return products
     .map((p) => normalizeCatalogProduct(p, 'audible_sims'))
     .filter((x): x is NormalizedCatalogRelease => Boolean(x))
+}
+
+/**
+ * Bulk product lookup by ASIN list. Used for cover backfill and per-ASIN enrichment.
+ * Audible accepts comma-separated `asins` on /1.0/catalog/products.
+ */
+export async function fetchCatalogProductsByAsins(
+  accessToken: string,
+  asins: string[],
+  opts: { chunkSize?: number } = {}
+): Promise<NormalizedCatalogRelease[]> {
+  const chunkSize = opts.chunkSize ?? 20
+  const out: NormalizedCatalogRelease[] = []
+  const unique = Array.from(new Set(asins.map((a) => a.trim()).filter(Boolean)))
+  for (let i = 0; i < unique.length; i += chunkSize) {
+    const chunk = unique.slice(i, i + chunkSize)
+    const params = new URLSearchParams({
+      asins: chunk.join(','),
+      response_groups: AUDIBLE_CATALOG_RESPONSE_GROUPS,
+      image_sizes: AUDIBLE_CATALOG_IMAGE_SIZES,
+    })
+    const res = await audibleGet(accessToken, `/1.0/catalog/products?${params}`)
+    if (!res.ok) {
+      const text = await res.text()
+      throw new Error(`catalog asins fetch failed (${res.status}): ${text.slice(0, 180)}`)
+    }
+    const data = await res.json()
+    const products: CatalogProduct[] = data.products || []
+    for (const p of products) {
+      // Skip english/book filters for backfill — we already stored these ASINs as releases.
+      // Still normalize when possible; fall back to a minimal cover-only row.
+      const norm = normalizeCatalogProduct(p, 'audible_catalog')
+      if (norm) {
+        out.push(norm)
+        continue
+      }
+      if (!p?.asin) continue
+      const cover = readCoverUrl(p as AudibleItem) ?? null
+      if (!cover && !p.title) continue
+      out.push({
+        asin: p.asin,
+        title: (p.title || p.asin).trim(),
+        authors: cleanAuthors(p.authors),
+        seriesName: Array.isArray(p.series) ? p.series[0]?.title?.trim() || null : null,
+        seriesPosition: null,
+        seriesPositionRaw: null,
+        releaseDate: ymd(p.release_date) || ymd(p.issue_date) || null,
+        language: p.language || null,
+        contentType: p.content_delivery_type || p.content_type || null,
+        coverUrl: cover,
+        preorderUrl: `https://www.audible.com/pd/${p.asin}`,
+        source: 'audible_catalog',
+      })
+    }
+  }
+  return out
 }
 
 /** Case-fold + strip common punctuation for fuzzy series/author compare */

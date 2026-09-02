@@ -123,6 +123,40 @@ export function getFollowedSeriesNames(books: Book[]): SeriesInfo[] {
   })
 }
 
+/**
+ * Fill missing series_releases.cover_url from books.cover_url by ASIN.
+ * Needed until migration 003 is applied (and as a permanent fallback for
+ * preorders that already have a books row from mirrorReleaseCoversToBooks).
+ */
+async function attachCoversFromBooks(
+  supabase: Awaited<ReturnType<typeof createClient>>,
+  rows: SeriesReleaseRow[]
+): Promise<SeriesReleaseRow[]> {
+  const need = rows.filter((r) => r.asin && !r.cover_url)
+  if (!need.length) return rows
+
+  const asins = Array.from(new Set(need.map((r) => r.asin as string)))
+  const coverByAsin = new Map<string, string>()
+  for (let i = 0; i < asins.length; i += 200) {
+    const chunk = asins.slice(i, i + 200)
+    const { data } = await supabase
+      .from('books')
+      .select('asin, cover_url')
+      .in('asin', chunk)
+      .not('cover_url', 'is', null)
+    for (const b of data || []) {
+      if (b.asin && b.cover_url) coverByAsin.set(b.asin, b.cover_url)
+    }
+  }
+  if (!coverByAsin.size) return rows
+
+  return rows.map((r) => {
+    if (r.cover_url || !r.asin) return r
+    const cover = coverByAsin.get(r.asin)
+    return cover ? { ...r, cover_url: cover } : r
+  })
+}
+
 export async function fetchAllSeriesReleases(): Promise<{
   rows: SeriesReleaseRow[]
   error: string | null
@@ -138,7 +172,11 @@ export async function fetchAllSeriesReleases(): Promise<{
       .order('release_date', { ascending: true, nullsFirst: false })
 
     if (!extended.error) {
-      return { rows: (extended.data || []) as SeriesReleaseRow[], error: null }
+      const rows = await attachCoversFromBooks(
+        supabase,
+        (extended.data || []) as SeriesReleaseRow[]
+      )
+      return { rows, error: null }
     }
 
     const base = await supabase
@@ -151,7 +189,11 @@ export async function fetchAllSeriesReleases(): Promise<{
     if (base.error) {
       return { rows: [], error: base.error.message }
     }
-    return { rows: (base.data || []) as SeriesReleaseRow[], error: null }
+    const rows = await attachCoversFromBooks(
+      supabase,
+      (base.data || []) as SeriesReleaseRow[]
+    )
+    return { rows, error: null }
   } catch (e) {
     return {
       rows: [],

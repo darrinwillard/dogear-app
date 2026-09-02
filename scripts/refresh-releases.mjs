@@ -91,6 +91,22 @@ function cleanAuthors(authors) {
     .filter((n) => !/übersetzer|translator|herausgeber|editor|foreword|afterword/i.test(n))
 }
 
+function pickCover(productImages) {
+  if (!productImages || typeof productImages !== 'object') return null
+  const preferred =
+    productImages['500'] ||
+    productImages['1024'] ||
+    productImages['300'] ||
+    productImages['0'] ||
+    productImages['100'] ||
+    productImages['60']
+  if (typeof preferred === 'string' && preferred.trim()) return preferred.trim()
+  for (const v of Object.values(productImages)) {
+    if (typeof v === 'string' && v.trim()) return v.trim()
+  }
+  return null
+}
+
 function normalize(p, source) {
   if (!p?.asin || !p.title) return null
   const lang = (p.language || '').toLowerCase()
@@ -112,6 +128,7 @@ function normalize(p, source) {
     releaseDate,
     source,
     preorderUrl: `https://www.audible.com/pd/${p.asin}`,
+    coverUrl: pickCover(p.product_images),
   }
 }
 
@@ -251,6 +268,7 @@ async function main() {
 
   const RG =
     'contributors,media,product_attrs,product_desc,product_extended_attrs,series,product_details'
+  const IMAGE_SIZES = '300,500,1024'
   const byAsin = new Map()
 
   function merge(rel, kind, matchedSeries) {
@@ -280,7 +298,7 @@ async function main() {
       for (const sim of ['NextInSameSeries', 'InTheSameSeries']) {
         const data = await audibleGet(
           accessToken,
-          `/1.0/catalog/products/${encodeURIComponent(s.topAsin)}/sims?similarity_type=${sim}&num_results=${sim === 'NextInSameSeries' ? 10 : 20}&response_groups=${RG}`
+          `/1.0/catalog/products/${encodeURIComponent(s.topAsin)}/sims?similarity_type=${sim}&num_results=${sim === 'NextInSameSeries' ? 10 : 20}&response_groups=${encodeURIComponent(RG)}&image_sizes=${IMAGE_SIZES}`
         )
         const products = data.similar_products || data.products || []
         for (const p of products) {
@@ -320,6 +338,7 @@ async function main() {
         num_results: '15',
         page: '0',
         response_groups: RG,
+        image_sizes: IMAGE_SIZES,
       })
       const data = await audibleGet(accessToken, `/1.0/catalog/products?${params}`)
       for (const p of data.products || []) {
@@ -340,10 +359,21 @@ async function main() {
   }
 
   console.log('candidates', byAsin.size)
+  const withCover = [...byAsin.values()].filter((r) => r.coverUrl).length
+  console.log('candidates with coverUrl', withCover)
+
+  // Detect optional migration-003 columns once
+  const optionalCols = []
+  for (const col of ['cover_url', 'interest_kind', 'matched_series', 'language', 'content_type']) {
+    const { error } = await sb.from('series_releases').select(col).limit(1)
+    if (!error) optionalCols.push(col)
+  }
+  console.log('optional series_releases cols', optionalCols)
 
   const now = new Date().toISOString()
   let upserted = 0
   let errors = 0
+  let booksMirrored = 0
   for (const r of byAsin.values()) {
     const row = {
       series_name: r.matchedSeries || r.seriesName || 'Standalone',
@@ -359,6 +389,9 @@ async function main() {
       updated_at: now,
       detected_at: now,
     }
+    if (optionalCols.includes('cover_url') && r.coverUrl) row.cover_url = r.coverUrl
+    if (optionalCols.includes('interest_kind')) row.interest_kind = r.interestKind
+    if (optionalCols.includes('matched_series')) row.matched_series = r.matchedSeries
     try {
       const { data: existing } = await sb
         .from('series_releases')
@@ -384,11 +417,40 @@ async function main() {
         }
       }
       upserted++
+
+      // Mirror cover onto books so Upcoming can join without migration 003
+      if (r.coverUrl) {
+        const { data: book } = await sb
+          .from('books')
+          .select('id, cover_url')
+          .eq('asin', r.asin)
+          .maybeSingle()
+        if (book?.id) {
+          if (book.cover_url !== r.coverUrl) {
+            const { error: bErr } = await sb
+              .from('books')
+              .update({ cover_url: r.coverUrl, updated_at: now })
+              .eq('id', book.id)
+            if (!bErr) booksMirrored++
+          }
+        } else {
+          const { error: bErr } = await sb.from('books').insert({
+            asin: r.asin,
+            title: r.title,
+            authors: r.authors,
+            cover_url: r.coverUrl,
+            release_date: r.releaseDate,
+            updated_at: now,
+          })
+          if (!bErr) booksMirrored++
+        }
+      }
     } catch (e) {
       errors++
       console.warn('upsert fail', r.title, e.message)
     }
   }
+  console.log('books covers mirrored', booksMirrored)
 
   const sample = [...byAsin.values()]
     .sort((a, b) => (a.releaseDate || '9999').localeCompare(b.releaseDate || '9999'))
