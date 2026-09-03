@@ -7,6 +7,7 @@ import {
   readIsFinished,
   readPercent,
   readSeriesFields,
+  readSummary,
   type AudibleItem,
 } from "@/lib/books/audible-parse";
 
@@ -201,6 +202,7 @@ export async function POST(_req: NextRequest) {
       series_name?: string | null;
       series_position?: number | null;
       publisher?: string | null;
+      summary?: string | null;
       release_date?: string | null;
       updated_at: string;
     };
@@ -275,6 +277,10 @@ export async function POST(_req: NextRequest) {
 
       if (item.publisher_name) {
         row.publisher = item.publisher_name;
+      }
+      const summary = readSummary(item);
+      if (summary) {
+        row.summary = summary;
       }
       const release =
         item.release_date ||

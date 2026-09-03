@@ -18,6 +18,8 @@ export interface AudibleItem {
   release_date?: string
   publication_datetime?: string
   publisher_name?: string
+  publisher_summary?: string
+  merchandising_summary?: string
 }
 
 /**
@@ -91,6 +93,27 @@ export function readSeriesFields(item: AudibleItem): {
     seriesPositionRaw: parsed.raw ?? undefined,
     seriesIsRange: parsed.range,
   }
+}
+
+/**
+ * Synopsis text — Audible returns this under publisher_summary (preferred,
+ * fuller description) or merchandising_summary (shorter, marketing-style)
+ * depending on the title. product_desc must be in response_groups for
+ * either field to be present at all. HTML entities/tags occasionally show
+ * up in publisher_summary; stripped here so the modal renders plain text.
+ */
+export function readSummary(item: AudibleItem): string | null | undefined {
+  const raw = item.publisher_summary || item.merchandising_summary
+  if (raw == null) return undefined
+  const stripped = String(raw)
+    .replace(/<[^>]*>/g, ' ')
+    .replace(/&nbsp;/g, ' ')
+    .replace(/&amp;/g, '&')
+    .replace(/&#39;|&apos;/g, "'")
+    .replace(/&quot;/g, '"')
+    .replace(/\s+/g, ' ')
+    .trim()
+  return stripped || null
 }
 
 export function readCoverUrl(item: AudibleItem): string | null | undefined {
