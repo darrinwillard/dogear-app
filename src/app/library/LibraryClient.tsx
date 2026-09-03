@@ -184,7 +184,13 @@ export default function LibraryClient({
         finishedAt: dbStatus === 'completed' ? new Date().toISOString() : null,
         // Clear almost-finished once completed
         ...(dbStatus === 'completed'
-          ? { almostFinishedDismissedAt: previous?.almostFinishedDismissedAt ?? null }
+          ? {
+              almostFinishedDismissedAt: previous?.almostFinishedDismissedAt ?? null,
+              // A finished book is never still "Want to Read" — clear the
+              // flag so isWantToRead() stops returning true and the
+              // Mark as Read / Buy / Want-actions row actually disappears.
+              wantToRead: false,
+            }
           : {}),
       })
 
@@ -1040,7 +1046,7 @@ function OwnedUnreadActions({
         className="flex-1 px-2 py-1 rounded-md text-[11px] font-semibold bg-emerald-500 text-slate-900 hover:bg-emerald-400 disabled:opacity-50"
         title="Mark as read"
       >
-        Finished
+        Read
       </button>
       <button
         type="button"
@@ -1317,20 +1323,7 @@ function BookCard({
             compact
           />
         )}
-        {showWantActions && onWant && asin && (
-          <button
-            type="button"
-            disabled={isPending}
-            onClick={(e) => {
-              e.stopPropagation()
-              onMarkRead(asin)
-            }}
-            className="w-full px-2 py-1 rounded-md text-[11px] font-semibold bg-emerald-500 text-slate-900 hover:bg-emerald-400 disabled:opacity-50"
-          >
-            Mark as Read
-          </button>
-        )}
-        {showWantActions && onWant && (
+        {showWantActions && onWant && !isFinished && (
           <WantActions
             book={book}
             busy={isPending}
@@ -1458,7 +1451,7 @@ function BookRow({
             onDismiss={onDismiss}
           />
         )}
-        {showWantActions && onWant && (
+        {showWantActions && onWant && !isFinished && (
           <WantActions
             book={book}
             busy={isPending}

@@ -47,9 +47,17 @@ function SynopsisText({ text }: { text: string }) {
   return (
     <div>
       <p
-        className={`text-slate-300 text-sm leading-relaxed whitespace-pre-line ${
-          expanded ? '' : 'line-clamp-4'
-        }`}
+        className="text-slate-300 text-sm leading-relaxed whitespace-pre-line"
+        style={
+          expanded
+            ? undefined
+            : {
+                display: '-webkit-box',
+                WebkitLineClamp: 4,
+                WebkitBoxOrient: 'vertical' as const,
+                overflow: 'hidden',
+              }
+        }
       >
         {text}
       </p>

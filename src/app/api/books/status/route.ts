@@ -53,6 +53,10 @@ export async function PATCH(req: NextRequest) {
     if (status === 'completed') {
       patch.finished_at = now
       // Keep any existing started_at; do not invent one here
+      // A finished book is never still "Want to Read" — clear both flags
+      // so the client's Mark as Read / Buy / want-actions row actually
+      // disappears instead of persisting forever alongside a Read status.
+      patch.want_to_read = false
     } else if (status === 'in_progress') {
       // Coalesce started_at in SQL-ish fashion: only set when currently null
       // (fetch first so we don't clobber an earlier start)
