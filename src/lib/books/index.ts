@@ -28,6 +28,7 @@ export { getStatsFromBooks } from './stats'
 export {
   ALMOST_FINISHED_THRESHOLD,
   isAlmostFinishedCandidate,
+  isCurrentlyReading,
   almostFinishedLabel,
 } from './progress'
 

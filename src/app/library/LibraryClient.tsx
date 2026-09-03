@@ -12,6 +12,7 @@ import {
   mapUiStatusToDb,
   isAlmostFinishedCandidate,
   almostFinishedLabel,
+  isCurrentlyReading,
   isWantToRead,
   isOwnedUnread,
   buyOrPreorderUrl,
@@ -373,17 +374,22 @@ export default function LibraryClient({
     [books]
   )
 
+  const currentlyReading = useMemo(
+    () => books.filter(isCurrentlyReading),
+    [books]
+  )
+
   const tabFiltered = useMemo(() => {
     return books.filter((book) => {
-      const status = getEffectiveStatus(book)
       if (activeTab === 'audible') return book.sources.includes('audible')
       if (activeTab === 'goodreads') return book.sources.includes('goodreads')
-      if (activeTab === 'read') return status === 'read' || status === 'read_no_date'
-      if (activeTab === 'reading')
-        return status === 'reading' || status === 'currently-reading'
+      if (activeTab === 'read') {
+        const status = getEffectiveStatus(book)
+        return status === 'read' || status === 'read_no_date'
+      }
+      if (activeTab === 'reading') return isCurrentlyReading(book)
       if (activeTab === 'owned') return isOwnedUnread(book)
       if (activeTab === 'want') return isWantToRead(book)
-      if (activeTab === 'almost') return isAlmostFinishedCandidate(book)
       return true
     })
   }, [books, activeTab, getEffectiveStatus])
@@ -421,8 +427,9 @@ export default function LibraryClient({
       avgRating,
       ratedCount: rated.length,
       almost: almostFinished.length,
+      reading: currentlyReading.length,
     }
-  }, [books, getEffectiveStatus, getEffectiveRating, almostFinished.length])
+  }, [books, getEffectiveStatus, getEffectiveRating, almostFinished.length, currentlyReading.length])
 
   const tabs: { key: FilterTab; label: string; count?: number }[] = [
     { key: 'all', label: 'All', count: books.length },
@@ -447,10 +454,7 @@ export default function LibraryClient({
     {
       key: 'reading',
       label: 'Reading',
-      count: books.filter((b) => {
-        const s = getEffectiveStatus(b)
-        return s === 'reading' || s === 'currently-reading'
-      }).length,
+      count: currentlyReading.length,
     },
     {
       key: 'owned',
@@ -461,11 +465,6 @@ export default function LibraryClient({
       key: 'want',
       label: 'Want to Read',
       count: books.filter((b) => isWantToRead(b)).length,
-    },
-    {
-      key: 'almost',
-      label: 'Almost done',
-      count: almostFinished.length,
     },
   ]
 
@@ -570,13 +569,13 @@ export default function LibraryClient({
         </div>
       )}
 
-      {isAuthed && almostFinished.length > 0 && activeTab !== 'almost' && (
+      {isAuthed && almostFinished.length > 0 && activeTab !== 'reading' && (
         <AlmostFinishedStrip
           books={almostFinished}
           pending={pending}
           onMarkRead={markAsRead}
           onDismiss={dismissAlmostFinished}
-          onSeeAll={() => setActiveTab('almost')}
+          onSeeAll={() => setActiveTab('reading')}
         />
       )}
 
@@ -590,8 +589,8 @@ export default function LibraryClient({
           <div className="text-xs text-slate-400 mt-0.5">Read (DB)</div>
         </div>
         <div className="bg-slate-900 border border-slate-800 rounded-xl p-3 text-center">
-          <div className="text-xl font-bold text-orange-400">{stats.almost}</div>
-          <div className="text-xs text-slate-400 mt-0.5">Almost finished</div>
+          <div className="text-xl font-bold text-blue-400">{stats.reading}</div>
+          <div className="text-xs text-slate-400 mt-0.5">Reading</div>
         </div>
         <div className="bg-slate-900 border border-slate-800 rounded-xl p-3 text-center">
           <div className="text-xl font-bold text-amber-400">
@@ -893,11 +892,13 @@ function WantActions({
   book,
   busy,
   onWantAction,
+  onMarkRead,
   compact,
 }: {
   book: Book
   busy: boolean
   onWantAction: (asin: string, action: 'add' | 'remove' | 'not_interested') => void
+  onMarkRead?: (asin: string) => void
   compact?: boolean
 }) {
   const asin = book.asin
@@ -918,6 +919,20 @@ function WantActions({
         >
           {buyLabel} →
         </a>
+      )}
+      {onMarkRead && (
+        <button
+          type="button"
+          disabled={busy}
+          onClick={(e) => {
+            e.stopPropagation()
+            onMarkRead(asin)
+          }}
+          className="flex-1 px-2 py-1 rounded-md text-[11px] font-semibold bg-emerald-500 text-slate-900 hover:bg-emerald-400 disabled:opacity-50"
+          title="Mark as read"
+        >
+          Read
+        </button>
       )}
       <button
         type="button"
