@@ -793,6 +793,12 @@ interface CardProps {
   onWantAction: (asin: string, action: 'add' | 'remove' | 'not_interested') => void
 }
 
+/**
+ * 10-star scale — each star = 0.5 rating points (5.0 max rating = all 10 lit).
+ * Replaces the old 5-star + half-star-split design: half ratings now render
+ * as a fully lit star instead of a visually-fiddly half-filled glyph, and
+ * every star is a full, unambiguous tap target (no left/right split needed).
+ */
 function StarRating({
   rating,
   onRate,
@@ -807,57 +813,31 @@ function StarRating({
   const [hover, setHover] = useState<number | null>(null)
   const effective = hover ?? rating ?? 0
 
-  function starFill(starIndex: number): 'full' | 'half' | 'empty' {
-    if (effective >= starIndex) return 'full'
-    if (effective >= starIndex - 0.5) return 'half'
-    return 'empty'
-  }
-
   return (
     <div className="flex">
-      {[1, 2, 3, 4, 5].map((star) => {
-        const fill = starFill(star)
+      {Array.from({ length: 10 }, (_, i) => i + 1).map((star) => {
+        // Each star represents 0.5 of the underlying 0.5-5.0 rating.
+        const starValue = star * 0.5
+        const filled = effective >= starValue
         return (
           <button
             key={star}
             disabled={disabled}
             onClick={(e) => {
               e.stopPropagation()
-              const rect = e.currentTarget.getBoundingClientRect()
-              const clickedLeftHalf = e.clientX - rect.left < rect.width / 2
-              onRate(asin, clickedLeftHalf ? star - 0.5 : star)
+              onRate(asin, starValue)
             }}
-            onMouseMove={(e) => {
-              const rect = e.currentTarget.getBoundingClientRect()
-              const leftHalf = e.clientX - rect.left < rect.width / 2
-              setHover(leftHalf ? star - 0.5 : star)
-            }}
+            onMouseEnter={() => setHover(starValue)}
             onMouseLeave={() => setHover(null)}
-            // Visible star is small (text-lg ~18px), but the tap target is
-            // widened to 32x32 with negative margin to compensate — half-star
-            // precision was previously impossible to hit reliably on mobile
-            // since the whole glyph was only ~8px wide per half.
-            className="relative inline-flex items-center justify-center w-8 h-8 -mx-1.5 text-lg leading-none transition-colors disabled:opacity-40 touch-manipulation"
-            title={`Rate ${star - 0.5} or ${star} stars`}
+            className="relative inline-flex items-center justify-center w-4 h-5 text-sm leading-none transition-colors disabled:opacity-40 touch-manipulation"
+            title={`Rate ${starValue} / 5`}
           >
-            {/* Outline star as the base layer — always visible, gives every
-                star a consistent shape whether empty, half, or full. */}
-            <span aria-hidden className="absolute inset-0 flex items-center justify-center text-slate-600">
-              ☆
+            <span
+              aria-hidden
+              className={filled ? 'text-amber-400' : 'text-slate-600'}
+            >
+              ★
             </span>
-            {/* Filled star clipped to 0/50/100% width sits on top — this reads
-                as a proper half-filled star glyph instead of two glyphs
-                fighting each other in the same box. */}
-            {fill !== 'empty' && (
-              <span
-                aria-hidden
-                className={`absolute inset-0 flex items-center justify-center overflow-hidden text-amber-400 ${
-                  fill === 'half' ? 'w-1/2' : 'w-full'
-                }`}
-              >
-                <span className="w-8 flex items-center justify-center">★</span>
-              </span>
-            )}
           </button>
         )
       })}
