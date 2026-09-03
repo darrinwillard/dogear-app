@@ -119,10 +119,15 @@ export default function SettingsPage() {
       })
       const data = await res.json()
       if (res.ok) {
-        setSyncMsg(`Synced ${data.books_synced ?? 0} books`)
+        let msg = `Synced ${data.books_synced ?? 0} books`
+        if (data.skipped_unchanged) {
+          msg += ` (${data.skipped_unchanged} unchanged, skipped)`
+        }
+        setSyncMsg(msg)
         await refreshProfile()
       } else {
         setSyncError(data.error ?? 'Sync failed')
+        return
       }
     } catch {
       // Fetch itself failed/dropped client-side — the server job may still be
@@ -149,57 +154,40 @@ export default function SettingsPage() {
           'Lost connection to the sync — check back in a few minutes, or try again'
         )
       }
-    } finally {
       clearInterval(tickInterval)
       setSyncing(false)
       setSyncElapsed(0)
+      return
     }
-  }
 
-  async function handleRefreshReleases(force = true) {
+    clearInterval(tickInterval)
+    setSyncing(false)
+    setSyncElapsed(0)
+
+    // Releases refresh runs automatically after every library sync — throttled
+    // server-side (7-day window), so this is a no-op most of the time rather
+    // than a second full scan. Best-effort: library sync already succeeded
+    // even if this fails.
     setRefreshingReleases(true)
     setReleasesMsg(null)
     setReleasesError(null)
-    setReleasesElapsed(0)
-
-    const startedAt = Date.now()
-    const tickInterval = setInterval(() => {
-      setReleasesElapsed(Math.floor((Date.now() - startedAt) / 1000))
-    }, 1000)
-
     try {
-      const url = force
-        ? '/api/audible/releases?force=1'
-        : '/api/audible/releases'
-      const res = await fetch(url, {
+      const relRes = await fetch('/api/audible/releases', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: '{}',
       })
-      const data = await res.json()
-      if (!res.ok) {
-        setReleasesError(data.error ?? 'Release refresh failed')
-      } else if (data.skipped) {
+      const relData = await relRes.json().catch(() => ({}))
+      if (relRes.ok && !relData.skipped) {
         setReleasesMsg(
-          data.message ||
-            'Already refreshed this week — force-run if you want a fresh pull.'
-        )
-      } else {
-        setReleasesMsg(
-          `Found ${data.upserted ?? 0} releases · ${data.series_followed ?? 0} series followed · ${data.authors_searched ?? 0} authors scanned`
+          `Found ${relData.upserted ?? 0} new releases · ${relData.series_followed ?? 0} series followed`
         )
         await refreshProfile()
       }
-    } catch (e) {
-      setReleasesError(
-        e instanceof Error
-          ? e.message
-          : 'Lost connection during release refresh — try again'
-      )
+    } catch {
+      // Silent — library sync is the primary action and already succeeded.
     } finally {
-      clearInterval(tickInterval)
       setRefreshingReleases(false)
-      setReleasesElapsed(0)
     }
   }
 
@@ -266,6 +254,10 @@ export default function SettingsPage() {
                 <div className="text-xs text-slate-500 mb-0.5">Library last synced</div>
                 <div className="text-amber-50 text-sm">{lastSynced}</div>
               </div>
+              <div>
+                <div className="text-xs text-slate-500 mb-0.5">Releases last refreshed</div>
+                <div className="text-amber-50 text-sm">{lastReleases}</div>
+              </div>
               {syncMsg && (
                 <div className="text-sm text-emerald-300 bg-emerald-900/20 border border-emerald-800/30 rounded-lg px-3 py-2">
                   ✓ {syncMsg}
@@ -276,6 +268,16 @@ export default function SettingsPage() {
                   {syncError}
                 </div>
               )}
+              {releasesMsg && (
+                <div className="text-sm text-emerald-300 bg-emerald-900/20 border border-emerald-800/30 rounded-lg px-3 py-2">
+                  ✓ {releasesMsg}
+                </div>
+              )}
+              {releasesError && (
+                <div className="text-sm text-red-300 bg-red-900/20 border border-red-800/30 rounded-lg px-3 py-2">
+                  {releasesError}
+                </div>
+              )}
               <button
                 onClick={handleSync}
                 disabled={syncing || refreshingReleases}
@@ -283,14 +285,26 @@ export default function SettingsPage() {
               >
                 {syncing
                   ? `⏳ Syncing library… ${syncElapsed}s`
-                  : '🔄 Sync Library Now'}
+                  : refreshingReleases
+                    ? '⏳ Checking for new releases…'
+                    : '🔄 Sync Now'}
               </button>
+              <p className="text-xs text-slate-500 text-center">
+                Syncs your library and checks for new releases in one step.
+                Only changed books are written, so repeat syncs are fast.
+              </p>
               <button
                 onClick={() => router.push('/settings/connect-audible')}
                 className="w-full py-2 px-4 rounded-lg border border-slate-700 text-slate-400 hover:text-slate-300 hover:bg-slate-800 transition-colors text-sm"
               >
                 Reconnect Audible
               </button>
+              <Link
+                href="/upcoming"
+                className="block text-center text-sm text-amber-500 hover:text-amber-400"
+              >
+                View Upcoming page →
+              </Link>
             </>
           ) : (
             <>
@@ -308,7 +322,9 @@ export default function SettingsPage() {
         </div>
       </section>
 
-      {/* Upcoming releases catalog */}
+      {/* Upcoming releases catalog — removed as a separate section; folded into
+          the unified Sync Now button above. Kept commented for reference in
+          case releases ever need an independent manual trigger again.
       {isConnected && (
         <section className="bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden">
           <div className="px-5 py-3 border-b border-slate-800">
