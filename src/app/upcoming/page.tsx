@@ -8,6 +8,7 @@ import ReleaseCover from './ReleaseCover'
 import WantButton from './WantButton'
 import { ReleaseDetailProvider } from '@/components/ReleaseDetailWrapper'
 import ReleaseCardClick from '@/components/ReleaseCardClick'
+import StopPropagation from '@/components/StopPropagation'
 
 export const dynamic = 'force-dynamic'
 
@@ -208,7 +209,7 @@ export default async function UpcomingPage() {
                   <span className="text-xs text-slate-500">
                     Released {formatDate(release.releaseDate)}
                   </span>
-                  <div className="flex items-center gap-2" onClick={(e) => e.stopPropagation()}>
+                  <StopPropagation className="flex items-center gap-2">
                     {data.isAuthed && (
                       <WantButton
                         release={release}
@@ -226,7 +227,7 @@ export default async function UpcomingPage() {
                         Buy →
                       </a>
                     )}
-                  </div>
+                  </StopPropagation>
                 </div>
               </ReleaseCardClick>
             ))}
@@ -333,10 +334,7 @@ function ReleaseSection({
                           <p className="text-slate-500 text-xs mt-2 italic">{release.notes}</p>
                         )}
                       </div>
-                      <div
-                        className="shrink-0 text-right space-y-2"
-                        onClick={(e) => e.stopPropagation()}
-                      >
+                      <StopPropagation className="shrink-0 text-right space-y-2">
                         <div className="text-sm font-medium text-amber-400">
                           {formatDate(release.releaseDate)}
                         </div>
@@ -358,7 +356,7 @@ function ReleaseSection({
                             </a>
                           )}
                         </div>
-                      </div>
+                      </StopPropagation>
                     </div>
                   </ReleaseCardClick>
                 </div>
@@ -399,11 +397,11 @@ function CompactCard({
           {release.notes && <p className="text-slate-500 text-xs italic">{release.notes}</p>}
           <div className="mt-2 flex items-center justify-between gap-2">
             <span className="text-xs text-slate-600">📅 Date TBA</span>
-            <div onClick={(e) => e.stopPropagation()}>
+            <StopPropagation>
               {isAuthed && (
                 <WantButton release={release} alreadyWanted={alreadyWanted} compact />
               )}
-            </div>
+            </StopPropagation>
           </div>
         </div>
       </div>
