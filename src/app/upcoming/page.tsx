@@ -9,6 +9,7 @@ import WantButton from './WantButton'
 import { ReleaseDetailProvider } from '@/components/ReleaseDetailWrapper'
 import ReleaseCardClick from '@/components/ReleaseCardClick'
 import StopPropagation from '@/components/StopPropagation'
+import NextReadTabs from './NextReadTabs'
 
 export const dynamic = 'force-dynamic'
 
@@ -79,10 +80,18 @@ export default async function UpcomingPage() {
 
   return (
     <ReleaseDetailProvider isAuthed={data.isAuthed}>
-    <div className="space-y-10">
+    <div className="space-y-6">
+      <div>
+        <h1 className="font-serif text-3xl font-bold text-amber-400">Find Your Next Read</h1>
+        <p className="text-slate-500 text-sm mt-1">
+          Upcoming releases in series/authors you follow, plus a scan for books you might have missed.
+        </p>
+      </div>
+
+      <NextReadTabs>
+      <div className="space-y-10">
       <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
         <div>
-          <h1 className="font-serif text-3xl font-bold text-amber-400">Upcoming Releases</h1>
           <p className="text-slate-400 mt-1">
             {data.source === 'demo'
               ? 'Demo snapshot — sign in for live Audible catalog releases'
@@ -236,6 +245,8 @@ export default async function UpcomingPage() {
       )}
 
       {data.source === 'live' && <StatsFooter data={data} />}
+      </div>
+      </NextReadTabs>
     </div>
     </ReleaseDetailProvider>
   )
