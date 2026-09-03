@@ -210,6 +210,17 @@ export function formatDate(dateStr: string | null | undefined): string {
   }
 }
 
+/** Minutes remaining given total runtime + percent complete (0-100). */
+export function timeRemainingMinutes(
+  totalMinutes: number | null | undefined,
+  percentComplete: number | null | undefined
+): number | null {
+  if (totalMinutes == null || totalMinutes <= 0) return null
+  if (percentComplete == null) return null
+  const pct = Math.max(0, Math.min(100, percentComplete))
+  return Math.round(totalMinutes * (1 - pct / 100))
+}
+
 export function formatRuntime(minutes: number | null | undefined): string {
   if (!minutes) return ''
   const h = Math.floor(minutes / 60)

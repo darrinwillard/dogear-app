@@ -9,12 +9,14 @@ import {
   getStatusLabel,
   formatDate,
   formatRuntime,
+  timeRemainingMinutes,
   mapUiStatusToDb,
   isAlmostFinishedCandidate,
   almostFinishedLabel,
   isCurrentlyReading,
   isWantToRead,
   isOwnedUnread,
+  isReadStatus,
   buyOrPreorderUrl,
   isFutureRelease,
 } from '@/lib/books'
@@ -892,6 +894,67 @@ function StatusBadge({
   )
 }
 
+/**
+ * Actions for Owned · Unread books (Audible-synced, not started, not on the
+ * wishlist). Three real options: mark Finished, add to Want to Read (moves it
+ * into the active wishlist queue even though it's already owned), or Not
+ * Interested (hides it from the unread nudge without pretending it's read).
+ */
+function OwnedUnreadActions({
+  asin,
+  busy,
+  onMarkRead,
+  onWantAction,
+  compact,
+}: {
+  asin: string
+  busy: boolean
+  onMarkRead: (asin: string) => void
+  onWantAction: (asin: string, action: 'add' | 'remove' | 'not_interested') => void
+  compact?: boolean
+}) {
+  return (
+    <div className={`flex ${compact ? 'flex-col gap-1' : 'flex-wrap gap-1.5'} w-full`}>
+      <button
+        type="button"
+        disabled={busy}
+        onClick={(e) => {
+          e.stopPropagation()
+          onMarkRead(asin)
+        }}
+        className="flex-1 px-2 py-1 rounded-md text-[11px] font-semibold bg-emerald-500 text-slate-900 hover:bg-emerald-400 disabled:opacity-50"
+        title="Mark as read"
+      >
+        Finished
+      </button>
+      <button
+        type="button"
+        disabled={busy}
+        onClick={(e) => {
+          e.stopPropagation()
+          onWantAction(asin, 'add')
+        }}
+        className="flex-1 px-2 py-1 rounded-md text-[11px] font-medium bg-violet-500/15 text-violet-300 border border-violet-500/30 hover:bg-violet-500/25 disabled:opacity-50"
+        title="Add to Want to Read"
+      >
+        Want to Read
+      </button>
+      <button
+        type="button"
+        disabled={busy}
+        onClick={(e) => {
+          e.stopPropagation()
+          onWantAction(asin, 'not_interested')
+        }}
+        className="flex-1 px-2 py-1 rounded-md text-[11px] font-medium bg-slate-800 text-slate-300 hover:bg-slate-700 disabled:opacity-50"
+        title="Not interested"
+      >
+        Not interested
+      </button>
+    </div>
+  )
+}
+
 function WantActions({
   book,
   busy,
@@ -1051,9 +1114,14 @@ function BookCard({
   onDismiss,
   onWantAction,
 }: CardProps) {
-  const runtime = formatRuntime(book.runtime_length_min)
   const asin = book.asin
   const onWant = isWantToRead(book)
+  const isFinished = isReadStatus(effectiveStatus)
+  const remaining = !isFinished
+    ? timeRemainingMinutes(book.runtime_length_min, book.percentComplete)
+    : null
+  const runtime =
+    remaining != null ? `${formatRuntime(remaining)} left` : formatRuntime(book.runtime_length_min)
 
   return (
     <div
@@ -1130,21 +1198,18 @@ function BookCard({
             book={book}
             busy={isPending}
             onWantAction={onWantAction}
+            onMarkRead={onMarkRead}
             compact
           />
         )}
-        {!onWant && isOwnedUnread(book) && asin && (
-          <button
-            type="button"
-            disabled={isPending}
-            onClick={(e) => {
-              e.stopPropagation()
-              onWantAction(asin, 'add')
-            }}
-            className="w-full px-2 py-1 rounded-md text-[11px] font-medium bg-violet-500/15 text-violet-300 border border-violet-500/30 hover:bg-violet-500/25 disabled:opacity-50"
-          >
-            + Want to Read
-          </button>
+        {!onWant && !isFinished && isOwnedUnread(book) && asin && (
+          <OwnedUnreadActions
+            asin={asin}
+            busy={isPending}
+            onMarkRead={onMarkRead}
+            onWantAction={onWantAction}
+            compact
+          />
         )}
       </div>
     </div>
@@ -1165,9 +1230,14 @@ function BookRow({
   onWantAction,
 }: CardProps) {
   const [imgError, setImgError] = useState(false)
-  const runtime = formatRuntime(book.runtime_length_min)
   const asin = book.asin
   const onWant = isWantToRead(book)
+  const isFinished = isReadStatus(effectiveStatus)
+  const remaining = !isFinished
+    ? timeRemainingMinutes(book.runtime_length_min, book.percentComplete)
+    : null
+  const runtime =
+    remaining != null ? `${formatRuntime(remaining)} left` : formatRuntime(book.runtime_length_min)
 
   return (
     <div
@@ -1248,17 +1318,20 @@ function BookRow({
           />
         )}
         {showWantActions && onWant && (
-          <WantActions book={book} busy={isPending} onWantAction={onWantAction} />
+          <WantActions
+            book={book}
+            busy={isPending}
+            onWantAction={onWantAction}
+            onMarkRead={onMarkRead}
+          />
         )}
-        {!onWant && isOwnedUnread(book) && asin && (
-          <button
-            type="button"
-            disabled={isPending}
-            onClick={() => onWantAction(asin, 'add')}
-            className="px-2 py-1 rounded-md text-[11px] font-medium bg-violet-500/15 text-violet-300 border border-violet-500/30 hover:bg-violet-500/25 disabled:opacity-50"
-          >
-            + Want
-          </button>
+        {!onWant && !isFinished && isOwnedUnread(book) && asin && (
+          <OwnedUnreadActions
+            asin={asin}
+            busy={isPending}
+            onMarkRead={onMarkRead}
+            onWantAction={onWantAction}
+          />
         )}
         {book.sources.includes('audible') && (
           <span title="Audible" className="text-base">

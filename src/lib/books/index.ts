@@ -20,6 +20,7 @@ export {
   getStatusColor,
   formatDate,
   formatRuntime,
+  timeRemainingMinutes,
   getGenreForSeries,
 } from './map'
 
