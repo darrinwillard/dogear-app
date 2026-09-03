@@ -29,6 +29,30 @@ export const AUDIBLE_CATALOG_RESPONSE_GROUPS = [
 /** Request sizes that map cleanly into product_images keys (never include 0 — Audible 400s). */
 export const AUDIBLE_CATALOG_IMAGE_SIZES = '300,500,1024'
 
+/**
+ * Response groups constant for rating-aware catalog/sims calls (Discover,
+ * Similar). Kept SEPARATE from AUDIBLE_CATALOG_RESPONSE_GROUPS above rather
+ * than adding `rating` to that shared constant, so existing release-refresh
+ * calls (which don't need ratings) aren't bloated with the extra payload.
+ *
+ * `rating` confirmed live 2026-09-03 against a real owned ASIN (B002V19RO6,
+ * "1984") via `GET /1.0/catalog/products/{asin}?response_groups=rating`:
+ * returns `product.rating.overall_distribution` with `average_rating`,
+ * `display_average_rating` (string, e.g. "4.6"), `display_stars`,
+ * `num_ratings`. This is a real, dense, public catalog attribute — not
+ * gated behind ownership; works for any Audible product, owned or not.
+ */
+export const AUDIBLE_RATING_RESPONSE_GROUPS = [
+  'contributors',
+  'media',
+  'product_attrs',
+  'product_desc',
+  'product_extended_attrs',
+  'series',
+  'product_details',
+  'rating',
+].join(',')
+
 export interface CatalogProduct {
   asin?: string
   title?: string
@@ -49,6 +73,16 @@ export interface CatalogProduct {
   merchandising_summary?: string
   product_images?: Record<string, string>
   runtime_length_min?: number
+  /** Present only when `rating` is in response_groups (confirmed live 2026-09-03). */
+  rating?: {
+    num_reviews?: number
+    overall_distribution?: {
+      average_rating?: number
+      display_average_rating?: string
+      display_stars?: number
+      num_ratings?: number
+    }
+  }
 }
 
 export interface NormalizedCatalogRelease {
@@ -64,6 +98,9 @@ export interface NormalizedCatalogRelease {
   coverUrl: string | null
   preorderUrl: string
   source: 'audible_catalog' | 'audible_sims'
+  /** Audible star rating (0-5), when the rating response group was requested. */
+  rating: number | null
+  ratingCount: number | null
 }
 
 function ymd(value: string | null | undefined): string | null {
@@ -120,6 +157,10 @@ export function normalizeCatalogProduct(
   // product_images with media in response_groups (no separate field name).
   const cover = readCoverUrl(p as AudibleItem) ?? null
 
+  const dist = p.rating?.overall_distribution
+  const rating = typeof dist?.average_rating === 'number' ? dist.average_rating : null
+  const ratingCount = typeof dist?.num_ratings === 'number' ? dist.num_ratings : null
+
   return {
     asin: p.asin,
     title: p.title.trim(),
@@ -133,6 +174,8 @@ export function normalizeCatalogProduct(
     coverUrl: cover,
     preorderUrl: `https://www.audible.com/pd/${p.asin}`,
     source,
+    rating,
+    ratingCount,
   }
 }
 
@@ -142,6 +185,7 @@ async function audibleGet(
 ): Promise<Response> {
   return fetch(`https://api.audible.com${pathAndQuery}`, {
     headers: { Authorization: `Bearer ${accessToken}` },
+    signal: AbortSignal.timeout(10_000),
   })
 }
 
@@ -170,16 +214,79 @@ export async function searchCatalogByAuthor(
     .filter((x): x is NormalizedCatalogRelease => Boolean(x))
 }
 
+/**
+ * General keyword/genre/title/author discovery search, WITH ratings
+ * (uses AUDIBLE_RATING_RESPONSE_GROUPS, confirmed live 2026-09-03).
+ * Used by the Discover page's search bar and genre chips.
+ *
+ * Sort values are a fixed Audible enum, confirmed live 2026-09-03 via a
+ * real 400 error response that listed the full valid set:
+ *   -ReleaseDate, Heuristic, ContentLevel, -Title, AmazonEnglish,
+ *   AvgRating, BestSellers, -RuntimeLength, ReleaseDate,
+ *   ProductSiteLaunchDate, -ContentLevel, Title, Relevance, -Heuristic,
+ *   RuntimeLength
+ * Notably: `AvgRating` has NO `-` (descending) variant — unlike
+ * `-ReleaseDate` — and passing `-AvgRating` 400s. Confirmed live that
+ * plain `AvgRating` already returns highest-rated first (4.9★ results at
+ * the top for a "science fiction" keyword search), so no prefix is
+ * needed or valid for this one value.
+ */
+export async function searchCatalog(
+  accessToken: string,
+  opts: {
+    keywords?: string
+    author?: string
+    title?: string
+    categoryId?: string
+    sortBy?: 'Relevance' | 'AvgRating' | 'ReleaseDate'
+    numResults?: number
+    page?: number
+  } = {}
+): Promise<NormalizedCatalogRelease[]> {
+  const sortValue =
+    opts.sortBy === 'ReleaseDate' ? '-ReleaseDate' : opts.sortBy === 'AvgRating' ? 'AvgRating' : 'Relevance'
+  const params = new URLSearchParams({
+    products_sort_by: sortValue,
+    num_results: String(opts.numResults ?? 20),
+    page: String(opts.page ?? 0),
+    response_groups: AUDIBLE_RATING_RESPONSE_GROUPS,
+    image_sizes: AUDIBLE_CATALOG_IMAGE_SIZES,
+  })
+  if (opts.keywords) params.set('keywords', opts.keywords)
+  if (opts.author) params.set('author', opts.author)
+  if (opts.title) params.set('title', opts.title)
+  if (opts.categoryId) params.set('category_id', opts.categoryId)
+
+  const res = await audibleGet(accessToken, `/1.0/catalog/products?${params}`)
+  if (!res.ok) {
+    const text = await res.text()
+    throw new Error(`catalog search failed (${res.status}): ${text.slice(0, 180)}`)
+  }
+  const data = await res.json()
+  const products: CatalogProduct[] = data.products || []
+  return products
+    .map((p) => normalizeCatalogProduct(p, 'audible_catalog'))
+    .filter((x): x is NormalizedCatalogRelease => Boolean(x))
+}
+
 export async function getSeriesSims(
   accessToken: string,
   asin: string,
-  similarityType: 'NextInSameSeries' | 'InTheSameSeries' | 'ByTheSameAuthor',
-  numResults = 20
+  similarityType: 'NextInSameSeries' | 'InTheSameSeries' | 'ByTheSameAuthor' | 'RawSimilarities',
+  numResults = 20,
+  opts: { includeRating?: boolean } = {}
 ): Promise<NormalizedCatalogRelease[]> {
+  // `RawSimilarities` confirmed live 2026-09-03 against a real owned ASIN
+  // (B002V19RO6, "1984") — returned 5 genuinely relevant results (Animal
+  // Farm, Brave New World, Lord of the Flies, an Audible-original 1984
+  // adaptation, and a themed nonfiction title), each with rating data
+  // attached when `rating` is requested. This is the general "customers
+  // also liked" similarity type, distinct from the series/author-scoped
+  // ones above — used for the Similar-to-these Discover feature.
   const params = new URLSearchParams({
     similarity_type: similarityType,
     num_results: String(numResults),
-    response_groups: AUDIBLE_CATALOG_RESPONSE_GROUPS,
+    response_groups: opts.includeRating ? AUDIBLE_RATING_RESPONSE_GROUPS : AUDIBLE_CATALOG_RESPONSE_GROUPS,
     image_sizes: AUDIBLE_CATALOG_IMAGE_SIZES,
   })
   const res = await audibleGet(
@@ -239,6 +346,8 @@ export async function fetchCatalogProductsByAsins(
         asin: p.asin,
         title: (p.title || p.asin).trim(),
         authors: cleanAuthors(p.authors),
+        rating: null,
+        ratingCount: null,
         seriesName: Array.isArray(p.series) ? p.series[0]?.title?.trim() || null : null,
         seriesPosition: null,
         seriesPositionRaw: null,

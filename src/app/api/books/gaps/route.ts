@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server'
 import { createClient } from '@/lib/supabase/server'
 import { getLibraryForCurrentUser } from '@/lib/books/queries'
 import { findSeriesGaps, findAuthorGaps } from '@/lib/books/gaps'
+import { refreshAudibleAccessToken } from '@/lib/books/audible-token'
 
 export const dynamic = 'force-dynamic'
 export const maxDuration = 120
@@ -32,31 +33,13 @@ export async function GET() {
       .eq('id', user.id)
       .single()
 
-    if (!profile?.audible_refresh_token) {
+    const { accessToken, error: tokenError } = await refreshAudibleAccessToken(
+      profile?.audible_refresh_token
+    )
+    if (!accessToken || tokenError) {
       return NextResponse.json(
-        { error: 'Audible not connected — connect Audible in Settings first.' },
-        { status: 400 }
-      )
-    }
-
-    const tokens = JSON.parse(profile.audible_refresh_token)
-    const refreshResponse = await fetch('https://api.amazon.com/auth/token', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: new URLSearchParams({
-        app_name: 'Audible',
-        app_version: '3.56.2',
-        source_token: tokens.refresh_token,
-        requested_token_type: 'access_token',
-        source_token_type: 'refresh_token',
-      }).toString(),
-    })
-    const refreshData = await refreshResponse.json()
-    const accessToken = refreshData.access_token
-    if (!accessToken) {
-      return NextResponse.json(
-        { error: 'Token refresh failed — please reconnect Audible in Settings.' },
-        { status: 401 }
+        { error: tokenError?.message ?? 'Audible token refresh failed.' },
+        { status: tokenError?.status ?? 401 }
       )
     }
 
