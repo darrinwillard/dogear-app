@@ -814,7 +814,7 @@ function StarRating({
   }
 
   return (
-    <div className="flex gap-0.5">
+    <div className="flex">
       {[1, 2, 3, 4, 5].map((star) => {
         const fill = starFill(star)
         return (
@@ -833,7 +833,11 @@ function StarRating({
               setHover(leftHalf ? star - 0.5 : star)
             }}
             onMouseLeave={() => setHover(null)}
-            className="relative inline-block w-4 h-4 text-base leading-none transition-colors disabled:opacity-40 text-slate-600 hover:text-amber-600"
+            // Visible star is small (text-base ~16px), but the tap target is
+            // widened to 32x32 with negative margin to compensate — half-star
+            // precision was previously impossible to hit reliably on mobile
+            // since the whole glyph was only ~8px wide per half.
+            className="relative inline-flex items-center justify-center w-8 h-8 -mx-1.5 text-base leading-none transition-colors disabled:opacity-40 text-slate-600 hover:text-amber-600 touch-manipulation"
             title={`Rate ${star - 0.5} or ${star} stars`}
           >
             <span aria-hidden className="absolute inset-0 flex items-center justify-center">★</span>
@@ -843,7 +847,7 @@ function StarRating({
                 fill === 'empty' ? 'w-0' : fill === 'half' ? 'w-1/2' : 'w-full'
               }`}
             >
-              <span className="text-amber-400">★</span>
+              <span className="text-amber-400 absolute left-1/2 -translate-x-1/2">★</span>
             </span>
           </button>
         )
