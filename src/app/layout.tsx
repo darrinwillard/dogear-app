@@ -5,7 +5,7 @@ import BottomNav from '@/components/BottomNav'
 
 export const metadata: Metadata = {
   title: 'DogEar — Your Reading Life',
-  description: 'Track your books, series, and upcoming releases. Auto-synced from Audible and Goodreads.',
+  description: 'Track your books, series, and upcoming releases. Auto-synced from Audible.',
   icons: {
     icon: "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📖</text></svg>"
   }
@@ -26,7 +26,7 @@ export default function RootLayout({
         <footer className="border-t border-slate-800 mt-16 py-8 mb-16 sm:mb-0">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between text-sm text-slate-500">
             <span>🐾 DogEar — Your Reading Life</span>
-            <span>Data synced from Audible & Goodreads</span>
+            <span>Data synced from Audible</span>
           </div>
         </footer>
         <BottomNav />

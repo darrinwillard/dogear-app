@@ -362,10 +362,18 @@ export default function SettingsPage() {
             App
           </h2>
         </div>
-        <div className="px-5 py-4">
+        <div className="px-5 py-4 space-y-2">
           <div className="flex justify-between text-sm">
             <span className="text-slate-400">Version</span>
-            <span className="text-slate-300">1.0.0</span>
+            <span className="text-slate-300">
+              {process.env.NEXT_PUBLIC_APP_VERSION || '—'}
+            </span>
+          </div>
+          <div className="flex justify-between text-sm">
+            <span className="text-slate-400">Build</span>
+            <span className="text-slate-500 font-mono text-xs">
+              {process.env.NEXT_PUBLIC_COMMIT_SHA || '—'}
+            </span>
           </div>
         </div>
       </section>

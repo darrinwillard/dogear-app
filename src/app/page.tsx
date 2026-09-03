@@ -86,10 +86,10 @@ export default async function Dashboard() {
           </div>
         </div>
         <div className="bg-slate-900 rounded-xl border border-slate-800 p-4 flex items-center gap-3">
-          <span className="text-3xl">📖</span>
+          <span className="text-3xl">📚</span>
           <div>
-            <div className="font-bold text-xl text-emerald-400">{stats.goodreadsTotal}</div>
-            <div className="text-slate-400 text-sm">Goodreads books</div>
+            <div className="font-bold text-xl text-emerald-400">{stats.totalBooks}</div>
+            <div className="text-slate-400 text-sm">Total books</div>
           </div>
         </div>
       </div>

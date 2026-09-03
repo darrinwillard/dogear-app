@@ -30,12 +30,10 @@ interface Props {
 type FilterTab =
   | 'all'
   | 'audible'
-  | 'goodreads'
   | 'read'
   | 'reading'
   | 'owned'
   | 'want'
-  | 'almost'
 
 type PendingMap = Record<string, boolean>
 
@@ -396,7 +394,6 @@ export default function LibraryClient({
   const tabFiltered = useMemo(() => {
     return books.filter((book) => {
       if (activeTab === 'audible') return book.sources.includes('audible')
-      if (activeTab === 'goodreads') return book.sources.includes('goodreads')
       if (activeTab === 'read') {
         const status = getEffectiveStatus(book)
         return status === 'read' || status === 'read_no_date'
@@ -451,11 +448,6 @@ export default function LibraryClient({
       key: 'audible',
       label: 'Audible',
       count: books.filter((b) => b.sources.includes('audible')).length,
-    },
-    {
-      key: 'goodreads',
-      label: 'Goodreads',
-      count: books.filter((b) => b.sources.includes('goodreads')).length,
     },
     {
       key: 'read',
@@ -629,9 +621,7 @@ export default function LibraryClient({
             onClick={() => setActiveTab(tab.key)}
             className={`px-3 py-1.5 rounded-full text-sm font-medium transition-colors ${
               activeTab === tab.key
-                ? tab.key === 'almost'
-                  ? 'bg-orange-500 text-slate-900'
-                  : 'bg-amber-500 text-slate-900'
+                ? 'bg-amber-500 text-slate-900'
                 : 'bg-slate-800 text-slate-400 hover:text-amber-200 hover:bg-slate-700'
             }`}
           >
@@ -1273,11 +1263,6 @@ function BookRow({
         {book.sources.includes('audible') && (
           <span title="Audible" className="text-base">
             🎧
-          </span>
-        )}
-        {book.sources.includes('goodreads') && (
-          <span title="Goodreads" className="text-base">
-            📗
           </span>
         )}
       </div>
