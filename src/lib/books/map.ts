@@ -165,6 +165,8 @@ export function mapUserBookToBook(ub: SupabaseUserBookRow): Book {
     notInterested,
     releaseDate: b?.release_date ?? null,
     preorderUrl: ub.preorder_url ?? null,
+    summary: b?.summary ?? null,
+    publisher: b?.publisher ?? null,
   }
 }
 

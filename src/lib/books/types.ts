@@ -29,6 +29,10 @@ export interface Book {
   releaseDate?: string | null
   /** Preferred buy/preorder URL (from series_releases.preorder_url when available). */
   preorderUrl?: string | null
+  /** books.summary — synopsis text from Audible catalog, when available. */
+  summary?: string | null
+  /** books.publisher, when available. */
+  publisher?: string | null
 }
 
 export type ReleaseInterestKind = 'series' | 'author' | 'both'
