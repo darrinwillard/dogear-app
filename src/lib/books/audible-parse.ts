@@ -37,10 +37,20 @@ export interface AudibleItem {
  *
  * series / percent_complete / is_finished / listening_status can be combined
  * with media in one call — combining them does NOT drop product_images.
+ *
+ * `product_extended_attrs` is REQUIRED for the FULL `publisher_summary`.
+ * Without it, `product_desc` alone returns a truncated ~290-char
+ * `merchandising_summary`-style blurb under the SAME `publisher_summary`
+ * key — silently shorter, not absent, so this was easy to miss. Confirmed
+ * via live API probe 2026-09-03: product_desc alone -> 290 chars ending
+ * in "..."; product_extended_attrs -> full multi-paragraph text (1400+
+ * chars, HTML <br /> paragraph breaks) matching the real Audible product
+ * page. Root cause of the 2026-09-03 "synopsis cuts off" bug report.
  */
 export const AUDIBLE_LIBRARY_RESPONSE_GROUPS = [
   'product_desc',
   'product_attrs',
+  'product_extended_attrs',
   'contributors',
   'media',
   'series',
@@ -103,20 +113,30 @@ export function readSeriesFields(item: AudibleItem): {
 /**
  * Synopsis text — Audible returns this under publisher_summary (preferred,
  * fuller description) or merchandising_summary (shorter, marketing-style)
- * depending on the title. product_desc must be in response_groups for
- * either field to be present at all. HTML entities/tags occasionally show
- * up in publisher_summary; stripped here so the modal renders plain text.
+ * fallback. product_extended_attrs must be in response_groups for the FULL
+ * publisher_summary — product_desc alone returns a truncated ~290-char
+ * version under the same key (confirmed via live API probe 2026-09-03).
+ *
+ * publisher_summary commonly contains <br /> tags marking paragraph
+ * breaks (confirmed live: Dark Places has 3 paragraphs joined by <br />).
+ * Convert those to \n\n before stripping remaining tags, so whitespace-pre-line
+ * in the UI renders real paragraph breaks instead of one run-on line.
  */
 export function readSummary(item: AudibleItem): string | null | undefined {
   const raw = item.publisher_summary || item.merchandising_summary
   if (raw == null) return undefined
   const stripped = String(raw)
+    .replace(/<br\s*\/?>/gi, '\n\n')
     .replace(/<[^>]*>/g, ' ')
     .replace(/&nbsp;/g, ' ')
     .replace(/&amp;/g, '&')
     .replace(/&#39;|&apos;/g, "'")
     .replace(/&quot;/g, '"')
-    .replace(/\s+/g, ' ')
+    .replace(/[ \t]+/g, ' ')
+    .replace(/\n{3,}/g, '\n\n')
+    .split('\n')
+    .map((line) => line.trim())
+    .join('\n')
     .trim()
   return stripped || null
 }
