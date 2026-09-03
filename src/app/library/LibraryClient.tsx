@@ -352,17 +352,31 @@ export default function LibraryClient({
       const data = await res.json().catch(() => ({}))
       if (!res.ok) {
         setStatusNote(data.error || 'Sync failed')
-      } else {
-        setStatusNote(
-          `Synced ${data.books_synced ?? 0} books` +
-            (data.series_fields_written != null
-              ? ` · series tags written: ${data.series_fields_written}`
-              : '') +
-            (data.progress_fields_written != null
-              ? ` · progress updates: ${data.progress_fields_written}`
-              : '')
-        )
+        return
       }
+
+      let libraryNote =
+        `Synced ${data.books_synced ?? 0} books` +
+        (data.series_fields_written != null
+          ? ` · series tags written: ${data.series_fields_written}`
+          : '') +
+        (data.progress_fields_written != null
+          ? ` · progress updates: ${data.progress_fields_written}`
+          : '')
+
+      // Also refresh upcoming releases every time — throttled server-side
+      // (7-day window) so this is a no-op most syncs, not an extra full scan.
+      try {
+        const relRes = await fetch('/api/audible/releases', { method: 'POST' })
+        const relData = await relRes.json().catch(() => ({}))
+        if (relRes.ok && !relData.skipped) {
+          libraryNote += ` · releases refreshed`
+        }
+      } catch {
+        // Releases refresh is best-effort — library sync already succeeded.
+      }
+
+      setStatusNote(libraryNote)
       router.refresh()
     } finally {
       setSyncing(false)
