@@ -7,7 +7,7 @@ const navLinks = [
   { href: '/', label: 'Dashboard', emoji: '📊' },
   { href: '/library', label: 'Library', emoji: '📚' },
   { href: '/series', label: 'Series', emoji: '🔖' },
-  { href: '/upcoming', label: 'Upcoming', emoji: '📅' },
+  { href: '/upcoming', label: 'Find Next Read', emoji: '📅' },
   { href: '/settings', label: 'Settings', emoji: '⚙️' },
 ]
 
