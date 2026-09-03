@@ -1,7 +1,9 @@
 'use client'
 
-import { useState, useMemo } from 'react'
-import { SeriesInfo, formatDate, getGenreForSeries } from '@/lib/books'
+import { useCallback, useState, useMemo } from 'react'
+import { useRouter } from 'next/navigation'
+import { SeriesInfo, Book, formatDate, getGenreForSeries, mapUiStatusToDb } from '@/lib/books'
+import BookDetailModal, { type DetailStatus } from '@/components/BookDetailModal'
 
 interface Props {
   series: SeriesInfo[]
@@ -16,9 +18,72 @@ export default function SeriesClient({
   isAuthed = false,
   source = 'demo',
 }: Props) {
+  const router = useRouter()
   const [search, setSearch] = useState('')
   // Default 'all' until historical seed lands (Phase 2) — in_progress would look empty
   const [filterComplete, setFilterComplete] = useState<Filter>('all')
+  const [detailAsin, setDetailAsin] = useState<string | null>(null)
+  const [pending, setPending] = useState<Record<string, boolean>>({})
+
+  // Flatten once for O(1)-ish lookup by asin across all series' books.
+  const allBooksByAsin = useMemo(() => {
+    const map = new Map<string, Book>()
+    for (const s of series) {
+      for (const b of s.books) {
+        if (b.asin) map.set(b.asin, b)
+      }
+    }
+    return map
+  }, [series])
+
+  const setDetailStatus = useCallback(
+    async (asin: string, next: DetailStatus) => {
+      if (!isAuthed) return
+      setPending((p) => ({ ...p, [asin]: true }))
+      try {
+        if (next === 'read') {
+          await fetch('/api/books/status', {
+            method: 'PATCH',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ asin, status: mapUiStatusToDb('completed') }),
+          })
+        } else if (next === 'unread') {
+          await fetch('/api/books/status', {
+            method: 'PATCH',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ asin, status: mapUiStatusToDb('unstarted') }),
+          })
+          await fetch('/api/books/want', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ asin, action: 'remove' }),
+          })
+        } else if (next === 'want') {
+          await fetch('/api/books/want', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ asin, action: 'add' }),
+          })
+        } else {
+          await fetch('/api/books/want', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ asin, action: 'not_interested' }),
+          })
+        }
+        router.refresh()
+      } finally {
+        setPending((p) => {
+          const n = { ...p }
+          delete n[asin]
+          return n
+        })
+      }
+    },
+    [isAuthed, router]
+  )
+
+  const detailBook = detailAsin ? allBooksByAsin.get(detailAsin) : undefined
 
   const filtered = useMemo(() => {
     return series.filter((s) => {
@@ -124,7 +189,7 @@ export default function SeriesClient({
 
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {filtered.map((s) => (
-          <SeriesCard key={s.name} series={s} />
+          <SeriesCard key={s.name} series={s} onOpenBook={setDetailAsin} />
         ))}
       </div>
 
@@ -134,11 +199,26 @@ export default function SeriesClient({
           <div>No series found</div>
         </div>
       )}
+
+      {detailBook && detailAsin && (
+        <BookDetailModal
+          book={detailBook}
+          isPending={!!pending[detailAsin]}
+          onClose={() => setDetailAsin(null)}
+          onSetDetailStatus={isAuthed ? setDetailStatus : undefined}
+        />
+      )}
     </div>
   )
 }
 
-function SeriesCard({ series }: { series: SeriesInfo }) {
+function SeriesCard({
+  series,
+  onOpenBook,
+}: {
+  series: SeriesInfo
+  onOpenBook: (asin: string) => void
+}) {
   const pct =
     series.totalCount > 0 ? (series.readCount / series.totalCount) * 100 : 0
   const isComplete = pct >= 100
@@ -203,17 +283,23 @@ function SeriesCard({ series }: { series: SeriesInfo }) {
           const isRead =
             book.status === 'read' || book.status === 'read_no_date'
           return (
-            <div
+            <button
               key={book.asin || `${book.title}-${i}`}
+              type="button"
               title={`${book.title} (#${book.series_num})`}
-              className={`w-5 h-5 rounded-sm text-xs flex items-center justify-center font-mono ${
+              onClick={(e) => {
+                e.stopPropagation()
+                if (book.asin) onOpenBook(book.asin)
+              }}
+              disabled={!book.asin}
+              className={`w-5 h-5 rounded-sm text-xs flex items-center justify-center font-mono transition-opacity hover:opacity-75 disabled:cursor-default disabled:hover:opacity-100 ${
                 isRead
                   ? 'bg-amber-500 text-slate-900 font-bold'
                   : 'bg-slate-800 text-slate-600 border border-slate-700'
               }`}
             >
               {book.series_num ? parseFloat(book.series_num).toFixed(0) : '?'}
-            </div>
+            </button>
           )
         })}
         {series.books.length > 20 && (
@@ -224,12 +310,20 @@ function SeriesCard({ series }: { series: SeriesInfo }) {
       </div>
 
       {series.nextToRead && (
-        <div className="bg-slate-800/50 rounded-lg p-2.5 mb-3">
+        <button
+          type="button"
+          onClick={(e) => {
+            e.stopPropagation()
+            if (series.nextToRead?.asin) onOpenBook(series.nextToRead.asin)
+          }}
+          disabled={!series.nextToRead.asin}
+          className="w-full text-left bg-slate-800/50 rounded-lg p-2.5 mb-3 hover:bg-slate-800 transition-colors disabled:cursor-default disabled:hover:bg-slate-800/50"
+        >
           <div className="text-xs text-slate-500 mb-1">📖 Next to read:</div>
           <div className="text-sm text-amber-300 font-medium truncate">
             {series.nextToRead.title}
           </div>
-        </div>
+        </button>
       )}
 
       {series.upcomingRelease && series.upcomingRelease.status === 'upcoming' && (

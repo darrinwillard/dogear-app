@@ -6,6 +6,8 @@ import type { UpcomingRelease } from '@/lib/books/types'
 import { createClient } from '@/lib/supabase/server'
 import ReleaseCover from './ReleaseCover'
 import WantButton from './WantButton'
+import { ReleaseDetailProvider } from '@/components/ReleaseDetailWrapper'
+import ReleaseCardClick from '@/components/ReleaseCardClick'
 
 export const dynamic = 'force-dynamic'
 
@@ -75,6 +77,7 @@ export default async function UpcomingPage() {
     : null
 
   return (
+    <ReleaseDetailProvider isAuthed={data.isAuthed}>
     <div className="space-y-10">
       <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
         <div>
@@ -187,9 +190,10 @@ export default async function UpcomingPage() {
           </h2>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {data.releasedRecently.map((release, i) => (
-              <div
+              <ReleaseCardClick
                 key={release.asin || `${release.title}-${i}`}
-                className="bg-slate-900/60 rounded-xl border border-emerald-500/20 p-4 hover:border-emerald-500/40 transition-all"
+                release={release}
+                className="bg-slate-900/60 rounded-xl border border-emerald-500/20 p-4 hover:border-emerald-500/40 transition-all cursor-pointer"
               >
                 <div className="flex items-start justify-between gap-2 mb-2">
                   <span className="text-xs bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-2 py-0.5 rounded-full">
@@ -204,7 +208,7 @@ export default async function UpcomingPage() {
                   <span className="text-xs text-slate-500">
                     Released {formatDate(release.releaseDate)}
                   </span>
-                  <div className="flex items-center gap-2">
+                  <div className="flex items-center gap-2" onClick={(e) => e.stopPropagation()}>
                     {data.isAuthed && (
                       <WantButton
                         release={release}
@@ -224,7 +228,7 @@ export default async function UpcomingPage() {
                     )}
                   </div>
                 </div>
-              </div>
+              </ReleaseCardClick>
             ))}
           </div>
         </section>
@@ -232,6 +236,7 @@ export default async function UpcomingPage() {
 
       {data.source === 'live' && <StatsFooter data={data} />}
     </div>
+    </ReleaseDetailProvider>
   )
 }
 
@@ -286,12 +291,13 @@ function ReleaseSection({
                     <div className="w-2 h-2 rounded-full bg-amber-300" />
                   </div>
 
-                  <div
+                  <ReleaseCardClick
+                    release={release}
                     className={`bg-slate-900 rounded-xl border ${
                       isPast
                         ? 'border-slate-800 opacity-60'
                         : 'border-slate-800 hover:border-amber-500/30'
-                    } p-5 transition-all`}
+                    } p-5 transition-all cursor-pointer`}
                   >
                     <div className="flex items-start justify-between gap-4 flex-wrap">
                       <ReleaseCover release={release} />
@@ -327,7 +333,10 @@ function ReleaseSection({
                           <p className="text-slate-500 text-xs mt-2 italic">{release.notes}</p>
                         )}
                       </div>
-                      <div className="shrink-0 text-right space-y-2">
+                      <div
+                        className="shrink-0 text-right space-y-2"
+                        onClick={(e) => e.stopPropagation()}
+                      >
                         <div className="text-sm font-medium text-amber-400">
                           {formatDate(release.releaseDate)}
                         </div>
@@ -351,7 +360,7 @@ function ReleaseSection({
                         </div>
                       </div>
                     </div>
-                  </div>
+                  </ReleaseCardClick>
                 </div>
               )
             })}
@@ -372,7 +381,10 @@ function CompactCard({
   alreadyWanted?: boolean
 }) {
   return (
-    <div className="bg-slate-900/60 rounded-xl border border-slate-800 p-4 hover:border-slate-700 transition-all">
+    <ReleaseCardClick
+      release={release}
+      className="bg-slate-900/60 rounded-xl border border-slate-800 p-4 hover:border-slate-700 transition-all cursor-pointer"
+    >
       <div className="flex gap-3">
         <ReleaseCover release={release} />
         <div className="flex-1 min-w-0">
@@ -387,13 +399,15 @@ function CompactCard({
           {release.notes && <p className="text-slate-500 text-xs italic">{release.notes}</p>}
           <div className="mt-2 flex items-center justify-between gap-2">
             <span className="text-xs text-slate-600">📅 Date TBA</span>
-            {isAuthed && (
-              <WantButton release={release} alreadyWanted={alreadyWanted} compact />
-            )}
+            <div onClick={(e) => e.stopPropagation()}>
+              {isAuthed && (
+                <WantButton release={release} alreadyWanted={alreadyWanted} compact />
+              )}
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </ReleaseCardClick>
   )
 }
 

@@ -17,10 +17,10 @@ import {
   isWantToRead,
   isOwnedUnread,
   isReadStatus,
-  isReadingStatus,
   buyOrPreorderUrl,
   isFutureRelease,
 } from '@/lib/books'
+import BookDetailModal, { type DetailStatus } from '@/components/BookDetailModal'
 
 interface Props {
   books: Book[]
@@ -316,7 +316,7 @@ export default function LibraryClient({
    * 'remove' so a mistaken click never gets stuck.
    */
   const setDetailStatus = useCallback(
-    (asin: string, next: 'read' | 'unread' | 'want' | 'not_interested') => {
+    (asin: string, next: DetailStatus) => {
       if (next === 'read') {
         void applyStatus(asin, 'completed')
       } else if (next === 'unread') {
@@ -736,181 +736,6 @@ export default function LibraryClient({
           </button>
         </div>
       )}
-    </div>
-  )
-}
-
-/**
- * Full book detail popup — opens on tap anywhere on a card/row (except the
- * interactive controls, which stop propagation). Shows synopsis + metadata,
- * plus a real status selector that can move freely between all four states
- * (Read / Unfinished / Want to Read / Not Interested) rather than the
- * one-directional buttons on the cards — this is the fix for "we need to be
- * able to change these back if we mistakenly hit read."
- */
-type DetailStatus = 'read' | 'unread' | 'want' | 'not_interested'
-
-function getDetailStatus(book: Book): DetailStatus {
-  if (isReadStatus(book.status)) return 'read'
-  if (book.notInterested) return 'not_interested'
-  if (isWantToRead(book)) return 'want'
-  return 'unread'
-}
-
-function BookDetailModal({
-  book,
-  isPending,
-  onClose,
-  onSetDetailStatus,
-}: {
-  book: Book
-  isPending: boolean
-  onClose: () => void
-  onSetDetailStatus: (asin: string, next: DetailStatus) => void
-}) {
-  const asin = book.asin
-  const current = getDetailStatus(book)
-  const isReading = isReadingStatus(book.status)
-  const remaining = timeRemainingMinutes(book.runtime_length_min, book.percentComplete)
-  const year = book.releaseDate ? book.releaseDate.slice(0, 4) : null
-
-  const statusOptions: { key: DetailStatus; label: string; color: string }[] = [
-    { key: 'read', label: 'Read', color: 'bg-emerald-500 text-slate-900' },
-    { key: 'unread', label: 'Unread', color: 'bg-amber-500/20 text-amber-300 border border-amber-500/40' },
-    { key: 'want', label: 'Want to Read', color: 'bg-violet-500/20 text-violet-300 border border-violet-500/40' },
-    { key: 'not_interested', label: 'Not Interested', color: 'bg-slate-700 text-slate-300' },
-  ]
-
-  return (
-    <div
-      className="fixed inset-0 z-50 bg-black/70 flex items-end sm:items-center justify-center p-0 sm:p-4"
-      onClick={onClose}
-    >
-      <div
-        className="bg-slate-900 border border-slate-800 rounded-t-2xl sm:rounded-2xl w-full sm:max-w-lg max-h-[90vh] overflow-y-auto"
-        onClick={(e) => e.stopPropagation()}
-      >
-        <div className="sticky top-0 bg-slate-900 border-b border-slate-800 px-4 py-3 flex items-center justify-between z-10">
-          <h2 className="font-serif text-lg font-bold text-amber-100 truncate pr-4">
-            Book Details
-          </h2>
-          <button
-            type="button"
-            onClick={onClose}
-            className="text-slate-400 hover:text-slate-200 text-xl leading-none shrink-0"
-            aria-label="Close"
-          >
-            ✕
-          </button>
-        </div>
-
-        <div className="p-4 space-y-4">
-          <div className="flex gap-4">
-            <div className="w-24 h-36 shrink-0 rounded-lg overflow-hidden relative bg-slate-800">
-              <CoverImage book={book} />
-            </div>
-            <div className="min-w-0 flex-1">
-              <h3 className="font-serif text-lg font-bold text-amber-50 leading-snug">
-                {book.title}
-              </h3>
-              <p className="text-slate-400 text-sm mt-1">{book.authors.join(', ')}</p>
-              {book.series && (
-                <p className="text-amber-600 text-sm mt-1">
-                  {book.series} #{book.series_num}
-                </p>
-              )}
-              {isReading && remaining != null && (
-                <p className="text-blue-300 text-xs mt-2">
-                  {formatRuntime(remaining)} left
-                  {book.percentComplete != null
-                    ? ` · ${Math.round(book.percentComplete)}% complete`
-                    : ''}
-                </p>
-              )}
-            </div>
-          </div>
-
-          {/* Metadata grid — length, year, narrator, publisher */}
-          <div className="grid grid-cols-2 gap-3 text-sm">
-            {book.runtime_length_min != null && (
-              <div>
-                <div className="text-xs text-slate-500">Length</div>
-                <div className="text-amber-50">{formatRuntime(book.runtime_length_min)}</div>
-              </div>
-            )}
-            {year && (
-              <div>
-                <div className="text-xs text-slate-500">Released</div>
-                <div className="text-amber-50">{year}</div>
-              </div>
-            )}
-            {book.narrator && (
-              <div>
-                <div className="text-xs text-slate-500">Narrator</div>
-                <div className="text-amber-50 truncate">{book.narrator}</div>
-              </div>
-            )}
-            {book.publisher && (
-              <div>
-                <div className="text-xs text-slate-500">Publisher</div>
-                <div className="text-amber-50 truncate">{book.publisher}</div>
-              </div>
-            )}
-          </div>
-
-          {/* Synopsis */}
-          <div>
-            <div className="text-xs text-slate-500 mb-1">Synopsis</div>
-            {book.summary ? (
-              <p className="text-slate-300 text-sm leading-relaxed whitespace-pre-line">
-                {book.summary}
-              </p>
-            ) : (
-              <p className="text-slate-500 text-sm italic">
-                No synopsis available for this title yet.
-              </p>
-            )}
-          </div>
-
-          {/* Status selector — freely reversible, all four states always shown */}
-          {asin && (
-            <div>
-              <div className="text-xs text-slate-500 mb-2">Status</div>
-              <div className="grid grid-cols-2 gap-2">
-                {statusOptions.map((opt) => (
-                  <button
-                    key={opt.key}
-                    type="button"
-                    disabled={isPending}
-                    onClick={() => onSetDetailStatus(asin, opt.key)}
-                    className={`px-3 py-2 rounded-lg text-sm font-medium transition-all disabled:opacity-50 ${
-                      current === opt.key
-                        ? opt.color
-                        : 'bg-slate-800 text-slate-400 hover:bg-slate-700 border border-transparent'
-                    }`}
-                  >
-                    {opt.label}
-                  </button>
-                ))}
-              </div>
-              <p className="text-xs text-slate-500 mt-2">
-                Switch between any of these anytime — nothing here is one-way.
-              </p>
-            </div>
-          )}
-
-          {asin && book.audible_purchased && (
-            <a
-              href={`https://www.audible.com/pd/${encodeURIComponent(asin)}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="block text-center text-sm text-amber-500 hover:text-amber-400"
-            >
-              View on Audible →
-            </a>
-          )}
-        </div>
-      </div>
     </div>
   )
 }

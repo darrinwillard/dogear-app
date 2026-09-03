@@ -1,6 +1,7 @@
 import { formatDate, isInProgressSeries } from '@/lib/books'
 import { getDashboardData } from '@/lib/books/queries'
 import Link from 'next/link'
+import WhatToReadNextSection from '@/components/DashboardBookSections'
 
 export const dynamic = 'force-dynamic'
 
@@ -105,18 +106,7 @@ export default async function Dashboard() {
           </Link>
         </div>
         <p className="text-slate-400 text-sm mb-4">Based on your series momentum — you were just reading these:</p>
-        <div className="grid sm:grid-cols-3 gap-4">
-          {whatToReadNext.map((book, i) => (
-            <NextReadCard key={book.asin || `${book.title}-${i}`} book={book} rank={i + 1} />
-          ))}
-          {whatToReadNext.length === 0 && (
-            <div className="col-span-3 text-slate-500 text-center py-8">
-              {isAuthed
-                ? 'No series recommendations yet — sync Audible and mark books read to build momentum.'
-                : 'No recommendations available'}
-            </div>
-          )}
-        </div>
+        <WhatToReadNextSection books={whatToReadNext} isAuthed={isAuthed} />
       </section>
 
       {/* Active Series Progress */}
@@ -185,34 +175,6 @@ function StatCard({ value, label, icon, sub }: { value: string; label: string; i
       <div className="font-bold text-3xl text-amber-400">{value}</div>
       <div className="text-amber-100 font-medium text-sm mt-1">{label}</div>
       <div className="text-slate-500 text-xs mt-0.5">{sub}</div>
-    </div>
-  )
-}
-
-function NextReadCard({ book, rank }: { book: { title: string; authors: string[]; series: string | null; series_num: string | null; asin?: string | null }; rank: number }) {
-  const rankColors = ['text-amber-400', 'text-slate-300', 'text-amber-700']
-  const rankEmojis = ['🥇', '🥈', '🥉']
-
-  return (
-    <div className="bg-slate-900 rounded-xl border border-amber-500/20 p-5 hover:border-amber-500/40 transition-all group">
-      <div className="flex items-start gap-3">
-        <div className={`text-2xl ${rankColors[rank - 1] || 'text-slate-400'}`}>
-          {rankEmojis[rank - 1] || rank}
-        </div>
-        <div className="flex-1 min-w-0">
-          <h3 className="font-semibold text-amber-100 text-sm leading-snug line-clamp-2 group-hover:text-amber-300 transition-colors">
-            {book.title}
-          </h3>
-          <p className="text-slate-400 text-xs mt-1">{book.authors[0]}</p>
-          {book.series && (
-            <div className="mt-2">
-              <span className="text-xs bg-amber-500/10 text-amber-400 border border-amber-500/20 px-2 py-0.5 rounded-full">
-                {book.series} #{book.series_num}
-              </span>
-            </div>
-          )}
-        </div>
-      </div>
     </div>
   )
 }
