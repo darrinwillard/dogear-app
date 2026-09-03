@@ -279,7 +279,7 @@ function SeriesCard({
       </div>
 
       <div className="flex flex-wrap gap-1 mb-3">
-        {series.books.slice(0, 20).map((book, i) => {
+        {series.books.map((book, i) => {
           const isRead =
             book.status === 'read' || book.status === 'read_no_date'
           return (
@@ -302,11 +302,6 @@ function SeriesCard({
             </button>
           )
         })}
-        {series.books.length > 20 && (
-          <div className="text-xs text-slate-500 self-center">
-            +{series.books.length - 20}
-          </div>
-        )}
       </div>
 
       {series.nextToRead && (
