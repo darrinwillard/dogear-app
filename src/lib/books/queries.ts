@@ -15,7 +15,8 @@ import { getLiveUpcomingReleases } from './releases'
 
 const BOOK_EMBED = `
     id, asin, title, authors, narrator, runtime_minutes,
-    cover_url, series_name, series_position, publisher, release_date
+    cover_url, series_name, series_position, publisher, release_date,
+    summary, genre
 `
 
 /** Includes progress + want-to-read flags (migrations 002/005). */
