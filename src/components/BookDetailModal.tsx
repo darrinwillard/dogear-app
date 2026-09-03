@@ -33,8 +33,14 @@ export function getDetailStatus(book: Book): DetailStatus {
 
 function SynopsisText({ text }: { text: string }) {
   const [expanded, setExpanded] = useState(false)
-  // Only clamp/offer expand for genuinely long synopses.
+  // Only clamp/offer expand for genuinely long synopses. Use a plain
+  // character-count truncation instead of CSS line-clamp — line-clamp
+  // (webkit-box + line-clamp) has proven unreliable toggling live across
+  // browsers/webviews for this component (confirmed broken twice after
+  // CSS-class and inline-style attempts). A truncated-string approach has
+  // no CSS dependency at all: it can't silently fail to un-clamp.
   const isLong = text.length > 220
+  const truncated = isLong ? `${text.slice(0, 220).trimEnd()}\u2026` : text
 
   if (!isLong) {
     return (
@@ -46,24 +52,15 @@ function SynopsisText({ text }: { text: string }) {
 
   return (
     <div>
-      <p
-        className="text-slate-300 text-sm leading-relaxed whitespace-pre-line"
-        style={
-          expanded
-            ? undefined
-            : {
-                display: '-webkit-box',
-                WebkitLineClamp: 4,
-                WebkitBoxOrient: 'vertical' as const,
-                overflow: 'hidden',
-              }
-        }
-      >
-        {text}
+      <p className="text-slate-300 text-sm leading-relaxed whitespace-pre-line">
+        {expanded ? text : truncated}
       </p>
       <button
         type="button"
-        onClick={() => setExpanded((v) => !v)}
+        onClick={(e) => {
+          e.stopPropagation()
+          setExpanded((v) => !v)
+        }}
         className="text-amber-500 hover:text-amber-400 text-xs font-medium mt-1.5"
       >
         {expanded ? 'Show less' : 'Read more'}
