@@ -31,6 +31,39 @@ export function getDetailStatus(book: Book): DetailStatus {
   return 'unread'
 }
 
+function SynopsisText({ text }: { text: string }) {
+  const [expanded, setExpanded] = useState(false)
+  // Only clamp/offer expand for genuinely long synopses.
+  const isLong = text.length > 220
+
+  if (!isLong) {
+    return (
+      <p className="text-slate-300 text-sm leading-relaxed whitespace-pre-line">
+        {text}
+      </p>
+    )
+  }
+
+  return (
+    <div>
+      <p
+        className={`text-slate-300 text-sm leading-relaxed whitespace-pre-line ${
+          expanded ? '' : 'line-clamp-4'
+        }`}
+      >
+        {text}
+      </p>
+      <button
+        type="button"
+        onClick={() => setExpanded((v) => !v)}
+        className="text-amber-500 hover:text-amber-400 text-xs font-medium mt-1.5"
+      >
+        {expanded ? 'Show less' : 'Read more'}
+      </button>
+    </div>
+  )
+}
+
 function CoverImage({ book }: { book: Book }) {
   const [imgError, setImgError] = useState(false)
 
@@ -176,9 +209,7 @@ export default function BookDetailModal({
           <div>
             <div className="text-xs text-slate-500 mb-1">Synopsis</div>
             {book.summary ? (
-              <p className="text-slate-300 text-sm leading-relaxed whitespace-pre-line">
-                {book.summary}
-              </p>
+              <SynopsisText text={book.summary} />
             ) : (
               <p className="text-slate-500 text-sm italic">
                 No synopsis available for this title yet.

@@ -65,8 +65,22 @@ export default function LibraryClient({
   const [sortBy, setSortBy] = useState<'default' | 'genre' | 'title' | 'author'>('default')
 
   // Re-sync local optimistic state when server props change (router.refresh).
+  // Guard: never let a refreshed prop silently revert a status/want field
+  // that's still mid-flight (pending) for that ASIN — a concurrent Audible
+  // sync or a slow read-replica can otherwise stomp an optimistic "Read"
+  // right back to "Unread" milliseconds after the user's click.
   useEffect(() => {
-    setBooks(initialBooks)
+    setBooks((prev) => {
+      const prevByAsin = new Map(prev.map((b) => [b.asin, b]))
+      return initialBooks.map((incoming) => {
+        if (incoming.asin && pending[incoming.asin]) {
+          const local = prevByAsin.get(incoming.asin)
+          if (local) return local
+        }
+        return incoming
+      })
+    })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [initialBooks])
 
   const getEffectiveStatus = useCallback((book: Book) => book.status, [])
