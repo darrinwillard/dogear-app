@@ -833,12 +833,13 @@ function StarRating({
               setHover(leftHalf ? star - 0.5 : star)
             }}
             onMouseLeave={() => setHover(null)}
-            className="relative text-xs leading-none transition-colors disabled:opacity-40 text-slate-600 hover:text-amber-600"
+            className="relative inline-block w-4 h-4 text-base leading-none transition-colors disabled:opacity-40 text-slate-600 hover:text-amber-600"
             title={`Rate ${star - 0.5} or ${star} stars`}
           >
-            <span aria-hidden className="invisible">★</span>
+            <span aria-hidden className="absolute inset-0 flex items-center justify-center">★</span>
             <span
-              className={`absolute inset-0 overflow-hidden ${
+              aria-hidden
+              className={`absolute inset-0 overflow-hidden flex items-center justify-start ${
                 fill === 'empty' ? 'w-0' : fill === 'half' ? 'w-1/2' : 'w-full'
               }`}
             >
