@@ -150,12 +150,23 @@ export default function LibraryClient({
 
   const applyStatus = useCallback(
     async (asin: string, uiOrDbStatus: string) => {
+      if (!asin) {
+        setStatusNote('Missing ASIN — cannot save status. This is a data bug, tell Darrin.')
+        return
+      }
       if (!isAuthed) {
         setStatusNote('Sign in to save status across devices.')
         return
       }
       setPendingAsin(asin, true)
       const previous = books.find((b) => b.asin === asin)
+      if (!previous) {
+        // Book isn't in local state at all — write would silently target
+        // nothing meaningful client-side. Surface loudly instead of no-op.
+        setStatusNote(`Book ${asin} not found in loaded library — refresh and retry.`)
+        setPendingAsin(asin, false)
+        return
+      }
       const dbStatus = mapUiStatusToDb(uiOrDbStatus)
       const uiStatus =
         dbStatus === 'completed'
@@ -247,12 +258,21 @@ export default function LibraryClient({
       action: 'add' | 'remove' | 'not_interested',
       extra?: Partial<Book>
     ) => {
+      if (!asin) {
+        setStatusNote('Missing ASIN — cannot update Want to Read.')
+        return
+      }
       if (!isAuthed) {
         setStatusNote('Sign in to update Want to Read.')
         return
       }
       setPendingAsin(asin, true)
       const previous = books.find((b) => b.asin === asin)
+      if (!previous) {
+        setStatusNote(`Book ${asin} not found in loaded library — refresh and retry.`)
+        setPendingAsin(asin, false)
+        return
+      }
       // Optimistic
       if (action === 'add') {
         patchBookLocal(asin, {
