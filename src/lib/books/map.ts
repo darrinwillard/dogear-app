@@ -170,7 +170,7 @@ export function mapUserBookToBook(ub: SupabaseUserBookRow): Book {
     preorderUrl: ub.preorder_url ?? null,
     summary: b?.summary ?? null,
     publisher: b?.publisher ?? null,
-    genre: b?.genre ?? null,
+    genre: b?.genre ?? (b?.series_name ? getGenreForSeries(b.series_name) : null),
   }
 }
 

@@ -32,7 +32,6 @@ interface Props {
 
 type FilterTab =
   | 'all'
-  | 'audible'
   | 'read'
   | 'reading'
   | 'owned'
@@ -422,7 +421,6 @@ export default function LibraryClient({
 
   const tabFiltered = useMemo(() => {
     return books.filter((book) => {
-      if (activeTab === 'audible') return book.sources.includes('audible')
       if (activeTab === 'read') {
         const status = getEffectiveStatus(book)
         return status === 'read' || status === 'read_no_date'
@@ -498,11 +496,6 @@ export default function LibraryClient({
 
   const tabs: { key: FilterTab; label: string; count?: number }[] = [
     { key: 'all', label: 'All', count: books.length },
-    {
-      key: 'audible',
-      label: 'Audible',
-      count: books.filter((b) => b.sources.includes('audible')).length,
-    },
     {
       key: 'read',
       label: 'Read',
@@ -1289,6 +1282,19 @@ function BookCard({
             onDismiss={onDismiss}
             compact
           />
+        )}
+        {showWantActions && onWant && asin && (
+          <button
+            type="button"
+            disabled={isPending}
+            onClick={(e) => {
+              e.stopPropagation()
+              onMarkRead(asin)
+            }}
+            className="w-full px-2 py-1 rounded-md text-[11px] font-semibold bg-emerald-500 text-slate-900 hover:bg-emerald-400 disabled:opacity-50"
+          >
+            Mark as Read
+          </button>
         )}
         {showWantActions && onWant && (
           <WantActions

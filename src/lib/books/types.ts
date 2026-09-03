@@ -38,7 +38,7 @@ export interface Book {
   summary?: string | null
   /** books.publisher, when available. */
   publisher?: string | null
-  /** books.genre — from Audible's category_ladders, when available. */
+  /** books.genre — from Audible's category_ladders, when available (falls back to series heuristic). */
   genre?: string | null
 }
 
