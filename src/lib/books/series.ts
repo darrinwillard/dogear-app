@@ -44,8 +44,12 @@ export function getSeriesDataFromBooks(
       seriesName.toLowerCase().includes(r.series.toLowerCase())
     ) || null
 
+    // Prefer progressSyncedAt (real Audible activity signal from the last
+    // sync) over finishedAt (user tapped "Read" in the app — may not match
+    // when they actually finished listening). Falls back through the old
+    // chain for books synced before progress_synced_at existed.
     const datesRead = sorted
-      .map(b => b.finishedAt || b.gr_date_read || b.audible_purchased)
+      .map(b => b.progressSyncedAt || b.finishedAt || b.gr_date_read || b.audible_purchased)
       .filter((d): d is string => !!d)
       .sort()
     const lastReadDate = datesRead.length > 0 ? datesRead[datesRead.length - 1] : null

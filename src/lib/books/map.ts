@@ -113,6 +113,7 @@ export interface SupabaseUserBookRow {
   status_source?: string | null
   want_to_read?: boolean | null
   not_interested?: boolean | null
+  progress_synced_at?: string | null
   updated_at?: string | null
   book?: SupabaseBookRow | SupabaseBookRow[] | null
   /** Joined from series_releases when available (client may attach). */
@@ -160,6 +161,7 @@ export function mapUserBookToBook(ub: SupabaseUserBookRow): Book {
     statusSource: ub.status_source ?? null,
     finishedAt: ub.finished_at ?? null,
     startedAt: ub.started_at ?? null,
+    progressSyncedAt: ub.progress_synced_at ?? null,
     almostFinishedDismissedAt: ub.almost_finished_dismissed_at ?? null,
     wantToRead,
     notInterested,

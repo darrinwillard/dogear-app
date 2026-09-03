@@ -20,6 +20,11 @@ export interface Book {
   statusSource?: string | null
   finishedAt?: string | null
   startedAt?: string | null
+  /** Last time Audible sync recorded any progress/listening activity on this
+   *  book — the closest real signal to "last read on Audible" available from
+   *  their API. Distinct from finishedAt, which is when the user manually
+   *  marked the book Read in the app (may not match actual listening date). */
+  progressSyncedAt?: string | null
   almostFinishedDismissedAt?: string | null
   /** Explicit wishlist (Upcoming add / manual). Independent of status. */
   wantToRead?: boolean | null
