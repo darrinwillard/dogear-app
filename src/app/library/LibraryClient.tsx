@@ -62,6 +62,8 @@ export default function LibraryClient({
   const [statusNote, setStatusNote] = useState<string | null>(null)
   const [pending, setPending] = useState<PendingMap>({})
   const [detailAsin, setDetailAsin] = useState<string | null>(null)
+  const [genreFilter, setGenreFilter] = useState<string>('all')
+  const [sortBy, setSortBy] = useState<'default' | 'genre' | 'title' | 'author'>('default')
 
   // Re-sync local optimistic state when server props change (router.refresh).
   useEffect(() => {
@@ -432,16 +434,41 @@ export default function LibraryClient({
     })
   }, [books, activeTab, getEffectiveStatus])
 
-  const filtered = useMemo(() => {
-    if (!search) return tabFiltered
+  const genres = useMemo(() => {
+    const set = new Set<string>()
+    for (const b of books) if (b.genre) set.add(b.genre)
+    return Array.from(set).sort()
+  }, [books])
+
+  const genreFiltered = useMemo(() => {
+    if (genreFilter === 'all') return tabFiltered
+    if (genreFilter === 'unset') return tabFiltered.filter((b) => !b.genre)
+    return tabFiltered.filter((b) => b.genre === genreFilter)
+  }, [tabFiltered, genreFilter])
+
+  const searched = useMemo(() => {
+    if (!search) return genreFiltered
     const q = search.toLowerCase()
-    return tabFiltered.filter(
+    return genreFiltered.filter(
       (book) =>
         book.title.toLowerCase().includes(q) ||
         book.authors.some((a) => a.toLowerCase().includes(q)) ||
         (book.series?.toLowerCase().includes(q))
     )
-  }, [tabFiltered, search])
+  }, [genreFiltered, search])
+
+  const filtered = useMemo(() => {
+    if (sortBy === 'default') return searched
+    const arr = [...searched]
+    if (sortBy === 'genre') {
+      arr.sort((a, b) => (a.genre || 'zzz').localeCompare(b.genre || 'zzz') || a.title.localeCompare(b.title))
+    } else if (sortBy === 'title') {
+      arr.sort((a, b) => a.title.localeCompare(b.title))
+    } else if (sortBy === 'author') {
+      arr.sort((a, b) => (a.authors[0] || '').localeCompare(b.authors[0] || ''))
+    }
+    return arr
+  }, [searched, sortBy])
 
   const stats = useMemo(() => {
     const read = books.filter((b) => {
@@ -640,6 +667,32 @@ export default function LibraryClient({
         onChange={(e) => setSearch(e.target.value)}
         className="w-full bg-slate-900 border border-slate-800 rounded-xl px-4 py-2.5 text-amber-50 placeholder:text-slate-500 focus:outline-none focus:border-amber-500 text-sm"
       />
+
+      {genres.length > 0 && (
+        <div className="flex flex-wrap gap-2 items-center">
+          <select
+            value={genreFilter}
+            onChange={(e) => setGenreFilter(e.target.value)}
+            className="bg-slate-900 border border-slate-800 rounded-lg px-3 py-2 text-sm text-amber-50 focus:outline-none focus:border-amber-500"
+          >
+            <option value="all">All genres</option>
+            {genres.map((g) => (
+              <option key={g} value={g}>{g}</option>
+            ))}
+            <option value="unset">No genre yet</option>
+          </select>
+          <select
+            value={sortBy}
+            onChange={(e) => setSortBy(e.target.value as typeof sortBy)}
+            className="bg-slate-900 border border-slate-800 rounded-lg px-3 py-2 text-sm text-amber-50 focus:outline-none focus:border-amber-500"
+          >
+            <option value="default">Sort: default</option>
+            <option value="genre">Sort: genre</option>
+            <option value="title">Sort: title</option>
+            <option value="author">Sort: author</option>
+          </select>
+        </div>
+      )}
 
       <div className="flex flex-wrap gap-2">
         {tabs.map((tab) => (
@@ -1210,6 +1263,11 @@ function BookCard({
           <p className="text-xs text-amber-700 truncate">
             #{book.series_num} · {book.series}
           </p>
+        )}
+        {book.genre && (
+          <span className="inline-block text-[10px] text-slate-400 bg-slate-800 border border-slate-700 rounded-full px-1.5 py-0.5 mt-0.5">
+            {book.genre}
+          </span>
         )}
         {book.releaseDate && onWant && (
           <p className="text-[10px] text-violet-300/80 truncate">

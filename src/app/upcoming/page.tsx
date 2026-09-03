@@ -304,6 +304,11 @@ function ReleaseSection({
                       <ReleaseCover release={release} />
                       <div className="flex-1 min-w-0">
                         <div className="flex items-center gap-2 mb-2 flex-wrap">
+                          {release.genre && (
+                            <span className="text-xs bg-slate-800 text-slate-400 border border-slate-700 px-2 py-0.5 rounded-full">
+                              {release.genre}
+                            </span>
+                          )}
                           {showSeriesBadge && (
                             <span className="text-xs bg-amber-500/10 text-amber-400 border border-amber-500/20 px-2 py-0.5 rounded-full">
                               {release.series}

@@ -38,6 +38,8 @@ export interface Book {
   summary?: string | null
   /** books.publisher, when available. */
   publisher?: string | null
+  /** books.genre — from Audible's category_ladders, when available. */
+  genre?: string | null
 }
 
 export type ReleaseInterestKind = 'series' | 'author' | 'both'
@@ -57,6 +59,10 @@ export interface UpcomingRelease {
   asin?: string | null
   coverUrl?: string | null
   source?: string | null
+  /** Genre, joined from books.genre by asin when the release is already
+   *  synced into the books table (catalog-only releases without a books
+   *  row yet won't have this). */
+  genre?: string | null
 }
 
 export interface SeriesInfo {

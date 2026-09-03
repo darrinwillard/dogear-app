@@ -4,6 +4,7 @@ import { createClient as createServerClient } from "@/lib/supabase/server";
 import {
   AUDIBLE_LIBRARY_RESPONSE_GROUPS,
   readCoverUrl,
+  readGenre,
   readIsFinished,
   readPercent,
   readSeriesFields,
@@ -203,6 +204,7 @@ export async function POST(_req: NextRequest) {
       series_position?: number | null;
       publisher?: string | null;
       summary?: string | null;
+      genre?: string | null;
       release_date?: string | null;
       updated_at: string;
     };
@@ -281,6 +283,10 @@ export async function POST(_req: NextRequest) {
       const summary = readSummary(item);
       if (summary) {
         row.summary = summary;
+      }
+      const genre = readGenre(item);
+      if (genre) {
+        row.genre = genre;
       }
       const release =
         item.release_date ||

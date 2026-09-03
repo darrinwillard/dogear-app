@@ -20,6 +20,10 @@ export interface AudibleItem {
   publisher_name?: string
   publisher_summary?: string
   merchandising_summary?: string
+  category_ladders?: {
+    ladder?: { name?: string }[]
+    root?: string
+  }[]
 }
 
 /**
@@ -44,6 +48,7 @@ export const AUDIBLE_LIBRARY_RESPONSE_GROUPS = [
   'is_finished',
   'listening_status',
   'relationships',
+  'category_ladders',
 ].join(',')
 
 /**
@@ -114,6 +119,30 @@ export function readSummary(item: AudibleItem): string | null | undefined {
     .replace(/\s+/g, ' ')
     .trim()
   return stripped || null
+}
+
+/**
+ * Genre — Audible returns category_ladders as an array of "ladders", each a
+ * path from a root category down through subcategories (e.g. Genres ->
+ * Mystery, Thriller & Suspense -> Thriller -> Espionage). We want the
+ * broadest useful label, not the deepest — "Espionage" is too narrow for a
+ * sort/filter UI, "Genres" (the root) is too broad. Takes the first
+ * meaningful (non-root) level of the first ladder under the "Genres" root
+ * when present, else the first ladder's first level, else undefined.
+ */
+export function readGenre(item: AudibleItem): string | null | undefined {
+  const ladders = item.category_ladders
+  if (!Array.isArray(ladders) || ladders.length === 0) return undefined
+
+  const genreLadder = ladders.find((l) => l.root === 'Genres') ?? ladders[0]
+  const names = (genreLadder?.ladder ?? [])
+    .map((l) => l.name?.trim())
+    .filter((n): n is string => !!n)
+
+  if (names.length === 0) return undefined
+  // First level is usually the broad genre (Mystery, Sci-Fi & Fantasy,
+  // Literature & Fiction); deeper levels get more specific than useful here.
+  return names[0]
 }
 
 export function readCoverUrl(item: AudibleItem): string | null | undefined {

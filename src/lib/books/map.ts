@@ -96,6 +96,7 @@ export interface SupabaseBookRow {
   publisher?: string | null
   release_date?: string | null
   summary?: string | null
+  genre?: string | null
 }
 
 export interface SupabaseUserBookRow {
@@ -169,6 +170,7 @@ export function mapUserBookToBook(ub: SupabaseUserBookRow): Book {
     preorderUrl: ub.preorder_url ?? null,
     summary: b?.summary ?? null,
     publisher: b?.publisher ?? null,
+    genre: b?.genre ?? null,
   }
 }
 

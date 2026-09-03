@@ -34,6 +34,8 @@ export interface SeriesReleaseRow {
   cover_url?: string | null
   updated_at?: string | null
   detected_at?: string | null
+  /** Joined from books.genre by asin, when the caller attaches it. */
+  genre?: string | null
 }
 
 export function mapSeriesReleaseRow(row: SeriesReleaseRow): UpcomingRelease {
