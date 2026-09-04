@@ -173,7 +173,12 @@ function DiscoverTab() {
 }
 
 function SimilarTab({ books }: { books: Book[] }) {
-  const rated = books.filter((b) => b.status === 'completed' && b.asin)
+  // Book.status is the UI-mapped string ('read', not 'completed' —
+  // mapDbStatusToUi() converts DB 'completed' -> UI 'read'). Filtering on
+  // the raw DB value here silently emptied this list for every user
+  // (confirmed live: Darrin's 496 completed books all had valid ASINs,
+  // but none matched status === 'completed' client-side).
+  const rated = books.filter((b) => (b.status === 'read' || b.status === 'read_no_date') && b.asin)
   const [selected, setSelected] = useState<string[]>([])
   const [state, setState] = useState<'idle' | 'loading' | 'done' | 'error'>('idle')
   const [hits, setHits] = useState<DiscoveryHit[]>([])
