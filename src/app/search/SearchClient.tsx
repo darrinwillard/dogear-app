@@ -172,6 +172,16 @@ function DiscoverTab() {
   )
 }
 
+/** Minimal seed shape a picker card needs, whether it comes from the local
+ * library (Book) or an Audible catalog search (DiscoveryHit). Unified so
+ * the picker UI and the `selected` ASIN list don't care about the source. */
+interface SeedCandidate {
+  asin: string
+  title: string
+  authors: string[]
+  inLibrary: boolean
+}
+
 function SimilarTab({ books }: { books: Book[] }) {
   // Book.status is the UI-mapped string ('read', not 'completed' —
   // mapDbStatusToUi() converts DB 'completed' -> UI 'read'). Filtering on
@@ -180,10 +190,24 @@ function SimilarTab({ books }: { books: Book[] }) {
   // but none matched status === 'completed' client-side).
   const rated = books.filter((b) => (b.status === 'read' || b.status === 'read_no_date') && b.asin)
   const [selected, setSelected] = useState<string[]>([])
+  // selectedMeta persists title/author for chips even after a book scrolls
+  // out of the current filtered/search list — ASIN alone isn't enough to
+  // render a removable chip once the source list has moved on.
+  const [selectedMeta, setSelectedMeta] = useState<Record<string, { title: string; authors: string[] }>>({})
   const [filterQuery, setFilterQuery] = useState('')
   const [state, setState] = useState<'idle' | 'loading' | 'done' | 'error'>('idle')
   const [hits, setHits] = useState<DiscoveryHit[]>([])
   const [error, setError] = useState<string | null>(null)
+
+  // Audible catalog search — lets Darrin pick a seed he's read but doesn't
+  // own on Audible (e.g. The Da Vinci Code, read years ago, never bought as
+  // an audiobook). Library-only seeding was the actual gap reported
+  // 2026-09-04: the picker could only ever suggest books already owned,
+  // which defeats "find something like a book I read elsewhere."
+  const [audibleQuery, setAudibleQuery] = useState('')
+  const [audibleState, setAudibleState] = useState<'idle' | 'loading' | 'done' | 'error'>('idle')
+  const [audibleResults, setAudibleResults] = useState<SeedCandidate[]>([])
+  const [audibleError, setAudibleError] = useState<string | null>(null)
 
   const q = filterQuery.trim().toLowerCase()
   const filteredRated = q
@@ -201,10 +225,46 @@ function SimilarTab({ books }: { books: Book[] }) {
     ? [...selectedBooks.filter((b) => !filteredRated.includes(b)), ...filteredRated]
     : filteredRated
 
-  function toggle(asin: string) {
+  function toggle(asin: string, meta?: { title: string; authors: string[] }) {
     setSelected((prev) =>
       prev.includes(asin) ? prev.filter((a) => a !== asin) : prev.length < 3 ? [...prev, asin] : prev
     )
+    if (meta) {
+      setSelectedMeta((prev) => ({ ...prev, [asin]: meta }))
+    }
+  }
+
+  // Debounced Audible search-as-you-type, mirroring DiscoverTab's request
+  // shape but hitting a plain title/author query (no genre/rating filter —
+  // this is a seed picker, not a results list; even a 3.2★ book you loved
+  // is a valid seed).
+  function runAudibleSearch(query: string) {
+    setAudibleQuery(query)
+    if (!query.trim()) {
+      setAudibleResults([])
+      setAudibleState('idle')
+      return
+    }
+    setAudibleState('loading')
+    setAudibleError(null)
+    const params = new URLSearchParams({ q: query.trim(), minRating: '0', minRatingsCount: '0', limit: '12' })
+    fetch(`/api/books/discover?${params}`)
+      .then(async (res) => {
+        const data = await res.json()
+        if (!res.ok) throw new Error(data.error || 'Search failed')
+        const results: SeedCandidate[] = (data.hits || []).map((h: DiscoveryHit) => ({
+          asin: h.asin,
+          title: h.title,
+          authors: h.authors,
+          inLibrary: h.alreadyOwned,
+        }))
+        setAudibleResults(results)
+        setAudibleState('done')
+      })
+      .catch((e) => {
+        setAudibleError(e instanceof Error ? e.message : 'Search failed')
+        setAudibleState('error')
+      })
   }
 
   async function findSimilar() {
@@ -227,48 +287,125 @@ function SimilarTab({ books }: { books: Book[] }) {
     }
   }
 
+  const selectedChips = selected.map((asin) => selectedMeta[asin]).filter(Boolean) as {
+    title: string
+    authors: string[]
+  }[]
+
   return (
     <div className="space-y-5">
       <p className="text-slate-400 text-sm">
         Pick up to 3 books you loved — we&apos;ll find similar, highly-rated books on Audible.
+        Search Audible below for books you&apos;ve read even if they&apos;re not in your library.
       </p>
-      <input
-        type="text"
-        value={filterQuery}
-        onChange={(e) => setFilterQuery(e.target.value)}
-        placeholder={`Search your ${rated.length} read books by title or author…`}
-        className="w-full bg-slate-900 border border-slate-800 rounded-lg px-4 py-2.5 text-sm text-slate-100 placeholder:text-slate-600 focus:outline-none focus:border-amber-500/50"
-      />
-      {q && (
-        <p className="text-slate-500 text-xs -mt-3">
-          {filteredRated.length} match{filteredRated.length === 1 ? '' : 'es'}
-        </p>
+
+      {selected.length > 0 && (
+        <div className="flex flex-wrap gap-2">
+          {selected.map((asin, i) => (
+            <span
+              key={asin}
+              className="inline-flex items-center gap-1.5 text-xs bg-amber-500/15 border border-amber-500/40 text-amber-100 px-2.5 py-1 rounded-full"
+            >
+              {selectedChips[i]?.title || asin}
+              <button
+                type="button"
+                onClick={() => toggle(asin)}
+                className="text-amber-300/70 hover:text-amber-100"
+                aria-label={`Remove ${selectedChips[i]?.title || 'seed'}`}
+              >
+                ✕
+              </button>
+            </span>
+          ))}
+        </div>
       )}
-      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-2 max-h-80 overflow-y-auto">
-        {visibleBooks.length === 0 && q && (
-          <p className="col-span-full text-slate-600 text-sm text-center py-6">
-            No matches for &quot;{filterQuery}&quot;
+
+      <div className="space-y-2">
+        <p className="text-slate-300 text-xs font-medium">Search Audible (any book you&apos;ve read)</p>
+        <input
+          type="text"
+          value={audibleQuery}
+          onChange={(e) => runAudibleSearch(e.target.value)}
+          placeholder="e.g. The Da Vinci Code…"
+          className="w-full bg-slate-900 border border-slate-800 rounded-lg px-4 py-2.5 text-sm text-slate-100 placeholder:text-slate-600 focus:outline-none focus:border-amber-500/50"
+        />
+        {audibleState === 'loading' && (
+          <p className="text-slate-500 text-xs">Searching Audible…</p>
+        )}
+        {audibleState === 'error' && (
+          <p className="text-amber-400 text-xs">{audibleError}</p>
+        )}
+        {audibleState === 'done' && audibleResults.length === 0 && (
+          <p className="text-slate-600 text-xs">No matches for &quot;{audibleQuery}&quot;</p>
+        )}
+        {audibleResults.length > 0 && (
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-2">
+            {audibleResults.map((r) => (
+              <button
+                key={r.asin}
+                type="button"
+                onClick={() => toggle(r.asin, { title: r.title, authors: r.authors })}
+                className={`text-left text-xs p-2.5 rounded-lg border transition-colors ${
+                  selected.includes(r.asin)
+                    ? 'bg-amber-500/15 border-amber-500/40 text-amber-100'
+                    : 'bg-slate-900 border-slate-800 text-slate-400 hover:border-slate-700'
+                }`}
+              >
+                {r.title}
+                {r.authors.length > 0 && (
+                  <span className="block text-slate-500 text-[10px] mt-0.5 truncate">
+                    {r.authors.join(', ')}
+                  </span>
+                )}
+                {r.inLibrary && (
+                  <span className="block text-emerald-400 text-[10px] mt-0.5">✓ In your library</span>
+                )}
+              </button>
+            ))}
+          </div>
+        )}
+      </div>
+
+      <div className="space-y-2">
+        <p className="text-slate-300 text-xs font-medium">Or pick from your library</p>
+        <input
+          type="text"
+          value={filterQuery}
+          onChange={(e) => setFilterQuery(e.target.value)}
+          placeholder={`Search your ${rated.length} read books by title or author…`}
+          className="w-full bg-slate-900 border border-slate-800 rounded-lg px-4 py-2.5 text-sm text-slate-100 placeholder:text-slate-600 focus:outline-none focus:border-amber-500/50"
+        />
+        {q && (
+          <p className="text-slate-500 text-xs">
+            {filteredRated.length} match{filteredRated.length === 1 ? '' : 'es'}
           </p>
         )}
-        {visibleBooks.slice(0, 200).map((b) => (
-          <button
-            key={b.asin}
-            type="button"
-            onClick={() => toggle(b.asin as string)}
-            className={`text-left text-xs p-2.5 rounded-lg border transition-colors ${
-              selected.includes(b.asin as string)
-                ? 'bg-amber-500/15 border-amber-500/40 text-amber-100'
-                : 'bg-slate-900 border-slate-800 text-slate-400 hover:border-slate-700'
-            }`}
-          >
-            {b.title}
-            {b.authors.length > 0 && (
-              <span className="block text-slate-500 text-[10px] mt-0.5 truncate">
-                {b.authors.join(', ')}
-              </span>
-            )}
-          </button>
-        ))}
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-2 max-h-80 overflow-y-auto">
+          {visibleBooks.length === 0 && q && (
+            <p className="col-span-full text-slate-600 text-sm text-center py-6">
+              No matches for &quot;{filterQuery}&quot;
+            </p>
+          )}
+          {visibleBooks.slice(0, 200).map((b) => (
+            <button
+              key={b.asin}
+              type="button"
+              onClick={() => toggle(b.asin as string, { title: b.title, authors: b.authors })}
+              className={`text-left text-xs p-2.5 rounded-lg border transition-colors ${
+                selected.includes(b.asin as string)
+                  ? 'bg-amber-500/15 border-amber-500/40 text-amber-100'
+                  : 'bg-slate-900 border-slate-800 text-slate-400 hover:border-slate-700'
+              }`}
+            >
+              {b.title}
+              {b.authors.length > 0 && (
+                <span className="block text-slate-500 text-[10px] mt-0.5 truncate">
+                  {b.authors.join(', ')}
+                </span>
+              )}
+            </button>
+          ))}
+        </div>
       </div>
       <button
         type="button"
