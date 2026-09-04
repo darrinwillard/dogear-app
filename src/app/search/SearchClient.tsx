@@ -180,9 +180,26 @@ function SimilarTab({ books }: { books: Book[] }) {
   // but none matched status === 'completed' client-side).
   const rated = books.filter((b) => (b.status === 'read' || b.status === 'read_no_date') && b.asin)
   const [selected, setSelected] = useState<string[]>([])
+  const [filterQuery, setFilterQuery] = useState('')
   const [state, setState] = useState<'idle' | 'loading' | 'done' | 'error'>('idle')
   const [hits, setHits] = useState<DiscoveryHit[]>([])
   const [error, setError] = useState<string | null>(null)
+
+  const q = filterQuery.trim().toLowerCase()
+  const filteredRated = q
+    ? rated.filter(
+        (b) =>
+          b.title.toLowerCase().includes(q) || b.authors.some((a) => a.toLowerCase().includes(q))
+      )
+    : rated
+
+  // Keep selected books visible even when the filter hides them, so picking
+  // book #1 by search then searching for book #2 doesn't silently drop #1
+  // out of view (it's still selected, just filtered out of the current list).
+  const selectedBooks = rated.filter((b) => selected.includes(b.asin as string))
+  const visibleBooks = q
+    ? [...selectedBooks.filter((b) => !filteredRated.includes(b)), ...filteredRated]
+    : filteredRated
 
   function toggle(asin: string) {
     setSelected((prev) =>
@@ -215,8 +232,25 @@ function SimilarTab({ books }: { books: Book[] }) {
       <p className="text-slate-400 text-sm">
         Pick up to 3 books you loved — we&apos;ll find similar, highly-rated books on Audible.
       </p>
+      <input
+        type="text"
+        value={filterQuery}
+        onChange={(e) => setFilterQuery(e.target.value)}
+        placeholder={`Search your ${rated.length} read books by title or author…`}
+        className="w-full bg-slate-900 border border-slate-800 rounded-lg px-4 py-2.5 text-sm text-slate-100 placeholder:text-slate-600 focus:outline-none focus:border-amber-500/50"
+      />
+      {q && (
+        <p className="text-slate-500 text-xs -mt-3">
+          {filteredRated.length} match{filteredRated.length === 1 ? '' : 'es'}
+        </p>
+      )}
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-2 max-h-80 overflow-y-auto">
-        {rated.slice(0, 100).map((b) => (
+        {visibleBooks.length === 0 && q && (
+          <p className="col-span-full text-slate-600 text-sm text-center py-6">
+            No matches for &quot;{filterQuery}&quot;
+          </p>
+        )}
+        {visibleBooks.slice(0, 200).map((b) => (
           <button
             key={b.asin}
             type="button"
@@ -228,6 +262,11 @@ function SimilarTab({ books }: { books: Book[] }) {
             }`}
           >
             {b.title}
+            {b.authors.length > 0 && (
+              <span className="block text-slate-500 text-[10px] mt-0.5 truncate">
+                {b.authors.join(', ')}
+              </span>
+            )}
           </button>
         ))}
       </div>
