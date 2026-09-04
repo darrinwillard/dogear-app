@@ -8,6 +8,7 @@ const navLinks = [
   { href: '/library', label: 'Library', emoji: '📚' },
   { href: '/series', label: 'Series', emoji: '🔖' },
   { href: '/upcoming', label: 'Find Next Read', emoji: '📅' },
+  { href: '/search', label: 'Discover', emoji: '🔍' },
   { href: '/settings', label: 'Settings', emoji: '⚙️' },
 ]
 
