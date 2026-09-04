@@ -63,10 +63,20 @@ export async function GET(req: NextRequest) {
       )
     }
 
-    const keywords = [q, subject].filter(Boolean).join(' ') || undefined
+    // Audible's `keywords` param does loose token matching, not phrase
+    // matching — confirmed live 2026-09-03: searching keywords="The Da
+    // Vinci Code" returned 20 unrelated "The D..." titles (Dark Tower,
+    // Daily Stoic, etc.) and never the actual book. Using `title` instead
+    // returned it as the #1 result. So: when the user's main query (q)
+    // looks like a specific title (no genre chip active, i.e. no subject
+    // set alongside it), search by `title` for real phrase relevance;
+    // fall back to `keywords` for genre/subject browsing, where loose
+    // matching across a broad category is actually what's wanted.
+    const isTitleSearch = !!q && !subject
+    const keywords = subject ? [q, subject].filter(Boolean).join(' ') : undefined
 
     const results = await searchCatalog(accessToken, {
-      keywords,
+      ...(isTitleSearch ? { title: q } : { keywords }),
       author,
       sortBy: sort,
       numResults: limit,
