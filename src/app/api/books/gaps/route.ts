@@ -1,7 +1,7 @@
-import { NextResponse } from 'next/server'
+import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@/lib/supabase/server'
 import { getLibraryForCurrentUser } from '@/lib/books/queries'
-import { findSeriesGaps, findAuthorGaps } from '@/lib/books/gaps'
+import { findSeriesGaps, findAuthorGaps, loadPersistedGaps, persistGapResults } from '@/lib/books/gaps'
 import { refreshAudibleAccessToken } from '@/lib/books/audible-token'
 
 export const dynamic = 'force-dynamic'
@@ -10,14 +10,14 @@ export const maxDuration = 120
 /**
  * GET /api/books/gaps
  *
- * On-demand series/author gap scan — deliberately NOT run on every page
- * load (hits Audible's catalog + sims APIs per series/author, rate-limit
- * risk and slow). Client calls this when the user opens the "Fill In
- * Gaps" tab; results aren't persisted, so it re-scans each time (fine for
- * a manual, occasional-use tool — matches how Refresh Releases already
- * works in Settings).
+ * Returns PERSISTED scan results instantly (no Audible calls, no wait) —
+ * fixes Darrin's 2026-09-03 report that scan results disappeared when he
+ * came back to the app later. Pass ?rescan=1 to trigger a fresh Audible
+ * catalog scan, which updates the persisted rows incrementally (books the
+ * user now owns/marked-read drop out of `missing` automatically; newly
+ * found gaps get added) rather than wiping everything and starting over.
  */
-export async function GET() {
+export async function GET(req: NextRequest) {
   try {
     const supabase = await createClient()
     const {
@@ -25,6 +25,18 @@ export async function GET() {
     } = await supabase.auth.getUser()
     if (!user) {
       return NextResponse.json({ error: 'Not authenticated' }, { status: 401 })
+    }
+
+    const rescan = req.nextUrl.searchParams.get('rescan') === '1'
+
+    if (!rescan) {
+      const persisted = await loadPersistedGaps(user.id)
+      return NextResponse.json({
+        seriesGaps: persisted.seriesGaps,
+        authorGaps: persisted.authorGaps,
+        scannedAt: persisted.lastScannedAt,
+        fromCache: true,
+      })
     }
 
     const { data: profile } = await supabase
@@ -45,14 +57,24 @@ export async function GET() {
 
     const library = await getLibraryForCurrentUser()
 
-    const seriesGaps = await findSeriesGaps(accessToken, library.books)
+    const { gaps: seriesGaps, checkedNames: checkedSeriesNames } = await findSeriesGaps(
+      accessToken,
+      library.books
+    )
     const seriesGapAsins = new Set(seriesGaps.flatMap((g) => g.missing.map((m) => m.asin)))
-    const authorGaps = await findAuthorGaps(accessToken, library.books, seriesGapAsins)
+    const { gaps: authorGaps, checkedNames: checkedAuthorNames } = await findAuthorGaps(
+      accessToken,
+      library.books,
+      seriesGapAsins
+    )
+
+    await persistGapResults(user.id, seriesGaps, authorGaps, checkedSeriesNames, checkedAuthorNames)
 
     return NextResponse.json({
       seriesGaps,
       authorGaps,
       scannedAt: new Date().toISOString(),
+      fromCache: false,
     })
   } catch (e: unknown) {
     const message = e instanceof Error ? e.message : 'Unknown error'

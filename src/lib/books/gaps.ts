@@ -17,6 +17,7 @@
 
 import type { Book } from './types'
 import { getSeriesDataFromBooks } from './series'
+import { createClient } from '@/lib/supabase/server'
 import {
   searchCatalogByAuthor,
   getSeriesSims,
@@ -42,6 +43,129 @@ export interface AuthorGap {
 }
 
 export type Gap = SeriesGap | AuthorGap
+
+interface GapScanRow {
+  kind: 'series' | 'author'
+  key: string
+  display_author: string | null
+  read_count: number
+  total_known: number | null
+  missing: NormalizedCatalogRelease[]
+  last_scanned_at: string
+}
+
+/**
+ * Load persisted gap-scan results (survives navigation, no re-scan needed
+ * just to view what was already found — fixes Darrin's 2026-09-03 report
+ * that scan results disappeared when he came back to the app later).
+ */
+export async function loadPersistedGaps(
+  userId: string
+): Promise<{ seriesGaps: SeriesGap[]; authorGaps: AuthorGap[]; lastScannedAt: string | null }> {
+  const supabase = await createClient()
+  const { data, error } = await supabase
+    .from('gap_scan_results')
+    .select('kind, key, display_author, read_count, total_known, missing, last_scanned_at')
+    .eq('user_id', userId)
+    .order('last_scanned_at', { ascending: false })
+
+  if (error || !data?.length) {
+    return { seriesGaps: [], authorGaps: [], lastScannedAt: null }
+  }
+
+  const rows = data as GapScanRow[]
+  const seriesGaps: SeriesGap[] = rows
+    .filter((r) => r.kind === 'series' && Array.isArray(r.missing) && r.missing.length > 0)
+    .map((r) => ({
+      kind: 'series' as const,
+      seriesName: r.key,
+      author: r.display_author || 'Unknown',
+      readCount: r.read_count,
+      totalKnown: r.total_known ?? r.missing.length,
+      missing: r.missing,
+    }))
+    .sort((a, b) => b.missing.length - a.missing.length)
+
+  const authorGaps: AuthorGap[] = rows
+    .filter((r) => r.kind === 'author' && Array.isArray(r.missing) && r.missing.length > 0)
+    .map((r) => ({
+      kind: 'author' as const,
+      author: r.key,
+      readCount: r.read_count,
+      missing: r.missing,
+    }))
+    .sort((a, b) => b.missing.length - a.missing.length)
+
+  const lastScannedAt = rows.length
+    ? rows.reduce((latest, r) => (r.last_scanned_at > latest ? r.last_scanned_at : latest), rows[0].last_scanned_at)
+    : null
+
+  return { seriesGaps, authorGaps, lastScannedAt }
+}
+
+/**
+ * Persist scan results incrementally: upsert one row per series/author
+ * checked this run. Rows for series/authors NOT in this run's candidate
+ * set are left untouched (not deleted) — e.g. if maxSeries/maxAuthors caps
+ * mean only a subset gets rechecked each run, previously-found gaps for
+ * series outside this run's cap still show until their own next check.
+ */
+export async function persistGapResults(
+  userId: string,
+  seriesGaps: SeriesGap[],
+  authorGaps: AuthorGap[],
+  checkedSeriesNames: string[],
+  checkedAuthorNames: string[]
+): Promise<void> {
+  const supabase = await createClient()
+  const now = new Date().toISOString()
+
+  const seriesByName = new Map(seriesGaps.map((g) => [g.seriesName, g]))
+  const authorByName = new Map(authorGaps.map((g) => [g.author, g]))
+
+  const rows: Record<string, unknown>[] = []
+
+  for (const name of checkedSeriesNames) {
+    const g = seriesByName.get(name)
+    rows.push({
+      user_id: userId,
+      kind: 'series',
+      key: name,
+      display_author: g?.author ?? null,
+      read_count: g?.readCount ?? 0,
+      total_known: g?.totalKnown ?? 0,
+      // Empty array when a previously-missing series is now fully owned —
+      // this is exactly how a gap clears itself on next scan (F2-style: no
+      // separate dismiss logic needed, ownership diff handles it).
+      missing: g?.missing ?? [],
+      last_scanned_at: now,
+    })
+  }
+
+  for (const name of checkedAuthorNames) {
+    const g = authorByName.get(name)
+    rows.push({
+      user_id: userId,
+      kind: 'author',
+      key: name,
+      display_author: null,
+      read_count: g?.readCount ?? 0,
+      total_known: null,
+      missing: g?.missing ?? [],
+      last_scanned_at: now,
+    })
+  }
+
+  if (!rows.length) return
+
+  const { error } = await supabase
+    .from('gap_scan_results')
+    .upsert(rows, { onConflict: 'user_id,kind,key' })
+
+  if (error) {
+    console.error('[gaps] failed to persist scan results', error.message)
+  }
+}
 
 /** Series with at least one read book — candidates for gap-checking. */
 function seriesToCheck(books: Book[]): { name: string; author: string; readCount: number }[] {
@@ -87,13 +211,15 @@ export async function findSeriesGaps(
   accessToken: string,
   books: Book[],
   opts: { maxSeries?: number } = {}
-): Promise<SeriesGap[]> {
+): Promise<{ gaps: SeriesGap[]; checkedNames: string[] }> {
   const ownedAsins = new Set(books.map((b) => b.asin).filter((a): a is string => !!a))
   const candidates = seriesToCheck(books)
   const maxSeries = opts.maxSeries ?? 40
   const gaps: SeriesGap[] = []
+  const checkedNames: string[] = []
 
   for (const s of candidates.slice(0, maxSeries)) {
+    checkedNames.push(s.name)
     // Seed ASIN: prefer a book in this series that has one.
     const seed = books.find(
       (b) => b.series === s.name && b.asin && (b.status === 'completed' || b.status === 'read')
@@ -124,7 +250,7 @@ export async function findSeriesGaps(
     }
   }
 
-  return gaps.sort((a, b) => b.missing.length - a.missing.length)
+  return { gaps: gaps.sort((a, b) => b.missing.length - a.missing.length), checkedNames }
 }
 
 /**
@@ -137,11 +263,12 @@ export async function findAuthorGaps(
   books: Book[],
   seriesGapAsins: Set<string>,
   opts: { maxAuthors?: number } = {}
-): Promise<AuthorGap[]> {
+): Promise<{ gaps: AuthorGap[]; checkedNames: string[] }> {
   const ownedAsins = new Set(books.map((b) => b.asin).filter((a): a is string => !!a))
   const candidates = authorsToCheck(books)
   const maxAuthors = opts.maxAuthors ?? 40
   const gaps: AuthorGap[] = []
+  const checkedNames: string[] = []
 
   // Only bother checking authors with 2+ read books — a single read book
   // from an author isn't a strong enough signal to justify a full catalog
@@ -149,6 +276,7 @@ export async function findAuthorGaps(
   const worthChecking = candidates.filter((a) => a.readCount >= 2).slice(0, maxAuthors)
 
   for (const a of worthChecking) {
+    checkedNames.push(a.name)
     let results: NormalizedCatalogRelease[] = []
     try {
       results = await searchCatalogByAuthor(accessToken, a.name, { numResults: 40 })
@@ -174,5 +302,5 @@ export async function findAuthorGaps(
     }
   }
 
-  return gaps.sort((a, b) => b.missing.length - a.missing.length)
+  return { gaps: gaps.sort((a, b) => b.missing.length - a.missing.length), checkedNames }
 }
