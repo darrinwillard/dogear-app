@@ -39,6 +39,7 @@ export default function DiscoverCard({ hit }: { hit: DiscoveryHit }) {
   const router = useRouter()
   const [busy, setBusy] = useState(false)
   const [wanted, setWanted] = useState(hit.alreadyWanted)
+  const [expanded, setExpanded] = useState(false)
 
   async function handleWant() {
     if (busy || wanted || hit.alreadyOwned) return
@@ -68,7 +69,14 @@ export default function DiscoverCard({ hit }: { hit: DiscoveryHit }) {
 
   return (
     <div className="bg-slate-900 rounded-xl border border-slate-800 hover:border-amber-500/30 transition-all p-4 flex gap-3">
-      <Cover hit={hit} />
+      <button
+        type="button"
+        onClick={() => setExpanded((v) => !v)}
+        className="shrink-0"
+        aria-label={expanded ? 'Collapse details' : 'Show synopsis and details'}
+      >
+        <Cover hit={hit} />
+      </button>
       <div className="flex-1 min-w-0">
         {hit.seriesName && (
           <span className="text-xs bg-amber-500/10 text-amber-400 border border-amber-500/20 px-2 py-0.5 rounded-full inline-block mb-1">
@@ -76,7 +84,15 @@ export default function DiscoverCard({ hit }: { hit: DiscoveryHit }) {
             {hit.seriesPosition != null ? ` #${hit.seriesPosition}` : ''}
           </span>
         )}
-        <h3 className="font-semibold text-amber-100 leading-snug">{hit.title}</h3>
+        <button
+          type="button"
+          onClick={() => setExpanded((v) => !v)}
+          className="text-left w-full"
+        >
+          <h3 className="font-semibold text-amber-100 leading-snug hover:text-amber-300 transition-colors">
+            {hit.title}
+          </h3>
+        </button>
         <p className="text-slate-400 text-sm mt-0.5">{hit.authors.join(', ')}</p>
         {hit.rating != null ? (
           <p className="text-xs text-amber-400 mt-1">
@@ -88,6 +104,17 @@ export default function DiscoverCard({ hit }: { hit: DiscoveryHit }) {
         )}
         {hit.similarityReason && (
           <p className="text-slate-500 text-xs mt-1 italic">{hit.similarityReason}</p>
+        )}
+        {expanded && (
+          <div className="mt-3 pt-3 border-t border-slate-800">
+            {hit.synopsis ? (
+              <p className="text-slate-300 text-xs leading-relaxed whitespace-pre-line">
+                {hit.synopsis}
+              </p>
+            ) : (
+              <p className="text-slate-600 text-xs italic">No synopsis available from Audible.</p>
+            )}
+          </div>
         )}
         <div className="flex items-center justify-between gap-2 mt-3 flex-wrap">
           <a

@@ -71,6 +71,10 @@ export interface CatalogProduct {
   format_type?: string
   publisher_name?: string
   merchandising_summary?: string
+  /** Full synopsis — requires product_extended_attrs in response_groups for
+   * the untruncated version (product_desc alone returns ~290 chars). Same
+   * field/behavior as the library sync path (audible-parse.ts readSummary). */
+  publisher_summary?: string
   product_images?: Record<string, string>
   runtime_length_min?: number
   /** Present only when `rating` is in response_groups (confirmed live 2026-09-03). */
@@ -101,6 +105,8 @@ export interface NormalizedCatalogRelease {
   /** Audible star rating (0-5), when the rating response group was requested. */
   rating: number | null
   ratingCount: number | null
+  /** Full synopsis, HTML-stripped. Null when Audible has none for this ASIN. */
+  synopsis: string | null
 }
 
 function ymd(value: string | null | undefined): string | null {
@@ -161,6 +167,22 @@ export function normalizeCatalogProduct(
   const rating = typeof dist?.average_rating === 'number' ? dist.average_rating : null
   const ratingCount = typeof dist?.num_ratings === 'number' ? dist.num_ratings : null
 
+  // Same stripping rules as the library sync path (audible-parse.ts
+  // readSummary): publisher_summary (fuller) preferred over
+  // merchandising_summary (shorter/marketing), <br/> -> paragraph breaks.
+  const summaryRaw = p.publisher_summary || p.merchandising_summary
+  const synopsis = summaryRaw
+    ? String(summaryRaw)
+        .replace(/<br\s*\/?>/gi, '\n\n')
+        .replace(/<[^>]*>/g, ' ')
+        .replace(/&nbsp;/g, ' ')
+        .replace(/&amp;/g, '&')
+        .replace(/&#39;|&apos;/g, "'")
+        .replace(/&quot;/g, '"')
+        .replace(/[ \t]+/g, ' ')
+        .trim() || null
+    : null
+
   return {
     asin: p.asin,
     title: p.title.trim(),
@@ -173,6 +195,7 @@ export function normalizeCatalogProduct(
     contentType: p.content_delivery_type || p.content_type || null,
     coverUrl: cover,
     preorderUrl: `https://www.audible.com/pd/${p.asin}`,
+    synopsis,
     source,
     rating,
     ratingCount,
@@ -354,6 +377,7 @@ export async function fetchCatalogProductsByAsins(
         releaseDate: ymd(p.release_date) || ymd(p.issue_date) || null,
         language: p.language || null,
         contentType: p.content_delivery_type || p.content_type || null,
+        synopsis: null,
         coverUrl: cover,
         preorderUrl: `https://www.audible.com/pd/${p.asin}`,
         source: 'audible_catalog',

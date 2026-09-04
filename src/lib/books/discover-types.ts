@@ -20,4 +20,6 @@ export interface DiscoveryHit {
   alreadyWanted: boolean
   /** "Because you liked X" — set only on Similar results. */
   similarityReason?: string
+  /** Full synopsis, HTML-stripped. Null when Audible has none for this ASIN. */
+  synopsis: string | null
 }

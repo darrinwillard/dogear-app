@@ -21,6 +21,7 @@ export function toDiscoveryHit(
     audibleUrl: release.preorderUrl,
     alreadyOwned: ownedAsins.has(release.asin),
     alreadyWanted: wantedAsins.has(release.asin),
+    synopsis: release.synopsis,
     ...(similarityReason ? { similarityReason } : {}),
   }
 }
