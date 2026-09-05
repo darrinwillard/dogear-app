@@ -117,14 +117,29 @@ export default function DiscoverCard({ hit }: { hit: DiscoveryHit }) {
           </div>
         )}
         <div className="flex items-center justify-between gap-2 mt-3 flex-wrap">
-          <a
-            href={hit.audibleUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-xs bg-amber-500/15 text-amber-400 border border-amber-500/30 px-3 py-1.5 rounded-lg hover:bg-amber-500/25 transition-colors"
-          >
-            View on Audible →
-          </a>
+          <div className="flex items-center gap-2 flex-wrap">
+            <a
+              href={hit.audibleUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-xs bg-amber-500/15 text-amber-400 border border-amber-500/30 px-3 py-1.5 rounded-lg hover:bg-amber-500/25 transition-colors"
+            >
+              View on Audible →
+            </a>
+            {/* Goodreads search link — plain outbound search URL built from
+                title+author, not an API integration (see BookDetailModal.tsx
+                for the same pattern/rationale). */}
+            <a
+              href={`https://www.goodreads.com/search?q=${encodeURIComponent(
+                `${hit.title} ${hit.authors.join(' ')}`
+              )}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-xs bg-slate-800 text-slate-400 border border-slate-700 px-3 py-1.5 rounded-lg hover:bg-slate-700 hover:text-slate-300 transition-colors"
+            >
+              Goodreads →
+            </a>
+          </div>
           {hit.alreadyOwned ? (
             <span className="text-[11px] text-emerald-400">✓ In your library</span>
           ) : wanted ? (
