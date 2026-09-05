@@ -253,16 +253,34 @@ export default function BookDetailModal({
             </div>
           )}
 
-          {asin && book.audible_purchased && (
+          <div className="flex flex-col gap-2">
+            {asin && book.audible_purchased && (
+              <a
+                href={`https://www.audible.com/pd/${encodeURIComponent(asin)}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block text-center text-sm text-amber-500 hover:text-amber-400"
+              >
+                View on Audible →
+              </a>
+            )}
+            {/* Goodreads search link — not an API integration (Goodreads'
+                own API/scraping is blocked, see AWS WAF note elsewhere in
+                the repo). This is just a plain outbound search-results URL
+                built from title + author, same as linking to any other
+                site. Useful for ratings/reviews context when deciding on a
+                new read. */}
             <a
-              href={`https://www.audible.com/pd/${encodeURIComponent(asin)}`}
+              href={`https://www.goodreads.com/search?q=${encodeURIComponent(
+                `${book.title} ${book.authors.join(' ')}`
+              )}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="block text-center text-sm text-amber-500 hover:text-amber-400"
+              className="block text-center text-sm text-slate-400 hover:text-slate-300"
             >
-              View on Audible →
+              View on Goodreads →
             </a>
-          )}
+          </div>
         </div>
       </div>
     </div>
