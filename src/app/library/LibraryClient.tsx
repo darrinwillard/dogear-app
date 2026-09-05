@@ -518,9 +518,12 @@ export default function LibraryClient({
     const rated = books
       .map((b) => getEffectiveRating(b))
       .filter((r) => r !== null) as number[]
+    // Ratings are stored on a 5-star scale (rating column ranges 3.0-5.0 in
+    // half-star steps). The UI displays a 10-point scale, so double the
+    // average here rather than just relabeling the raw 5-scale number.
     const avgRating =
       rated.length > 0
-        ? (rated.reduce((a, b) => a + b, 0) / rated.length).toFixed(1)
+        ? ((rated.reduce((a, b) => a + b, 0) / rated.length) * 2).toFixed(1)
         : null
     return {
       total: books.length,
