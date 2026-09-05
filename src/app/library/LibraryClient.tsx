@@ -687,7 +687,7 @@ export default function LibraryClient({
         </div>
         <div className="bg-slate-900 border border-slate-800 rounded-xl p-3 text-center">
           <div className="text-xl font-bold text-amber-400">
-            {stats.avgRating ? `★ ${stats.avgRating}` : '—'}
+            {stats.avgRating ? `★ ${stats.avgRating}/10` : '—'}
           </div>
           <div className="text-xs text-slate-400 mt-0.5">Avg Rating</div>
         </div>
