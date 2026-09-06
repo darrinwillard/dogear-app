@@ -58,6 +58,18 @@ export default function GapBookCard({
           >
             Buy →
           </a>
+          {/* Goodreads search link — plain outbound search URL built from
+              title+author, not an API integration (see BookDetailModal.tsx) */}
+          <a
+            href={`https://www.goodreads.com/search?q=${encodeURIComponent(
+              `${release.title} ${release.authors.join(' ')}`
+            )}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-xs bg-slate-800 text-slate-300 border border-slate-700 px-3 py-1.5 rounded-lg hover:bg-slate-700 transition-colors"
+          >
+            Goodreads →
+          </a>
           <MarkExternalReadButton
             release={release}
             seriesName={seriesName}
