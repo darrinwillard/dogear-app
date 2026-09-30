@@ -15,6 +15,10 @@ type Action = 'add' | 'remove' | 'not_interested'
  *  {
  *    action: 'add' | 'remove' | 'not_interested',
  *    asin?: string,
+ *    // Sources without an ASIN (e.g. NYT Best Sellers) can pass an ISBN-13
+ *    // instead. A synthetic 'isbn:<isbn13>' key is used as the books.asin
+ *    // value so the existing asin-keyed schema doesn't need a migration.
+ *    isbn13?: string,
  *    // Optional catalog fields when adding from Upcoming (creates books row if needed)
  *    title?: string,
  *    authors?: string[],
@@ -42,6 +46,10 @@ export async function POST(req: NextRequest) {
     const body = await req.json().catch(() => null)
     const action = (typeof body?.action === 'string' ? body.action.trim() : '') as Action
     let asin = typeof body?.asin === 'string' ? body.asin.trim() : ''
+    const isbn13 = typeof body?.isbn13 === 'string' ? body.isbn13.trim() : ''
+    if (!asin && isbn13) {
+      asin = `isbn:${isbn13}`
+    }
 
     if (!['add', 'remove', 'not_interested'].includes(action)) {
       return NextResponse.json(
@@ -50,7 +58,7 @@ export async function POST(req: NextRequest) {
       )
     }
     if (!asin) {
-      return NextResponse.json({ error: 'asin is required' }, { status: 400 })
+      return NextResponse.json({ error: 'asin or isbn13 is required' }, { status: 400 })
     }
 
     const service = createServiceClient(SUPABASE_URL, SUPABASE_SERVICE_KEY)
