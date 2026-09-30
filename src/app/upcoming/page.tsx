@@ -216,63 +216,20 @@ function NewReleasesSection({
   isAuthed: boolean
   wantedAsins: Set<string>
 }) {
-  if (releases.length === 0) {
-    return (
-      <div className="text-slate-500 text-sm py-8 text-center">
-        No new releases yet — titles move here automatically once their release date passes,
-        even if you miss checking Upcoming beforehand.
-      </div>
-    )
-  }
-
+  // Same rich card layout as Upcoming (cover art, genre badge, series badge,
+  // synopsis via the detail modal) — New Releases previously used a stripped
+  // -down compact card with no cover art, which is what Darrin flagged.
   return (
-    <div className="space-y-4">
-      <p className="text-slate-500 text-xs">
-        {releases.length} title{releases.length === 1 ? '' : 's'} released — nothing drops off this
-        list once it&apos;s out, even if you miss the release date on Upcoming.
-      </p>
-      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-      {releases.map((release, i) => (
-        <ReleaseCardClick
-          key={release.asin || `${release.title}-${i}`}
-          release={release}
-          className="bg-slate-900/60 rounded-xl border border-emerald-500/20 p-4 hover:border-emerald-500/40 transition-all cursor-pointer"
-        >
-          <div className="flex items-start justify-between gap-2 mb-2">
-            <span className="text-xs bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-2 py-0.5 rounded-full">
-              {release.series}
-              {release.seriesNumber != null ? ` #${release.seriesNumber}` : ''}
-            </span>
-            <span className="text-lg">✅</span>
-          </div>
-          <h3 className="font-semibold text-amber-100 mb-1">{release.title}</h3>
-          <p className="text-slate-400 text-sm mb-2">{release.author}</p>
-          <div className="flex items-center justify-between gap-2 flex-wrap">
-            <span className="text-xs text-slate-500">Released {formatDate(release.releaseDate)}</span>
-            <StopPropagation className="flex items-center gap-2">
-              {isAuthed && (
-                <WantButton
-                  release={release}
-                  alreadyWanted={!!(release.asin && wantedAsins.has(release.asin))}
-                  compact
-                />
-              )}
-              {release.preorderUrl && (
-                <a
-                  href={release.preorderUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-xs text-amber-500 hover:text-amber-400"
-                >
-                  Buy →
-                </a>
-              )}
-            </StopPropagation>
-          </div>
-        </ReleaseCardClick>
-      ))}
-      </div>
-    </div>
+    <ReleaseSection
+      title="New Releases"
+      emoji="✅"
+      subtitle="Titles that have come out — nothing drops off this list once it's out, even if you miss the release date on Upcoming"
+      releases={releases}
+      empty="No new releases yet — titles move here automatically once their release date passes, even if you miss checking Upcoming beforehand."
+      showSeriesBadge
+      isAuthed={isAuthed}
+      wantedAsins={wantedAsins}
+    />
   )
 }
 
