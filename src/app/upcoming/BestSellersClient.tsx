@@ -3,6 +3,8 @@
 import { useEffect, useState } from 'react'
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
+import type { Book } from '@/lib/books'
+import BookDetailModal from '@/components/BookDetailModal'
 
 interface NytBook {
   rank: number
@@ -57,7 +59,36 @@ function Cover({ book }: { book: NytBook }) {
   )
 }
 
-function WantBestsellerButton({ book }: { book: NytBook }) {
+function nytBookToPartialBook(book: NytBook): Book {
+  return {
+    title: book.title,
+    authors: [book.author],
+    series: null,
+    series_num: null,
+    audible_purchased: null,
+    gr_shelf: null,
+    gr_date_read: null,
+    gr_rating: null,
+    status: 'unstarted',
+    sources: [],
+    cover_url: book.book_image,
+    // No ASIN for NYT titles — use the synthetic isbn: key so "Want to Read"
+    // (which keys off asin) still works via the isbn13 field on /api/books/want.
+    asin: book.primary_isbn13 ? `isbn:${book.primary_isbn13}` : null,
+    publisher: book.publisher || null,
+    summary: book.description || null,
+    wantToRead: false,
+    notInterested: false,
+  }
+}
+
+function WantBestsellerButton({
+  book,
+  compact = false,
+}: {
+  book: NytBook
+  compact?: boolean
+}) {
   const router = useRouter()
   const [busy, setBusy] = useState(false)
   const [done, setDone] = useState(false)
@@ -100,7 +131,9 @@ function WantBestsellerButton({ book }: { book: NytBook }) {
 
   if (done) {
     return (
-      <span className="inline-flex items-center gap-1 text-xs text-violet-300 border border-violet-500/30 bg-violet-500/10 px-3 py-1.5 rounded-lg">
+      <span
+        className={`inline-flex items-center gap-1 ${compact ? 'text-[11px]' : 'text-xs'} text-violet-300 border border-violet-500/30 bg-violet-500/10 px-3 py-1.5 rounded-lg`}
+      >
         ✓ Want to Read
       </span>
     )
@@ -112,7 +145,7 @@ function WantBestsellerButton({ book }: { book: NytBook }) {
         type="button"
         disabled={busy}
         onClick={() => void handleAdd()}
-        className="text-xs font-medium bg-violet-500/15 text-violet-300 border border-violet-500/30 px-3 py-1.5 rounded-lg hover:bg-violet-500/25 transition-colors disabled:opacity-50"
+        className={`font-medium bg-violet-500/15 text-violet-300 border border-violet-500/30 px-3 py-1.5 rounded-lg hover:bg-violet-500/25 transition-colors disabled:opacity-50 ${compact ? 'text-[11px]' : 'text-xs'}`}
       >
         {busy ? 'Adding…' : '+ Want to Read'}
       </button>
@@ -126,6 +159,7 @@ export default function BestSellersClient() {
   const [state, setState] = useState<'loading' | 'done' | 'error'>('loading')
   const [data, setData] = useState<ListsResponse | null>(null)
   const [error, setError] = useState<string | null>(null)
+  const [openBook, setOpenBook] = useState<NytBook | null>(null)
 
   useEffect(() => {
     let cancelled = false
@@ -208,7 +242,10 @@ export default function BestSellersClient() {
           {data.books.map((book) => (
             <div
               key={book.primary_isbn13 || book.title}
-              className="bg-slate-900 rounded-xl border border-slate-800 hover:border-amber-500/30 transition-all p-4 flex gap-3"
+              role="button"
+              tabIndex={0}
+              onClick={() => setOpenBook(book)}
+              className="bg-slate-900 rounded-xl border border-slate-800 hover:border-amber-500/30 transition-all p-4 flex gap-3 cursor-pointer"
             >
               <Cover book={book} />
               <div className="flex-1 min-w-0 flex flex-col">
@@ -227,7 +264,10 @@ export default function BestSellersClient() {
                 {book.description && (
                   <p className="text-slate-500 text-xs mt-2 line-clamp-2">{book.description}</p>
                 )}
-                <div className="mt-auto pt-2 flex items-center justify-between gap-2">
+                <div
+                  className="mt-auto pt-2 flex items-center justify-between gap-2"
+                  onClick={(e) => e.stopPropagation()}
+                >
                   {book.amazon_product_url && (
                     <a
                       href={book.amazon_product_url}
@@ -235,15 +275,43 @@ export default function BestSellersClient() {
                       rel="noopener noreferrer"
                       className="text-xs text-amber-500 hover:text-amber-400"
                     >
-                      View →
+                      Buy →
                     </a>
                   )}
-                  <WantBestsellerButton book={book} />
+                  <WantBestsellerButton book={book} compact />
                 </div>
               </div>
             </div>
           ))}
         </div>
+      )}
+
+      {openBook && (
+        <BookDetailModal
+          book={nytBookToPartialBook(openBook)}
+          isPending={false}
+          onClose={() => setOpenBook(null)}
+          extraActions={
+            <div className="flex items-center justify-between gap-2 text-xs text-slate-500">
+              <span>
+                #{openBook.rank} on {data?.display_name || 'NYT Best Sellers'}
+                {openBook.weeks_on_list > 0
+                  ? ` · ${openBook.weeks_on_list} wk${openBook.weeks_on_list === 1 ? '' : 's'} on list`
+                  : ''}
+              </span>
+              {openBook.amazon_product_url && (
+                <a
+                  href={openBook.amazon_product_url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-amber-500 hover:text-amber-400 font-medium"
+                >
+                  Buy on Amazon →
+                </a>
+              )}
+            </div>
+          }
+        />
       )}
     </div>
   )
