@@ -253,7 +253,7 @@ export default function BookDetailModal({
             </div>
           )}
 
-          <div className="flex flex-col gap-2">
+          <div className="flex flex-col gap-2 pb-[max(1rem,env(safe-area-inset-bottom))]">
             {asin && book.audible_purchased && (
               <a
                 href={`https://www.audible.com/pd/${encodeURIComponent(asin)}`}
