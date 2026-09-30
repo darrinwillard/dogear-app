@@ -18,8 +18,9 @@ export const dynamic = "force-dynamic";
 const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL!;
 const SUPABASE_SERVICE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY!;
 const PAGE_SIZE = 1000;
-const BOOK_UPSERT_CHUNK = 50;
-const USER_BOOK_CHUNK = 100;
+const BOOK_UPSERT_CHUNK = 200;
+const USER_BOOK_CHUNK = 200;
+const PRELOAD_CHUNK = 200;
 
 /**
  * HARD RULE: this route must NEVER overwrite user_books.status, rating,
@@ -165,14 +166,30 @@ export async function POST(_req: NextRequest) {
       );
     }
 
-    // Preload existing user_books once (avoid N+1)
-    const { data: existingRows } = await supabase
-      .from("user_books")
-      .select("id, asin, purchase_date")
-      .eq("user_id", user.id);
+    // Preload existing user_books once (avoid N+1). Paginate past PostgREST's
+    // default 1000-row cap so large libraries don't look "all new" on re-sync.
+    const existingRows: { id: string; asin: string; purchase_date: string | null }[] = [];
+    {
+      const pageSize = 1000;
+      let from = 0;
+      while (true) {
+        const to = from + pageSize - 1;
+        const { data, error } = await supabase
+          .from("user_books")
+          .select("id, asin, purchase_date")
+          .eq("user_id", user.id)
+          .order("asin", { ascending: true })
+          .range(from, to);
+        if (error) throw error;
+        const rows = data || [];
+        existingRows.push(...rows);
+        if (rows.length < pageSize) break;
+        from += pageSize;
+      }
+    }
 
     const existingByAsin = new Map(
-      (existingRows || []).map((r) => [r.asin as string, r])
+      existingRows.map((r) => [r.asin as string, r])
     );
 
     // Preload existing books series so we can presence-guard without null clobber
@@ -182,8 +199,8 @@ export async function POST(_req: NextRequest) {
       { id: string; series_name: string | null; series_position: number | null; cover_url: string | null }
     >();
 
-    for (let i = 0; i < asins.length; i += 200) {
-      const chunk = asins.slice(i, i + 200);
+    for (let i = 0; i < asins.length; i += PRELOAD_CHUNK) {
+      const chunk = asins.slice(i, i + PRELOAD_CHUNK);
       const { data: bookRows } = await supabase
         .from("books")
         .select("id, asin, series_name, series_position, cover_url")
@@ -345,8 +362,8 @@ export async function POST(_req: NextRequest) {
 
     // Ensure we have book ids for all asins (re-fetch any missing)
     const missingAsins = asins.filter((a) => !existingBooksByAsin.get(a)?.id);
-    for (let i = 0; i < missingAsins.length; i += 200) {
-      const chunk = missingAsins.slice(i, i + 200);
+    for (let i = 0; i < missingAsins.length; i += PRELOAD_CHUNK) {
+      const chunk = missingAsins.slice(i, i + PRELOAD_CHUNK);
       const { data: bookRows } = await supabase
         .from("books")
         .select("id, asin, series_name, series_position, cover_url")
@@ -358,7 +375,8 @@ export async function POST(_req: NextRequest) {
 
     // Build user_books inserts + updates
     const toInsert: Record<string, unknown>[] = [];
-    const toUpdate: { id: string; patch: Record<string, unknown> }[] = [];
+    // Existing rows: full upsert payload (identity + progress only — never status/want flags)
+    const toUpdate: Record<string, unknown>[] = [];
 
     for (const asin of asins) {
       const book = existingBooksByAsin.get(asin);
@@ -379,12 +397,8 @@ export async function POST(_req: NextRequest) {
         progressPatch.is_finished = progress.is_finished;
       }
       if (progress.purchase_date) {
-        // Fill purchase_date if missing; update if Audible has value
-        if (!existing || !existing.purchase_date) {
-          progressPatch.purchase_date = progress.purchase_date;
-        } else {
-          progressPatch.purchase_date = progress.purchase_date;
-        }
+        // Always refresh purchase_date from Audible when present
+        progressPatch.purchase_date = progress.purchase_date;
       }
 
       if (!existing) {
@@ -407,7 +421,12 @@ export async function POST(_req: NextRequest) {
           progress_synced_at: now,
         });
       } else {
-        toUpdate.push({ id: existing.id, patch: progressPatch });
+        toUpdate.push({
+          id: existing.id,
+          user_id: user.id,
+          asin,
+          ...progressPatch,
+        });
       }
     }
 
@@ -490,31 +509,60 @@ export async function POST(_req: NextRequest) {
       }
     }
 
+    // Bulk-update existing user_books via upsert on (user_id, asin).
+    // Prefer chunked bulk writes over N per-id UPDATE round-trips (Vercel timeout risk).
+    // HARD RULE still holds: rows never include status/rating/finished_at/started_at/
+    // notes/almost_finished_dismissed_at/status_source/want_to_read/not_interested.
     let updated = 0;
-    // Batch updates by running sequential chunks (PostgREST has no multi-row heterogeneous update)
-    // Optimize: group identical patches is hard; do per-id updates in parallel batches
-    for (let i = 0; i < toUpdate.length; i += 25) {
-      const chunk = toUpdate.slice(i, i + 25);
-      const results = await Promise.all(
-        chunk.map(({ id, patch }) =>
-          supabase.from("user_books").update(patch).eq("id", id)
-        )
-      );
-      for (const r of results) {
-        if (r.error) {
-          // Soft-fail missing columns by stripping progress fields once
-          if (
-            r.error.message?.includes("percent_complete") ||
-            r.error.message?.includes("is_finished") ||
-            r.error.message?.includes("progress_synced_at")
-          ) {
-            // Migration not applied — skip progress updates silently
-            continue;
+    for (let i = 0; i < toUpdate.length; i += USER_BOOK_CHUNK) {
+      const chunk = toUpdate.slice(i, i + USER_BOOK_CHUNK);
+      const { error, data } = await supabase
+        .from("user_books")
+        .upsert(chunk, { onConflict: "user_id,asin" })
+        .select("id");
+      if (error) {
+        const msg = error.message || "";
+        if (
+          msg.includes("percent_complete") ||
+          msg.includes("is_finished") ||
+          msg.includes("progress_synced_at")
+        ) {
+          // Migration not applied — strip progress fields and retry identity/timestamp only.
+          const stripped = chunk.map((r) => {
+            const row: Record<string, unknown> = {
+              id: r.id,
+              user_id: r.user_id,
+              asin: r.asin,
+              book_id: r.book_id,
+              updated_at: r.updated_at,
+            };
+            if (r.purchase_date !== undefined) row.purchase_date = r.purchase_date;
+            if (!msg.includes("progress_synced_at") && r.progress_synced_at !== undefined) {
+              row.progress_synced_at = r.progress_synced_at;
+            }
+            if (!msg.includes("percent_complete") && r.percent_complete !== undefined) {
+              row.percent_complete = r.percent_complete;
+            }
+            if (!msg.includes("is_finished") && r.is_finished !== undefined) {
+              row.is_finished = r.is_finished;
+            }
+            return row;
+          });
+          const retry = await supabase
+            .from("user_books")
+            .upsert(stripped, { onConflict: "user_id,asin" })
+            .select("id");
+          if (retry.error) {
+            console.error("[audible-sync] user_books bulk update error", retry.error);
+          } else {
+            updated += retry.data?.length || 0;
           }
-          console.error("[audible-sync] user_books update error", r.error);
         } else {
-          updated++;
+          console.error("[audible-sync] user_books bulk update error", error);
+          throw error;
         }
+      } else {
+        updated += data?.length || 0;
       }
     }
 
