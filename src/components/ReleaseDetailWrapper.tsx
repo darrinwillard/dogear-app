@@ -30,6 +30,8 @@ function releaseToPartialBook(release: UpcomingRelease): Book {
     preorderUrl: release.preorderUrl,
     wantToRead: false,
     notInterested: false,
+    summary: release.summary ?? null,
+    genre: release.genre ?? null,
   }
 }
 

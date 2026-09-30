@@ -63,6 +63,9 @@ export interface UpcomingRelease {
    *  synced into the books table (catalog-only releases without a books
    *  row yet won't have this). */
   genre?: string | null
+  /** Synopsis, joined from books.summary by asin — same caveat as genre:
+   *  only present once Audible sync has written a books row for this ASIN. */
+  summary?: string | null
 }
 
 export interface SeriesInfo {

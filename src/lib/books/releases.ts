@@ -36,6 +36,8 @@ export interface SeriesReleaseRow {
   detected_at?: string | null
   /** Joined from books.genre by asin, when the caller attaches it. */
   genre?: string | null
+  /** Joined from books.summary by asin, when the caller attaches it. */
+  summary?: string | null
 }
 
 export function mapSeriesReleaseRow(row: SeriesReleaseRow): UpcomingRelease {
@@ -62,6 +64,8 @@ export function mapSeriesReleaseRow(row: SeriesReleaseRow): UpcomingRelease {
     asin: row.asin ?? null,
     coverUrl: row.cover_url ?? null,
     source: row.source ?? null,
+    genre: row.genre ?? null,
+    summary: row.summary ?? null,
   }
 }
 
@@ -126,36 +130,45 @@ export function getFollowedSeriesNames(books: Book[]): SeriesInfo[] {
 }
 
 /**
- * Fill missing series_releases.cover_url from books.cover_url by ASIN.
- * Needed until migration 003 is applied (and as a permanent fallback for
- * preorders that already have a books row from mirrorReleaseCoversToBooks).
+ * Fill missing series_releases.cover_url / summary / genre from the books
+ * table by ASIN. series_releases never carries synopsis or genre columns
+ * (only books does, from the Audible catalog sync) — this is why Upcoming
+ * and New Releases cards showed no synopsis: the join was never built for
+ * anything beyond cover_url. Needed until migration 003 is applied (and as
+ * a permanent fallback for preorders that already have a books row from
+ * mirrorReleaseCoversToBooks).
  */
 async function attachCoversFromBooks(
   supabase: Awaited<ReturnType<typeof createClient>>,
   rows: SeriesReleaseRow[]
 ): Promise<SeriesReleaseRow[]> {
-  const need = rows.filter((r) => r.asin && !r.cover_url)
+  const need = rows.filter((r) => r.asin && (!r.cover_url || !r.summary || !r.genre))
   if (!need.length) return rows
 
   const asins = Array.from(new Set(need.map((r) => r.asin as string)))
-  const coverByAsin = new Map<string, string>()
+  const byAsin = new Map<string, { cover_url?: string | null; summary?: string | null; genre?: string | null }>()
   for (let i = 0; i < asins.length; i += 200) {
     const chunk = asins.slice(i, i + 200)
     const { data } = await supabase
       .from('books')
-      .select('asin, cover_url')
+      .select('asin, cover_url, summary, genre')
       .in('asin', chunk)
-      .not('cover_url', 'is', null)
     for (const b of data || []) {
-      if (b.asin && b.cover_url) coverByAsin.set(b.asin, b.cover_url)
+      if (b.asin) byAsin.set(b.asin, { cover_url: b.cover_url, summary: b.summary, genre: b.genre })
     }
   }
-  if (!coverByAsin.size) return rows
+  if (!byAsin.size) return rows
 
   return rows.map((r) => {
-    if (r.cover_url || !r.asin) return r
-    const cover = coverByAsin.get(r.asin)
-    return cover ? { ...r, cover_url: cover } : r
+    if (!r.asin) return r
+    const match = byAsin.get(r.asin)
+    if (!match) return r
+    return {
+      ...r,
+      cover_url: r.cover_url || match.cover_url || r.cover_url,
+      summary: r.summary || match.summary || r.summary,
+      genre: r.genre || match.genre || r.genre,
+    }
   })
 }
 
