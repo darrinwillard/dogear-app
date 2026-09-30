@@ -17,10 +17,63 @@ export const dynamic = "force-dynamic";
 
 const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL!;
 const SUPABASE_SERVICE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY!;
+/** Audible library page size. API accepts up to 1000; keep at 1000 to minimize round-trips. */
 const PAGE_SIZE = 1000;
+/** Safety cap on pages (1000 * 100 = 100k titles). */
+const MAX_LIBRARY_PAGES = 100;
+/** Supabase/PostgREST bulk write chunk sizes — stay under payload limits. */
 const BOOK_UPSERT_CHUNK = 200;
 const USER_BOOK_CHUNK = 200;
 const PRELOAD_CHUNK = 200;
+
+/**
+ * Fetch every library item via Audible's 1-indexed page/num_results pagination.
+ * A single num_results=1000 call silently truncates libraries larger than 1000.
+ * IMPORTANT: page is 1-indexed — page=0 returns HTTP 400.
+ * `media` in AUDIBLE_LIBRARY_RESPONSE_GROUPS is required for product_images.
+ */
+async function fetchAllLibraryItems(
+  accessToken: string
+): Promise<{ items: AudibleItem[]; pagesFetched: number; truncated: boolean }> {
+  const items: AudibleItem[] = [];
+  const seenAsins = new Set<string>();
+  let page = 1;
+
+  while (page <= MAX_LIBRARY_PAGES) {
+    const params = new URLSearchParams({
+      response_groups: AUDIBLE_LIBRARY_RESPONSE_GROUPS,
+      num_results: String(PAGE_SIZE),
+      page: String(page),
+    });
+    const libraryResponse = await fetch(
+      `https://api.audible.com/1.0/library?${params.toString()}`,
+      { headers: { Authorization: `Bearer ${accessToken}` } }
+    );
+    if (!libraryResponse.ok) {
+      const text = await libraryResponse.text();
+      throw new Error(
+        `Audible library fetch failed: ${libraryResponse.status} ${text.slice(0, 200)}`
+      );
+    }
+    const libraryData = await libraryResponse.json();
+    const pageItems: AudibleItem[] = libraryData.items || [];
+
+    for (const item of pageItems) {
+      // De-dupe across pages in case Audible shifts membership mid-sync.
+      if (item.asin && seenAsins.has(item.asin)) continue;
+      if (item.asin) seenAsins.add(item.asin);
+      items.push(item);
+    }
+
+    if (pageItems.length < PAGE_SIZE) {
+      return { items, pagesFetched: page, truncated: false };
+    }
+
+    page += 1;
+  }
+
+  return { items, pagesFetched: MAX_LIBRARY_PAGES, truncated: true };
+}
 
 /**
  * HARD RULE: this route must NEVER overwrite user_books.status, rating,
@@ -97,42 +150,26 @@ export async function POST(_req: NextRequest) {
       );
     }
 
-    // Paginate library — Audible caps at 1000/page.
-    // IMPORTANT: Audible's library API is 1-indexed. page=0 returns HTTP 400
-    // ("Member must have value greater than or equal to 1"), so we start at 1.
-    // `media` in AUDIBLE_LIBRARY_RESPONSE_GROUPS is required for product_images.
-    const items: AudibleItem[] = [];
-    let page = 1;
-    let hitPageCap = false;
-    while (true) {
-      const params = new URLSearchParams({
-        response_groups: AUDIBLE_LIBRARY_RESPONSE_GROUPS,
-        num_results: String(PAGE_SIZE),
-        page: String(page),
-      });
-      const libraryResponse = await fetch(
-        `https://api.audible.com/1.0/library?${params.toString()}`,
-        { headers: { Authorization: `Bearer ${accessToken}` } }
-      );
-      if (!libraryResponse.ok) {
-        const text = await libraryResponse.text();
-        throw new Error(`Audible library fetch failed: ${libraryResponse.status} ${text.slice(0, 200)}`);
-      }
-      const libraryData = await libraryResponse.json();
-      const pageItems: AudibleItem[] = libraryData.items || [];
-      items.push(...pageItems);
-      if (pageItems.length < PAGE_SIZE) break;
-      // Full page — may be more; keep going, but flag if we stop after one full page without next
-      hitPageCap = true;
-      page += 1;
-      // Safety: don't infinite-loop (page is 1-indexed)
-      if (page > 20) break;
-    }
+    // Full library pagination (page/num_results). Single-page 1000 caps miss anything beyond.
+    const {
+      items,
+      pagesFetched,
+      truncated: libraryTruncated,
+    } = await fetchAllLibraryItems(accessToken);
 
-    const truncatedWarning =
-      hitPageCap && items.length % PAGE_SIZE === 0
-        ? `Library page returned exactly ${PAGE_SIZE} items on last page — possible truncation if Audible has more.`
-        : null;
+    const truncatedWarning = libraryTruncated
+      ? `Library pagination stopped after ${MAX_LIBRARY_PAGES} pages (${items.length} items) — possible truncation if Audible has more.`
+      : null;
+
+    console.log(
+      "[audible-sync] library fetch",
+      JSON.stringify({
+        items: items.length,
+        pages_fetched: pagesFetched,
+        page_size: PAGE_SIZE,
+        truncated: libraryTruncated,
+      })
+    );
 
     // Log one sample shape for progress + cover fields (redacted) once
     const sample =
@@ -598,6 +635,7 @@ export async function POST(_req: NextRequest) {
       series_absent_skipped: seriesSkippedAbsent,
       series_range_position_skipped: seriesRangeSkipped,
       progress_fields_written: progressWritten,
+      pages_fetched: pagesFetched,
       truncated_warning: truncatedWarning,
       sample_asin: sample?.asin ?? null,
     });
