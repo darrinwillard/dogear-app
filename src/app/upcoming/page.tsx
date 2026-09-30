@@ -88,7 +88,15 @@ export default async function UpcomingPage() {
         </p>
       </div>
 
-      <NextReadTabs>
+      <NextReadTabs
+        newReleases={
+          <NewReleasesSection
+            releases={data.releasedRecently}
+            isAuthed={data.isAuthed}
+            wantedAsins={wantedAsins}
+          />
+        }
+      >
       <div className="space-y-10">
       <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
         <div>
@@ -191,64 +199,80 @@ export default async function UpcomingPage() {
         </section>
       )}
 
-      {/* Recently released */}
-      {data.releasedRecently.length > 0 && (
-        <section>
-          <h2 className="font-serif text-xl font-bold text-amber-100 mb-4 flex items-center gap-2">
-            <span>✅</span> Recently released
-            <span className="text-sm font-normal text-slate-400">(already out)</span>
-          </h2>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {data.releasedRecently.map((release, i) => (
-              <ReleaseCardClick
-                key={release.asin || `${release.title}-${i}`}
-                release={release}
-                className="bg-slate-900/60 rounded-xl border border-emerald-500/20 p-4 hover:border-emerald-500/40 transition-all cursor-pointer"
-              >
-                <div className="flex items-start justify-between gap-2 mb-2">
-                  <span className="text-xs bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-2 py-0.5 rounded-full">
-                    {release.series}
-                    {release.seriesNumber != null ? ` #${release.seriesNumber}` : ''}
-                  </span>
-                  <span className="text-lg">✅</span>
-                </div>
-                <h3 className="font-semibold text-amber-100 mb-1">{release.title}</h3>
-                <p className="text-slate-400 text-sm mb-2">{release.author}</p>
-                <div className="flex items-center justify-between gap-2 flex-wrap">
-                  <span className="text-xs text-slate-500">
-                    Released {formatDate(release.releaseDate)}
-                  </span>
-                  <StopPropagation className="flex items-center gap-2">
-                    {data.isAuthed && (
-                      <WantButton
-                        release={release}
-                        alreadyWanted={!!(release.asin && wantedAsins.has(release.asin))}
-                        compact
-                      />
-                    )}
-                    {release.preorderUrl && (
-                      <a
-                        href={release.preorderUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-xs text-amber-500 hover:text-amber-400"
-                      >
-                        Buy →
-                      </a>
-                    )}
-                  </StopPropagation>
-                </div>
-              </ReleaseCardClick>
-            ))}
-          </div>
-        </section>
-      )}
-
       {data.source === 'live' && <StatsFooter data={data} />}
       </div>
       </NextReadTabs>
     </div>
     </ReleaseDetailProvider>
+  )
+}
+
+function NewReleasesSection({
+  releases,
+  isAuthed,
+  wantedAsins,
+}: {
+  releases: UpcomingRelease[]
+  isAuthed: boolean
+  wantedAsins: Set<string>
+}) {
+  if (releases.length === 0) {
+    return (
+      <div className="text-slate-500 text-sm py-8 text-center">
+        No new releases yet — titles move here automatically once their release date passes,
+        even if you miss checking Upcoming beforehand.
+      </div>
+    )
+  }
+
+  return (
+    <div className="space-y-4">
+      <p className="text-slate-500 text-xs">
+        {releases.length} title{releases.length === 1 ? '' : 's'} released — nothing drops off this
+        list once it&apos;s out, even if you miss the release date on Upcoming.
+      </p>
+      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      {releases.map((release, i) => (
+        <ReleaseCardClick
+          key={release.asin || `${release.title}-${i}`}
+          release={release}
+          className="bg-slate-900/60 rounded-xl border border-emerald-500/20 p-4 hover:border-emerald-500/40 transition-all cursor-pointer"
+        >
+          <div className="flex items-start justify-between gap-2 mb-2">
+            <span className="text-xs bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-2 py-0.5 rounded-full">
+              {release.series}
+              {release.seriesNumber != null ? ` #${release.seriesNumber}` : ''}
+            </span>
+            <span className="text-lg">✅</span>
+          </div>
+          <h3 className="font-semibold text-amber-100 mb-1">{release.title}</h3>
+          <p className="text-slate-400 text-sm mb-2">{release.author}</p>
+          <div className="flex items-center justify-between gap-2 flex-wrap">
+            <span className="text-xs text-slate-500">Released {formatDate(release.releaseDate)}</span>
+            <StopPropagation className="flex items-center gap-2">
+              {isAuthed && (
+                <WantButton
+                  release={release}
+                  alreadyWanted={!!(release.asin && wantedAsins.has(release.asin))}
+                  compact
+                />
+              )}
+              {release.preorderUrl && (
+                <a
+                  href={release.preorderUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-xs text-amber-500 hover:text-amber-400"
+                >
+                  Buy →
+                </a>
+              )}
+            </StopPropagation>
+          </div>
+        </ReleaseCardClick>
+      ))}
+      </div>
+    </div>
   )
 }
 

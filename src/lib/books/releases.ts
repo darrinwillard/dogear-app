@@ -301,10 +301,12 @@ export async function getUpcomingPageData(opts: {
     .filter((r) => !r.releaseDate && r.status !== 'released' && r.status !== 'canceled')
     .sort((a, b) => a.title.localeCompare(b.title))
 
+  // Uncapped — a title that slips past its release date before you check
+  // must still be findable under New Releases, not silently dropped once
+  // it falls out of a fixed-size slice.
   const releasedRecently = all
     .filter((r) => r.status === 'released')
     .sort(sortByDateDesc)
-    .slice(0, 30)
 
   return {
     source: 'live',
