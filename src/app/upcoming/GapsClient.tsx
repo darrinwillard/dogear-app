@@ -4,6 +4,65 @@ import { useEffect, useState } from 'react'
 import type { SeriesGap, AuthorGap } from '@/lib/books/gaps'
 import GapBookCard from './GapBookCard'
 
+function ChevronIcon({ open }: { open: boolean }) {
+  return (
+    <svg
+      viewBox="0 0 20 20"
+      fill="currentColor"
+      className={`w-4 h-4 shrink-0 transition-transform duration-150 ${open ? 'rotate-90' : ''}`}
+    >
+      <path
+        fillRule="evenodd"
+        d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z"
+        clipRule="evenodd"
+      />
+    </svg>
+  )
+}
+
+function GapGroupSection({
+  id,
+  title,
+  subtitle,
+  missingCount,
+  defaultOpen,
+  onToggle,
+  open,
+  children,
+}: {
+  id: string
+  title: string
+  subtitle: string
+  missingCount: number
+  defaultOpen?: boolean
+  onToggle: (id: string) => void
+  open: boolean
+  children: React.ReactNode
+}) {
+  void defaultOpen
+  return (
+    <section className="bg-slate-900/60 border border-slate-800 rounded-xl overflow-hidden">
+      <button
+        type="button"
+        onClick={() => onToggle(id)}
+        className="w-full flex items-center justify-between gap-3 p-4 text-left hover:bg-slate-800/40 transition-colors"
+      >
+        <div className="min-w-0 flex items-center gap-2">
+          <ChevronIcon open={open} />
+          <div className="min-w-0">
+            <h3 className="font-serif text-base font-semibold text-amber-200 truncate">{title}</h3>
+            <p className="text-slate-500 text-sm truncate">{subtitle}</p>
+          </div>
+        </div>
+        <span className="shrink-0 text-xs bg-amber-500/10 text-amber-400 border border-amber-500/20 px-2.5 py-1 rounded-full">
+          {missingCount} missing
+        </span>
+      </button>
+      {open && <div className="px-4 pb-4 pt-1 grid sm:grid-cols-2 lg:grid-cols-3 gap-3">{children}</div>}
+    </section>
+  )
+}
+
 interface GapsResponse {
   seriesGaps: SeriesGap[]
   authorGaps: AuthorGap[]
@@ -26,6 +85,16 @@ export default function GapsClient() {
   const [scanning, setScanning] = useState(false)
   const [data, setData] = useState<GapsResponse | null>(null)
   const [error, setError] = useState<string | null>(null)
+  const [openGroups, setOpenGroups] = useState<Set<string>>(new Set())
+
+  function toggleGroup(id: string) {
+    setOpenGroups((prev) => {
+      const next = new Set(prev)
+      if (next.has(id)) next.delete(id)
+      else next.add(id)
+      return next
+    })
+  }
 
   async function load(rescan: boolean) {
     if (rescan) setScanning(true)
@@ -166,22 +235,25 @@ export default function GapsClient() {
           <h2 className="font-serif text-xl font-bold text-amber-100 mb-4 flex items-center gap-2">
             <span>🔖</span> Series You&apos;re Reading
           </h2>
-          <div className="space-y-6">
-            {seriesGaps.map((gap) => (
-              <section key={`series-${gap.seriesName}`}>
-                <h3 className="font-serif text-base font-semibold text-amber-200 mb-1">
-                  {gap.seriesName}
-                </h3>
-                <p className="text-slate-500 text-sm mb-3">
-                  {gap.author} · you&apos;ve read {gap.readCount} of {gap.totalKnown} known
-                </p>
-                <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
+          <div className="space-y-3">
+            {seriesGaps.map((gap) => {
+              const id = `series-${gap.seriesName}`
+              return (
+                <GapGroupSection
+                  key={id}
+                  id={id}
+                  title={gap.seriesName}
+                  subtitle={`${gap.author} · you've read ${gap.readCount} of ${gap.totalKnown} known`}
+                  missingCount={gap.missing.length}
+                  open={openGroups.has(id)}
+                  onToggle={toggleGroup}
+                >
                   {gap.missing.map((release) => (
                     <GapBookCard key={release.asin} release={release} seriesName={gap.seriesName} />
                   ))}
-                </div>
-              </section>
-            ))}
+                </GapGroupSection>
+              )
+            })}
           </div>
         </div>
       )}
@@ -191,23 +263,25 @@ export default function GapsClient() {
           <h2 className="font-serif text-xl font-bold text-amber-100 mb-4 flex items-center gap-2">
             <span>✍️</span> Other Books from Authors You&apos;ve Read
           </h2>
-          <div className="space-y-6">
-            {authorGaps.map((gap) => (
-              <section key={`author-${gap.author}`}>
-                <h3 className="font-serif text-base font-semibold text-amber-200 mb-1">
-                  {gap.author}
-                </h3>
-                <p className="text-slate-500 text-sm mb-3">
-                  You&apos;ve read {gap.readCount} book{gap.readCount === 1 ? '' : 's'} by this
-                  author
-                </p>
-                <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
+          <div className="space-y-3">
+            {authorGaps.map((gap) => {
+              const id = `author-${gap.author}`
+              return (
+                <GapGroupSection
+                  key={id}
+                  id={id}
+                  title={gap.author}
+                  subtitle={`You've read ${gap.readCount} book${gap.readCount === 1 ? '' : 's'} by this author`}
+                  missingCount={gap.missing.length}
+                  open={openGroups.has(id)}
+                  onToggle={toggleGroup}
+                >
                   {gap.missing.map((release) => (
                     <GapBookCard key={release.asin} release={release} />
                   ))}
-                </div>
-              </section>
-            ))}
+                </GapGroupSection>
+              )
+            })}
           </div>
         </div>
       )}
