@@ -139,7 +139,7 @@ export default function BookDetailModal({
       onClick={onClose}
     >
       <div
-        className="bg-slate-900 border border-slate-800 rounded-t-2xl sm:rounded-2xl w-full sm:max-w-lg max-h-[90vh] overflow-y-auto"
+        className="bg-slate-900 border border-slate-800 rounded-t-2xl sm:rounded-2xl w-full sm:max-w-lg max-h-[90vh] flex flex-col"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="sticky top-0 bg-slate-900 border-b border-slate-800 px-4 py-3 flex items-center justify-between z-10">
@@ -156,7 +156,7 @@ export default function BookDetailModal({
           </button>
         </div>
 
-        <div className="p-4 space-y-4">
+        <div className="p-4 space-y-4 overflow-y-auto">
           <div className="flex gap-4">
             <div className="w-24 h-36 shrink-0 rounded-lg overflow-hidden relative bg-slate-800">
               <CoverImage book={book} />
@@ -253,7 +253,9 @@ export default function BookDetailModal({
             </div>
           )}
 
-          <div className="flex flex-col gap-2 pb-[max(1rem,env(safe-area-inset-bottom))]">
+          </div>
+
+          <div className="shrink-0 border-t border-slate-800 p-4 flex flex-col gap-2 pb-[max(1rem,env(safe-area-inset-bottom))]">
             {asin && book.audible_purchased && (
               <a
                 href={`https://www.audible.com/pd/${encodeURIComponent(asin)}`}
@@ -281,7 +283,6 @@ export default function BookDetailModal({
               View on Goodreads →
             </a>
           </div>
-        </div>
       </div>
     </div>
   )
