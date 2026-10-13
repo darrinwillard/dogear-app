@@ -444,24 +444,47 @@ export async function refreshReleasesForUser(opts: {
  * Mirror catalog cover URLs onto books.cover_url by ASIN.
  * Creates a lightweight books row when the ASIN is not already in the library,
  * so Upcoming can join covers without requiring series_releases.cover_url.
+ *
+ * Also mirrors synopsis/genre when the caller has them (full catalog product
+ * data is already in hand during release sync) — this is what New Releases
+ * and Upcoming join against via attachCoversFromBooks(). Previously only
+ * cover_url was written here, which is why New Releases cards (mostly
+ * unpurchased catalog titles with no other books row) showed no synopsis
+ * and no genre badge even though the sync already had that data.
  */
 export async function mirrorReleaseCoversToBooks(
   supabase: SupabaseClient,
-  releases: Array<{ asin: string; title: string; authors: string[]; coverUrl: string | null; releaseDate: string | null }>
+  releases: Array<{
+    asin: string
+    title: string
+    authors: string[]
+    coverUrl: string | null
+    releaseDate: string | null
+    synopsis?: string | null
+    genre?: string | null
+  }>
 ): Promise<{ mirrored: number; inserted: number }> {
   const withCover = releases.filter((r) => r.asin && r.coverUrl)
   if (!withCover.length) return { mirrored: 0, inserted: 0 }
 
   const asins = withCover.map((r) => r.asin)
-  const existingByAsin = new Map<string, { id: string; cover_url: string | null }>()
+  const existingByAsin = new Map<
+    string,
+    { id: string; cover_url: string | null; summary: string | null; genre: string | null }
+  >()
   for (let i = 0; i < asins.length; i += 200) {
     const chunk = asins.slice(i, i + 200)
     const { data } = await supabase
       .from('books')
-      .select('id, asin, cover_url')
+      .select('id, asin, cover_url, summary, genre')
       .in('asin', chunk)
     for (const row of data || []) {
-      existingByAsin.set(row.asin, { id: row.id, cover_url: row.cover_url })
+      existingByAsin.set(row.asin, {
+        id: row.id,
+        cover_url: row.cover_url,
+        summary: row.summary ?? null,
+        genre: row.genre ?? null,
+      })
     }
   }
 
@@ -472,10 +495,20 @@ export async function mirrorReleaseCoversToBooks(
   for (const r of withCover) {
     const existing = existingByAsin.get(r.asin)
     if (existing?.id) {
-      if (existing.cover_url === r.coverUrl) continue
+      const nextSummary = existing.summary || r.synopsis || null
+      const nextGenre = existing.genre || r.genre || null
+      const coverChanged = existing.cover_url !== r.coverUrl
+      const summaryChanged = !existing.summary && !!nextSummary
+      const genreChanged = !existing.genre && !!nextGenre
+      if (!coverChanged && !summaryChanged && !genreChanged) continue
       const { error } = await supabase
         .from('books')
-        .update({ cover_url: r.coverUrl, updated_at: nowIso })
+        .update({
+          cover_url: r.coverUrl,
+          summary: nextSummary,
+          genre: nextGenre,
+          updated_at: nowIso,
+        })
         .eq('id', existing.id)
       if (!error) mirrored++
       continue
@@ -486,12 +519,19 @@ export async function mirrorReleaseCoversToBooks(
       title: r.title || r.asin,
       authors: r.authors || [],
       cover_url: r.coverUrl,
+      summary: r.synopsis || null,
+      genre: r.genre || null,
       release_date: r.releaseDate,
       updated_at: nowIso,
     })
     if (!error) {
       inserted++
-      existingByAsin.set(r.asin, { id: 'new', cover_url: r.coverUrl })
+      existingByAsin.set(r.asin, {
+        id: 'new',
+        cover_url: r.coverUrl,
+        summary: r.synopsis || null,
+        genre: r.genre || null,
+      })
     }
   }
 
