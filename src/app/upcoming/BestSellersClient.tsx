@@ -265,19 +265,33 @@ export default function BestSellersClient() {
                   <p className="text-slate-500 text-xs mt-2 line-clamp-2">{book.description}</p>
                 )}
                 <div
-                  className="mt-auto pt-2 flex items-center justify-between gap-2"
+                  className="mt-auto pt-2 flex items-center justify-between gap-2 flex-wrap"
                   onClick={(e) => e.stopPropagation()}
                 >
-                  {book.amazon_product_url && (
+                  <div className="flex items-center gap-2 flex-wrap">
+                    {book.amazon_product_url && (
+                      <a
+                        href={book.amazon_product_url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-xs text-amber-500 hover:text-amber-400"
+                      >
+                        Buy →
+                      </a>
+                    )}
+                    {/* Goodreads search link — plain outbound search URL built from
+                        title+author, not an API integration (see BookDetailModal.tsx) */}
                     <a
-                      href={book.amazon_product_url}
+                      href={`https://www.goodreads.com/search?q=${encodeURIComponent(
+                        `${book.title} ${book.author}`
+                      )}`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-xs text-amber-500 hover:text-amber-400"
+                      className="text-xs text-slate-400 hover:text-slate-200"
                     >
-                      Buy →
+                      Goodreads →
                     </a>
-                  )}
+                  </div>
                   <WantBestsellerButton book={book} compact />
                 </div>
               </div>
@@ -299,16 +313,30 @@ export default function BestSellersClient() {
                   ? ` · ${openBook.weeks_on_list} wk${openBook.weeks_on_list === 1 ? '' : 's'} on list`
                   : ''}
               </span>
-              {openBook.amazon_product_url && (
+              <div className="flex items-center gap-3">
+                {/* Goodreads search link — plain outbound search URL built from
+                    title+author, not an API integration (see BookDetailModal.tsx) */}
                 <a
-                  href={openBook.amazon_product_url}
+                  href={`https://www.goodreads.com/search?q=${encodeURIComponent(
+                    `${openBook.title} ${openBook.author}`
+                  )}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-amber-500 hover:text-amber-400 font-medium"
+                  className="text-slate-400 hover:text-slate-200 font-medium"
                 >
-                  Buy on Amazon →
+                  Goodreads →
                 </a>
-              )}
+                {openBook.amazon_product_url && (
+                  <a
+                    href={openBook.amazon_product_url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-amber-500 hover:text-amber-400 font-medium"
+                  >
+                    Buy on Amazon →
+                  </a>
+                )}
+              </div>
             </div>
           }
         />
